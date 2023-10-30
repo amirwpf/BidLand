@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\software\\exe\\visual studio 2022\\tempProjects\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {}
+    "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {}
   },
   "projects": {
-    "F:\\software\\exe\\visual studio 2022\\tempProjects\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
+    "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\tempProjects\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj",
+        "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj",
         "projectName": "App.Domin.Core",
-        "projectPath": "F:\\software\\exe\\visual studio 2022\\tempProjects\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj",
+        "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj",
         "packagesPath": "C:\\Users\\amir\\.nuget\\packages\\",
-        "outputPath": "F:\\software\\exe\\visual studio 2022\\tempProjects\\BidLand\\App.Domin.Core\\obj\\",
+        "outputPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\ProgramData\\Xamarin\\NuGet\\",
