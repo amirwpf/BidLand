@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\BidLand.Web.Scaffold.props" />
+</Project>
