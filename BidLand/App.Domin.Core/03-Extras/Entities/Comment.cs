@@ -11,7 +11,6 @@ namespace App.Domin.Core._03_Extras.Entities;
 
 public partial class Comment
 {
-
     public int Id { get; set; }
 
     public string? Title { get; set; }

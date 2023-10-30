@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos
+namespace App.Domin.Core._03_Extras.Contracts.Repositories.Dtos
 {
-	internal class AuctionRepoDto
+	internal class AddressRepoDto
 	{
 	}
 }
