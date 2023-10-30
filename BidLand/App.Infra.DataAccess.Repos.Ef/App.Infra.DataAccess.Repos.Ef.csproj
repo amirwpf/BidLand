@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="02-Users\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\App.Domin.Core\App.Domin.Core.csproj" />
+    <ProjectReference Include="..\App.Infra.Db.sqlServer.Ef\App.Infra.Db.sqlServer.Ef.csproj" />
+  </ItemGroup>
+
+</Project>

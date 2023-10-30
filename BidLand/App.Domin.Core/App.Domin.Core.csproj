@@ -7,18 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="01-Purchause\Contracts\AppServices\" />
-    <Folder Include="01-Purchause\Contracts\Repositories\RepoSeprationContracts\sqlServer\" />
-    <Folder Include="01-Purchause\Contracts\Services\" />
+    <Folder Include="01-Purchase\Contracts\AppServices\" />
+    <Folder Include="01-Purchase\Contracts\Services\" />
     <Folder Include="02-Users\Contracts\AppServices\" />
-    <Folder Include="02-Users\Contracts\Repositories\RepoSeprationContracts\sqlServer\" />
     <Folder Include="02-Users\Contracts\Services\" />
     <Folder Include="03-Extras\Contracts\AppServices\" />
-    <Folder Include="03-Extras\Contracts\Repositories\RepoSeprationContracts\sqlServer\" />
     <Folder Include="03-Extras\Contracts\Services\" />
     <Folder Include="03-Extras\Dtos\" />
     <Folder Include="02-Users\Dtos\" />
-    <Folder Include="01-Purchause\Dtos\" />
+    <Folder Include="01-Purchase\Dtos\" />
   </ItemGroup>
 
 </Project>
