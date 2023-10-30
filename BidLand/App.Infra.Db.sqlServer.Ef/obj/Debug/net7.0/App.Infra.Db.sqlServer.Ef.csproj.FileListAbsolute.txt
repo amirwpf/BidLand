@@ -1,0 +1,17 @@
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.deps.json
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.runtimeconfig.json
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.dll
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.pdb
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Domin.Core.dll
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Domin.Core.pdb
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.csproj.AssemblyReference.cache
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.GeneratedMSBuildEditorConfig.editorconfig
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.AssemblyInfoInputs.cache
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.AssemblyInfo.cs
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.csproj.CoreCompileInputs.cache
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.csproj.CopyComplete
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.dll
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\refint\App.Infra.Db.sqlServer.Ef.dll
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.pdb
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.genruntimeconfig.cache
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\ref\App.Infra.Db.sqlServer.Ef.dll

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+namespace App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
 
-namespace App.Domin.Core._03_Extras.Contracts.Repositories.Dtos
+public class MedalRepoDto
 {
-	internal class AddressRepoDto
-	{
-	}
+	public int Id { get; set; }
+
+	public int? LevelType { get; set; }
+
+	public int? SellerId { get; set; }
+
+	public DateTime? InsertionDate { get; set; }
 }

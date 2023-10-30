@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{931FF457-B951-40A6-9368-B28A45E63306}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{931FF457-B951-40A6-9368-B28A45E63306}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D2605533-15BC-4DB1-A419-E7B46514C778}"
 EndProject
@@ -17,7 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{9797EA44-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{511713FA-0780-425C-9C5C-A3D6B470FADA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Domin.Core", "App.Domin.Core\App.Domin.Core.csproj", "{9E5B97FA-B527-4DA6-AA82-714FB8967D9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domin.Core", "App.Domin.Core\App.Domin.Core.csproj", "{9E5B97FA-B527-4DA6-AA82-714FB8967D9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{ED511C7D-880D-4546-A57E-8E76B0DBA6D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Db", "Db", "{4B475A0F-CD6E-485D-9832-E10381440CBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infra.Db.sqlServer.Ef", "App.Infra.Db.sqlServer.Ef\App.Infra.Db.sqlServer.Ef.csproj", "{B30E58CD-4BE3-465A-9799-7D15DDAA5963}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,10 @@ Global
 		{9E5B97FA-B527-4DA6-AA82-714FB8967D9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E5B97FA-B527-4DA6-AA82-714FB8967D9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E5B97FA-B527-4DA6-AA82-714FB8967D9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B30E58CD-4BE3-465A-9799-7D15DDAA5963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B30E58CD-4BE3-465A-9799-7D15DDAA5963}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B30E58CD-4BE3-465A-9799-7D15DDAA5963}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B30E58CD-4BE3-465A-9799-7D15DDAA5963}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +54,9 @@ Global
 		{9797EA44-B1BA-481F-B3D4-DCA752F3450F} = {AC525504-142F-4441-BBEB-EC9213D10494}
 		{511713FA-0780-425C-9C5C-A3D6B470FADA} = {AC525504-142F-4441-BBEB-EC9213D10494}
 		{9E5B97FA-B527-4DA6-AA82-714FB8967D9E} = {9797EA44-B1BA-481F-B3D4-DCA752F3450F}
+		{ED511C7D-880D-4546-A57E-8E76B0DBA6D9} = {6D771E5F-EBC0-4037-A787-4B647D3CDC57}
+		{4B475A0F-CD6E-485D-9832-E10381440CBC} = {6D771E5F-EBC0-4037-A787-4B647D3CDC57}
+		{B30E58CD-4BE3-465A-9799-7D15DDAA5963} = {4B475A0F-CD6E-485D-9832-E10381440CBC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3B0F117-FC8B-4B9A-BAF3-0A84DFB86AAA}

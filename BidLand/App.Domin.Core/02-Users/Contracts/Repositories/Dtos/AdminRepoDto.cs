@@ -1,8 +1,8 @@
 ﻿
 
-namespace App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+namespace App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 
-public class AuctionRepoDto
+public class AdminRepoDto
 {
 	public int Id { get; set; }
 

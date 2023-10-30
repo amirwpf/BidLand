@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Repository.Models;
 
 namespace WebApplication1.Repository;
+//namespace App.Infra.Db.sqlServer.Ef.Context
 
 public partial class AppDbContext : DbContext
 {

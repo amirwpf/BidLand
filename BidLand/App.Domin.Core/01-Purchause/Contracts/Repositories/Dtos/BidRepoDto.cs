@@ -19,8 +19,4 @@ public class BidRepoDto
 	public int? AuctionId { get; set; }
 
 	public int? BuyerId { get; set; }
-
-	public virtual Auction? Auction { get; set; }
-
-	public virtual Buyer? Buyer { get; set; }
 }
