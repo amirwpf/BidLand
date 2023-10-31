@@ -22,33 +22,70 @@ public class AddressRepository : IAddressRepository
 		_dbSet = _context.Set<Address>();
 	}
 
-	public async Task<Address> GetByIdAsync(int id)
+	public async Task<AddressRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
-		return await _dbSet.FindAsync(id);
+		var result = await _dbSet.Where(predicate=> predicate.Id == id)
+			.Include(x=>x.Buyer)
+			.Include(x=>x.Seller)
+			.Select(a=>new AddressRepoDto
+			{
+				Id= a.Id,
+				BuyerId= a.BuyerId,
+				City= a.City,
+				No= a.No,
+				Phone= a.Phone,
+				PostalCode= a.PostalCode,
+				Province= a.Province,
+				SellerId= a.SellerId,
+				Street= a.Street,
+				Buyer = a.Buyer,
+				Seller = a.Seller
+			}).FirstOrDefaultAsync(cancellationToken);
+		return result;
 	}
 
-	public async Task<List<Address>> GetAllAsync()
+	public async Task<List<AddressRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
-		return await _dbSet.ToListAsync();
+		var result = await _dbSet
+			.Include(x => x.Buyer)
+			.Include(x => x.Seller)
+			.Select(a => new AddressRepoDto
+			{
+				Id = a.Id,
+				BuyerId = a.BuyerId,
+				City = a.City,
+				No = a.No,
+				Phone = a.Phone,
+				PostalCode = a.PostalCode,
+				Province = a.Province,
+				SellerId = a.SellerId,
+				Street = a.Street,
+				Buyer=a.Buyer,
+				Seller=a.Seller
+			}).ToListAsync(cancellationToken);
+		return result;
 	}
 
-	public async Task AddAsync(AddressRepoDto addressRepDto)
+	public async Task AddAsync(AddressRepoDto addressRepDto, CancellationToken cancellationToken)
 	{
 		var address = new Address
 		{
 			City = addressRepDto.City,
 			Street = addressRepDto.Street,
-			//Description = addressRepDto.Description,
 			SellerId = addressRepDto.SellerId,
-			//CustomerId = addressRepDto.CustomerId
-		};
-		await _dbSet.AddAsync(address);
-		await _context.SaveChangesAsync();
+			No = addressRepDto.No,
+			Province = addressRepDto.Province,
+			BuyerId = addressRepDto.BuyerId,
+			Phone = addressRepDto.Phone,
+			PostalCode = addressRepDto.PostalCode,
+	};
+		await _dbSet.AddAsync(address, cancellationToken);
+		await _context.SaveChangesAsync(cancellationToken);
 	}
 
-	public async Task UpdateAsync(AddressRepoDto addressdto)
+	public async Task UpdateAsync(AddressRepoDto addressdto, CancellationToken cancellationToken)
 	{
-		var address = await _dbSet.FindAsync(addressdto.Id);
+		var address = await _dbSet.FirstOrDefaultAsync(x=>x.Id==addressdto.Id, cancellationToken);
 		if (address == null)
 		{
 			// Handle the case when the address is not found
@@ -58,25 +95,22 @@ public class AddressRepository : IAddressRepository
 		// Update address properties
 		address.City = addressdto.City;
 		address.Street = addressdto.Street;
+		address.SellerId = addressdto.SellerId;
+		address.No=addressdto.No;
+		address.Province = addressdto.Province;
+		address.BuyerId= addressdto.BuyerId;
+		address.Phone = addressdto.Phone;
+		address.PostalCode = addressdto.PostalCode;
 		//address.Description = addressdto.Description;
 
 		_context.Entry(address).State = EntityState.Modified;
-		await _context.SaveChangesAsync();
+		await _context.SaveChangesAsync(cancellationToken);
 	}
 
-	public async Task DeleteAsync(Address address)
+	public async Task DeleteAsync(AddressRepoDto address, CancellationToken cancellationToken)
 	{
-		_dbSet.Remove(address);
-		await _context.SaveChangesAsync();
-	}
-
-	Task<Address> IAddressRepository.GetByIdAsync(int id)
-	{
-		throw new NotImplementedException();
-	}
-
-	Task<List<Address>> IAddressRepository.GetAllAsync()
-	{
-		throw new NotImplementedException();
+		var result = await _dbSet.Where(x=>x.Id==address.Id).FirstOrDefaultAsync(cancellationToken);
+		_dbSet.Remove(result);
+		await _context.SaveChangesAsync(cancellationToken);
 	}
 }

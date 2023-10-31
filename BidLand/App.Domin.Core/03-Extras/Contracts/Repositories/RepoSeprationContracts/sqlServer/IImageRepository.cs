@@ -10,16 +10,13 @@ namespace App.Domin.Core._03_Extras.Contracts.Repositories.RepoSeprationContract
 {
 	public interface IImageRepository
 	{
-		Task<Image> GetProfileImageBySellerId(int sellerId);
-		Task<Image> GetBySellerIdAsync(int sellerId);
-		Task<Image> GetByIdAsync(int imageId);
-		Task<List<ImageRepoDto>> GetAllImageProductBySellerId(int sellerId);
-		Task<IEnumerable<Image>> GetImagesForProductAsync(int productId);
-		Task<int> AddAsync(ImageRepoDto image);
-
-		Task<bool> RemoveAsync(int id);
-		Task<Image> GetByUrlAsync(string url);
-		Task<bool> RemoveAsync(string url);
+		Task<ImageRepoDto> GetByIdAsync(int imageId,CancellationToken cancellationToken);
+		Task<List<ImageRepoDto>> GetAllImageForProductByIdAsync(int productId, CancellationToken cancellationToken);
+		Task<ImageRepoDto> GetByUrlAsync(string url, CancellationToken cancellationToken);
+		Task<int> AddAsync(ImageRepoDto imageDto, CancellationToken cancellationToken);
+		Task DeleteAsync(int id, CancellationToken cancellationToken);
+		Task DeleteAsync(string url, CancellationToken cancellationToken);
+		Task UpdateAsync(ImageRepoDto imageRepoDto, CancellationToken cancellationToken);
 
 	}
 }

@@ -10,7 +10,6 @@ namespace App.Domin.Core._01_Purchause.Entities;
 
 public partial class Cart
 {
-
     public int Id { get; set; }
 
     public int? Value { get; set; }

@@ -1,0 +1,12 @@
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\bin\Debug\net7.0\BidLand.Framework.deps.json
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\bin\Debug\net7.0\BidLand.Framework.dll
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\bin\Debug\net7.0\BidLand.Framework.pdb
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.csproj.AssemblyReference.cache
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.GeneratedMSBuildEditorConfig.editorconfig
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.AssemblyInfoInputs.cache
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.AssemblyInfo.cs
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.csproj.CoreCompileInputs.cache
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.dll
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\obj\Debug\net7.0\refint\BidLand.Framework.dll
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.pdb
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Framework\obj\Debug\net7.0\ref\BidLand.Framework.dll

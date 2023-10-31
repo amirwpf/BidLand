@@ -1,5 +1,7 @@
 ﻿
 
+using App.Domin.Core._01_Purchause.Entities;
+
 namespace App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
 
 public class ImageRepoDto
@@ -11,4 +13,5 @@ public class ImageRepoDto
 	public string? Url { get; set; }
 
 	public DateTime? InsertionDate { get; set; }
+	public virtual Product? Product { get; set; }
 }

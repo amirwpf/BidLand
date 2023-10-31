@@ -10,11 +10,11 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 {
 	public interface IBoothRepository
 	{
-		Task<List<Booth>> GetByCategoryIdAsync(int categoryId);
-		Task<Booth> GetByIdAsync(int id);
-		Task<List<BoothRepoDto>> GetAllAsync();
-		Task AddAsync(BoothRepoDto booth);
-		Task<bool> UpdateBoothAsync(BoothRepoDto boothRepDto);
-		Task<bool> DeleteAsync(int id);
+		Task<List<BoothRepoDto>> GetByCategoryIdAsync(int categoryId, CancellationToken cancellationToken);
+		Task<BoothRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
+		Task<List<BoothRepoDto>> GetAllAsync(CancellationToken cancellationToken);
+		Task AddAsync(BoothRepoDto boothRepDto, CancellationToken cancellationToken);
+		Task<bool> UpdateBoothAsync(BoothRepoDto boothRepDto, CancellationToken cancellationToken);
+		Task<bool> DeleteAsync(BoothRepoDto boothRepo, CancellationToken cancellationToken);
 	}
 }

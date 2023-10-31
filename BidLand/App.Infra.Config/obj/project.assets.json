@@ -971,6 +971,19 @@
           "bin/placeholder/App.Domin.Core.dll": {}
         }
       },
+      "App.Domin.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "App.Domin.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/App.Domin.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/App.Domin.Services.dll": {}
+        }
+      },
       "App.Infra.DataAccess.Repos.Ef/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -2652,6 +2665,11 @@
       "path": "../App.Domin.Core/App.Domin.Core.csproj",
       "msbuildProject": "../App.Domin.Core/App.Domin.Core.csproj"
     },
+    "App.Domin.Services/1.0.0": {
+      "type": "project",
+      "path": "../App.Domin.Services/App.Domin.Services.csproj",
+      "msbuildProject": "../App.Domin.Services/App.Domin.Services.csproj"
+    },
     "App.Infra.DataAccess.Repos.Ef/1.0.0": {
       "type": "project",
       "path": "../App.Infra.DataAccess.Repos.Ef/App.Infra.DataAccess.Repos.Ef.csproj",
@@ -2666,6 +2684,7 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "App.Domin.Core >= 1.0.0",
+      "App.Domin.Services >= 1.0.0",
       "App.Infra.DataAccess.Repos.Ef >= 1.0.0",
       "Microsoft.Extensions.Configuration.Abstractions >= 7.0.0",
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 7.0.0"
@@ -2707,6 +2726,9 @@
           "projectReferences": {
             "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
               "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
+            },
+            "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj": {
+              "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj"
             },
             "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj": {
               "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj"

@@ -10,12 +10,12 @@ namespace App.Domin.Core._03_Extras.Contracts.Repositories.RepoSeprationContract
 {
 	public interface ICommentRepository
 	{
-		Task<Comment> GetByIdAsync(int id);
-		Task<List<CommentRepoDto>> GetByProductIdAsync(int productId);
-		Task<List<Comment>> GetAllAsync();
-		Task<int> AddAsync(CommentRepoDto comment);
-		Task UpdateAsync(Comment comment);
-		Task DeleteAsync(Comment comment);
-		Task<List<Comment>> GetAllCommentsWithSellerNameConfirmAsync();
+		Task<List<CommentRepoDto>> GetByIdAsync(int id,CancellationToken cancellationToken);
+		Task<List<CommentRepoDto>> GetByStockIdAsync(int stockId, CancellationToken cancellationToken);
+		Task<List<CommentRepoDto>> GetAllAsync(CancellationToken cancellationToken);
+		Task<int> AddAsync(CommentRepoDto comment, CancellationToken cancellationToken);
+		Task UpdateAsync(CommentRepoDto comment, CancellationToken cancellationToken);
+		Task DeleteAsync(CommentRepoDto comment, CancellationToken cancellationToken);
+		Task<List<CommentRepoDto>> GetAllCommentsWithSellerNameConfirmAsync(CancellationToken cancellationToken);
 	}
 }

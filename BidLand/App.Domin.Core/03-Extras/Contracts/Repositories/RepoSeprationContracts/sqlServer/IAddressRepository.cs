@@ -10,10 +10,10 @@ namespace App.Domin.Core._03_Extras.Contracts.Repositories.RepoSeprationContract
 {
 	public interface IAddressRepository
 	{
-		Task<Address> GetByIdAsync(int id);
-		Task<List<Address>> GetAllAsync();
-		Task AddAsync(AddressRepoDto address);
-		Task UpdateAsync(AddressRepoDto addressdto);
-		Task DeleteAsync(Address address);
+		Task<AddressRepoDto> GetByIdAsync(int id,CancellationToken cancellationToken);
+		Task<List<AddressRepoDto>> GetAllAsync(CancellationToken cancellationToken);
+		Task AddAsync(AddressRepoDto address, CancellationToken cancellationToken);
+		Task UpdateAsync(AddressRepoDto addressdto, CancellationToken cancellationToken);
+		Task DeleteAsync(AddressRepoDto address, CancellationToken cancellationToken);
 	}
 }

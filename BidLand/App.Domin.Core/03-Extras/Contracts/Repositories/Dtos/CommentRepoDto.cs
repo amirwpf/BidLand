@@ -1,4 +1,7 @@
 ﻿
+using App.Domin.Core._01_Purchause.Entities;
+using App.Domin.Core._02_Users.Entities;
+
 namespace App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
 
 public class CommentRepoDto
@@ -22,5 +25,9 @@ public class CommentRepoDto
 	public int? StockId { get; set; }
 
 	public int? BuyerId { get; set; }
+
+	public virtual Buyer? Buyer { get; set; }
+
+	public virtual Stock? Stock { get; set; }
 
 }

@@ -1,4 +1,5 @@
-﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
+﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
 using App.Domin.Core._01_Purchause.Entities;
 using App.Infra.Db.sqlServer.Ef.Context;
 using Microsoft.EntityFrameworkCore;
@@ -15,82 +16,110 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 		private readonly AppDbContext _context;
 		private readonly DbSet<StocksCart> _dbSet;
 
-		public StockssCartRepository(AppDbContext context)
+		public StocksCartRepository(AppDbContext context, CancellationToken cancellationToken)
 		{
 			_context = context;
 			_dbSet = _context.Set<StocksCart>();
 		}
-		public async Task AddProductToOldCartAsync(int cartId, int productId)
+		public async Task AddProductToOldCartAsync(int cartId, int stockId, CancellationToken cancellationToken)
 		{
 			var cart = await _context.Carts
-				.Include(pc => pc.ProductsCarts)
-				.FirstOrDefaultAsync(c => c.Id == cartId);
+				.Include(pc => pc.StocksCarts)
+				.FirstOrDefaultAsync(c => c.Id == cartId, cancellationToken);
 
 			if (cart == null) return;
 
-			var existingProductsCart = cart.ProductsCarts
-				.FirstOrDefault(pc => pc.ProductId == productId);
+			var existingProductsCart = cart.StocksCarts
+				.FirstOrDefault(pc => pc.StockId == stockId);
 
 			if (existingProductsCart != null)
 			{
 				existingProductsCart.Quantity++;
-				existingProductsCart.Cart.TotalPrices += existingProductsCart.Product.BasePrice;
 				_context.Entry(existingProductsCart).State = EntityState.Modified;
 			}
 			else
 			{
-				var product = await _context.Products.FindAsync(productId);
+				var product = await _context.Products.FindAsync(stockId);
 				if (product == null) return;
 
-				var productsCart = new ProductsCart
+				var productsCart = new StocksCart
 				{
 					CartId = cart.Id,
-					ProductId = productId,
+					StockId = stockId,
 					Quantity = 1,
-					OrderDate = DateTime.Now
+					InsertionDate= DateTime.Now
 				};
 
-				cart.ProductsCarts.Add(productsCart);
-				cart.TotalPrices += product.BasePrice;
+				cart.StocksCarts.Add(productsCart);
 			}
 
 			_context.Entry(cart).State = EntityState.Modified;
-			await _context.SaveChangesAsync();
+			await _context.SaveChangesAsync(cancellationToken);
 		}
 
 
-		public async Task<ProductsCart> GetByIdAsync(int id)
+		public async Task<StocksCartRepoDto> GetByCartIdAsync(int cartId, CancellationToken cancellationToken)
 		{
-			return await _dbSet.FindAsync(id);
+			var result = await _dbSet
+				.Where(a=>a.CartId== cartId)
+				.Select(a => new StocksCartRepoDto
+				{
+					CartId = a.CartId,
+					StockId = a.StockId,
+					Cart = a.Cart,
+					InsertionDate = DateTime.Now,
+					Quantity = a.Quantity,
+					Stock = a.Stock
+				})
+				.FirstOrDefaultAsync(cancellationToken);
+
+			return result;
 		}
 
-		public async Task<List<ProductsCart>> GetAllAsync()
+		public async Task<List<StocksCartRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 		{
-			return await _dbSet.ToListAsync();
+			var result = await _dbSet
+				.Select(a=> new StocksCartRepoDto
+				{
+					CartId= a.CartId,
+					StockId= a.StockId,
+					Cart= a.Cart,
+					InsertionDate= DateTime.Now,
+					Quantity= a.Quantity,
+					Stock = a.Stock
+				})
+				.ToListAsync(cancellationToken);
+
+			return result;
 		}
 
-		public async Task AddAsync(ProductsCartDto dto)
+		public async Task AddAsync(StocksCartRepoDto dto, CancellationToken cancellationToken)
 		{
-			var productsCart = new ProductsCart
+			var StocksCart = new StocksCart
 			{
-				CartId = (int)dto.CartId,
-				ProductId = dto.ProductId,
-				Quantity = 1
+				CartId = dto.CartId,
+				Quantity = dto.Quantity,
+				Stock= dto.Stock,
+				InsertionDate= DateTime.Now,
+				Cart= dto.Cart,
+				StockId = dto.StockId
 			};
-			await _dbSet.AddAsync(productsCart);
-			await _context.SaveChangesAsync();
+			await _dbSet.AddAsync(StocksCart);
+			await _context.SaveChangesAsync(cancellationToken);
 		}
 
-		public async Task UpdateAsync(ProductsCart productsCart)
+		public async Task UpdateAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken)
 		{
-			_context.Entry(productsCart).State = EntityState.Modified;
-			await _context.SaveChangesAsync();
+			var res = await _dbSet.Where(x => x.CartId == stocksCart.CartId).FirstOrDefaultAsync(cancellationToken);
+			_context.Entry(res).State = EntityState.Modified;
+			await _context.SaveChangesAsync(cancellationToken);
 		}
 
-		public async Task DeleteAsync(ProductsCart productsCart)
+		public async Task DeleteAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken)
 		{
-			_dbSet.Remove(productsCart);
-			await _context.SaveChangesAsync();
+			var res =await _dbSet.Where(x => x.CartId == stocksCart.CartId ).FirstOrDefaultAsync(cancellationToken);
+			_dbSet.Remove(res);
+			await _context.SaveChangesAsync(cancellationToken);
 		}
 	}
 }

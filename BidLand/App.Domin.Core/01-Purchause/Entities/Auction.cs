@@ -33,5 +33,5 @@ public partial class Auction
 
     public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
 
-    public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
+    public virtual Stock? Stock { get; set; } = new Stock();
 }

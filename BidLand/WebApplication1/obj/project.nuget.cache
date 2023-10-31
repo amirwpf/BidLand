@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fu29ncImC2qBGkFB/oLYqM+HrmGF9mghHUOZCz89r/U6mVAGyWDdfHBYezW4m3K7VnTE67RNZiqcDV4vl3KaIw==",
+  "dgSpecHash": "ToeZx+o0CY7UqnRACLwiSB6fGQ+fpv1UXW4HVASKBStsfl5K2DJW8q2pwrrAJ+6PiNoppEBnezOBB+8xNk709g==",
   "success": true,
-  "projectFilePath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\WebApplication1\\scaffold.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\amir\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\amir\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -1,4 +1,5 @@
 ﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+using App.Domin.Core._01_Purchause.Dtos;
 using App.Domin.Core._01_Purchause.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,15 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 {
 	public interface ICartRepository
 	{
-		Task<List<StocksCartRepoDto>> GetProductsOpenCartByCartIdAsync(int cartId);
-		Task<string> DeleteOpenCartAsync(int customerId, int cartId);
-		Task<int> GetTotalPrices(int cartId);
-		Task<List<CartRepoDto>> GetfinalizedCartsByCustomerId(int customerId);
-		Task<List<CartRepoDto>> GetUnfinalizedCartsByCustomerId(int customerId);
-		Task<List<StocksCartRepoDto>> GetProductsByCartIdAsync(int cartId);
-		Task<bool> FinalizeCartAsync(int cartId);//
-		Task<List<Cart>> GetOpenCartsForCustomerIdByBoothIdAsync(int boothId, int cudtomerId);
-		Task<Cart> GetByIdAsync(int id);
-		Task<List<Cart>> GetAllAsync();
-		Task<CartRepoDto> AddAsync(CartRepoDto dto);
-		Task UpdateAsync(Cart cart);
-		Task DeleteAsync(Cart cart);
+		Task<string> DeleteOpenCartAsync(int buyerId, int cartId, CancellationToken cancellationToken);
+		Task<int> GetTotalPrices(int cartId, CancellationToken cancellationToken);
+		Task<List<BidResponseDto>> GetCompeletedCartsByCustomerId(int buyerId, CancellationToken cancellationToken);
+		Task<List<BidResponseDto>> GetNonCompeletedCartsByCustomerId(int buyerId, CancellationToken cancellationToken);
+		Task<bool> FinalizeCartAsync(int cartId, CancellationToken cancellationToken);
+		Task<CartRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
+		Task<List<CartRepoDto>> GetAllAsync(CancellationToken cancellationToken);
+		Task<BidAddDto> AddAsync(BidAddDto dto, CancellationToken cancellationToken);
+		Task UpdateAsync(CartRepoDto cart, CancellationToken cancellationToken);
+		Task DeleteAsync(CartRepoDto cart, CancellationToken cancellationToken);
 	}
 }

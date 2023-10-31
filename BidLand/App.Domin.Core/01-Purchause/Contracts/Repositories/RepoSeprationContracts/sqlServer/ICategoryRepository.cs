@@ -10,13 +10,13 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 {
 	public interface ICategoryRepository
 	{
-		Task AddProductToCategoryAsync(int productId, int categoryId);
-		Task DeleteProductFromCategoryAsync(Category category, Product product);
-		Task<Category> GetByIdOrginalAsync(int id);
-		Task<CategoryRepoDto> GetByIdAsync(int id);
-		Task<List<Category>> GetAllAsync();
-		Task AddAsync(Category category);
-		Task UpdateAsync(Category category);
-		Task DeleteAsync(Category category);
+		Task<CategoryRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
+		Task<CategoryRepoDto> GetByIdOrginalAsync(int id, CancellationToken cancellationToken);
+		Task<List<CategoryRepoDto>> GetAllAsync(CancellationToken cancellationToken);
+		Task AddAsync(CategoryRepoDto category, CancellationToken cancellationToken);
+		Task UpdateAsync(CategoryRepoDto category, CancellationToken cancellationToken);
+		Task DeleteAsync(CategoryRepoDto category, CancellationToken cancellationToken);
+		Task AddProductToCategoryAsync(int productId, int categoryId, CancellationToken cancellationToken);
+		Task DeleteProductFromCategoryAsync(CategoryRepoDto category, ProductRepoDto product, CancellationToken cancellationToken);
 	}
 }

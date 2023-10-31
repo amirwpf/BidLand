@@ -1,8 +1,8 @@
 {
   "Files": [
     {
-      "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\WebApplication1\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\WebApplication1.bundle.scp.css",
-      "PackagePath": "staticwebassets\\WebApplication1.bundle.scp.css"
+      "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\WebApplication1\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\scaffold.bundle.scp.css",
+      "PackagePath": "staticwebassets\\scaffold.bundle.scp.css"
     },
     {
       "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\WebApplication1\\wwwroot\\css\\site.css",
@@ -245,20 +245,20 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.WebApplication1.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.scaffold.props",
+      "PackagePath": "build\\scaffold.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.scaffold.props",
+      "PackagePath": "buildMultiTargeting\\scaffold.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.scaffold.props",
+      "PackagePath": "buildTransitive\\scaffold.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.scaffold.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
-    },
-    {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.WebApplication1.props",
-      "PackagePath": "build\\WebApplication1.props"
-    },
-    {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.WebApplication1.props",
-      "PackagePath": "buildMultiTargeting\\WebApplication1.props"
-    },
-    {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.WebApplication1.props",
-      "PackagePath": "buildTransitive\\WebApplication1.props"
     }
   ],
   "ElementsToRemove": []

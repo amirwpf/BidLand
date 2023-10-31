@@ -1,4 +1,6 @@
 ﻿
+using App.Domin.Core._02_Users.Entities;
+
 namespace App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
 
 public class AddressRepoDto
@@ -20,4 +22,8 @@ public class AddressRepoDto
 	public int? BuyerId { get; set; }
 
 	public int? SellerId { get; set; }
+
+	public virtual Buyer? Buyer { get; set; }
+
+	public virtual Seller? Seller { get; set; }
 }

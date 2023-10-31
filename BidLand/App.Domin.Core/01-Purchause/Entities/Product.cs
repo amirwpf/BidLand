@@ -26,8 +26,6 @@ public partial class Product
 
     public bool IsDelete { get; set; }
 
-    public int? BidId { get; set; }
-
     public DateTime? InsertionDate { get; set; }
 
     public virtual ICollection<Image> Images { get; set; } = new List<Image>();

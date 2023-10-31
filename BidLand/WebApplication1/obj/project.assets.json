@@ -2889,9 +2889,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\WebApplication1\\WebApplication1.csproj",
-      "projectName": "WebApplication1",
-      "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\WebApplication1\\scaffold.csproj",
+      "projectName": "scaffold",
+      "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\WebApplication1\\scaffold.csproj",
       "packagesPath": "C:\\Users\\amir\\.nuget\\packages\\",
       "outputPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",

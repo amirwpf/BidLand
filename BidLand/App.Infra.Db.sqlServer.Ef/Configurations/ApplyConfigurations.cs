@@ -11,6 +11,7 @@ public static class ApplyConfigurations
 			(ModelBuilder modelBuilder)
 	{
 		modelBuilder.ApplyConfiguration(new AddressConfig());
+		modelBuilder.ApplyConfiguration(new AuctionConfig());
 		modelBuilder.ApplyConfiguration(new BidConfig());
 		modelBuilder.ApplyConfiguration(new BoothConfig());
 		modelBuilder.ApplyConfiguration(new BuyerConfig());

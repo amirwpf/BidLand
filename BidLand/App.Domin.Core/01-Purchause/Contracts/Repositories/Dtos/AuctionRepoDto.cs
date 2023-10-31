@@ -8,6 +8,7 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 
 public class AuctionRepoDto
 {
+	public int Id { get; set; }
 	public DateTime? StartDate { get; set; }
 
 	public DateTime? EndDate { get; set; }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using App.Domin.Core._01_Purchause.Entities;
+using App.Domin.Core._02_Users.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,4 +21,7 @@ public class BidRepoDto
 	public int? AuctionId { get; set; }
 
 	public int? BuyerId { get; set; }
+	public virtual Auction? Auction { get; set; }
+
+	public virtual Buyer? Buyer { get; set; }
 }

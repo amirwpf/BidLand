@@ -1,5 +1,8 @@
 ﻿
 
+using App.Domin.Core._01_Purchause.Entities;
+using App.Domin.Core._03_Extras.Entities;
+
 namespace App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 
 public class ProductRepoDto
@@ -18,7 +21,11 @@ public class ProductRepoDto
 
 	public bool IsDelete { get; set; }
 
-	public int? BidId { get; set; }
-
 	public DateTime? InsertionDate { get; set; }
+
+	public virtual ICollection<Image> Images { get; set; } = new List<Image>();
+
+	public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
+
+	public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
 }

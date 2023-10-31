@@ -1,0 +1,12 @@
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\bin\Debug\net7.0\App.Domin.AppServices.deps.json
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\bin\Debug\net7.0\App.Domin.AppServices.dll
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\bin\Debug\net7.0\App.Domin.AppServices.pdb
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\obj\Debug\net7.0\App.Domin.AppServices.csproj.AssemblyReference.cache
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\obj\Debug\net7.0\App.Domin.AppServices.GeneratedMSBuildEditorConfig.editorconfig
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\obj\Debug\net7.0\App.Domin.AppServices.AssemblyInfoInputs.cache
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\obj\Debug\net7.0\App.Domin.AppServices.AssemblyInfo.cs
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\obj\Debug\net7.0\App.Domin.AppServices.csproj.CoreCompileInputs.cache
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\obj\Debug\net7.0\App.Domin.AppServices.dll
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\obj\Debug\net7.0\refint\App.Domin.AppServices.dll
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\obj\Debug\net7.0\App.Domin.AppServices.pdb
+F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.AppServices\obj\Debug\net7.0\ref\App.Domin.AppServices.dll

@@ -1,4 +1,5 @@
-﻿using App.Domin.Core._03_Extras.Entities;
+﻿using App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
+using App.Domin.Core._03_Extras.Entities;
 using App.Domin.Core._03_Extras.Enums;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace App.Domin.Core._03_Extras.Contracts.Repositories.RepoSeprationContract
 {
 	public interface IMedalRepository
 	{
-		Task<Medal> GetByIdAsync(int id);
-		Task<List<Medal>> GetAllAsync();
-		Task AddAsync(Medal medal);
-		Task UpdateAsync(Medal medal);
-		Task DeleteAsync(Medal medal);
-		Task<Medal> GetMedalByTypeAsync(MedalEnum medalType);
+		Task<MedalRepoDto> GetByIdAsync(int id,CancellationToken cancellationToken);
+		Task<List<MedalRepoDto>> GetAllAsync(CancellationToken cancellationToken);
+		Task AddAsync(MedalRepoDto medal, CancellationToken cancellationToken);
+		Task UpdateAsync(MedalRepoDto medal, CancellationToken cancellationToken);
+		Task DeleteAsync(MedalRepoDto medal, CancellationToken cancellationToken);
+		Task<MedalRepoDto> GetMedalByTypeAsync(MedalEnum medalType, CancellationToken cancellationToken);
 	}
 }

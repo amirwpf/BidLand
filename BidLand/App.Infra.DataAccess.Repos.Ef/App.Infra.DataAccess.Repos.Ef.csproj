@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="02-Users\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\App.Domin.Core\App.Domin.Core.csproj" />
     <ProjectReference Include="..\App.Infra.Db.sqlServer.Ef\App.Infra.Db.sqlServer.Ef.csproj" />
   </ItemGroup>

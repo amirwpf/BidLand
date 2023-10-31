@@ -10,12 +10,12 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 {
 	public interface IBidRepository
 	{
-		Task<bool> HasPlacedBid(int customerId, int auctionId);
-		Task<List<BidRepoDto>> GetBidsByCustomerId(int customerId);
-		Task<Bid> GetByIdAsync(int id);
-		Task<List<Bid>> GetAllAsync();
-		Task<int> AddAsync(BidRepoDto dto);
-		Task UpdateAsync(Bid bid);
-		Task DeleteAsync(Bid bid);
+		Task<bool> HasPlacedBid(int buyerId, int auctionId, CancellationToken cancellationToken);
+		Task<List<BidRepoDto>> GetBidsByCustomerId(int buyerId, CancellationToken cancellationToken);
+		Task<BidRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
+		Task<List<BidRepoDto>> GetAllAsync(CancellationToken cancellationToken);
+		Task<int> AddAsync(BidRepoDto dto, CancellationToken cancellationToken);
+		Task UpdateAsync(BidRepoDto bid, CancellationToken cancellationToken);
+		Task DeleteAsync(BidRepoDto bid, CancellationToken cancellationToken);
 	}
 }

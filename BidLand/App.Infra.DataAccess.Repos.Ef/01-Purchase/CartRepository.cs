@@ -1,4 +1,6 @@
-﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
+﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
+using App.Domin.Core._01_Purchause.Dtos;
 using App.Domin.Core._01_Purchause.Entities;
 using App.Infra.Db.sqlServer.Ef.Context;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
@@ -20,37 +23,24 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			_context = context;
 			_dbSet = _context.Set<Cart>();
 		}
-		public async Task<int> GetTotalPrices(int cartId)
+		public async Task<int> GetTotalPrices(int cartId, CancellationToken cancellationToken)
 		{
-			var products = await _context.ProductsCarts
+			var products = await _context.StocksCarts
 				.Where(pc => pc.CartId == cartId)
-				.Include(pc => pc.Product)
+				.Include(pc => pc.Stock.Product)
 				.ToListAsync();
 
-			var amount = (int)products.Sum(pc => pc.Product.BasePrice * pc.Quantity);
+			var amount = (int)products.Sum(pc => pc.Stock.Product.BasePrice * pc.Quantity);
 			return amount;
 		}
 
-		public async Task<List<Cart>> GetOpenCartsForCustomerIdByBoothIdAsync(int boothId, int cudtomerId)
-		{
-			//A list of open cards of a customer that is related to a booth
-			var carts = await _dbSet
-				.Where(c => !c.IsRegistrationFinalized && c.Customer.Id == cudtomerId)
-				.Include(s => s.Seller)
-				.ThenInclude(b => b.Booth)
-				.ToListAsync();
-
-			var matchingCarts = carts
-				.Where(c => c.Seller.Booth.Id == boothId).ToList();
-			return matchingCarts;
-		}
-		public async Task<bool> FinalizeCartAsync(int cartId)
+		public async Task<bool> FinalizeCartAsync(int cartId, CancellationToken cancellationToken)
 		{
 			var cart = await _dbSet.FindAsync(cartId);
 			var seller = await _dbSet
 				.Where(c => c.Id == cartId)
-				.SelectMany(c => c.ProductsCarts)
-				.Select(pc => pc.Product)
+				.SelectMany(c => c.StocksCarts)
+				.Select(pc => pc.Stock)
 				.Select(p => p.Booth)
 				.Select(b => b.Seller)
 				.FirstOrDefaultAsync();
@@ -60,12 +50,12 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			if (cart == null)
 				return false;
 
-			seller.CommissionsAmount += Convert.ToInt32(cart.TotalPrices * seller.CommissionPercentage);
-			var amount = cart.TotalPrices - seller.CommissionsAmount;
+			seller.CommissionsAmount += Convert.ToInt32(await GetTotalPrices(cartId, cancellationToken) * seller.CommissionPercentage);
+			var amount = await GetTotalPrices(cartId, cancellationToken) - seller.CommissionsAmount;
 			seller.SalesAmount += amount;
 
-			cart.IsRegistrationFinalized = true;
-			cart.RegisterDate = DateTime.Now;
+			cart.PurchaseCompeleted = true;
+			cart.PurchaseDate = DateTime.Now;
 			_context.Entry(seller).State = EntityState.Modified;
 			_context.Entry(cart).State = EntityState.Modified;
 			var e = await _context.SaveChangesAsync();
@@ -73,134 +63,115 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 				return true;
 			return false;
 		}
-		public async Task<List<CartGetDto>> GetUnfinalizedCartsByCustomerId(int customerId)
+		public async Task<List<BidResponseDto>> GetNonCompeletedCartsByCustomerId(int buyerId, CancellationToken cancellationToken)
 		{
-
+			int? sum = 0;
 			var list = await _dbSet
-				   .Where(c => c.CustomerId == customerId && (c.IsRegistrationFinalized == null || c.IsRegistrationFinalized == false))
+				   .Where(c => c.BuyerId == buyerId && (c.PurchaseCompeleted == null || c.PurchaseCompeleted == false))
 
-				   .Select(c => new CartGetDto
+				   .Select( c => new BidResponseDto
 				   {
 					   Id = c.Id,
-					   CustomerId = customerId,
-					   boothId = c.Seller.Booth.Id,
-					   BoothName = c.Seller.Booth.Name,
-					   TotalPrices = c.TotalPrices,//
-					   IsRegistrationFinalized = c.IsRegistrationFinalized,
-					   ProductsNames = c.ProductsCarts.Select(p => p.Product.Name).ToList(),
-					   QuantityFromOne = c.ProductsCarts.Select(c => c.Quantity.Value).Sum() //
+					   BuyerId = buyerId,
+					   TotalPrices = GetTotalPrices(c.Id, cancellationToken).Result,
+					   PurchaseCompeleted = c.PurchaseCompeleted,
+					   ProductsNames = c.StocksCarts.Select(p => p.Stock.Product.Name).ToList(),
+					   QuantityFromOne = c.StocksCarts.Select(c => c.Quantity.Value).Sum()
 				   })
 				   .ToListAsync();
 
 			return list;
 		}
-		public async Task<List<CartGetDto>> GetfinalizedCartsByCustomerId(int customerId)
+		public async Task<List<BidResponseDto>> GetCompeletedCartsByCustomerId(int buyerId, CancellationToken cancellationToken)
 		{
 			var list = await _dbSet
-				.Where(c => c.CustomerId == customerId && c.IsRegistrationFinalized == true)
-				.Select(c => new CartGetDto
+				.Where(c => c.BuyerId == buyerId && c.PurchaseCompeleted == true)
+				.Select(c => new BidResponseDto
 				{
 					Id = c.Id,
-					CustomerId = customerId,
-					boothId = c.Seller.Booth.Id,
-					BoothName = c.Seller.Booth.Name,
-					TotalPrices = c.TotalPrices,
-					IsRegistrationFinalized = c.IsRegistrationFinalized,
-					ProductsNames = c.ProductsCarts.Select(p => p.Product.Name).ToList(),
-					RegisterDate = c.RegisterDate
+					BuyerId = buyerId,
+					TotalPrices = GetTotalPrices(c.Id, cancellationToken).Result,
+					PurchaseCompeleted = c.PurchaseCompeleted,
+					ProductsNames = c.StocksCarts.Select(p => p.Stock.Product.Name).ToList(),
+					QuantityFromOne = c.StocksCarts.Select(c => c.Quantity.Value).Sum()
 				})
-				.ToListAsync();
+				   .ToListAsync();
 
 			return list;
 		}
-		public async Task<Cart> GetByIdAsync(int id)
+		public async Task<CartRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
 		{
-			return await _dbSet.FindAsync(id);
+			var result = await _dbSet
+				.Select(x=>new CartRepoDto
+				{
+					Id = x.Id,
+					StocksCarts= x.StocksCarts,
+					Buyer= x.Buyer,
+					BuyerId= x.BuyerId,
+					InsertionDate= x.InsertionDate,
+					PurchaseCompeleted= x.PurchaseCompeleted,
+					PurchaseDate= x.PurchaseDate,
+					Value = x.Value
+				}).FirstOrDefaultAsync(x=>x.Id== id, cancellationToken);
+			return result;
 		}
 
-		public async Task<List<Cart>> GetAllAsync()
+		public async Task<List<CartRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 		{
-			return await _dbSet.ToListAsync();
+			var result = await _dbSet
+				.Select(x => new CartRepoDto
+				{
+					Id = x.Id,
+					StocksCarts = x.StocksCarts,
+					Buyer = x.Buyer,
+					BuyerId = x.BuyerId,
+					InsertionDate = x.InsertionDate,
+					PurchaseCompeleted = x.PurchaseCompeleted,
+					PurchaseDate = x.PurchaseDate,
+					Value = x.Value
+				}).ToListAsync(cancellationToken);
+			return result;
 		}
 
-		public async Task<CartAddDto> AddAsync(CartAddDto dto)
+		public async Task<BidAddDto> AddAsync(BidAddDto dto, CancellationToken cancellationToken)
 		{
 			var cart = new Cart
 			{
-				CustomerId = dto.CustomerId,
-				SellerId = dto.SellerId,
-				TotalPrices = dto.TotalPrices,
+				BuyerId = dto.BuyerId,
 			};
 			await _dbSet.AddAsync(cart);
-			var result = await _context.SaveChangesAsync();
+			var result = await _context.SaveChangesAsync(cancellationToken);
 			if (result != 0)
-				return new CartAddDto
+				return new BidAddDto
 				{
 					Id = cart.Id,
-					CustomerId = dto.CustomerId,
-					SellerId = dto.SellerId,
-					TotalPrices = dto.TotalPrices,
+					BuyerId = dto.BuyerId,
 				};
 			return null;
 		}
 
-		public async Task UpdateAsync(Cart cart)
+		public async Task UpdateAsync(CartRepoDto cart, CancellationToken cancellationToken)
 		{
-			_context.Entry(cart).State = EntityState.Modified;
-			await _context.SaveChangesAsync();
+			var resualt = await _dbSet.Where(x => x.Id == cart.Id).FirstOrDefaultAsync(cancellationToken);
+			_context.Entry(resualt).State = EntityState.Modified;
+			await _context.SaveChangesAsync(cancellationToken);
 		}
 
-		public async Task DeleteAsync(Cart cart)
+		public async Task DeleteAsync(CartRepoDto cart,CancellationToken cancellationToken)
 		{
-			_dbSet.Remove(cart);
-			await _context.SaveChangesAsync();
+			var resualt = await _dbSet.Where(x => x.Id == cart.Id).FirstOrDefaultAsync(cancellationToken);
+			_dbSet.Remove(resualt);
+			await _context.SaveChangesAsync(cancellationToken);
 		}
-
-		public async Task<List<ProductInCartRepDto>> GetProductsOpenCartByCartIdAsync(int cartId)
-		{
-			var productsInfo = await _context.Carts
-				.Where(c => c.Id == cartId && !c.IsRegistrationFinalized)
-				.SelectMany(c => c.ProductsCarts)
-				.Select(pc => new ProductInCartRepDto
-				{
-					ProductId = pc.ProductId,
-					BasePrice = Convert.ToInt32(pc.Product.BasePrice),
-					Name = pc.Product.Name,
-					TotalPrice = Convert.ToInt32(pc.Quantity * pc.Product.BasePrice),
-					Quantity = Convert.ToInt32(pc.Quantity),
-					BoothId = (int)pc.Product.BoothId
-				})
-				.ToListAsync();
-
-			return productsInfo;
-		}
-		public async Task<List<ProductInCartRepDto>> GetProductsByCartIdAsync(int cartId)
-		{
-			var productsInfo = await _context.Carts
-				.Where(c => c.Id == cartId && c.IsRegistrationFinalized)
-				.SelectMany(c => c.ProductsCarts)
-				.Select(pc => new ProductInCartRepDto
-				{
-					ProductId = pc.ProductId,
-					BasePrice = Convert.ToInt32(pc.Product.BasePrice),
-					Name = pc.Product.Name,
-					TotalPrice = Convert.ToInt32(pc.Quantity * pc.Product.BasePrice),
-					Quantity = Convert.ToInt32(pc.Quantity),
-					BoothId = (int)pc.Product.BoothId
-				})
-				.ToListAsync();
-
-			return productsInfo;
-		}
-		public async Task<string> DeleteOpenCartAsync(int customerId, int cartId)
+		public async Task<string> DeleteOpenCartAsync(int buyerId, int cartId, CancellationToken cancellationToken)
 		{
 			// دریافت سبد خرید مشتری
 			var customerCart = await _context.Carts
-				.Include(c => c.ProductsCarts)
-				.ThenInclude(pc => pc.Product)
+				.Include(c => c.StocksCarts)
+				.ThenInclude(pc => pc.Stock)
 				.ThenInclude(p => p.Auction)
 				.ThenInclude(a => a.Bids)
-				.SingleOrDefaultAsync(c => c.CustomerId == customerId && c.Id == cartId && !c.IsRegistrationFinalized);
+				.SingleOrDefaultAsync(c => c.BuyerId == buyerId && c.Id == cartId && !c.PurchaseCompeleted, cancellationToken);
 
 			if (customerCart == null)
 			{
@@ -208,15 +179,15 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			}
 
 			// بررسی وجود کالاهای با IsAuction=true در سبد خرید
-			bool hasAuctionProducts = customerCart.ProductsCarts.Any(pc => pc.Product.IsAuction);
+			bool hasAuctionProducts = customerCart.StocksCarts.Any(pc => pc.Stock.IsAuction);
 
 			if (hasAuctionProducts)
 			{
 				return "در سبد خرید مشتری کالاهایی با قابلیت حراجی وجود دارد. لطفاً برای حذف این سبد خرید با پشتیبانی تماس بگیرید.";
 			}
 
-			var isAuctionProductAddedByCustomer = customerCart.ProductsCarts
-				.Any(pc => pc.Product?.Auction?.Bids?.FirstOrDefault(b => b != null && b.CustomerId == customerId && b.IsAccepted == true) != null);
+			var isAuctionProductAddedByCustomer = customerCart.StocksCarts
+				.Any(pc => pc.Stock?.Auction?.Bids?.FirstOrDefault(b => b != null && b.BuyerId == buyerId && b.HasWon == true) != null);
 
 
 			if (isAuctionProductAddedByCustomer)
@@ -225,16 +196,15 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			}
 
 			// حذف کلیه محصولات سبد خرید
-			_context.ProductsCarts.RemoveRange(customerCart.ProductsCarts);
+			_context.StocksCarts.RemoveRange(customerCart.StocksCarts);
 
 			// حذف سبد خرید
 			_context.Carts.Remove(customerCart);
 
-			await _context.SaveChangesAsync();
+			await _context.SaveChangesAsync(cancellationToken);
 
 			return "سبد خرید مشتری با موفقیت حذف شد";
 		}
-
 
 	}
 }

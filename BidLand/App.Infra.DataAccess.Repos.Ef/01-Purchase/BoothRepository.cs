@@ -20,33 +20,61 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			_context = context;
 			_dbSet = _context.Set<Booth>();
 		}
-		public async Task<Booth> GetByIdAsync(int id)
+		public async Task<BoothRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
 		{
-			return await _dbSet.FindAsync(id);
-		}
-		public async Task<List<BoothRepositoryDto>> GetAllAsync()
-		{
-			var booth = await _dbSet.AsNoTracking().Include(x => x.Seller).ToListAsync();
-			var result = booth.Select(b => new BoothRepositoryDto
+			var booth =  _dbSet.AsNoTracking().Include(x => x.Seller).Include(x => x.Stocks).Where(x => x.Id == id);
+			var result = await booth.Select(b => new BoothRepoDto
 			{
 				Id = b.Id,
 				Name = b.Name,
 				Description = b.Description,
 				Seller = b.Seller,
 				SellerId = b.SellerId,
-				SellerName = b.Seller.CompanyName
+				SellerName = b.Seller.FullName,
+				Stocks = b.Stocks,
+				IsDelete = b.IsDelete,
+				InsertionDate = b.InsertionDate
+			}).FirstOrDefaultAsync(cancellationToken);
+			return result;
+		}
+		public async Task<List<BoothRepoDto>> GetAllAsync(CancellationToken cancellationToken)
+		{
+			var booth = await _dbSet.AsNoTracking().Include(x => x.Seller).Include(x=>x.Stocks).ToListAsync(cancellationToken);
+			var result = booth.Select(b => new BoothRepoDto
+			{
+				Id = b.Id,
+				Name = b.Name,
+				Description = b.Description,
+				Seller = b.Seller,
+				SellerId = b.SellerId,
+				SellerName = b.Seller.FullName,
+				Stocks= b.Stocks,
+				IsDelete=b.IsDelete,
+				InsertionDate=b.InsertionDate
 			}).ToList();
 			return result;
 		}
-		public async Task<List<Booth>> GetByCategoryIdAsync(int categoryId)
+		public async Task<List<BoothRepoDto>> GetByCategoryIdAsync(int categoryId, CancellationToken cancellationToken)
 		{
-			var result = await _dbSet
-				 .Where(b => b.Products.Any(p => p.Categories.Any(c => c.Id == categoryId)))
+			var booth = await _dbSet
+				 .Where(b => b.Stocks.Any(p => p.Product.Categories.Any(c => c.Id == categoryId)))
 				 .Include(s => s.Seller)
-				 .ToListAsync();
+				 .ToListAsync(cancellationToken);
+			var result = booth.Select(b => new BoothRepoDto
+			{
+				Id = b.Id,
+				Name = b.Name,
+				Description = b.Description,
+				Seller = b.Seller,
+				SellerId = b.SellerId,
+				SellerName = b.Seller.FullName,
+				Stocks = b.Stocks,
+				IsDelete = b.IsDelete,
+				InsertionDate = b.InsertionDate
+			}).ToList();
 			return result;
 		}
-		public async Task AddAsync(BoothRepDto boothRepDto)
+		public async Task AddAsync(BoothRepoDto boothRepDto, CancellationToken cancellationToken)
 		{
 			var booth = new Booth()
 			{
@@ -54,12 +82,12 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 				Description = boothRepDto.Description,
 				SellerId = boothRepDto.SellerId,
 			};
-			await _dbSet.AddAsync(booth);
-			await _context.SaveChangesAsync();
+			await _dbSet.AddAsync(booth, cancellationToken);
+			await _context.SaveChangesAsync(cancellationToken);
 		}
-		public async Task<bool> UpdateBoothAsync(BoothRepDto boothRepDto)
+		public async Task<bool> UpdateBoothAsync(BoothRepoDto boothRepDto, CancellationToken cancellationToken)
 		{
-			var booth = await _dbSet.FirstOrDefaultAsync(x => x.Id == boothRepDto.BoothId);
+			var booth = await _dbSet.FirstOrDefaultAsync(x => x.Id == boothRepDto.Id);
 			if (booth == null)
 			{
 				return false;
@@ -67,15 +95,15 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			booth.Name = boothRepDto.Name;
 			booth.Description = boothRepDto.Description;
 			_context.Entry(booth).State = EntityState.Modified;
-			await _context.SaveChangesAsync();
+			await _context.SaveChangesAsync(cancellationToken);
 			return true;
 		}
-		public async Task<bool> DeleteAsync(int id)
+		public async Task<bool> DeleteAsync(BoothRepoDto boothRepo, CancellationToken cancellationToken)
 		{
-			var booth = await _dbSet.FindAsync(id);
-			booth.IsRemoved = true;
+			var booth = await _dbSet.Where(x=>x.Id== boothRepo.Id).FirstOrDefaultAsync(cancellationToken);
+			booth.IsDelete = true;
 			_context.Entry(booth).State = EntityState.Modified;
-			var result = await _context.SaveChangesAsync();
+			var result = await _context.SaveChangesAsync(cancellationToken);
 			if (result == 0)
 				return false;
 			return true;

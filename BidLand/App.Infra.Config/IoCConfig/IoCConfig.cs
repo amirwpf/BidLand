@@ -1,9 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
 using App.Infra.DataAccess.Repos.Ef._01_Purchase;
@@ -13,6 +8,12 @@ using App.Domin.Core._03_Extras.Contracts.Repositories.RepoSeprationContracts.sq
 using App.Infra.DataAccess.Repos.Ef._03_Extras;
 using App.Infra.DataAccess.Repos.Ef._03_Extres;
 using App.Domin.Core._01_Purchase.Contracts.Repositories.RepoSeprationContracts.sqlServer;
+using App.Domin.Services._01_Purchase;
+using App.Domin.Core._01_Purchause.Contracts.Services;
+using App.Domin.Core._02_Users.Contracts.Services;
+using App.Domin.Services._02_Users;
+using App.Domin.Core._03_Extras.Contracts.Services;
+using App.Domin.Services._03_Extras;
 
 namespace App.Infra.Config.IoCConfig
 {
@@ -22,7 +23,7 @@ namespace App.Infra.Config.IoCConfig
 			IConfiguration configuration)
 		{
 			#region Purchase
-			// --------------------->Purchase<-------------------------------------
+			// --------------------->Reposritory<-------------------------------------
 			services.AddScoped<IAuctionRepository, AuctionRepository>();
 			services.AddScoped<IBidRepository, BidRepository>();
 			services.AddScoped<IBoothRepository, BoothRepository>();
@@ -32,21 +33,41 @@ namespace App.Infra.Config.IoCConfig
 			services.AddScoped<IStockRepository, StockRepository>();
 			services.AddScoped<IStocksCartRepository, StocksCartRepository>();
 
+			// --------------------->Service<-------------------------------------
+			services.AddScoped<IAuctionService, AuctionService>();
+			services.AddScoped<IBidService, BidService>();
+			services.AddScoped<IBoothService, BoothService>();
+			services.AddScoped<ICartService, CartService>();
+			services.AddScoped<ICategoryService, CategoryService>();
+			services.AddScoped<IProductService, ProductService>();
+			services.AddScoped<IStockService, StockService>();
+			services.AddScoped<IStocksCartService, StocksCartService>();
+
 			#endregion
 
 			#region Users
-			// --------------------->Users<---------------------------------
+			// --------------------->Repository<---------------------------------
 			services.AddScoped<ISellerRepository, SellerRepository>();
 			services.AddScoped<IBuyerRepository, BuyerRepository>();
+
+			// --------------------->Service<---------------------------------
+			services.AddScoped<ISellerService, SellerService>();
+			services.AddScoped<IBuyerService, BuyerService>();
 
 			#endregion
 
 			#region Extras
-			// --------------------->Extras<--------------------------------------
+			// --------------------->Repository<--------------------------------------
 			services.AddScoped<IAddressRepository, AddressRepository>();
 			services.AddScoped<ICommentRepository, CommentRepository>();
 			services.AddScoped<IImageRepository, ImageRepository>();
 			services.AddScoped<IMedalRepository, MedalRepository>();
+
+			// --------------------->Service<--------------------------------------
+			services.AddScoped<IAddressService, AddressService>();
+			services.AddScoped<ICommentService, CommentService>();
+			services.AddScoped<IImageService, ImageService>();
+			services.AddScoped<IMedalService, MedalService>();
 
 			#endregion
 

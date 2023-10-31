@@ -1,4 +1,5 @@
 ﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 using App.Domin.Core._02_Users.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace App.Domin.Core._02_Users.Contracts.Repositories.RepoSeprationContracts
 {
 	public interface IBuyerRepository
 	{
-		Task<int> UpdateWithBidAsync(Buyer buyer, BidRepoDto bidDto);
-		Task<Buyer> GetByIdAsync(int id);
-		Task<List<Buyer>> GetAllAsync();
-		Task AddAsync(Buyer buyer);
-		Task UpdateAsync(Buyer buyer);
-		Task DeleteAsync(Buyer buyer);
+		Task<BuyerRepoDto> GetByIdAsync(int id,CancellationToken cancellationToken);
+		Task<List<BuyerRepoDto>> GetAllAsync(CancellationToken cancellationToken);
+		Task AddAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
+		Task UpdateAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
+		Task<int> UpdateWithBidAsync(BuyerRepoDto buyer, BidRepoDto bidDto, CancellationToken cancellationToken);
+		Task DeleteAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
 	}
 }
