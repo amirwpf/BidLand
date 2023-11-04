@@ -9,112 +9,114 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
+namespace App.Infra.DataAccess.Repos.Ef._01_Purchase;
+
+public class CategoryRepository : ICategoryRepository
 {
-	public class CategoryRepository : ICategoryRepository
+	private readonly AppDbContext _context;
+	private readonly DbSet<Category> _dbSet;
+
+	public CategoryRepository(AppDbContext context)
 	{
-		private readonly AppDbContext _context;
-		private readonly DbSet<Category> _dbSet;
+		_context = context;
+		_dbSet = _context.Set<Category>();
+	}
 
-		public CategoryRepository(AppDbContext context)
-		{
-			_context = context;
-			_dbSet = _context.Set<Category>();
-		}
+	public async Task<CategoryRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
+	{
+		var category = await _dbSet.AsNoTracking()
+			.Include(x => x.Products)
+			.Select(p => ConvertToCategoryRepoDto(p))
+			.FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
+		if (category != null) return category;
+		return null;
 
-		public async Task<CategoryRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
-		{
-			var category = await _dbSet.AsNoTracking()
-				.Include(x=>x.Products)
-				.FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
-			return new CategoryRepoDto
-			{
-				Id = category.Id,
-				Name = category.Name,
-				Description = category.Description,
-				Products = category.Products,
-				ParentId = category.ParentId,
-				Parent= category.Parent,
-				InsertionDate = category.InsertionDate,
-				InverseParent = category.InverseParent
-			};
+	}
 
-		}
-		public async Task<CategoryRepoDto> GetByIdOrginalAsync(int id, CancellationToken cancellationToken)
-		{
-			var category = await _dbSet.AsNoTracking()
-				.Include(x => x.Products)
-				.Select(p => new CategoryRepoDto
-				{
-					Id = p.Id,
-					Name = p.Name,
-					Description = p.Description,
-					Products = p.Products,
-					ParentId = p.ParentId,
-					Parent = p.Parent,
-					InsertionDate = p.InsertionDate,
-					InverseParent = p.InverseParent
-				})
-				.FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
-			return category;
+	public async Task<List<CategoryRepoDto>> GetAllAsync(CancellationToken cancellationToken)
+	{
+		var category = await _dbSet.AsNoTracking()
+			.Include(x => x.Products)
+			.Select(p => ConvertToCategoryRepoDto(p))
+			.ToListAsync(cancellationToken);
+		return category;
+	}
 
-		}
-		public async Task<List<CategoryRepoDto>> GetAllAsync(CancellationToken cancellationToken)
-		{
-			var category = await _dbSet.AsNoTracking()
-				.Include(x => x.Products)
-				.Select(p => new CategoryRepoDto
-				{
-					Id = p.Id,
-					Name = p.Name,
-					Description = p.Description,
-					Products = p.Products,
-					ParentId = p.ParentId,
-					Parent = p.Parent,
-					InsertionDate = p.InsertionDate,
-					InverseParent = p.InverseParent
-				})
-				.ToListAsync(cancellationToken);
-			return category;
-		}
+	public async Task AddAsync(CategoryRepoDto category, CancellationToken cancellationToken)
+	{
+		var result = new Category();
+		Equaler(category, ref result);
+		await _dbSet.AddAsync(result, cancellationToken);
+		await _context.SaveChangesAsync(cancellationToken);
+	}
 
-		public async Task AddAsync(CategoryRepoDto category, CancellationToken cancellationToken)
+	public async Task<bool> UpdateAsync(CategoryRepoDto category, CancellationToken cancellationToken)
+	{
+		var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == category.Id, cancellationToken);
+		if (result != null)
 		{
-			var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == category.Id, cancellationToken);
-			await _dbSet.AddAsync(result);
-			await _context.SaveChangesAsync(cancellationToken);
-		}
-
-		public async Task UpdateAsync(CategoryRepoDto category, CancellationToken cancellationToken)
-		{
-			var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == category.Id,cancellationToken);
+			Equaler(category, ref result);
 			_context.Entry(result).State = EntityState.Modified;
 			await _context.SaveChangesAsync(cancellationToken);
+			return true;
 		}
+		return false;
+	}
 
-		public async Task DeleteAsync(CategoryRepoDto category, CancellationToken cancellationToken)
+	public async Task<bool> DeleteAsync(CategoryRepoDto category, CancellationToken cancellationToken)
+	{
+		var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == category.Id, cancellationToken);
+		if (result != null)
 		{
-			var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == category.Id, cancellationToken);
 			_dbSet.Remove(result);
 			await _context.SaveChangesAsync(cancellationToken);
+			return true;
 		}
+		return false;
+	}
 
-		public async Task AddProductToCategoryAsync(int productId, int categoryId, CancellationToken cancellationToken)
+
+	private Category ConvertToCategory(CategoryRepoDto categoryRepoDto)
+	{
+		return new Category()
 		{
+			Id = categoryRepoDto.Id,
+			Name = categoryRepoDto.Name,
+			Description = categoryRepoDto.Description,
+			Products = categoryRepoDto.Products,
+			ParentId = categoryRepoDto.ParentId,
+			Parent = categoryRepoDto.Parent,
+			InsertionDate = categoryRepoDto.InsertionDate,
+			InverseParent = categoryRepoDto.InverseParent
 
-			var trackedProduct = await _context.Products.FindAsync(productId);
-			var trackedcaCategoryt = await _context.Categories.FindAsync(categoryId);
-			trackedProduct.Categories.Add(trackedcaCategoryt);
-			_context.Entry(trackedProduct).State = EntityState.Modified;
-			await _context.SaveChangesAsync(cancellationToken);
-		}
+		};
+	}
 
-
-		public async Task DeleteProductFromCategoryAsync(CategoryRepoDto category, ProductRepoDto product, CancellationToken cancellationToken)
+	private CategoryRepoDto ConvertToCategoryRepoDto(Category category)
+	{
+		return new CategoryRepoDto()
 		{
-			var result = await _context.Products.Where(x => x.Id == product.Id).FirstOrDefaultAsync(cancellationToken);
-			category.Products.Remove(result);
-			await _context.SaveChangesAsync(cancellationToken);
-		}
+			Id = category.Id,
+			Name = category.Name,
+			Description = category.Description,
+			Products = category.Products,
+			ParentId = category.ParentId,
+			Parent = category.Parent,
+			InsertionDate = category.InsertionDate,
+			InverseParent = category.InverseParent
+
+		};
+	}
+
+	private void Equaler(CategoryRepoDto categoryRepoDto, ref Category category)
+	{
+		category.Id = categoryRepoDto.Id;
+		category.Name = categoryRepoDto.Name;
+		category.Description = categoryRepoDto.Description;
+		category.Products = categoryRepoDto.Products;
+		category.ParentId = categoryRepoDto.ParentId;
+		category.Parent = categoryRepoDto.Parent;
+		category.InsertionDate = categoryRepoDto.InsertionDate;
+		category.InverseParent = categoryRepoDto.InverseParent;
 	}
 }

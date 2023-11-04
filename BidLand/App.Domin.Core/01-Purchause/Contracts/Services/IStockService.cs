@@ -11,11 +11,13 @@ public interface IStockService
 {
 	Task CreateAsync(StockRepoDto input, CancellationToken cancellationToken);
 
-	Task DeleteAsync(StockRepoDto input, CancellationToken cancellationToken);
+	Task<bool> SoftDeleteAsync(StockRepoDto input, CancellationToken cancellationToken);
+	Task<bool> HardDeleteAsync(StockRepoDto input, CancellationToken cancellationToken);
+	Task<bool> SoftRecoverAsync(StockRepoDto input, CancellationToken cancellationToken);
 
 	Task<List<StockRepoDto>> GetAllAsync(CancellationToken cancellationToken);
 
-	Task<StockRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
+	Task<StockRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken);
 
-	Task UpdateAsync(StockRepoDto input, CancellationToken cancellationToken);
+	Task<bool> UpdateAsync(StockRepoDto input, CancellationToken cancellationToken);
 }

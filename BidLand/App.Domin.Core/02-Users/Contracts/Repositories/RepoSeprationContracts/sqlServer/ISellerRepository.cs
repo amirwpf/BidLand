@@ -11,12 +11,14 @@ namespace App.Domin.Core._02_Users.Contracts.Repositories.RepoSeprationContracts
 	public interface ISellerRepository
 	{
 		//Task<SellerRepoDto> GetFinancialBySellerId(int sellerId);
-		Task<SellerRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
 		//Task<SellerRepoDto> GetByIdWithNavigationAsync(int id);
+		Task<SellerRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken);
 		Task<List<SellerRepoDto>> GetAllAsync(CancellationToken cancellationToken);
 		Task AddAsync(SellerRepoDto sellerDto, CancellationToken cancellationToken);
 		Task<bool> UpdateAsync(SellerRepoDto seller, CancellationToken cancellationToken);
 		Task<bool> UpdateProfileAsync(SellerRepoDto updatesellerDto, CancellationToken cancellationToken);
-		Task DeleteAsync(SellerRepoDto sellerRepo, CancellationToken cancellationToken);
+		Task<bool> SoftDeleteAsync(SellerRepoDto sellerRepo, CancellationToken cancellationToken);
+		Task<bool> SoftRecoverAsync(SellerRepoDto sellerRepo, CancellationToken cancellationToken);
+		Task<bool> HardDeleteAsync(SellerRepoDto sellerRepo, CancellationToken cancellationToken);
 	}
 }

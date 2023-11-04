@@ -15,7 +15,7 @@ namespace App.Domin.Core._03_Extras.Contracts.Repositories.RepoSeprationContract
 		Task<List<CommentRepoDto>> GetAllAsync(CancellationToken cancellationToken);
 		Task<int> AddAsync(CommentRepoDto comment, CancellationToken cancellationToken);
 		Task UpdateAsync(CommentRepoDto comment, CancellationToken cancellationToken);
-		Task DeleteAsync(CommentRepoDto comment, CancellationToken cancellationToken);
+		Task<bool> HardDeleteAsync(CommentRepoDto comment, CancellationToken cancellationToken);
 		Task<List<CommentRepoDto>> GetAllCommentsWithSellerNameConfirmAsync(CancellationToken cancellationToken);
 	}
 }

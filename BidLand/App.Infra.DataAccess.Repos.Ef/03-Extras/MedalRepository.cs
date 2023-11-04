@@ -10,81 +10,94 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Infra.DataAccess.Repos.Ef._03_Extras
+namespace App.Infra.DataAccess.Repos.Ef._03_Extras;
+
+public class MedalRepository : IMedalRepository
 {
-	public class MedalRepository : IMedalRepository
+	private readonly AppDbContext _context;
+	private readonly DbSet<Medal> _dbSet;
+
+	public MedalRepository(AppDbContext context)
 	{
-		private readonly AppDbContext _context;
-		private readonly DbSet<Medal> _dbSet;
+		_context = context;
+		_dbSet = _context.Set<Medal>();
+	}
 
-		public MedalRepository(AppDbContext context)
+	public async Task<MedalRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
+	{
+		var result = await _dbSet.Where(x => x.Id == id)
+			.Select(x => ConvertToDto(x)).FirstOrDefaultAsync(cancellationToken);
+		if (result == null) return null;
+		return result;
+	}
+
+	public async Task<MedalRepoDto?> GetMedalByTypeAsync(MedalEnum medalType, CancellationToken cancellationToken)
+	{
+		var result = await _dbSet.Where(m => m.LevelType == medalType)
+			.Select(x => ConvertToDto(x)).FirstOrDefaultAsync(cancellationToken);
+		if (result == null) return null;
+		return result;
+	}
+
+
+	public async Task<List<MedalRepoDto>> GetAllAsync(CancellationToken cancellationToken)
+	{
+		var result = await _dbSet
+			.Select(x => ConvertToDto(x)).ToListAsync(cancellationToken);
+		return result;
+	}
+
+	public async Task AddAsync(MedalRepoDto medal, CancellationToken cancellationToken)
+	{
+		var result = new Medal();
+		Equaler(medal, ref result);
+		await _dbSet.AddAsync(result);
+		await _context.SaveChangesAsync(cancellationToken);
+	}
+
+	public async Task<bool> UpdateAsync(MedalRepoDto medal, CancellationToken cancellationToken)
+	{
+		var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == medal.Id, cancellationToken);
+		if (result != null)
 		{
-			_context = context;
-			_dbSet = _context.Set<Medal>();
-		}
-
-		public async Task<MedalRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
-		{
-			var result = await _dbSet.Where(x => x.Id == id)
-				.Select(x => new MedalRepoDto
-				{
-					Id = x.Id,
-					InsertionDate = x.InsertionDate,
-					LevelType = x.LevelType,
-					SellerId = x.SellerId,
-					Seller = x.Seller
-				}).FirstOrDefaultAsync(cancellationToken);
-			return result;
-		}
-
-		public async Task<MedalRepoDto> GetMedalByTypeAsync(MedalEnum medalType, CancellationToken cancellationToken)
-		{
-			var result = await _dbSet.Where(m => m.LevelType == medalType)
-				.Select(x => new MedalRepoDto
-				{
-					Id = x.Id,
-					InsertionDate = x.InsertionDate,
-					LevelType = x.LevelType,
-					SellerId = x.SellerId,
-					Seller = x.Seller
-				}).FirstOrDefaultAsync(cancellationToken);
-			return result;
-		}
-
-
-		public async Task<List<MedalRepoDto>> GetAllAsync(CancellationToken cancellationToken)
-		{
-			var result = await _dbSet
-				.Select(x => new MedalRepoDto
-				{
-					Id = x.Id,
-					InsertionDate = x.InsertionDate,
-					LevelType = x.LevelType,
-					SellerId = x.SellerId,
-					Seller = x.Seller
-				}).ToListAsync(cancellationToken);
-			return result;
-		}
-
-		public async Task AddAsync(MedalRepoDto medal, CancellationToken cancellationToken)
-		{
-			var result =await _dbSet.FirstOrDefaultAsync(x=>x.Id== medal.Id,cancellationToken);
-			await _dbSet.AddAsync(result);
-			await _context.SaveChangesAsync(cancellationToken);
-		}
-
-		public async Task UpdateAsync(MedalRepoDto medal, CancellationToken cancellationToken)
-		{
-			var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == medal.Id, cancellationToken);
+			Equaler(medal, ref result);
 			_context.Entry(result).State = EntityState.Modified;
 			await _context.SaveChangesAsync(cancellationToken);
+			return true;
 		}
+		return false;
+	}
 
-		public async Task DeleteAsync(MedalRepoDto medal, CancellationToken cancellationToken)
+	public async Task<bool> HardDeleteAsync(MedalRepoDto medal, CancellationToken cancellationToken)
+	{
+		var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == medal.Id, cancellationToken);
+		if (result != null)
 		{
-			var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == medal.Id, cancellationToken);
 			_dbSet.Remove(result);
 			await _context.SaveChangesAsync(cancellationToken);
+			return true;
 		}
+		return false;
+	}
+
+	private MedalRepoDto ConvertToDto(Medal medal)
+	{
+		return new MedalRepoDto()
+		{
+			Id = medal.Id,
+			InsertionDate = medal.InsertionDate,
+			LevelType = medal.LevelType,
+			SellerId = medal.SellerId,
+			Seller = medal.Seller
+		};
+	}
+
+	private void Equaler(MedalRepoDto medalDto, ref Medal medal)
+	{
+		medal.Id = medalDto.Id;
+		medal.InsertionDate = medalDto.InsertionDate;
+		medal.LevelType = medalDto.LevelType;
+		medal.SellerId = medalDto.SellerId;
+		medal.Seller = medalDto.Seller;
 	}
 }

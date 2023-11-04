@@ -11,183 +11,201 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Infra.DataAccess.Repos.Ef._02_Users
+namespace App.Infra.DataAccess.Repos.Ef._02_Users;
+
+public class SellerRepository : ISellerRepository
 {
-	public class SellerRepository : ISellerRepository
+	private readonly AppDbContext _context;
+	private readonly DbSet<Seller> _dbSet;
+
+	public SellerRepository(AppDbContext context)
 	{
-		private readonly AppDbContext _context;
-		private readonly DbSet<Seller> _dbSet;
+		_context = context;
+		_dbSet = _context.Set<Seller>();
+	}
 
-		public SellerRepository(AppDbContext context)
+	public async Task<SellerRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
+	{
+		var result = await _dbSet
+			  .Include(b => b.Booth)
+			  .Select(a => ConvertToSellerRepoDto(a))
+			  .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+		if (result == null)
+			return null;
+		return result;
+	}
+
+	public async Task<List<SellerRepoDto>> GetAllAsync(CancellationToken cancellationToken)
+	{
+		var result = await _dbSet
+			  .Include(b => b.Booth)
+			  .Select(a => ConvertToSellerRepoDto(a))
+			  .ToListAsync(cancellationToken);
+		return result;
+	}
+
+	public async Task AddAsync(SellerRepoDto sellerDto, CancellationToken cancellationToken)
+	{
+		var seller = new Seller();
+		Equaler(sellerDto, ref seller);
+		await _dbSet.AddAsync(seller, cancellationToken);
+		await _context.SaveChangesAsync(cancellationToken);
+	}
+
+	public async Task<bool> UpdateAsync(SellerRepoDto sellerDto, CancellationToken cancellationToken)
+	{
+		var seller = await _dbSet.FirstOrDefaultAsync(x => x.Id == sellerDto.Id, cancellationToken);
+		if (seller != null)
 		{
-			_context = context;
-			_dbSet = _context.Set<Seller>();
+			Equaler(sellerDto, ref seller);
+			_context.Entry(seller).State = EntityState.Modified;
+			await _context.SaveChangesAsync(cancellationToken);
+			return true;
 		}
-		//public async Task<FinancialRepSeller> GetFinancialBySellerId(int sellerId)
-		//{
-		//	var seller = await _dbSet.FirstOrDefaultAsync(x => x.Id == sellerId);
-		//	if (seller == null)
-		//		return null;
+		return false;
+	}
+	public async Task<bool> UpdateProfileAsync(SellerRepoDto updatesellerDto, CancellationToken cancellationToken)
+	{
+		var seller = await _dbSet.Include(x => x.Addresses)
+			.Include(b => b.Booth)
+			.FirstOrDefaultAsync(x => x.Id == updatesellerDto.Id, cancellationToken);
 
-		//	var result = new FinancialRepSeller()
-		//	{
-		//		Id = sellerId,
-		//		SalesAmount = seller.SalesAmount,
-		//		CommissionPercentage = seller.CommissionPercentage,
-		//		CommissionsAmount = seller.CommissionsAmount,
-		//		Medals = seller.Medals
-		//	};
-		//	return result;
-		//}
-
-		public async Task<SellerRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
+		if (seller == null)
 		{
-			var result = await _dbSet
-				  .Include(b => b.Booth)
-				  .Select(a=>new SellerRepoDto
-				  {
-					  Id= a.Id,
-					  FullName= a.FullName,
-					  CommissionPercentage= a.CommissionPercentage,
-					  CommissionsAmount= a.CommissionsAmount,
-					  InsertionDate= a.InsertionDate,
-					  IsActive= a.IsActive,
-					  IsBan= a.IsBan,
-					  IsDelete= a.IsDelete,
-					  SalesAmount = a.SalesAmount
-				  })
-				  .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
-			if (result == null)
-				return null;
-			return result;
-		}
-		//public async Task<AddSellerDto> GetByIdWithNavigationAsync(int id)
-		//{
-		//	var result = await _dbSet.AsNoTracking().Select(s => new AddSellerDto
-		//	{
-		//		SellerId = s.Id,
-		//		CompanyName = s.CompanyName,
-		//		City = s.Address.City,
-		//		Street = s.Address.Street,
-		//		AddressDescription = s.Address.Description,
-		//		BoothName = s.Booth.Name,
-		//		BoothDescription = s.Booth.Description,
-		//		BoothId = s.Booth.Id,
-		//		AddressId = s.Address.Id,
-		//	})
-		//		   .FirstOrDefaultAsync(x => x.SellerId == id);
-		//	return result;
-		//}
-
-		public async Task<List<SellerRepoDto>> GetAllAsync(CancellationToken cancellationToken)
-		{
-			var result = await _dbSet
-				  .Include(b => b.Booth)
-				  .Select(a => new SellerRepoDto
-				  {
-					  Id = a.Id,
-					  FullName = a.FullName,
-					  CommissionPercentage = a.CommissionPercentage,
-					  CommissionsAmount = a.CommissionsAmount,
-					  InsertionDate = a.InsertionDate,
-					  IsActive = a.IsActive,
-					  IsBan = a.IsBan,
-					  IsDelete = a.IsDelete,
-					  SalesAmount = a.SalesAmount
-				  })
-				  .ToListAsync(cancellationToken);
-			if (result == null)
-				return null;
-			return result;
+			return false;
 		}
 
-		public async Task AddAsync(SellerRepoDto sellerDto, CancellationToken cancellationToken)
+		seller.FullName = updatesellerDto.FullName;
+
+		if (seller.Addresses == null)
 		{
-			var seller = new Seller
+			var address = new Address();
+
+			seller.Addresses.Add(address);
+		}
+		else
+		{
+			// Update the existing address
+			seller.Addresses = updatesellerDto.Addresses;
+
+		}
+		if (seller.Booth == null)
+		{
+			var booth = new Booth()
 			{
-				Id = sellerDto.Id,
-				FullName = sellerDto.FullName,
-				CommissionPercentage = sellerDto.CommissionPercentage,
-				CommissionsAmount = sellerDto.CommissionsAmount,
-				InsertionDate = sellerDto.InsertionDate,
-				IsActive = sellerDto.IsActive,
-				IsBan = sellerDto.IsBan,
-				IsDelete = sellerDto.IsDelete,
-				SalesAmount = sellerDto.SalesAmount
+				Name = updatesellerDto.FullName,
+				SellerId = updatesellerDto.Id
 			};
-			await _dbSet.AddAsync(seller, cancellationToken);
-			await _context.SaveChangesAsync(cancellationToken);
+
+			seller.Booth = booth;
+		}
+		else
+		{
+			seller.Booth.Name = updatesellerDto.FullName;
 		}
 
-		public async Task<bool> UpdateAsync(SellerRepoDto sellerDto, CancellationToken cancellationToken)
+
+		_context.Entry(seller).State = EntityState.Modified;
+		await _context.SaveChangesAsync(cancellationToken);
+		return true;
+	}
+
+	public async Task<bool> SoftDeleteAsync(SellerRepoDto sellerRepo, CancellationToken cancellationToken)
+	{
+		var seller = await _dbSet.FirstOrDefaultAsync(s => s.Id == sellerRepo.Id);
+		if (seller != null)
 		{
-			var seller = await _dbSet.FirstOrDefaultAsync(x => x.Id == sellerDto.Id, cancellationToken);
-			if (seller == null)
-			{
-				return false;
-			}
-			seller.IsDelete = sellerDto.IsDelete;
-			seller.FullName = sellerDto.FullName;
-			seller.IsActive = sellerDto.IsActive;
-			seller.CommissionPercentage = sellerDto.CommissionPercentage;
-			_context.Entry(seller).State = EntityState.Modified;
+			seller.IsDelete = true;
 			await _context.SaveChangesAsync(cancellationToken);
 			return true;
 		}
-		public async Task<bool> UpdateProfileAsync(SellerRepoDto updatesellerDto, CancellationToken cancellationToken)
+		return false;
+	}
+
+	public async Task<bool> SoftRecoverAsync(SellerRepoDto sellerRepo, CancellationToken cancellationToken)
+	{
+		var seller = await _dbSet.FirstOrDefaultAsync(s => s.Id == sellerRepo.Id);
+		if (seller != null)
 		{
-			var seller = await _dbSet.Include(x => x.Addresses)
-				.Include(b => b.Booth)
-				.FirstOrDefaultAsync(x => x.Id == updatesellerDto.Id, cancellationToken);
-
-			if (seller == null)
-			{
-				return false;
-			}
-
-			seller.FullName = updatesellerDto.FullName;
-
-			if (seller.Addresses == null)
-			{
-				var address = new Address();
-
-				seller.Addresses.Add(address);
-			}
-			else
-			{
-				// Update the existing address
-				seller.Addresses=updatesellerDto.Addresses;
-
-			}
-			if (seller.Booth == null)
-			{
-				var booth = new Booth()
-				{
-					Name = updatesellerDto.FullName,
-					SellerId = updatesellerDto.Id
-				};
-
-				seller.Booth = booth;
-			}
-			else
-			{
-				seller.Booth.Name = updatesellerDto.FullName;
-			}
-
-
-			_context.Entry(seller).State = EntityState.Modified;
+			seller.IsDelete = false;
 			await _context.SaveChangesAsync(cancellationToken);
 			return true;
 		}
+		return false;
+	}
 
-		public async Task DeleteAsync(SellerRepoDto sellerRepo, CancellationToken cancellationToken)
+	public async Task<bool> HardDeleteAsync(SellerRepoDto sellerRepo, CancellationToken cancellationToken)
+	{
+		var seller = await _dbSet.FirstOrDefaultAsync(s => s.Id == sellerRepo.Id);
+		if (seller != null)
 		{
-			var seller = await _dbSet.FirstOrDefaultAsync(s => s.Id == sellerRepo.Id);
-			if (seller != null)
-			{
-				seller.IsDelete = true;
-			}
+			_dbSet.Remove(seller);
 			await _context.SaveChangesAsync(cancellationToken);
+			return true;
 		}
+		return false;
+	}
+
+	//public async Task<FinancialRepSeller> GetFinancialBySellerId(int sellerId)
+	//{
+	//	var seller = await _dbSet.FirstOrDefaultAsync(x => x.Id == sellerId);
+	//	if (seller == null)
+	//		return null;
+
+	//	var result = new FinancialRepSeller()
+	//	{
+	//		Id = sellerId,
+	//		SalesAmount = seller.SalesAmount,
+	//		CommissionPercentage = seller.CommissionPercentage,
+	//		CommissionsAmount = seller.CommissionsAmount,
+	//		Medals = seller.Medals
+	//	};
+	//	return result;
+	//}
+	//public async Task<AddSellerDto> GetByIdWithNavigationAsync(int id)
+	//{
+	//	var result = await _dbSet.AsNoTracking().Select(s => new AddSellerDto
+	//	{
+	//		SellerId = s.Id,
+	//		CompanyName = s.CompanyName,
+	//		City = s.Address.City,
+	//		Street = s.Address.Street,
+	//		AddressDescription = s.Address.Description,
+	//		BoothName = s.Booth.Name,
+	//		BoothDescription = s.Booth.Description,
+	//		BoothId = s.Booth.Id,
+	//		AddressId = s.Address.Id,
+	//	})
+	//		   .FirstOrDefaultAsync(x => x.SellerId == id);
+	//	return result;
+	//}
+
+	private SellerRepoDto ConvertToSellerRepoDto(Seller seller)
+	{
+		return new SellerRepoDto()
+		{
+			Id = seller.Id,
+			FullName = seller.FullName,
+			CommissionPercentage = seller.CommissionPercentage,
+			CommissionsAmount = seller.CommissionsAmount,
+			InsertionDate = seller.InsertionDate,
+			IsActive = seller.IsActive,
+			IsBan = seller.IsBan,
+			IsDelete = seller.IsDelete,
+			SalesAmount = seller.SalesAmount
+		};
+	}
+
+	private void Equaler(SellerRepoDto sellerRepoDto, ref Seller seller)
+	{
+		seller.Id = sellerRepoDto.Id;
+		seller.FullName = sellerRepoDto.FullName;
+		seller.CommissionPercentage = sellerRepoDto.CommissionPercentage;
+		seller.CommissionsAmount = sellerRepoDto.CommissionsAmount;
+		seller.InsertionDate = sellerRepoDto.InsertionDate;
+		seller.IsActive = sellerRepoDto.IsActive;
+		seller.IsBan = sellerRepoDto.IsBan;
+		seller.IsDelete = sellerRepoDto.IsDelete;
+		seller.SalesAmount = sellerRepoDto.SalesAmount;
 	}
 }

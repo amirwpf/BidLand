@@ -14,12 +14,12 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 		Task<string> DeleteOpenCartAsync(int buyerId, int cartId, CancellationToken cancellationToken);
 		Task<int> GetTotalPrices(int cartId, CancellationToken cancellationToken);
 		Task<List<BidResponseDto>> GetCompeletedCartsByCustomerId(int buyerId, CancellationToken cancellationToken);
-		Task<List<BidResponseDto>> GetNonCompeletedCartsByCustomerId(int buyerId, CancellationToken cancellationToken);
+		Task<List<BidResponseDto>> GetNonCompeletedCartsByBuyerId(int buyerId, CancellationToken cancellationToken);
 		Task<bool> FinalizeCartAsync(int cartId, CancellationToken cancellationToken);
-		Task<CartRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
+		Task<CartRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken);
 		Task<List<CartRepoDto>> GetAllAsync(CancellationToken cancellationToken);
 		Task<BidAddDto> AddAsync(BidAddDto dto, CancellationToken cancellationToken);
 		Task UpdateAsync(CartRepoDto cart, CancellationToken cancellationToken);
-		Task DeleteAsync(CartRepoDto cart, CancellationToken cancellationToken);
+		Task<bool> DeleteAsync(CartRepoDto cart, CancellationToken cancellationToken);
 	}
 }

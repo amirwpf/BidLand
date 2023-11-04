@@ -12,14 +12,15 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 	public interface IProductRepository
 	{
 		Task<List<ProductRepoDto>> GetAllProductsWithNavAsync(CancellationToken cancellationToken);
-		Task<int> AddAsync(ProductAddDto productDto, CancellationToken cancellationToken);
-		Task UpdateAsync(Product product, CancellationToken cancellationToken);
-		Task UpdateAsync(ProductRepoDto product, CancellationToken cancellationToken);
-		Task<ProductRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
-		Task DeleteAsync(int id, CancellationToken cancellationToken);
-		Task UpdateAsync(ProductRepoDto productDto, List<int> categoryIds, CancellationToken cancellationToken);
+		Task AddAsync(ProductRepoDto productDto, CancellationToken cancellationToken);
+		Task<bool> UpdateAsync(ProductRepoDto product, CancellationToken cancellationToken);
+		Task<ProductRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken);
+		Task<bool> SoftDeleteAsync(int id, CancellationToken cancellationToken);
+		Task<bool> SoftRecoverAsync(int id, CancellationToken cancellationToken);
+		Task<bool> HardDeleteAsync(int id, CancellationToken cancellationToken);
 
 		#region other
+		//Task UpdateAsync(ProductRepoDto productDto, List<int> categoryIds, CancellationToken cancellationToken);
 		//Task<string> RemoveFromCartByProductId(int productId, int customerId);
 		//Task<List<ProductRepoDto>> GetProductByBoothIdAsync(int boothId);
 		//Task<List<ProductRepoDto>> GetProductsWithTrueAuctions(int sellerId);

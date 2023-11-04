@@ -11,10 +11,10 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 	public interface IStocksCartRepository
 	{
 		Task AddProductToOldCartAsync(int cartId, int stockId, CancellationToken cancellationToken);
-		Task<StocksCartRepoDto> GetByCartIdAsync(int cartId, CancellationToken cancellationToken);
+		Task<StocksCartRepoDto?> GetByCartIdAsync(int cartId, CancellationToken cancellationToken);
 		Task<List<StocksCartRepoDto>> GetAllAsync(CancellationToken cancellationToken);
 		Task AddAsync(StocksCartRepoDto dto, CancellationToken cancellationToken);
-		Task UpdateAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken);
-		Task DeleteAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken);
+		Task<bool> UpdateAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken);
+		Task<bool> HardDeleteAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken);
 	}
 }

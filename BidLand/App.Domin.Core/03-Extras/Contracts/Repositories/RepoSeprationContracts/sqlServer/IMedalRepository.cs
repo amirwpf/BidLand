@@ -11,11 +11,11 @@ namespace App.Domin.Core._03_Extras.Contracts.Repositories.RepoSeprationContract
 {
 	public interface IMedalRepository
 	{
-		Task<MedalRepoDto> GetByIdAsync(int id,CancellationToken cancellationToken);
+		Task<MedalRepoDto?> GetByIdAsync(int id,CancellationToken cancellationToken);
 		Task<List<MedalRepoDto>> GetAllAsync(CancellationToken cancellationToken);
 		Task AddAsync(MedalRepoDto medal, CancellationToken cancellationToken);
-		Task UpdateAsync(MedalRepoDto medal, CancellationToken cancellationToken);
-		Task DeleteAsync(MedalRepoDto medal, CancellationToken cancellationToken);
-		Task<MedalRepoDto> GetMedalByTypeAsync(MedalEnum medalType, CancellationToken cancellationToken);
+		Task<bool> UpdateAsync(MedalRepoDto medal, CancellationToken cancellationToken);
+		Task<bool> HardDeleteAsync(MedalRepoDto medal, CancellationToken cancellationToken);
+		Task<MedalRepoDto?> GetMedalByTypeAsync(MedalEnum medalType, CancellationToken cancellationToken);
 	}
 }

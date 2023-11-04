@@ -23,9 +23,17 @@ public class StockService: IStockService
 		await _repo.AddAsync(input, cancellationToken);
 	}
 
-	public async Task DeleteAsync(StockRepoDto input, CancellationToken cancellationToken)
+	public async Task<bool> HardDeleteAsync(StockRepoDto input, CancellationToken cancellationToken)
 	{
-		await _repo.DeleteAsync(input, cancellationToken);
+		return await _repo.HardDeleteAsync(input, cancellationToken);
+	}
+	public async Task<bool> SoftDeleteAsync(StockRepoDto input, CancellationToken cancellationToken)
+	{
+		return await _repo.SoftDeleteAsync(input, cancellationToken);
+	}
+	public async Task<bool> SoftRecoverAsync(StockRepoDto input, CancellationToken cancellationToken)
+	{
+		return await _repo.SoftRecoverAsync(input, cancellationToken);
 	}
 
 	public async Task<List<StockRepoDto>> GetAllAsync(CancellationToken cancellationToken)
@@ -33,13 +41,13 @@ public class StockService: IStockService
 		return await _repo.GetAllStocks(cancellationToken);
 	}
 
-	public async Task<StockRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
+	public async Task<StockRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
 		return await _repo.GetStockById(id, cancellationToken);
 	}
 
-	public async Task UpdateAsync(StockRepoDto input, CancellationToken cancellationToken)
+	public async Task<bool> UpdateAsync(StockRepoDto input, CancellationToken cancellationToken)
 	{
-		await _repo.UpdateAsync(input, cancellationToken);
+		return await _repo.UpdateAsync(input, cancellationToken);
 	}
 }

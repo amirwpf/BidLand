@@ -23,9 +23,11 @@ public class ProductRepoDto
 
 	public DateTime? InsertionDate { get; set; }
 
+	public int? CategoryId { get; set; }
+
 	public virtual ICollection<Image> Images { get; set; } = new List<Image>();
 
 	public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
 
-	public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
+	public virtual Category Category { get; set; } = new Category();
 }

@@ -11,9 +11,11 @@ namespace App.Domin.Core._01_Purchase.Contracts.Repositories.RepoSeprationContra
 public interface IStockRepository
 {
 	Task<List<StockRepoDto>> GetAllStocks(CancellationToken cancellationToken);
-	Task<StockRepoDto> GetStockById(int stockId, CancellationToken cancellationToken);
+	Task<StockRepoDto?> GetStockById(int stockId, CancellationToken cancellationToken);
 	Task AddAsync(StockRepoDto dto, CancellationToken cancellationToken);
-	Task UpdateAsync(StockRepoDto stock, CancellationToken cancellationToken);
-	Task DeleteAsync(StockRepoDto stock, CancellationToken cancellationToken);
+	Task<bool> UpdateAsync(StockRepoDto stock, CancellationToken cancellationToken);
+	Task<bool> SoftDeleteAsync(StockRepoDto stock, CancellationToken cancellationToken);
+	Task<bool> SoftRecoverAsync(StockRepoDto stock, CancellationToken cancellationToken);
+	Task<bool> HardDeleteAsync(StockRepoDto stock, CancellationToken cancellationToken);
 
 }

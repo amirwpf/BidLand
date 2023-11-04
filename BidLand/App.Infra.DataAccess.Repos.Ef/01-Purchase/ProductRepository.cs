@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
@@ -28,22 +29,9 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			var products = await _dbSet
 				.Include(p=>p.Stocks)
 				.Include(p=>p.Images)
-				.Include(p=>p.Categories)
+				.Include(p=>p.Category)
 				.Where(p => p.IsConfirm == true)
-				.Select(p => new ProductRepoDto
-				{
-					Id = p.Id,
-					Name = p.Name,
-					BasePrice = p.BasePrice,
-					Images = p.Images,
-					Stocks= p.Stocks,
-					IsConfirm =p.IsConfirm,
-					IsActive= p.IsActive,
-					IsDelete= p.IsDelete,
-					Description= p.Description,
-					Categories= p.Categories,
-
-				}).ToListAsync(cancellationToken);
+				.Select(p => ConvertToProductRepoDto(p)).ToListAsync(cancellationToken);
 			return products;
 		}
 		public async Task<List<ProductRepoDto>> GetAllProductsWithNavAsync(CancellationToken cancellationToken)
@@ -51,120 +39,101 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			var products = await _dbSet
 				.Include(p => p.Stocks)
 				.Include(p => p.Images)
-				.Include(p => p.Categories)
-				.Select(p => new ProductRepoDto
-				{
-					Id = p.Id,
-					Name = p.Name,
-					BasePrice = p.BasePrice,
-					Images = p.Images,
-					Stocks = p.Stocks,
-					IsConfirm = p.IsConfirm,
-					IsActive = p.IsActive,
-					IsDelete = p.IsDelete,
-					Description = p.Description,
-					Categories = p.Categories,
-
-				}).ToListAsync(cancellationToken);
+				.Include(p => p.Category)
+				.Select(p => ConvertToProductRepoDto(p)).ToListAsync(cancellationToken);
 			return products;
 		}
 
-		public async Task<int> AddAsync(ProductAddDto productDto, CancellationToken cancellationToken)
+		public async Task AddAsync(ProductRepoDto productDto, CancellationToken cancellationToken)
 		{
-			var product = new Product
-			{
-				Name = productDto.Name,
-				BasePrice = productDto.BasePrice,
-				Description = productDto.Description,
-				IsActive = productDto.IsActive,
-				IsDelete = productDto.IsDelete,
-				IsConfirm = productDto.IsConfirm
-			};
+			var product = ConvertToProduct(productDto);
 			await _dbSet.AddAsync(product);
 			await _context.SaveChangesAsync(cancellationToken);
-			var id = product.Id;
-			return id;
 		}
 
-		public async Task UpdateAsync(Product product, CancellationToken cancellationToken)
-		{
-			_context.Entry(product).State = EntityState.Modified;
-			await _context.SaveChangesAsync(cancellationToken);
-		}
-
-		public async Task UpdateAsync(ProductRepoDto productDto, CancellationToken cancellationToken)
+		public async Task<bool> UpdateAsync(ProductRepoDto productDto, CancellationToken cancellationToken)
 		{
 			var result = await _dbSet.FirstOrDefaultAsync(x=>x.Id == productDto.Id,cancellationToken);
 
 			if (result != null)
 			{
-				result.Name = productDto.Name;
-				result.BasePrice = productDto.BasePrice;
-				result.Description = productDto.Description;
-				result.IsActive = productDto.IsActive;
-				result.IsDelete = productDto.IsDelete;
-				result.IsConfirm = productDto.IsConfirm;
-
+				UpdateValueEqualer(productDto, ref result);
 				_context.Entry(result).State = EntityState.Modified;
 				await _context.SaveChangesAsync(cancellationToken);
+				return true;
 			}
+			return false;
 		}
 
 
-		public async Task DeleteAsync(int id, CancellationToken cancellationToken)
+
+		public async Task<bool> SoftDeleteAsync(int id, CancellationToken cancellationToken)
 		{
 			var product = await _dbSet.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
 			if (product != null)
 			{
 				product.IsDelete = true;
-			}
-			await _context.SaveChangesAsync(cancellationToken);
-		}
-
-		public async Task<ProductRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
-		{
-			var redult = _dbSet.Where(p => p.Id == id)
-				.Select(p => new ProductRepoDto
-				{
-					Id = p.Id,
-					Name = p.Name,
-					BasePrice = p.BasePrice,
-					Images = p.Images,
-					Stocks = p.Stocks,
-					IsConfirm = p.IsConfirm,
-					IsActive = p.IsActive,
-					IsDelete = p.IsDelete,
-					Description = p.Description,
-					Categories = p.Categories,
-
-				})
-				.Include(c => c.Categories)
-				.FirstOrDefaultAsync(cancellationToken);
-			return await redult;
-		}
-
-		public async Task UpdateAsync(ProductRepoDto productDto, List<int> categoryIds, CancellationToken cancellationToken)
-		{
-			var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == productDto.Id, cancellationToken);
-
-			if (result != null)
-			{
-				result.Name = productDto.Name;
-				result.BasePrice = productDto.BasePrice;
-				result.Description = productDto.Description;
-				result.IsActive = productDto.IsActive;
-				result.IsDelete = productDto.IsDelete;
-				result.IsConfirm = productDto.IsConfirm;
-
-				// به روزرسانی دسته‌بندی‌ها
-				result.Categories = await _context.Categories.Where(c => categoryIds.Contains(c.Id)).ToListAsync();
-
-				_context.Entry(result).State = EntityState.Modified;
 				await _context.SaveChangesAsync(cancellationToken);
+				return true;
 			}
+			return false;
 		}
+		public async Task<bool> SoftRecoverAsync(int id, CancellationToken cancellationToken)
+		{
+			var product = await _dbSet.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+			if (product != null)
+			{
+				product.IsDelete = false;
+				await _context.SaveChangesAsync(cancellationToken);
+				return true;
+			}
+			return false;
+		}
+		public async Task<bool> HardDeleteAsync(int id, CancellationToken cancellationToken)
+		{
+			var product = await _dbSet.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+			if (product != null)
+			{
+				_dbSet.Remove(product);
+				await _context.SaveChangesAsync(cancellationToken);
+				return true;
+			}
+			return false;
+		}
+
+		public async Task<ProductRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
+		{
+			var result = await _dbSet
+				.Select(p => ConvertToProductRepoDto(p))
+				.Include(c => c.Category)
+				.FirstOrDefaultAsync(p => p.Id == id,cancellationToken);
+			if (result == null) return null;
+			return  result;
+		}
+
+
 
 		#region other
+		//public async Task UpdateAsync(ProductRepoDto productDto, List<int> categoryIds, CancellationToken cancellationToken)
+		//{
+		//	var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == productDto.Id, cancellationToken);
+
+		//	if (result != null)
+		//	{
+		//		result.Name = productDto.Name;
+		//		result.BasePrice = productDto.BasePrice;
+		//		result.Description = productDto.Description;
+		//		result.IsActive = productDto.IsActive;
+		//		result.IsDelete = productDto.IsDelete;
+		//		result.IsConfirm = productDto.IsConfirm;
+
+		//		// به روزرسانی دسته‌بندی‌ها
+		//		result.Categories = await _context.Categories.Where(c => categoryIds.Contains(c.Id)).ToListAsync();
+
+		//		_context.Entry(result).State = EntityState.Modified;
+		//		await _context.SaveChangesAsync(cancellationToken);
+		//	}
+		//}
 		//public async Task<List<ProductCustomerDto>> GetProductByBoothIdAsync(int boothId)//IsConfirm==true
 		//{
 		//	var dto = await _dbSet
@@ -329,6 +298,63 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 		#endregion
 
 
+
+		private ProductRepoDto ConvertToProductRepoDto(Product product)
+		{
+			var result = new ProductRepoDto()
+			{
+				Id = product.Id,
+				Name = product.Name,
+				BasePrice = product.BasePrice,
+				Images = product.Images,
+				Stocks = product.Stocks,
+				IsConfirm = product.IsConfirm,
+				IsActive = product.IsActive,
+				IsDelete = product.IsDelete,
+				Description = product.Description,
+				Category = product.Category,
+				CategoryId = product.CategoryId,
+				InsertionDate = product.InsertionDate
+			};
+
+			return result;
+		}
+
+		private Product ConvertToProduct(ProductRepoDto productRepoDto)
+		{
+			var result = new Product()
+			{
+				Id = productRepoDto.Id,
+				Name = productRepoDto.Name,
+				BasePrice = productRepoDto.BasePrice,
+				Images = productRepoDto.Images,
+				Stocks = productRepoDto.Stocks,
+				IsConfirm = productRepoDto.IsConfirm,
+				IsActive = productRepoDto.IsActive,
+				IsDelete = productRepoDto.IsDelete,
+				Description = productRepoDto.Description,
+				Category = productRepoDto.Category,
+				CategoryId = productRepoDto.CategoryId,
+				InsertionDate = productRepoDto.InsertionDate
+			};
+
+			return result;
+		}
+
+		private void UpdateValueEqualer(ProductRepoDto productDto, ref Product result)
+		{
+			result.Name = productDto.Name;
+			result.BasePrice = productDto.BasePrice;
+			result.Description = productDto.Description;
+			result.IsActive = productDto.IsActive;
+			result.IsDelete = productDto.IsDelete;
+			result.IsConfirm = productDto.IsConfirm;
+			result.Stocks = productDto.Stocks;
+			result.Images = productDto.Images;
+			result.Category = productDto.Category;
+			result.CategoryId = productDto.CategoryId;
+			result.InsertionDate = productDto.InsertionDate;
+		}
 
 	}
 }
