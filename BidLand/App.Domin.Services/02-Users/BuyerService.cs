@@ -26,7 +26,7 @@ public class BuyerService: IBuyerService
 
 	public async Task DeleteAsync(BuyerRepoDto input, CancellationToken cancellationToken)
 	{
-		await _repo.DeleteAsync(input, cancellationToken);
+		await _repo.HardDeleteAsync(input, cancellationToken);
 	}
 
 	public async Task<List<BuyerRepoDto>> GetAllAsync(CancellationToken cancellationToken)

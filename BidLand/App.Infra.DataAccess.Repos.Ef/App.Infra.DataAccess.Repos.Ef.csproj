@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="01-Purchase\ProductRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\App.Domin.Core\App.Domin.Core.csproj" />
     <ProjectReference Include="..\App.Infra.Db.sqlServer.Ef\App.Infra.Db.sqlServer.Ef.csproj" />
   </ItemGroup>

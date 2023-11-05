@@ -1,32 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\BidLand.Web\\BidLand.Web.csproj": {}
+    "D:\\Sources\\Repos\\BidLand\\BidLand\\BidLand.Web\\BidLand.Web.csproj": {}
   },
   "projects": {
-    "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
+    "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj",
+        "projectUniqueName": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj",
         "projectName": "App.Domin.Core",
-        "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj",
-        "packagesPath": "C:\\Users\\amir\\.nuget\\packages\\",
-        "outputPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\obj\\",
+        "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj",
+        "packagesPath": "C:\\Users\\Dev-03\\.nuget\\packages\\",
+        "outputPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\amir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Dev-03\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
+          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -64,37 +63,36 @@
         }
       }
     },
-    "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj": {
+    "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj",
+        "projectUniqueName": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj",
         "projectName": "App.Domin.Services",
-        "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj",
-        "packagesPath": "C:\\Users\\amir\\.nuget\\packages\\",
-        "outputPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Services\\obj\\",
+        "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj",
+        "packagesPath": "C:\\Users\\Dev-03\\.nuget\\packages\\",
+        "outputPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\amir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Dev-03\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
+          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
-                "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
+              "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
+                "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
               }
             }
           }
@@ -128,43 +126,42 @@
         }
       }
     },
-    "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Config\\App.Infra.Config.csproj": {
+    "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Config\\App.Infra.Config.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Config\\App.Infra.Config.csproj",
+        "projectUniqueName": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Config\\App.Infra.Config.csproj",
         "projectName": "App.Infra.Config",
-        "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Config\\App.Infra.Config.csproj",
-        "packagesPath": "C:\\Users\\amir\\.nuget\\packages\\",
-        "outputPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Config\\obj\\",
+        "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Config\\App.Infra.Config.csproj",
+        "packagesPath": "C:\\Users\\Dev-03\\.nuget\\packages\\",
+        "outputPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Config\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\amir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Dev-03\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
+          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
-                "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
+              "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
+                "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
               },
-              "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj": {
-                "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj"
+              "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj": {
+                "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Services\\App.Domin.Services.csproj"
               },
-              "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj": {
-                "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj"
+              "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj": {
+                "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj"
               }
             }
           }
@@ -208,40 +205,39 @@
         }
       }
     },
-    "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj": {
+    "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj",
+        "projectUniqueName": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj",
         "projectName": "App.Infra.DataAccess.Repos.Ef",
-        "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj",
-        "packagesPath": "C:\\Users\\amir\\.nuget\\packages\\",
-        "outputPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.DataAccess.Repos.Ef\\obj\\",
+        "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj",
+        "packagesPath": "C:\\Users\\Dev-03\\.nuget\\packages\\",
+        "outputPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.DataAccess.Repos.Ef\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\amir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Dev-03\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
+          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
-                "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
+              "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
+                "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
               },
-              "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj": {
-                "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj"
+              "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj": {
+                "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj"
               }
             }
           }
@@ -275,37 +271,36 @@
         }
       }
     },
-    "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj": {
+    "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj",
+        "projectUniqueName": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj",
         "projectName": "App.Infra.Db.sqlServer.Ef",
-        "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj",
-        "packagesPath": "C:\\Users\\amir\\.nuget\\packages\\",
-        "outputPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Db.sqlServer.Ef\\obj\\",
+        "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj",
+        "packagesPath": "C:\\Users\\Dev-03\\.nuget\\packages\\",
+        "outputPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Db.sqlServer.Ef\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\amir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Dev-03\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
+          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
-                "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
+              "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
+                "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
               }
             }
           }
@@ -321,6 +316,12 @@
           "targetAlias": "net7.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.12, )"
             },
@@ -355,46 +356,45 @@
         }
       }
     },
-    "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\BidLand.Web\\BidLand.Web.csproj": {
+    "D:\\Sources\\Repos\\BidLand\\BidLand\\BidLand.Web\\BidLand.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\BidLand.Web\\BidLand.Web.csproj",
+        "projectUniqueName": "D:\\Sources\\Repos\\BidLand\\BidLand\\BidLand.Web\\BidLand.Web.csproj",
         "projectName": "BidLand.Web",
-        "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\BidLand.Web\\BidLand.Web.csproj",
-        "packagesPath": "C:\\Users\\amir\\.nuget\\packages\\",
-        "outputPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\BidLand.Web\\obj\\",
+        "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\BidLand.Web\\BidLand.Web.csproj",
+        "packagesPath": "C:\\Users\\Dev-03\\.nuget\\packages\\",
+        "outputPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\BidLand.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\amir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Dev-03\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
+          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
-                "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
+              "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
+                "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
               },
-              "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Config\\App.Infra.Config.csproj": {
-                "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Config\\App.Infra.Config.csproj"
+              "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Config\\App.Infra.Config.csproj": {
+                "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Config\\App.Infra.Config.csproj"
               },
-              "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj": {
-                "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj"
+              "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj": {
+                "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.DataAccess.Repos.Ef\\App.Infra.DataAccess.Repos.Ef.csproj"
               },
-              "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj": {
-                "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj"
+              "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj": {
+                "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj"
               }
             }
           }
@@ -408,6 +408,14 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.12, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

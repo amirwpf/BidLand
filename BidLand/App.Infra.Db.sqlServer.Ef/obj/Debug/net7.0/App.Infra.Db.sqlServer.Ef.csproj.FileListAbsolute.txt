@@ -15,3 +15,23 @@ F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer
 F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.pdb
 F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.genruntimeconfig.cache
 F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\ref\App.Infra.Db.sqlServer.Ef.dll
+C:\Users\Dev-03\Source\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.dll
+C:\Users\Dev-03\Source\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\refint\App.Infra.Db.sqlServer.Ef.dll
+C:\Users\Dev-03\Source\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.pdb
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.deps.json
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.runtimeconfig.json
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.dll
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.pdb
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Domin.Core.dll
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\bin\Debug\net7.0\App.Domin.Core.pdb
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.csproj.AssemblyReference.cache
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.AssemblyInfoInputs.cache
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.AssemblyInfo.cs
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.csproj.CoreCompileInputs.cache
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.csproj.CopyComplete
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.dll
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\refint\App.Infra.Db.sqlServer.Ef.dll
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.pdb
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\App.Infra.Db.sqlServer.Ef.genruntimeconfig.cache
+D:\Sources\Repos\BidLand\BidLand\App.Infra.Db.sqlServer.Ef\obj\Debug\net7.0\ref\App.Infra.Db.sqlServer.Ef.dll

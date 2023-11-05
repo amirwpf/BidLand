@@ -25,7 +25,7 @@ public class StocksCartService: IStocksCartService
 
 	public async Task DeleteAsync(StocksCartRepoDto input, CancellationToken cancellationToken)
 	{
-		await _repo.DeleteAsync(input, cancellationToken);
+		await _repo.HardDeleteAsync(input, cancellationToken);
 	}
 
 	public async Task<List<StocksCartRepoDto>> GetAllAsync(CancellationToken cancellationToken)

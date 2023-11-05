@@ -2894,46 +2894,45 @@
     "net7.0": [
       "App.Domin.Core >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.12",
+      "Microsoft.EntityFrameworkCore.Design >= 7.0.12",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.12",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.12"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\amir\\.nuget\\packages\\": {},
-    "C:\\ProgramData\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\Dev-03\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj",
+      "projectUniqueName": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj",
       "projectName": "App.Infra.Db.sqlServer.Ef",
-      "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj",
-      "packagesPath": "C:\\Users\\amir\\.nuget\\packages\\",
-      "outputPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Infra.Db.sqlServer.Ef\\obj\\",
+      "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Db.sqlServer.Ef\\App.Infra.Db.sqlServer.Ef.csproj",
+      "packagesPath": "C:\\Users\\Dev-03\\.nuget\\packages\\",
+      "outputPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Infra.Db.sqlServer.Ef\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\ProgramData\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\amir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Dev-03\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
+        "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
-              "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
+            "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj": {
+              "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj"
             }
           }
         }
@@ -2949,6 +2948,12 @@
         "targetAlias": "net7.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[7.0.12, )"
+          },
+          "Microsoft.EntityFrameworkCore.Design": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.12, )"
           },

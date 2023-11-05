@@ -24,7 +24,7 @@ public class CommentService: ICommentService
 
 	public async Task DeleteAsync(CommentRepoDto input, CancellationToken cancellationToken)
 	{
-		await _repo.DeleteAsync(input, cancellationToken);
+		await _repo.HardDeleteAsync(input, cancellationToken);
 	}
 
 	public async Task<List<CommentRepoDto>> GetAllAsync(CancellationToken cancellationToken)

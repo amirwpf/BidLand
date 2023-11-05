@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LQ5aFxzp7y2dIz2wuxNTXKk6CTZ6tgDilVIvG/TCCQa2Ql90AQSdNCdpuffvQcugF+Yo2zwFysvPxx0sckyBqw==",
+  "dgSpecHash": "qumNShOLOQ9dWqjMGpLeVLL0B768D7svqQs2NyZrwwcPpVz6c0wMDEtmXI+GiM+tHQgUed6h5oaDpYx9A0uwrg==",
   "success": true,
-  "projectFilePath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj",
+  "projectFilePath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.Core\\App.Domin.Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

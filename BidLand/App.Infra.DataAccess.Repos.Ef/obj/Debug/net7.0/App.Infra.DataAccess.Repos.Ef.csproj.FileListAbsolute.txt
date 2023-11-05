@@ -1,17 +1,17 @@
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.csproj.AssemblyReference.cache
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.GeneratedMSBuildEditorConfig.editorconfig
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.AssemblyInfoInputs.cache
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.AssemblyInfo.cs
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.csproj.CoreCompileInputs.cache
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.deps.json
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.dll
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.pdb
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Domin.Core.dll
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.dll
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Domin.Core.pdb
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.pdb
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.csproj.CopyComplete
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.dll
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\refint\App.Infra.DataAccess.Repos.Ef.dll
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.pdb
-F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\ref\App.Infra.DataAccess.Repos.Ef.dll
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.deps.json
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.dll
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.pdb
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Domin.Core.dll
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.dll
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Domin.Core.pdb
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.pdb
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.csproj.AssemblyReference.cache
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.AssemblyInfoInputs.cache
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.AssemblyInfo.cs
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.csproj.CoreCompileInputs.cache
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.csproj.CopyComplete
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.dll
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\refint\App.Infra.DataAccess.Repos.Ef.dll
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.pdb
+D:\Sources\Repos\BidLand\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\ref\App.Infra.DataAccess.Repos.Ef.dll

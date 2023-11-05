@@ -25,11 +25,11 @@ public class StockRepoDto
 
 	public bool IsAuction { get; set; }
 
-	public int? AuctionId { get; set; }
+	public int AuctionId { get; set; }
 
 	public DateTime? InsertionDate { get; set; }
 
-	public virtual Auction? Auction { get; set; }
+	//public virtual Auction? Auction { get; set; }
 
 	public virtual Booth? Booth { get; set; }
 

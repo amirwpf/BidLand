@@ -22,3 +22,23 @@ F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.Core\obj\Deb
 F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.Core\obj\Debug\net7.0\refint\App.Domin.Core.dll
 F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.pdb
 F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\App.Domin.Core\obj\Debug\net7.0\ref\App.Domin.Core.dll
+C:\Users\Dev-03\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.csproj.AssemblyReference.cache
+C:\Users\Dev-03\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dev-03\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.AssemblyInfoInputs.cache
+C:\Users\Dev-03\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.AssemblyInfo.cs
+C:\Users\Dev-03\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.csproj.CoreCompileInputs.cache
+C:\Users\Dev-03\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.dll
+C:\Users\Dev-03\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\refint\App.Domin.Core.dll
+C:\Users\Dev-03\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.pdb
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\bin\Debug\net7.0\App.Domin.Core.deps.json
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\bin\Debug\net7.0\App.Domin.Core.dll
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\bin\Debug\net7.0\App.Domin.Core.pdb
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.csproj.AssemblyReference.cache
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.AssemblyInfoInputs.cache
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.AssemblyInfo.cs
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.csproj.CoreCompileInputs.cache
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.dll
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\refint\App.Domin.Core.dll
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.pdb
+D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\ref\App.Domin.Core.dll

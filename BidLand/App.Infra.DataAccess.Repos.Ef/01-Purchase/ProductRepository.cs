@@ -356,5 +356,6 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			result.InsertionDate = productDto.InsertionDate;
 		}
 
-	}
+       
+    }
 }

@@ -25,11 +25,11 @@ public class ImageService: IImageService
 
 	public async Task DeleteAsync(int id, CancellationToken cancellationToken)
 	{
-		await _repo.DeleteAsync(id, cancellationToken);
+		await _repo.HardDeleteAsync(id, cancellationToken);
 	}
 	public async Task DeleteAsync(string url, CancellationToken cancellationToken)
 	{
-		await _repo.DeleteAsync(url, cancellationToken);
+		await _repo.HardDeleteAsync(url, cancellationToken);
 	}
 
 	public async Task<List<ImageRepoDto>> GetAllImageForProductByIdAsync(int productId,CancellationToken cancellationToken)

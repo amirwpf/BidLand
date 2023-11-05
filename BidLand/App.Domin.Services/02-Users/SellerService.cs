@@ -24,7 +24,7 @@ public class SellerService: ISellerService
 
 	public async Task DeleteAsync(SellerRepoDto input, CancellationToken cancellationToken)
 	{
-		await _repo.DeleteAsync(input, cancellationToken);
+		await _repo.HardDeleteAsync(input, cancellationToken);
 	}
 
 	public async Task<List<SellerRepoDto>> GetAllAsync(CancellationToken cancellationToken)

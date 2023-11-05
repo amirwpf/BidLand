@@ -24,7 +24,7 @@ public class MedalService: IMedalService
 
 	public async Task DeleteAsync(MedalRepoDto input, CancellationToken cancellationToken)
 	{
-		await _repo.DeleteAsync(input, cancellationToken);
+		await _repo.HardDeleteAsync(input, cancellationToken);
 	}
 
 	public async Task<List<MedalRepoDto>> GetAllAsync(CancellationToken cancellationToken)

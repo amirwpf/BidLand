@@ -25,7 +25,7 @@ public class BoothService : IBoothService
 
 	public async Task DeleteAsync(BoothRepoDto input, CancellationToken cancellationToken)
 	{
-		await _repo.DeleteAsync(input, cancellationToken);
+		await _repo.HardDeleteAsync(input, cancellationToken);
 	}
 
 	public async Task<List<BoothRepoDto>> GetAllAsync(CancellationToken cancellationToken)

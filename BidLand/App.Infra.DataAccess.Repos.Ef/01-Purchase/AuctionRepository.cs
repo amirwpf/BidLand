@@ -32,7 +32,8 @@ public class AuctionRepository : IAuctionRepository
 
 	public async Task<AuctionRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
-		var action = await _dbSet.Include(p => p.Stock)
+		var action = await _dbSet
+			//.Include(p => p.Stock)
 				.Select(a => ConvertToAuctionRepoDto(a))
 			   .FirstOrDefaultAsync(a => a.Id == id, cancellationToken);
 		if (action == null) return null;
@@ -47,7 +48,7 @@ public class AuctionRepository : IAuctionRepository
 	public async Task<List<AuctionRepoDto>> GetAllTrueAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet.AsNoTracking()
-			.Where(x => x.Stock.IsAuction)
+			//.Where(x => x.Stock.IsAuction)
 			.Select(a => ConvertToAuctionRepoDto(a)).ToListAsync(cancellationToken);
 		return result;
 	}

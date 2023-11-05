@@ -24,7 +24,7 @@ public class AuctionService : IAuctionService
 
 	public async Task DeleteAsync(AuctionRepoDto input, CancellationToken cancellationToken)
 	{
-		await _repo.DeleteAsync(input, cancellationToken);
+		await _repo.HardDeleteAsync(input, cancellationToken);
 	}
 
 	public async Task<List<AuctionRepoDto>> GetAllAsync(CancellationToken cancellationToken)

@@ -18,14 +18,20 @@ public class ProductService : IProductService
 	{
 		_productRepo = productRepo;
 	}
-	public async Task<int> CreateAsync(ProductAddDto input, CancellationToken cancellationToken)
-	{
-		return await _productRepo.AddAsync(input, cancellationToken);
-	}
 
-	public async Task DeleteAsync(int id, CancellationToken cancellationToken)
+    public async Task CreateAsync(ProductRepoDto input, CancellationToken cancellationToken)
+    {
+		await _productRepo.AddAsync(input, cancellationToken);
+    }
+
+    //public async Task<int> CreateAsync(ProductAddDto input, CancellationToken cancellationToken)
+    //{
+    //	return await _productRepo.AddAsync(input, cancellationToken);
+    //}
+
+    public async Task DeleteAsync(int id, CancellationToken cancellationToken)
 	{
-		await _productRepo.DeleteAsync(id, cancellationToken);
+		await _productRepo.HardDeleteAsync(id, cancellationToken);
 	}
 
 	public async Task<List<ProductRepoDto>> GetAllAsync(CancellationToken cancellationToken)

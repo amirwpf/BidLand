@@ -110,7 +110,7 @@ public class StockRepository:IStockRepository
 			IsDelete = stockRepoDto.IsDelete,
 			Price = stockRepoDto.Price,
 			ProductId = stockRepoDto.ProductId,
-			Auction = stockRepoDto.Auction,
+			//Auction = stockRepoDto.Auction,
 			Booth = stockRepoDto.Booth,
 			Comments = stockRepoDto.Comments,
 			Product = stockRepoDto.Product,
@@ -134,7 +134,7 @@ public class StockRepository:IStockRepository
 			IsDelete = stock.IsDelete,
 			Price = stock.Price,
 			ProductId = stock.ProductId,
-			Auction = stock.Auction,
+			//Auction = stock.Auction,
 			Booth = stock.Booth,
 			Comments = stock.Comments,
 			Product = stock.Product,
@@ -156,7 +156,7 @@ public class StockRepository:IStockRepository
 		stock.IsDelete = stock.IsDelete;
 		stock.Price = stock.Price;
 		stock.ProductId = stock.ProductId;
-		stock.Auction = stock.Auction;
+		//stock.Auction = stock.Auction;
 		stock.Booth = stock.Booth;
 		stock.Comments = stock.Comments;
 		stock.Product = stock.Product;

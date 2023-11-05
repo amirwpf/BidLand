@@ -13,7 +13,7 @@ namespace App.Infra.Db.sqlServer.Ef.Configurations.EntitesConfiguration
 	{
 		public void Configure(EntityTypeBuilder<Auction> entity)
 		{
-			entity.HasOne(d => d.Stock).WithOne(p => p.Auction);
+			//entity.HasOne(d => d.Stock).WithOne(p => p.Auction).HasForeignKey<Stock>(x=>x.AuctionId);
 		}
 	}
 }

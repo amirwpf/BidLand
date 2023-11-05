@@ -158,8 +158,8 @@ public class CartRepository : ICartRepository
 		var buyerCart = await _context.Carts
 			.Include(c => c.StocksCarts)
 			.ThenInclude(pc => pc.Stock)
-			.ThenInclude(p => p.Auction)
-			.ThenInclude(a => a.Bids)
+			//.ThenInclude(p => p.Auction)
+			//.ThenInclude(a => a.Bids)
 			.SingleOrDefaultAsync(c => c.BuyerId == buyerId && c.Id == cartId && !c.PurchaseCompeleted, cancellationToken);
 
 		if (buyerCart == null)
@@ -175,8 +175,9 @@ public class CartRepository : ICartRepository
 			return "در سبد خرید مشتری کالاهایی با قابلیت حراجی وجود دارد. لطفاً برای حذف این سبد خرید با پشتیبانی تماس بگیرید.";
 		}
 
-		var isAuctionProductAddedByBuyer = buyerCart.StocksCarts
-			.Any(pc => pc.Stock?.Auction?.Bids?.FirstOrDefault(b => b != null && b.BuyerId == buyerId && b.HasWon == true) != null);
+		var isAuctionProductAddedByBuyer = false;
+			//= buyerCart.StocksCarts
+			//.Any(pc => pc.Stock.FirstOrDefault(b => b != null && b.BuyerId == buyerId && b.HasWon == true) != null);
 
 
 		if (isAuctionProductAddedByBuyer)

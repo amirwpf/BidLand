@@ -24,7 +24,7 @@ public class BidService : IBidService
 
 	public async Task DeleteAsync(BidRepoDto input, CancellationToken cancellationToken)
 	{
-		await _repo.DeleteAsync(input, cancellationToken);
+		await _repo.HardDeleteAsync(input, cancellationToken);
 	}
 
 	public async Task<List<BidRepoDto>> GetAllAsync(CancellationToken cancellationToken)

@@ -1,32 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.AppServices\\App.Domin.AppServices.csproj": {}
+    "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.AppServices\\App.Domin.AppServices.csproj": {}
   },
   "projects": {
-    "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.AppServices\\App.Domin.AppServices.csproj": {
+    "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.AppServices\\App.Domin.AppServices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.AppServices\\App.Domin.AppServices.csproj",
+        "projectUniqueName": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.AppServices\\App.Domin.AppServices.csproj",
         "projectName": "App.Domin.AppServices",
-        "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.AppServices\\App.Domin.AppServices.csproj",
-        "packagesPath": "C:\\Users\\amir\\.nuget\\packages\\",
-        "outputPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\Final\\BidLand\\App.Domin.AppServices\\obj\\",
+        "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.AppServices\\App.Domin.AppServices.csproj",
+        "packagesPath": "C:\\Users\\Dev-03\\.nuget\\packages\\",
+        "outputPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\App.Domin.AppServices\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\amir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Dev-03\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
+          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

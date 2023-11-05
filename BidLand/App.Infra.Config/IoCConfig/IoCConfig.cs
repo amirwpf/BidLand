@@ -24,50 +24,50 @@ namespace App.Infra.Config.IoCConfig
 		{
 			#region Purchase
 			// --------------------->Reposritory<-------------------------------------
-			services.AddScoped<IAuctionRepository, AuctionRepository>();
-			services.AddScoped<IBidRepository, BidRepository>();
-			services.AddScoped<IBoothRepository, BoothRepository>();
-			services.AddScoped<ICartRepository, CartRepository>();
-			services.AddScoped<ICategoryRepository, CategoryRepository>();
-			services.AddScoped<IProductRepository, ProductRepository>();
-			services.AddScoped<IStockRepository, StockRepository>();
-			services.AddScoped<IStocksCartRepository, StocksCartRepository>();
+			//services.AddScoped<IAuctionRepository, AuctionRepository>();
+			//services.AddScoped<IBidRepository, BidRepository>();
+			//services.AddScoped<IBoothRepository, BoothRepository>();
+			//services.AddScoped<ICartRepository, CartRepository>();
+			//services.AddScoped<ICategoryRepository, CategoryRepository>();
+			////services.AddScoped<IProductRepository, ProductRepository>();
+			//services.AddScoped<IStockRepository, StockRepository>();
+			//services.AddScoped<IStocksCartRepository, StocksCartRepository>();
 
-			// --------------------->Service<-------------------------------------
-			services.AddScoped<IAuctionService, AuctionService>();
-			services.AddScoped<IBidService, BidService>();
-			services.AddScoped<IBoothService, BoothService>();
-			services.AddScoped<ICartService, CartService>();
-			services.AddScoped<ICategoryService, CategoryService>();
-			services.AddScoped<IProductService, ProductService>();
-			services.AddScoped<IStockService, StockService>();
-			services.AddScoped<IStocksCartService, StocksCartService>();
+			//// --------------------->Service<-------------------------------------
+			//services.AddScoped<IAuctionService, AuctionService>();
+			//services.AddScoped<IBidService, BidService>();
+			//services.AddScoped<IBoothService, BoothService>();
+			//services.AddScoped<ICartService, CartService>();
+			//services.AddScoped<ICategoryService, CategoryService>();
+			//services.AddScoped<IProductService, ProductService>();
+			//services.AddScoped<IStockService, StockService>();
+			//services.AddScoped<IStocksCartService, StocksCartService>();
 
-			#endregion
+			//#endregion
 
-			#region Users
-			// --------------------->Repository<---------------------------------
-			services.AddScoped<ISellerRepository, SellerRepository>();
-			services.AddScoped<IBuyerRepository, BuyerRepository>();
+			//#region Users
+			//// --------------------->Repository<---------------------------------
+			//services.AddScoped<ISellerRepository, SellerRepository>();
+			//services.AddScoped<IBuyerRepository, BuyerRepository>();
 
-			// --------------------->Service<---------------------------------
-			services.AddScoped<ISellerService, SellerService>();
-			services.AddScoped<IBuyerService, BuyerService>();
+			//// --------------------->Service<---------------------------------
+			//services.AddScoped<ISellerService, SellerService>();
+			//services.AddScoped<IBuyerService, BuyerService>();
 
-			#endregion
+			//#endregion
 
-			#region Extras
-			// --------------------->Repository<--------------------------------------
-			services.AddScoped<IAddressRepository, AddressRepository>();
-			services.AddScoped<ICommentRepository, CommentRepository>();
-			services.AddScoped<IImageRepository, ImageRepository>();
-			services.AddScoped<IMedalRepository, MedalRepository>();
+			//#region Extras
+			//// --------------------->Repository<--------------------------------------
+			//services.AddScoped<IAddressRepository, AddressRepository>();
+			//services.AddScoped<ICommentRepository, CommentRepository>();
+			//services.AddScoped<IImageRepository, ImageRepository>();
+			//services.AddScoped<IMedalRepository, MedalRepository>();
 
-			// --------------------->Service<--------------------------------------
-			services.AddScoped<IAddressService, AddressService>();
-			services.AddScoped<ICommentService, CommentService>();
-			services.AddScoped<IImageService, ImageService>();
-			services.AddScoped<IMedalService, MedalService>();
+			//// --------------------->Service<--------------------------------------
+			//services.AddScoped<IAddressService, AddressService>();
+			//services.AddScoped<ICommentService, CommentService>();
+			//services.AddScoped<IImageService, ImageService>();
+			//services.AddScoped<IMedalService, MedalService>();
 
 			#endregion
 
