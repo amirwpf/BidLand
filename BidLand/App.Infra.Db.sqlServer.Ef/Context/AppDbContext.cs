@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Reflection.Emit;
 using App.Domin.Core._01_Purchause.Entities;
 using App.Domin.Core._02_Users.Entities;
@@ -65,13 +66,17 @@ public partial class AppDbContext : IdentityDbContext<IdentityUser, IdentityRole
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		
 
+	
+		
 		#region Config
 		ApplyConfigurations.ApplyEntityConfigurations(modelBuilder);
 		#endregion
 
+		
 		base.OnModelCreating(modelBuilder);
+
+
 	}
 
 	//partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

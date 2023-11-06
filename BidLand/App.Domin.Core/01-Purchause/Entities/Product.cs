@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using App.Domin.Core._03_Extras.Entities;
 using App.Domin.Core._02_Users.Entities;
 using App.Domin.Core._01_Purchause.Entities;
-
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace App.Domin.Core._01_Purchause.Entities;
 
@@ -30,13 +30,11 @@ public partial class Product
 
     public int? CategoryId { get; set; }
 
-    public string UserId { get; set; }
-
     public virtual ICollection<Image> Images { get; set; } = new List<Image>();
 
     public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
 
     public virtual Category Category { get; set; } = new Category();
-    //public virtual IdentityUser
+
 
 }

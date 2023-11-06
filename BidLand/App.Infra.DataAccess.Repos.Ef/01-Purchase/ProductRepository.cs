@@ -36,6 +36,7 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 		}
 		public async Task<List<ProductRepoDto>> GetAllProductsWithNavAsync(CancellationToken cancellationToken)
 		{
+			var products = _dbSet.Select(p=>ConvertToProductRepoDto(p)).ToListAsync(cancellationToken);
 			var products = await _dbSet
 				.Include(p => p.Stocks)
 				.Include(p => p.Images)

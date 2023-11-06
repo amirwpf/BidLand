@@ -1,6 +1,11 @@
+using App.Domin.Core._01_Purchause.Contracts.Services;
+using App.Domin.Services._01_Purchase;
 using App.Infra.Config.DbConfig;
 using App.Infra.Config.IoCConfig;
 using App.Infra.Db.sqlServer.Ef.Context;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,8 +35,11 @@ builder.Services.AddIdentityCore<IdentityUser>
 .AddEntityFrameworkStores<AppDbContext>();
 #endregion
 #region IOC
+// Using a custom DI container.
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Services.AddScopeSqlServerTables(builder.Configuration);
+
 
 #endregion
 
