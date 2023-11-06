@@ -371,6 +371,5 @@ FodyWeavers.xsd
 /BidLand/App.Infra.DataAccess.Repos.Ef/obj/Debug/net7.0/App.Infra.DataAccess.Repos.Ef.csproj.AssemblyReference.cache
 /BidLand/App.Infra.Config/obj/Debug/net7.0/App.Infra.Config.csproj.AssemblyReference.cache
 /BidLand/App.Infra.Db.sqlServer.Ef/obj/Debug/net7.0/App.Infra.Db.sqlServer.Ef.csproj.AssemblyReference.cache
+BidLand/BidLand.Web/bin/*
 *.dll
-/BidLand/BidLand.Web/[Bb]in/*
-/BidLand/BidLand.Web/bin/Debug/net7.0/BidLand.Web.deps.json
