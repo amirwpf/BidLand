@@ -17,23 +17,24 @@
 mono_crash.*
 
 # Build results
-BitLand/[Dd]ebug/
-BitLand/[Dd]ebugPublic/
-BitLand/[Rr]elease/
-BitLand/[Rr]eleases/
-BitLand/x64/
-BitLand/x86/
-BitLand/[Ww][Ii][Nn]32/
-BitLand/[Aa][Rr][Mm]/
-BitLand/[Aa][Rr][Mm]64/
-BitLand/bld/
-BitLand/[Bb]in/
-BitLand/[Oo]bj/
-BitLand/[Oo]ut/
-BitLand/[Ll]og/
-BitLand/[Ll]ogs/
+BidLand/[Dd]ebug/
+BidLand/[Dd]ebugPublic/
+BidLand/[Rr]elease/
+BidLand/[Rr]eleases/
+BidLand/x64/
+BidLand/x86/
+BidLand/[Ww][Ii][Nn]32/
+BidLand/[Aa][Rr][Mm]/
+BidLand/[Aa][Rr][Mm]64/
+BidLand/bld/
+BidLand/[Bb]in/
+BidLand/[Oo]bj/
+BidLand/[Oo]ut/
+BidLand/[Ll]og/
+BidLand/[Ll]ogs/
 
 # Visual Studio 2015/2017 cache/options directory
+BidLand/.vs/
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
