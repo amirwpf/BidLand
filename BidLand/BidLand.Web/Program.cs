@@ -2,8 +2,14 @@ using App.Infra.Config.DbConfig;
 using App.Infra.Config.IoCConfig;
 using App.Infra.Db.sqlServer.Ef.Context;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("AppDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDbContextConnection' not found.");
+
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -46,13 +52,22 @@ app.UseRouting();
 
 app.UseAuthorization();
 app.UseAuthentication();
+ConfigureEndpoints(app);
+void ConfigureEndpoints(IApplicationBuilder app)
+{
+	app.UseEndpoints(endpoints =>
+	{
+		endpoints.MapControllers();
 
-app.MapAreaControllerRoute(
-    name: "Admin",
-	areaName : "Admin",
-    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
-app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+		endpoints.MapControllerRoute(
+									 "areaRoute",
+									 "{area:exists}/{controller=Account}/{action=Index}/{id?}");
 
+		endpoints.MapControllerRoute(
+									 "default",
+									 "{controller=Home}/{action=Index}/{id?}");
+
+		endpoints.MapRazorPages();
+	});
+}
 app.Run();

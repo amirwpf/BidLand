@@ -351,3 +351,6 @@ D:\Sources\Repos\BidLand\BidLand\BidLand.Web\bin\Debug\net7.0\Microsoft.AspNetCo
 D:\Sources\Repos\BidLand\BidLand\BidLand.Web\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
 D:\Sources\Repos\BidLand\BidLand\BidLand.Web\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
 D:\Sources\Repos\BidLand\BidLand\BidLand.Web\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+D:\Sources\Repos\BidLand\BidLand\BidLand.Web\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.UI.dll
+D:\Sources\Repos\BidLand\BidLand\BidLand.Web\bin\Debug\net7.0\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\Sources\Repos\BidLand\BidLand\BidLand.Web\obj\Debug\net7.0\BidLand.Web.MvcApplicationPartsAssemblyInfo.cs
