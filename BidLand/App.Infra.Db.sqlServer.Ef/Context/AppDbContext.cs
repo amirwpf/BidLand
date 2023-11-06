@@ -5,12 +5,14 @@ using App.Domin.Core._01_Purchause.Entities;
 using App.Domin.Core._02_Users.Entities;
 using App.Domin.Core._03_Extras.Entities;
 using App.Infra.Db.sqlServer.Ef.Configurations;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace App.Infra.Db.sqlServer.Ef.Context;
 
-public partial class AppDbContext : DbContext
+public partial class AppDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>
 {
 	public AppDbContext()
 	{

@@ -25,7 +25,6 @@
         ],
         "sources": {
           "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
-          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -84,7 +83,6 @@
         ],
         "sources": {
           "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
-          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -147,7 +145,6 @@
         ],
         "sources": {
           "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
-          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -226,7 +223,6 @@
         ],
         "sources": {
           "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
-          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -292,7 +288,6 @@
         ],
         "sources": {
           "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
-          "C:\\Users\\Dev-03\\Desktop\\Reports.NetCore": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -315,6 +310,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.12, )"

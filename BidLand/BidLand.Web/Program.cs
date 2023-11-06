@@ -1,5 +1,7 @@
 using App.Infra.Config.DbConfig;
 using App.Infra.Config.IoCConfig;
+using App.Infra.Db.sqlServer.Ef.Context;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,17 @@ builder.Services.AddControllersWithViews();
 #region Services
 
 builder.Services.AddIdentityDbContextService(builder.Configuration);
-
+builder.Services.AddIdentityCore<IdentityUser>
+	(options =>
+	{
+		options.SignIn.RequireConfirmedAccount = true;
+		options.Password.RequireDigit = false;
+		options.Password.RequiredLength = 6;
+		options.Password.RequireNonAlphanumeric = false;
+		options.Password.RequireUppercase = false;
+		options.Password.RequireLowercase = false;
+	})
+.AddEntityFrameworkStores<AppDbContext>();
 #endregion
 #region IOC
 
@@ -33,6 +45,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapAreaControllerRoute(
     name: "Admin",
