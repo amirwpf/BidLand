@@ -404,3 +404,11 @@ BidLand/BidLand.Web/bin/*
 /BidLand/App.Domin.Core/obj/App.Domin.Core.csproj.nuget.dgspec.json
 /BidLand/App.Domin.Core/bin/Debug/net7.0/App.Domin.Core.deps.json
 /BidLand/BidLand.Web/obj/BidLand.Web.csproj.nuget.g.props
+/BidLand/App.Domin.AppServices/obj/project.assets.json
+/BidLand/App.Domin.AppServices/obj/Debug/net7.0/App.Domin.AppServices.csproj.FileListAbsolute.txt
+/BidLand/App.Domin.AppServices/obj/Debug/net7.0/App.Domin.AppServices.csproj.CopyComplete
+/BidLand/App.Domin.AppServices/obj/Debug/net7.0/App.Domin.AppServices.csproj.BuildWithSkipAnalyzers
+/BidLand/App.Domin.AppServices/obj/App.Domin.AppServices.csproj.nuget.g.targets
+/BidLand/App.Domin.AppServices/obj/App.Domin.AppServices.csproj.nuget.g.props
+/BidLand/App.Domin.AppServices/obj/App.Domin.AppServices.csproj.nuget.dgspec.json
+/BidLand/App.Domin.AppServices/bin/Debug/net7.0/App.Domin.AppServices.deps.json
