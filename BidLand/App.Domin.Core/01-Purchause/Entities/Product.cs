@@ -30,11 +30,11 @@ public partial class Product
 
     public int? CategoryId { get; set; }
 
-    public virtual ICollection<Image> Images { get; set; } = new List<Image>();
+    public virtual ICollection<Image> Images { get; set; } 
 
-    public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
+    public virtual ICollection<Stock> Stocks { get; set; }
 
-    public virtual Category Category { get; set; } = new Category();
+    public virtual Category Category { get; set; } 
 
 
 }

@@ -21,7 +21,7 @@ public partial class Comment
 
     public string? DisAdvantages { get; set; }
 
-    public bool IsConfirm { get; set; }
+    public bool? IsConfirm { get; set; }
 
     public string? Description { get; set; }
 

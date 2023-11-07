@@ -36,12 +36,32 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 		}
 		public async Task<List<ProductRepoDto>> GetAllProductsWithNavAsync(CancellationToken cancellationToken)
 		{
-			var products = _dbSet.Select(p=>ConvertToProductRepoDto(p)).ToListAsync(cancellationToken);
-			var products = await _dbSet
+			var products =  _dbSet
 				.Include(p => p.Stocks)
 				.Include(p => p.Images)
 				.Include(p => p.Category)
-				.Select(p => ConvertToProductRepoDto(p)).ToListAsync(cancellationToken);
+				.Select(product => new ProductRepoDto()
+				{
+					Id = product.Id,
+					Name = product.Name,
+					BasePrice = product.BasePrice,
+					Images = product.Images,
+					Stocks = product.Stocks,
+					IsConfirm = product.IsConfirm,
+					IsActive = product.IsActive,
+					IsDelete = product.IsDelete,
+					Description = product.Description,
+					Category = product.Category,
+					CategoryId = product.CategoryId,
+					InsertionDate = product.InsertionDate
+				})
+				.ToList();
+			//var p = ConvertToProductRepoDto(products1.First());
+			//var products = _dbSet
+			//	.Include(p => p.Stocks)
+			//	.Include(p => p.Images)
+			//	.Include(p => p.Category)
+			//	.Select(p => ConvertToProductRepoDto(p)).ToList();
 			return products;
 		}
 
@@ -111,6 +131,7 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			if (result == null) return null;
 			return  result;
 		}
+
 
 
 
@@ -357,6 +378,18 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			result.InsertionDate = productDto.InsertionDate;
 		}
 
-       
+        public async Task<bool> ConfirmProductAsync(int productId, bool confirm, CancellationToken cancellationToken)
+        {
+            var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == productId, cancellationToken);
+
+            if (result != null)
+            {
+				result.IsConfirm = confirm;
+                _context.Entry(result).State = EntityState.Modified;
+                await _context.SaveChangesAsync(cancellationToken);
+                return true;
+            }
+            return false;
+        }
     }
 }

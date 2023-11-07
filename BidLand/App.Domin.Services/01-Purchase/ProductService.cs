@@ -12,16 +12,16 @@ namespace App.Domin.Services._01_Purchase;
 
 public class ProductService : IProductService
 {
-	private readonly IProductRepository _productRepo;
+    private readonly IProductRepository _productRepo;
 
-	public ProductService(IProductRepository productRepo)
-	{
-		_productRepo = productRepo;
-	}
+    public ProductService(IProductRepository productRepo)
+    {
+        _productRepo = productRepo;
+    }
 
     public async Task CreateAsync(ProductRepoDto input, CancellationToken cancellationToken)
     {
-		await _productRepo.AddAsync(input, cancellationToken);
+        await _productRepo.AddAsync(input, cancellationToken);
     }
 
     //public async Task<int> CreateAsync(ProductAddDto input, CancellationToken cancellationToken)
@@ -30,22 +30,32 @@ public class ProductService : IProductService
     //}
 
     public async Task DeleteAsync(int id, CancellationToken cancellationToken)
-	{
-		await _productRepo.HardDeleteAsync(id, cancellationToken);
-	}
+    {
+        await _productRepo.HardDeleteAsync(id, cancellationToken);
+    }
 
-	public async Task<List<ProductRepoDto>> GetAllAsync(CancellationToken cancellationToken)
-	{
-		return await _productRepo.GetAllProductsWithNavAsync(cancellationToken);
-	}
+    public async Task<List<ProductRepoDto>> GetAllAsync(CancellationToken cancellationToken)
+    {
+        return await _productRepo.GetAllProductsWithNavAsync(cancellationToken);
+    }
 
-	public async Task<ProductRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
-	{
-		return await _productRepo.GetByIdAsync(id, cancellationToken);
-	}
+    public async Task<ProductRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
+    {
+        return await _productRepo.GetByIdAsync(id, cancellationToken);
+    }
 
-	public async Task UpdateAsync(ProductRepoDto input, int id, CancellationToken cancellationToken)
-	{
-		await _productRepo.UpdateAsync(input, cancellationToken);
-	}
+    public async Task UpdateAsync(ProductRepoDto input, int id, CancellationToken cancellationToken)
+    {
+        await _productRepo.UpdateAsync(input, cancellationToken);
+    }
+
+    public async Task<bool> ConfirmProductAsync(int productId, bool confirm, CancellationToken cancellationToken)
+    {
+        if (confirm)
+         return  await  _productRepo.ConfirmProductAsync(productId, true, cancellationToken);
+
+        else
+           return await _productRepo.ConfirmProductAsync(productId, false, cancellationToken);
+
+    }
 }

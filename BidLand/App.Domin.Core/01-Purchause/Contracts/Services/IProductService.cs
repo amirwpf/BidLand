@@ -10,7 +10,8 @@ namespace App.Domin.Core._01_Purchause.Contracts.Services;
 
 public interface IProductService
 {
-	Task CreateAsync(ProductRepoDto input, CancellationToken cancellationToken);
+    Task<bool> ConfirmProductAsync(int productId, bool confirm, CancellationToken cancellationToken);
+    Task CreateAsync(ProductRepoDto input, CancellationToken cancellationToken);
 
 	Task DeleteAsync(int id, CancellationToken cancellationToken);
 

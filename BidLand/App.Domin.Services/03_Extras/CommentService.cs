@@ -9,36 +9,47 @@ using System.Threading.Tasks;
 
 namespace App.Domin.Services._03_Extras;
 
-public class CommentService: ICommentService
+public class CommentService : ICommentService
 {
-	private readonly ICommentRepository _repo;
+    private readonly ICommentRepository _repo;
 
-	public CommentService(ICommentRepository repo)
-	{
-		_repo = repo;
-	}
-	public async Task CreateAsync(CommentRepoDto input, CancellationToken cancellationToken)
-	{
-		await _repo.AddAsync(input, cancellationToken);
-	}
+    public CommentService(ICommentRepository repo)
+    {
+        _repo = repo;
+    }
 
-	public async Task DeleteAsync(CommentRepoDto input, CancellationToken cancellationToken)
-	{
-		await _repo.HardDeleteAsync(input, cancellationToken);
-	}
+    public Task<bool> ConfirmCommentByIdAsync(int commentId, bool isConfirm, CancellationToken cancellationToken)
+    {
+        return _repo.ConfirmCommentByIdAsync(commentId, isConfirm, cancellationToken);
+    }
 
-	public async Task<List<CommentRepoDto>> GetAllAsync(CancellationToken cancellationToken)
-	{
-		return await _repo.GetAllAsync(cancellationToken);
-	}
+    public async Task CreateAsync(CommentRepoDto input, CancellationToken cancellationToken)
+    {
+        await _repo.AddAsync(input, cancellationToken);
+    }
 
-	public async Task<List<CommentRepoDto>> GetByIdAsync(int id, CancellationToken cancellationToken)
-	{
-		return await _repo.GetByIdAsync(id, cancellationToken);
-	}
+    public async Task DeleteAsync(CommentRepoDto input, CancellationToken cancellationToken)
+    {
+        await _repo.HardDeleteAsync(input, cancellationToken);
+    }
 
-	public async Task UpdateAsync(CommentRepoDto input, CancellationToken cancellationToken)
-	{
-		await _repo.UpdateAsync(input, cancellationToken);
-	}
+    public async Task<List<CommentRepoDto>> GetAllAsync(CancellationToken cancellationToken)
+    {
+        return await _repo.GetAllAsync(cancellationToken);
+    }
+
+    public async Task<List<CommentRepoDto>> GetAllCommentsWithSellerNameConfirmAsync(CancellationToken cancellationToken)
+    {
+        return await _repo.GetAllCommentsWithSellerNameConfirmAsync(cancellationToken);
+    }
+
+    public async Task<List<CommentRepoDto>> GetByIdAsync(int id, CancellationToken cancellationToken)
+    {
+        return await _repo.GetByIdAsync(id, cancellationToken);
+    }
+
+    public async Task UpdateAsync(CommentRepoDto input, CancellationToken cancellationToken)
+    {
+        await _repo.UpdateAsync(input, cancellationToken);
+    }
 }

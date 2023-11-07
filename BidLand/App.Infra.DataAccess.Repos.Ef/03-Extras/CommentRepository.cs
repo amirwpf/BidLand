@@ -58,8 +58,23 @@ public class CommentRepository : ICommentRepository
 	{
 		var comments = await _dbSet.Where(x => x.IsConfirm == null)
 			.Include(p => p.Stock)
+			.Include(p => p.Stock.Product)
+			.Include(c=>c.Stock.Booth)
 			.Include(c => c.Buyer)
-			.Select(c => ConvertToDto(c))
+			.Select(comment => new CommentRepoDto() {
+                Id = comment.Id,
+                Title = comment.Title,
+                Description = comment.Description,
+                Advantages = comment.Advantages,
+                Buyer = comment.Buyer,
+                BuyerId = comment.BuyerId,
+                ConfirmDate = comment.ConfirmDate,
+                DisAdvantages = comment.DisAdvantages,
+                IsConfirm = comment.IsConfirm,
+                IsPositive = comment.IsPositive,
+                StockId = comment.StockId,
+                Stock = comment.Stock
+            })
 			.ToListAsync(cancellationToken);
 		return comments;
 	}
@@ -125,4 +140,17 @@ public class CommentRepository : ICommentRepository
 		comment.StockId = comment.StockId;
 		comment.Stock = comment.Stock;
 	}
+
+    public async Task<bool> ConfirmCommentByIdAsync(int commentId, bool isConfirm, CancellationToken cancellationToken)
+    {
+        var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == commentId, cancellationToken);
+        if (result != null)
+        {
+			result.IsConfirm = isConfirm;
+            _context.Entry(result).State = EntityState.Modified;
+            await _context.SaveChangesAsync(cancellationToken);
+            return true;
+        }
+        return false;
+    }
 }

@@ -100,7 +100,7 @@ public class StockRepository:IStockRepository
 		var result = new Stock()
 		{
 			AdditionalDescription = stockRepoDto.AdditionalDescription,
-			AuctionId = stockRepoDto.AuctionId,
+			//AuctionId = stockRepoDto.AuctionId,
 			AvailableNumber = stockRepoDto.AvailableNumber,
 			BoothId = stockRepoDto.BoothId,
 			Id = stockRepoDto.Id,
@@ -124,7 +124,7 @@ public class StockRepository:IStockRepository
 		var result = new StockRepoDto()
 		{
 			AdditionalDescription = stock.AdditionalDescription,
-			AuctionId = stock.AuctionId,
+			//AuctionId = stock.AuctionId,
 			AvailableNumber = stock.AvailableNumber,
 			BoothId = stock.BoothId,
 			Id = stock.Id,
@@ -146,7 +146,7 @@ public class StockRepository:IStockRepository
 	private void UpdateValueEq(StockRepoDto stockRepoDto, ref Stock stock)
 	{
 		stock.AdditionalDescription = stock.AdditionalDescription;
-		stock.AuctionId = stock.AuctionId;
+		//stock.AuctionId = stock.AuctionId;
 		stock.AvailableNumber = stock.AvailableNumber;
 		stock.BoothId = stock.BoothId;
 		stock.Id = stock.Id;

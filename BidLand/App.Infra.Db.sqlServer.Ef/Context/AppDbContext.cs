@@ -76,6 +76,8 @@ public partial class AppDbContext : IdentityDbContext<IdentityUser, IdentityRole
 		
 		base.OnModelCreating(modelBuilder);
 
+		//Seeding a  'Administrator' role to AspNetRoles table
+		modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole { Id = "2c5e174e-3b0e-446f-86af-483d56fd7210", Name = "Admin", NormalizedName = "admin".ToUpper() });
 
 	}
 

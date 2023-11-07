@@ -6,6 +6,12 @@ using App.Domin.Core._01_Purchause.Contracts.Services;
 using App.Domin.Services._01_Purchase;
 using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
 using App.Infra.DataAccess.Repos.Ef._01_Purchase;
+using App.Domin.Core._02_Users.Contracts.AppServices;
+using App.Domin.AppServices.Users;
+using App.Domin.Core._03_Extras.Contracts.Services;
+using App.Domin.Core._03_Extras.Contracts.Repositories.RepoSeprationContracts.sqlServer;
+using App.Infra.DataAccess.Repos.Ef._03_Extras;
+using App.Domin.Services._03_Extras;
 
 namespace App.Infra.Config.IoCConfig
 {
@@ -51,15 +57,19 @@ namespace App.Infra.Config.IoCConfig
 			//#region Extras
 			//// --------------------->Repository<--------------------------------------
 			//services.AddScoped<IAddressRepository, AddressRepository>();
-			//services.AddScoped<ICommentRepository, CommentRepository>();
+			services.AddScoped<ICommentRepository, CommentRepository>();
 			//services.AddScoped<IImageRepository, ImageRepository>();
 			//services.AddScoped<IMedalRepository, MedalRepository>();
 
 			//// --------------------->Service<--------------------------------------
 			//services.AddScoped<IAddressService, AddressService>();
-			//services.AddScoped<ICommentService, CommentService>();
+			services.AddScoped<ICommentService, CommentService>();
 			//services.AddScoped<IImageService, ImageService>();
 			//services.AddScoped<IMedalService, MedalService>();
+
+
+			//// --------------------------- App Services -------------------------------
+			services.AddScoped<IAdminPanelAppServices, AdminPanelAppServices>();
 
 			#endregion
 

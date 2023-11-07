@@ -1,67 +1,100 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewBag.PageTitle = "ثبت نام";
+    Layout = "";
 }
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
 
-<h1>@ViewData["Title"]</h1>
+    <title>@ViewBag.PageTitle - پنل مدیریت</title>
 
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Input.Email">Email</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.Password">Password</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="description"
+          content="Portal - Bootstrap 5 Admin Dashboard Template For Developers" />
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <!-- FontAwesome JS-->
+    <script defer src="~/admin/assets/plugins/fontawesome/js/all.min.js"></script>
+
+    <!-- App CSS -->
+    <link id="theme-style"
+          rel="stylesheet"
+          href="~/admin/assets/plugins/bootstrap/css/bootstrap.rtl.css" asp-append-version="true" />
+    <link id="theme-style" rel="stylesheet" href="~/admin/assets/css/portal-rtl.css" asp-append-version="true" />
+
+</head>
+<body dir="rtl" class="app app-login p-0">
+    <div class="row g-0 app-auth-wrapper">
+        <div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
+            <div class="d-flex flex-column align-content-end">
+                <div class="app-auth-body mx-auto">
+                    <div class="app-auth-branding mb-4"><a class="app-logo" href="index-rtl.html"><img class="logo-icon me-2" src="~/admin/assets/images/app-logo.svg" alt="logo"></a></div>
+                    <h2 class="auth-heading text-center mb-5">@ViewBag.PageTitle</h2>
+                    <div class="auth-form-container text-start">
+                        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="auth-form login-form">
+                            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                            <div class="email mb-3">
+                                <label class="sr-only" for="signin-email">ایمیل</label>
+                                <input id="signin-email" asp-for="Input.Email" type="email" class="form-control signin-email" aria-required="true" placeholder="آدرس ایمیل" required="required">
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div><!--//form-group-->
+                            <div class="password mb-3">
+                                <label class="sr-only" for="signin-password">کلمه رمز</label>
+                                <input id="signin-password" asp-for="Input.Password" type="password" class="form-control signin-password" aria-required="true" placeholder="کلمه عبور" required="required">
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                
+                            </div><!--//form-group-->   
+                            <div class="password mb-3">
+                                <label class="sr-only" for="signin-password">کلمه رمز</label>
+                                <input id="signin-password" asp-for="Input.ConfirmPassword" type="password" class="form-control signin-password" aria-required="true" placeholder="تکرار کلمه عبور" required="required">
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                                
+                            </div><!--//form-group-->
+                            <div class="text-center">
+                                <button type="submit" id="login-submit" class="btn app-btn-primary w-100 theme-btn mx-auto">ورود</button>
+                            </div>
+                        </form>
+
+                        <div class="auth-option text-center pt-5">حساب کاربری ندارید  <a class="text-link" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">ثبت نام </a> کنید.</div>
+                    </div><!--//auth-form-container-->
+
+                </div><!--//auth-body-->
+
+                <footer class="app-auth-footer">
+                    <div class="container text-center py-3">
+                        <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+                        <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+
                     </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
-</div>
+                </footer><!--//app-auth-footer-->
+            </div><!--//flex-column-->
+        </div><!--//auth-main-col-->
+        <div class="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
+            <div class="auth-background-holder">
+            </div>
+            <div class="auth-background-mask"></div>
+            <div class="auth-background-overlay p-3 p-lg-5">
+                <div class="d-flex flex-column align-content-end h-100">
+                    <div class="h-100"></div>
+                    <div class="overlay-content p-3 p-lg-4 rounded">
+                        <h5 class="mb-3 overlay-title">Explore Portal Admin Template</h5>
+                        <div>Portal is a free Bootstrap 5 admin dashboard template. You can download and view the template license <a href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">here</a>.</div>
+                    </div>
+                </div>
+            </div><!--//auth-background-overlay-->
+        </div><!--//auth-background-col-->
 
-@section Scripts {
+    </div><!--//row-->
+
     <partial name="_ValidationScriptsPartial" />
-}
+
+
+</body>
+</html>

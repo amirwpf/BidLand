@@ -100,8 +100,8 @@ F:\software\exe\visual studio 2022\maktabSh\Final\BidLand\BidLand.Test.xunit\obj
 C:\Users\Dev-03\Source\Repos\BidLand\BidLand\BidLand.Test.xunit\obj\Debug\net7.0\BidLand.Test.xunit.dll
 C:\Users\Dev-03\Source\Repos\BidLand\BidLand\BidLand.Test.xunit\obj\Debug\net7.0\refint\BidLand.Test.xunit.dll
 C:\Users\Dev-03\Source\Repos\BidLand\BidLand\BidLand.Test.xunit\obj\Debug\net7.0\BidLand.Test.xunit.pdb
-D:\Sources\Repos\BidLand\BidLand\BidLand.Test.xunit\bin\Debug\net7.0\testhost.exe
 D:\Sources\Repos\BidLand\BidLand\BidLand.Test.xunit\bin\Debug\net7.0\testhost.dll
+D:\Sources\Repos\BidLand\BidLand\BidLand.Test.xunit\bin\Debug\net7.0\testhost.exe
 D:\Sources\Repos\BidLand\BidLand\BidLand.Test.xunit\bin\Debug\net7.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 D:\Sources\Repos\BidLand\BidLand\BidLand.Test.xunit\bin\Debug\net7.0\xunit.runner.reporters.netcoreapp10.dll
 D:\Sources\Repos\BidLand\BidLand\BidLand.Test.xunit\bin\Debug\net7.0\xunit.runner.utility.netcoreapp10.dll

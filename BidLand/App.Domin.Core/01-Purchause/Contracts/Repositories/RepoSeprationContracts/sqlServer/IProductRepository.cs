@@ -18,17 +18,18 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 		Task<bool> SoftDeleteAsync(int id, CancellationToken cancellationToken);
 		Task<bool> SoftRecoverAsync(int id, CancellationToken cancellationToken);
 		Task<bool> HardDeleteAsync(int id, CancellationToken cancellationToken);
+        Task<bool> ConfirmProductAsync(int productId, bool confirm, CancellationToken cancellationToken);
 
-		#region other
-		//Task UpdateAsync(ProductRepoDto productDto, List<int> categoryIds, CancellationToken cancellationToken);
-		//Task<string> RemoveFromCartByProductId(int productId, int customerId);
-		//Task<List<ProductRepoDto>> GetProductByBoothIdAsync(int boothId);
-		//Task<List<ProductRepoDto>> GetProductsWithTrueAuctions(int sellerId);
-		//Task<List<Product>> GetProductsWithSellerNameConfirmAsync();
-		//Task<List<ProductRepoDto>> GetAllWithNavigationsAsync(int? boothId);
-		//Task<ProductRepoDto> GetWithAllNavigationsByIdSellerAsync(int id);
-		//Task<List<Product>> GetAllAsync();
-		#endregion
+        #region other
+        //Task UpdateAsync(ProductRepoDto productDto, List<int> categoryIds, CancellationToken cancellationToken);
+        //Task<string> RemoveFromCartByProductId(int productId, int customerId);
+        //Task<List<ProductRepoDto>> GetProductByBoothIdAsync(int boothId);
+        //Task<List<ProductRepoDto>> GetProductsWithTrueAuctions(int sellerId);
+        //Task<List<Product>> GetProductsWithSellerNameConfirmAsync();
+        //Task<List<ProductRepoDto>> GetAllWithNavigationsAsync(int? boothId);
+        //Task<ProductRepoDto> GetWithAllNavigationsByIdSellerAsync(int id);
+        //Task<List<Product>> GetAllAsync();
+        #endregion
 
-	}
+    }
 }

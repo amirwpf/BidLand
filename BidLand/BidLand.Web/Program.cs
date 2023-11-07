@@ -4,6 +4,7 @@ using App.Infra.Config.DbConfig;
 using App.Infra.Config.IoCConfig;
 using App.Infra.Db.sqlServer.Ef.Context;
 using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -39,7 +40,13 @@ builder.Services.AddIdentityCore<IdentityUser>
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Services.AddScopeSqlServerTables(builder.Configuration);
-
+builder.Services.AddTransient<UserManager<IdentityUser>>();
+builder.Services.AddSession(options =>
+{
+	options.IdleTimeout = TimeSpan.FromSeconds(1800);
+	options.Cookie.HttpOnly = true;
+	options.Cookie.IsEssential = true;
+});
 
 #endregion
 
@@ -60,6 +67,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 app.UseAuthentication();
+app.UseCookiePolicy();
+app.UseSession();
 ConfigureEndpoints(app);
 void ConfigureEndpoints(IApplicationBuilder app)
 {

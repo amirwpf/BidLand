@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Extras\" />
+    <Folder Include="Purchase\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\App.Domin.Core\App.Domin.Core.csproj" />
+  </ItemGroup>
+
 </Project>

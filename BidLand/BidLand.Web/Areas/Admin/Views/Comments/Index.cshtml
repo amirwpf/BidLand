@@ -1,0 +1,99 @@
+﻿@model List<CommentRepoDto>
+@using App.Domin.Core._03_Extras.Contracts.Repositories.Dtos
+
+@{
+    ViewBag.PageTitle = "نظرات";
+}
+<div class="app-content pt-3 p-md-3 p-lg-4">
+    <div class="container-xl">
+
+        <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+                <h1 class="app-page-title mb-0">@ViewBag.PageTitle</h1>
+            </div>
+
+        </div><!--//row-->
+
+
+        <nav id="products-table-tab" class="products-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+            <a class="flex-sm-fill text-sm-center nav-link active" id="product-all-tab" data-bs-toggle="tab" href="#products-all" role="tab" aria-controls="products-all" aria-selected="true">همه</a>
+
+        </nav>
+
+
+        <div class="tab-content" id="products-table-tab-content">
+            <div class="tab-pane fade show active" id="products-all" role="tabpanel" aria-labelledby="products-all-tab">
+                <div class="app-card app-card-orders-table shadow-sm mb-5">
+                    <div class="app-card-body">
+                        <div class="table-responsive">
+                            <table class="table app-table-hover mb-0 text-left">
+                                <thead>
+                                    <tr>
+
+                                        <th class="cell">ردیف</th>
+                                        <th class="cell">شناسه</th>
+                                        <th class="cell">نام خریدار</th>
+                                        <th class="cell">نام کالا</th>
+                                        <th class="cell">نام غرفه</th>
+
+                                        <th class="cell">عنوان نظر</th>
+                                        <th class="cell">شرح نظر</th>
+                                        
+                                        <th class="cell">تایید</th>
+                                        <th class="cell">عملیات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (CommentRepoDto item in Model)
+                                    {
+                                        <tr>
+
+                                            <td class="cell">@(Model.IndexOf(item) +1)</td>
+                                            <td class="cell">@item.Id</td>
+                                            <td class="cell"><span class="truncate">@item.Buyer?.FullName</span></td>
+                                            <td class="cell">@item.Stock?.Product?.Name</td>
+                                            <td class="cell">@item.Stock?.Booth?.Name</td>
+                                            <td class="cell">@item.Title</td>
+                                            <td class="cell">@item.Description</td>
+                                            
+                                            <td class="cell">
+                                                @{
+                                                    if (item.IsConfirm == null)
+                                                    {
+                                                        <span class='badge bg-warning'>در انتظار</span>
+                                                    }
+                                                  
+                                                }
+                                            </td>
+                                            <td class="cell">
+
+                                                @{
+                                                    if (item.IsConfirm == null)
+                                                    {
+
+                                                        <a href="/Admin/Comments/ConfirmComment/@item.Id?isConfirm=false"><span class='badge bg-danger'>رد</span></a>
+                                                        <a href="/Admin/Comments/ConfirmComment/@item.Id?isConfirm=true"><span class='badge bg-success'>تایید</span></a>
+                                                    }
+                                                    
+                                                }
+
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div><!--//table-responsive-->
+
+                    </div><!--//app-card-body-->
+                </div><!--//app-card-->
+
+            </div><!--//tab-pane-->
+           
+        </div><!--//tab-content-->
+
+
+
+    </div><!--//container-fluid-->
+</div><!--//app-content-->

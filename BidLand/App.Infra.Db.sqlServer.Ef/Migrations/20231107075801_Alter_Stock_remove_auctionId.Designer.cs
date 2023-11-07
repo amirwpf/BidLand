@@ -4,6 +4,7 @@ using App.Infra.Db.sqlServer.Ef.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infra.Db.sqlServer.Ef.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231107075801_Alter_Stock_remove_auctionId")]
+    partial class Alter_Stock_remove_auctionId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -452,7 +455,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<string>("DisAdvantages")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsConfirm")
+                    b.Property<bool>("IsConfirm")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("IsPositive")

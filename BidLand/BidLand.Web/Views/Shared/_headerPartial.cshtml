@@ -1,4 +1,5 @@
-﻿<!-- header-section - start
+﻿@using Microsoft.AspNet.Identity;
+<!-- header-section - start
 		================================================== -->
 <header id="header-section" class="header-section sticky-header clearfix">
 	<div class="container-fluid prl-60">
@@ -21,11 +22,21 @@
 			<div class="col-lg-4">
 				<nav class="main-menu ul-li-right clearfix">
 					<ul class="clearfix">
-						<li><a href="#!">SIGN IN</a></li>
+						<li>
+							@if (User.Identity.IsAuthenticated)
+							{
+								<span>@User.Identity.Name</span>
+							}
+							else
+							{
+								
+							<a href="/Identity/Account/Login">ورود</a>
+							}
+						</li>
 						<li>
 							<button type="button" class="cart-btn">
 								<i class="icon-bag"></i>
-								<small class="count-text">3</small>
+								<small class="count-text">0</small>
 							</button>
 						</li>
 					</ul>
