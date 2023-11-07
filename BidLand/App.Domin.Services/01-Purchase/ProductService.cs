@@ -29,9 +29,9 @@ public class ProductService : IProductService
     //	return await _productRepo.AddAsync(input, cancellationToken);
     //}
 
-    public async Task DeleteAsync(int id, CancellationToken cancellationToken)
+    public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken)
     {
-        await _productRepo.HardDeleteAsync(id, cancellationToken);
+      return  await _productRepo.HardDeleteAsync(id, cancellationToken);
     }
 
     public async Task<List<ProductRepoDto>> GetAllAsync(CancellationToken cancellationToken)
@@ -44,9 +44,9 @@ public class ProductService : IProductService
         return await _productRepo.GetByIdAsync(id, cancellationToken);
     }
 
-    public async Task UpdateAsync(ProductRepoDto input, int id, CancellationToken cancellationToken)
+    public async Task<bool> UpdateAsync(ProductRepoDto input,  CancellationToken cancellationToken)
     {
-        await _productRepo.UpdateAsync(input, cancellationToken);
+    return    await _productRepo.UpdateAsync(input, cancellationToken);
     }
 
     public async Task<bool> ConfirmProductAsync(int productId, bool confirm, CancellationToken cancellationToken)

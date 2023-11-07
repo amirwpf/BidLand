@@ -13,11 +13,11 @@ public interface IProductService
     Task<bool> ConfirmProductAsync(int productId, bool confirm, CancellationToken cancellationToken);
     Task CreateAsync(ProductRepoDto input, CancellationToken cancellationToken);
 
-	Task DeleteAsync(int id, CancellationToken cancellationToken);
+	Task<bool> DeleteAsync(int id, CancellationToken cancellationToken);
 
 	Task<List<ProductRepoDto>> GetAllAsync(CancellationToken cancellationToken);
 
 	Task<ProductRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
 
-	Task UpdateAsync(ProductRepoDto input, int id, CancellationToken cancellationToken);
+	Task<bool> UpdateAsync(ProductRepoDto input,  CancellationToken cancellationToken);
 }

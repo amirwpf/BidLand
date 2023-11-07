@@ -14,7 +14,7 @@ public interface ICategoryService
 	Task DeleteAsync(CategoryRepoDto input, CancellationToken cancellationToken);
 
 	Task<List<CategoryRepoDto>> GetAllAsync(CancellationToken cancellationToken);
-
+	Task<List<CategoryRepoDto>> GetAllChildAsync(CancellationToken cancellationToken);
 	Task<CategoryRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
 
 	Task UpdateAsync(CategoryRepoDto input, CancellationToken cancellationToken);

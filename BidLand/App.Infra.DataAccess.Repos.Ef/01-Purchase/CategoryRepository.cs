@@ -119,4 +119,19 @@ public class CategoryRepository : ICategoryRepository
 		category.InsertionDate = categoryRepoDto.InsertionDate;
 		category.InverseParent = categoryRepoDto.InverseParent;
 	}
+
+	public async Task<List<CategoryRepoDto>> GetAllChildAsync(CancellationToken cancellationToken)
+	{
+		return await _dbSet.Where(x=>x.ParentId != null).Select(category => new CategoryRepoDto()
+		{
+			Id = category.Id,
+			Name = category.Name,
+			Description = category.Description,
+			Products = category.Products,
+			ParentId = category.ParentId,
+			Parent = category.Parent,
+			InsertionDate = category.InsertionDate,
+			InverseParent = category.InverseParent
+		}).ToListAsync(cancellationToken);
+	}
 }

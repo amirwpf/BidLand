@@ -15,5 +15,6 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 		Task AddAsync(CategoryRepoDto category, CancellationToken cancellationToken);
 		Task<bool> UpdateAsync(CategoryRepoDto category, CancellationToken cancellationToken);
 		Task<bool> DeleteAsync(CategoryRepoDto category, CancellationToken cancellationToken);
+		Task<List<CategoryRepoDto>> GetAllChildAsync(CancellationToken cancellationToken);
 	}
 }

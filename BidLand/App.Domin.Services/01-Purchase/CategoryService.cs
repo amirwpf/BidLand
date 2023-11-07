@@ -33,6 +33,11 @@ public class CategoryService: ICategoryService
 		return await _repo.GetAllAsync(cancellationToken);
 	}
 
+	public async Task<List<CategoryRepoDto>> GetAllChildAsync(CancellationToken cancellationToken)
+	{
+		return await _repo.GetAllChildAsync(cancellationToken);
+	}
+
 	public async Task<CategoryRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
 		return await _repo.GetByIdAsync(id, cancellationToken);

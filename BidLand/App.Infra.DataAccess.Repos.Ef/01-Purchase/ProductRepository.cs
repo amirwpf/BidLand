@@ -67,6 +67,7 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 
 		public async Task AddAsync(ProductRepoDto productDto, CancellationToken cancellationToken)
 		{
+			productDto.Category = null;
 			var product = ConvertToProduct(productDto);
 			await _dbSet.AddAsync(product);
 			await _context.SaveChangesAsync(cancellationToken);
@@ -125,8 +126,21 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 		public async Task<ProductRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 		{
 			var result = await _dbSet
-				.Select(p => ConvertToProductRepoDto(p))
 				.Include(c => c.Category)
+				.Select(product => new ProductRepoDto() {
+                    Id = product.Id,
+                    Name = product.Name,
+                    BasePrice = product.BasePrice,
+                    Images = product.Images,
+                    Stocks = product.Stocks,
+                    IsConfirm = product.IsConfirm,
+                    IsActive = product.IsActive,
+                    IsDelete = product.IsDelete,
+                    Description = product.Description,
+                    Category = product.Category,
+                    CategoryId = product.CategoryId,
+                    InsertionDate = product.InsertionDate
+                } )
 				.FirstOrDefaultAsync(p => p.Id == id,cancellationToken);
 			if (result == null) return null;
 			return  result;

@@ -7,13 +7,17 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 
 public class ProductRepoDto
 {
+	//public ProductRepoDto()
+	//{
+	//	this.IsConfirm = false;
+	//}
 	public int Id { get; set; }
 
 	public string? Name { get; set; }
 
 	public int? BasePrice { get; set; }
 
-	public bool? IsConfirm { get; set; }
+	public bool? IsConfirm { get; set; } = false;
 
 	public string? Description { get; set; }
 
@@ -21,13 +25,13 @@ public class ProductRepoDto
 
 	public bool IsDelete { get; set; }
 
-	public DateTime? InsertionDate { get; set; }
+	public DateTime? InsertionDate { get; set; } 
 
 	public int? CategoryId { get; set; }
 
-	public virtual ICollection<Image> Images { get; set; } = new List<Image>();
+	public virtual ICollection<Image>? Images { get; set; }
 
-	public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
+	public virtual ICollection<Stock>? Stocks { get; set; } 
 
-	public virtual Category Category { get; set; } = new Category();
+	public virtual Category? Category { get; set; }
 }

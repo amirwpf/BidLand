@@ -70,6 +70,7 @@ namespace App.Infra.Config.IoCConfig
 
 			//// --------------------------- App Services -------------------------------
 			services.AddScoped<IAdminPanelAppServices, AdminPanelAppServices>();
+			
 
 			#endregion
 
