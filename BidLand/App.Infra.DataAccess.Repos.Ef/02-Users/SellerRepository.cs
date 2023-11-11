@@ -75,7 +75,7 @@ public class SellerRepository : ISellerRepository
 			return false;
 		}
 
-		seller.FullName = updatesellerDto.FullName;
+		//seller.FullName = updatesellerDto.FullName;
 
 		if (seller.Addresses == null)
 		{
@@ -185,7 +185,7 @@ public class SellerRepository : ISellerRepository
 		return new SellerRepoDto()
 		{
 			Id = seller.Id,
-			FullName = seller.FullName,
+			//FullName = seller.FullName,
 			CommissionPercentage = seller.CommissionPercentage,
 			CommissionsAmount = seller.CommissionsAmount,
 			InsertionDate = seller.InsertionDate,
@@ -199,7 +199,7 @@ public class SellerRepository : ISellerRepository
 	private void Equaler(SellerRepoDto sellerRepoDto, ref Seller seller)
 	{
 		seller.Id = sellerRepoDto.Id;
-		seller.FullName = sellerRepoDto.FullName;
+		//seller.FullName = sellerRepoDto.FullName;
 		seller.CommissionPercentage = sellerRepoDto.CommissionPercentage;
 		seller.CommissionsAmount = sellerRepoDto.CommissionsAmount;
 		seller.InsertionDate = sellerRepoDto.InsertionDate;

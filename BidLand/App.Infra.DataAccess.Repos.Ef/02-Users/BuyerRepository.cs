@@ -117,7 +117,7 @@ public class BuyerRepository : IBuyerRepository
 		return new BuyerRepoDto()
 		{
 			Id = buyer.Id,
-			FullName = buyer.FullName,
+			//FullName = buyer.FullName,
 			Credit = buyer.Credit,
 			IsBan = buyer.IsBan,
 			TotalPurchaseAmount = buyer.TotalPurchaseAmount,
@@ -132,7 +132,7 @@ public class BuyerRepository : IBuyerRepository
 	private void Equaler(BuyerRepoDto buyer, ref Buyer b)
 	{
 		b.Id = buyer.Id;
-		b.FullName = buyer.FullName;
+		//b.FullName = buyer.FullName;
 		b.Credit = buyer.Credit;
 		b.IsBan = buyer.IsBan;
 		b.TotalPurchaseAmount = buyer.TotalPurchaseAmount;

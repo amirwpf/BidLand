@@ -1,7 +1,7 @@
 ﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 using App.Domin.Core._01_Purchause.Contracts.Services;
 using App.Domin.Core._02_Users.Contracts.AppServices;
-using Microsoft.AspNet.Identity;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +24,7 @@ namespace BidLand.Web.Areas.Admin.Controllers
 		public async Task<IActionResult> Index()
 		{
 
-			string userId = User.Identity.GetUserId();
+			//string userId = User.Identity.GetUserId();
 			
 		 var products = await	_adminPanelAppService.GetAllProducts(new CancellationToken());
 

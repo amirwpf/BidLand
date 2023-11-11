@@ -14,7 +14,8 @@ public partial class Buyer
 {
     public int Id { get; set; }
 
-    public string? FullName { get; set; }
+    //public string? FullName { get; set; }
+    public int UserId { get; set; }
 
     public int? Credit { get; set; }
 
@@ -32,4 +33,6 @@ public partial class Buyer
     public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
+    public User User { get; set; }
 }

@@ -113,7 +113,7 @@ public class BoothRepository : IBoothRepository
 			Description = booth.Description,
 			Seller = booth.Seller,
 			SellerId = booth.SellerId,
-			SellerName = booth.Seller.FullName,
+			//SellerName = booth.Seller.FullName,
 			Stocks = booth.Stocks,
 			IsDelete = booth.IsDelete,
 			InsertionDate = booth.InsertionDate

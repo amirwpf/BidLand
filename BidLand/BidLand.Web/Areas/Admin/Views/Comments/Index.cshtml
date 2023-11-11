@@ -50,7 +50,7 @@
 
                                             <td class="cell">@(Model.IndexOf(item) +1)</td>
                                             <td class="cell">@item.Id</td>
-                                            <td class="cell"><span class="truncate">@item.Buyer?.FullName</span></td>
+                                            <td class="cell"><span class="truncate">@item.Buyer?.User.Firstname @item.Buyer?.User.Lastname</span></td>
                                             <td class="cell">@item.Stock?.Product?.Name</td>
                                             <td class="cell">@item.Stock?.Booth?.Name</td>
                                             <td class="cell">@item.Title</td>

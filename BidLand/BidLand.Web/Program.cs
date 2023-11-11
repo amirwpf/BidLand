@@ -1,4 +1,5 @@
 using App.Domin.Core._01_Purchause.Contracts.Services;
+using App.Domin.Core._02_Users.Entities;
 using App.Domin.Services._01_Purchase;
 using App.Infra.Config.DbConfig;
 using App.Infra.Config.IoCConfig;
@@ -15,7 +16,7 @@ var connectionString = builder.Configuration.GetConnectionString("AppDbContextCo
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDbContext>();
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -23,16 +24,16 @@ builder.Services.AddControllersWithViews();
 #region Services
 
 builder.Services.AddIdentityDbContextService(builder.Configuration);
-builder.Services.AddIdentityCore<IdentityUser>
-	(options =>
-	{
-		options.SignIn.RequireConfirmedAccount = true;
-		options.Password.RequireDigit = false;
-		options.Password.RequiredLength = 6;
-		options.Password.RequireNonAlphanumeric = false;
-		options.Password.RequireUppercase = false;
-		options.Password.RequireLowercase = false;
-	})
+builder.Services.AddIdentity<User , Role>
+    (options =>
+    {
+        options.SignIn.RequireConfirmedAccount = true;
+        options.Password.RequireDigit = false;
+        options.Password.RequiredLength = 6;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireLowercase = false;
+    })
 .AddEntityFrameworkStores<AppDbContext>();
 #endregion
 #region IOC

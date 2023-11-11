@@ -13,6 +13,7 @@ namespace App.Domin.Core._01_Purchause.Entities;
 public partial class StocksCart
 {
     [Key]
+    public int Id { get; set; }
     public int CartId { get; set; }
 
     public int StockId { get; set; }

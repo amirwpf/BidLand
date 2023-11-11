@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using App.Domin.Core._03_Extras.Entities;
 using App.Domin.Core._02_Users.Entities;
 using App.Domin.Core._01_Purchause.Entities;
-using Microsoft.AspNet.Identity.EntityFramework;
+
 
 namespace App.Domin.Core._01_Purchause.Entities;
 

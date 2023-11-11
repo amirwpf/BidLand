@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using App.Domin.Core._03_Extras.Entities;
 using App.Domin.Core._02_Users.Entities;
 using App.Domin.Core._01_Purchause.Entities;
-
+using System.ComponentModel.Design;
 
 namespace App.Domin.Core._02_Users.Entities;
 
@@ -13,7 +13,8 @@ public partial class Seller
 {
     public int Id { get; set; }
 
-    public string? FullName { get; set; }
+    public int UserId{ get; set; }
+    //public string? FullName { get; set; }
 
     public bool IsActive { get; set; }
 
@@ -34,4 +35,5 @@ public partial class Seller
     public virtual Booth? Booth { get; set; }
 
     public virtual ICollection<Medal> Medals { get; set; } = new List<Medal>();
+    public virtual User User{ get; set; }
 }
