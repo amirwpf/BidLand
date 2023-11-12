@@ -58,4 +58,15 @@ public class ProductService : IProductService
            return await _productRepo.ConfirmProductAsync(productId, false, cancellationToken);
 
     }
+
+    public async Task<List<ProductRepoDto>> GetAllConfirmedProductsAsync(CancellationToken cancellationToken)
+    {
+        return await _productRepo.GetAllConfirmProductsWithNavAsync(true, cancellationToken);
+    }
+
+    public async Task<List<ProductRepoDto>> GetAllPendingProductsAsync(CancellationToken cancellationToken)
+    {
+        return await _productRepo.GetAllConfirmProductsWithNavAsync(false, cancellationToken);
+        
+    }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Emit;
 using App.Domin.Core._01_Purchause.Entities;
 using App.Domin.Core._02_Users.Entities;
@@ -100,13 +100,7 @@ public partial class AppDbContext : IdentityDbContext<User, IdentityRole<int> ,i
         //.WithMany(x => x.UserTokens)
         //.HasForeignKey(x => x.UserId);
 
-        modelBuilder.Entity<Buyer>(b => { b.HasKey(p => p.Id);
-            b.Property(e => e.Id).ValueGeneratedOnAdd();
-        });
-        modelBuilder.Entity<Seller>(b => {
-            b.HasKey(p => p.Id);
-            b.Property(e => e.Id).ValueGeneratedOnAdd();
-        });
+      
 
     }
 

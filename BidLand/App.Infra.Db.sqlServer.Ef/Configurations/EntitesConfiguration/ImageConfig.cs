@@ -13,6 +13,6 @@ public class ImageConfig : IEntityTypeConfiguration<Image>
 {
 	public void Configure(EntityTypeBuilder<Image> entity)
 	{
-		entity.HasOne(d => d.Product).WithMany(p => p.Images).HasConstraintName("FK_Image_Product");
+		//entity.HasOne(d => d.Product).WithMany(p => p.Images).HasConstraintName("FK_Image_Product");
 	}
 }

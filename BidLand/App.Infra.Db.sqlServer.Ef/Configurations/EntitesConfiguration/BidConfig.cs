@@ -13,7 +13,7 @@ public class BidConfig : IEntityTypeConfiguration<Bid>
 
 	public void Configure(EntityTypeBuilder<Bid> entity)
 	{
-		entity.HasOne(d => d.Buyer).WithMany(p => p.Bids).HasConstraintName("FK_Bids_Customer_CustomerId");
+		//entity.HasOne(d => d.Buyer).WithMany(p => p.Bids).HasConstraintName("FK_Bids_Customer_CustomerId");
 
 	}
 }

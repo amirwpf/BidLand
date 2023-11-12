@@ -24,15 +24,30 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			_dbSet = _context.Set<Product>();
 		}
 
-		public async Task<List<ProductRepoDto>> GetAllConfirmedProductsWithNavAsync(CancellationToken cancellationToken)
+		public async Task<List<ProductRepoDto>> GetAllConfirmProductsWithNavAsync(bool IsConfirm , CancellationToken cancellationToken)
 		{
 			var products = await _dbSet
 				.Include(p=>p.Stocks)
 				.Include(p=>p.Images)
 				.Include(p=>p.Category)
-				.Where(p => p.IsConfirm == true)
-				.Select(p => ConvertToProductRepoDto(p)).ToListAsync(cancellationToken);
-			return products;
+				.Where(p => p.IsConfirm == IsConfirm)
+                .Select(product => new ProductRepoDto()
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    BasePrice = product.BasePrice,
+                    Images = product.Images,
+                    Stocks = product.Stocks,
+                    IsConfirm = product.IsConfirm,
+                    IsActive = product.IsActive,
+                    IsDelete = product.IsDelete,
+                    Description = product.Description,
+                    Category = product.Category,
+                    CategoryId = product.CategoryId,
+                    InsertionDate = product.InsertionDate
+                })
+                .ToListAsync(cancellationToken);
+            return products;
 		}
 		public async Task<List<ProductRepoDto>> GetAllProductsWithNavAsync(CancellationToken cancellationToken)
 		{

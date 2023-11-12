@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace App.Infra.Db.sqlServer.Ef.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDb : Migration
+    public partial class InitDataBase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,7 +31,6 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -70,23 +69,6 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Buyers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Credit = table.Column<int>(type: "int", nullable: true),
-                    TotalPurchaseAmount = table.Column<int>(type: "int", nullable: true),
-                    IsBan = table.Column<bool>(type: "bit", nullable: true),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: true),
-                    InsertionDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK__Buyer__4B81C1CA60F39982", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -99,31 +81,12 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Category__19093A2B7D631E80", x => x.Id);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Categories_Categories",
+                        name: "FK_Categories_Categories_ParentId",
                         column: x => x.ParentId,
                         principalTable: "Categories",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sellers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsBan = table.Column<bool>(type: "bit", nullable: false),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
-                    CommissionPercentage = table.Column<double>(type: "float", nullable: true),
-                    CommissionsAmount = table.Column<int>(type: "int", nullable: true),
-                    SalesAmount = table.Column<int>(type: "int", nullable: true),
-                    InsertionDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK__Seller__7FE3DBA13EC0B8EB", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -233,25 +196,53 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Carts",
+                name: "Buyers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Value = table.Column<int>(type: "int", nullable: true),
-                    BuyerId = table.Column<int>(type: "int", nullable: true),
-                    PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    PurchaseCompeleted = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Credit = table.Column<int>(type: "int", nullable: true),
+                    TotalPurchaseAmount = table.Column<int>(type: "int", nullable: true),
+                    IsBan = table.Column<bool>(type: "bit", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: true),
                     InsertionDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Shopping__7A789A84E74B74AC", x => x.Id);
+                    table.PrimaryKey("PK_Buyers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cart_Customer",
-                        column: x => x.BuyerId,
-                        principalTable: "Buyers",
-                        principalColumn: "Id");
+                        name: "FK_Buyers_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sellers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsBan = table.Column<bool>(type: "bit", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
+                    CommissionPercentage = table.Column<double>(type: "float", nullable: true),
+                    CommissionsAmount = table.Column<int>(type: "int", nullable: true),
+                    SalesAmount = table.Column<int>(type: "int", nullable: true),
+                    InsertionDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sellers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sellers_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -267,17 +258,38 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsDelete = table.Column<bool>(type: "bit", nullable: false),
                     InsertionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Product__B40CC6EDE2FD57A1", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Product_Categories",
+                        name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Carts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Value = table.Column<int>(type: "int", nullable: true),
+                    BuyerId = table.Column<int>(type: "int", nullable: true),
+                    PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PurchaseCompeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertionDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Carts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Carts_Buyers_BuyerId",
+                        column: x => x.BuyerId,
+                        principalTable: "Buyers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -299,7 +311,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     table.PrimaryKey("PK_Addresses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Addresses_Customer_CustomerId",
+                        name: "FK_Addresses_Buyers_BuyerId",
                         column: x => x.BuyerId,
                         principalTable: "Buyers",
                         principalColumn: "Id");
@@ -324,13 +336,12 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Booth__E2D0E1DD5CEB9CEA", x => x.Id);
+                    table.PrimaryKey("PK_Booths", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Booths_Sellers_SellerId",
                         column: x => x.SellerId,
                         principalTable: "Sellers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -367,7 +378,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Image_Product",
+                        name: "FK_Images_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id");
@@ -393,12 +404,12 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     table.PrimaryKey("PK_Stocks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Stocks_Booths",
+                        name: "FK_Stocks_Booths_BoothId",
                         column: x => x.BoothId,
                         principalTable: "Booths",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Stocks_Product",
+                        name: "FK_Stocks_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id");
@@ -450,12 +461,12 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Customer_CustomerId",
+                        name: "FK_Comments_Buyers_BuyerId",
                         column: x => x.BuyerId,
                         principalTable: "Buyers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Comments_Stocks",
+                        name: "FK_Comments_Stocks_StockId",
                         column: x => x.StockId,
                         principalTable: "Stocks",
                         principalColumn: "Id");
@@ -476,15 +487,17 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     table.PrimaryKey("PK_StocksCarts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductsInCart_ShoppingCart",
+                        name: "FK_StocksCarts_Carts_CartId",
                         column: x => x.CartId,
                         principalTable: "Carts",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StocksCarts_Stocks",
+                        name: "FK_StocksCarts_Stocks_StockId",
                         column: x => x.StockId,
                         principalTable: "Stocks",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -508,7 +521,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                         principalTable: "Auctions",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Bids_Customer_CustomerId",
+                        name: "FK_Bids_Buyers_BuyerId",
                         column: x => x.BuyerId,
                         principalTable: "Buyers",
                         principalColumn: "Id");
@@ -523,13 +536,6 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 name: "IX_Addresses_SellerId",
                 table: "Addresses",
                 column: "SellerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Addresses_SellerId1",
-                table: "Addresses",
-                column: "Phone",
-                unique: true,
-                filter: "([SellerId] IS NOT NULL)");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -590,7 +596,12 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 table: "Booths",
                 column: "SellerId",
                 unique: true,
-                filter: "([SellerId] IS NOT NULL)");
+                filter: "[SellerId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Buyers_UserId",
+                table: "Buyers",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Carts_BuyerId",
@@ -626,6 +637,11 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sellers_UserId",
+                table: "Sellers",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stocks_BoothId",
@@ -691,9 +707,6 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Auctions");
 
             migrationBuilder.DropTable(
@@ -716,6 +729,9 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

@@ -69,26 +69,30 @@ namespace App.Domin.AppServices.Users
         {
 
             var registerd = await _userManager.CreateAsync(
-                new User() { 
-                Firstname = user.Firstname,
-                Lastname = user.Lastname,
-                Email = user.Username,
-                UserName = user.Username,
-                PhoneNumber = user.PhoneNumber
+                new User()
+                {
+                    Firstname = user.Firstname,
+                    Lastname = user.Lastname,
+                    Email = user.Username,
+                    UserName = user.Username,
+                    PhoneNumber = user.PhoneNumber
 
                 }, user.Password);
 
-            if (registerd.Succeeded) {
+            if (registerd.Succeeded)
+            {
                 var _user = await _userManager.FindByEmailAsync(user.Username);
-                if (user.BuyerOrSeller == BuyerSellerTypes.Buyer) {
+                if (user.BuyerOrSeller == BuyerSellerTypes.Buyer)
+                {
 
-                  await  _buyerService.CreateAsync(new BuyerRepoDto() {
-                   UserId = _user.Id,
-                    InsertionDate = DateTime.Now
+                    await _buyerService.CreateAsync(new BuyerRepoDto()
+                    {
+                        UserId = _user.Id,
+                        InsertionDate = DateTime.Now
 
-                  },token);
+                    }, token);
                 }
-                else if(user.BuyerOrSeller == BuyerSellerTypes.Seller)
+                else if (user.BuyerOrSeller == BuyerSellerTypes.Seller)
                 {
                     await _sellerService.CreateAsync(new SellerRepoDto()
                     {
@@ -113,7 +117,7 @@ namespace App.Domin.AppServices.Users
                     return "کاربر مورد نظر حذف گردید!";
                 }
 
-            return "خطا در حذف کاربر مورد نظر!";
+                return "خطا در حذف کاربر مورد نظر!";
             }
             return "کاربر مورد نظر یافت نشد!";
         }
@@ -121,7 +125,7 @@ namespace App.Domin.AppServices.Users
         public async Task<User> FindUserByEmailAsync(string email)
         {
             return await _userManager.FindByEmailAsync(email);
-          
+
         }
 
         public async Task<UserDto> FindUserByIdAsync(int id)
@@ -153,7 +157,7 @@ namespace App.Domin.AppServices.Users
                 Lastname = user.Lastname,
                 Email = user.Email,
                 FullName = user.Firstname + " " + user.Lastname,
-              //  UserRoles = user.Roles
+                //  UserRoles = user.Roles
 
             };
         }
@@ -179,11 +183,39 @@ namespace App.Domin.AppServices.Users
             return roles;
         }
 
+        public async Task<BuyerRepoDto> GetBuyerByIdAsync(int id, CancellationToken token)
+        {
+            return await _buyerService.GetByIdAsync(id, token);
+        }
+
+        public async Task<List<BuyerRepoDto>> GetBuyerDeletedUsersAsync(CancellationToken cancellationToken)
+        {
+            return await _buyerService.GetAllDeletedAsync(cancellationToken);
+        }
+        public async Task<List<BuyerRepoDto>> GetBuyerUsersAsync(CancellationToken cancellationToken)
+        {
+            return await _buyerService.GetAllAsync(cancellationToken);
+        }
+
         public async Task<string> GetLoggedInUserId()
         {
             var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
             var userId = await _userManager.GetUserIdAsync(user);
             return userId;
+        }
+
+        public async Task<SellerRepoDto> GetSellerByIdAsync(int id, CancellationToken token)
+        {
+            return await    _sellerService.GetByIdAsync(id, token);
+        }
+
+        public async Task<List<SellerRepoDto>> GetSellerDeletedUsersAsync(CancellationToken cancellationToken)
+        {
+            return await _sellerService.GetAllDeletedAsync(cancellationToken);
+        }
+        public async Task<List<SellerRepoDto>> GetSellerUsersAsync(CancellationToken cancellationToken)
+        {
+            return await _sellerService.GetAllAsync(cancellationToken);
         }
 
         public async Task<SignInResult> SignInUserAsync(User user, string password, bool isPersistent, bool lockoutOnFailure)
@@ -196,6 +228,11 @@ namespace App.Domin.AppServices.Users
         public async Task SignOutUserAsync()
         {
             await _signInManager.SignOutAsync();
+        }
+
+        public async Task UpdateBuyerAsync(BuyerRepoDto model, CancellationToken cancellationToken)
+        {
+           await _buyerService.UpdateAsync(model, cancellationToken);
         }
 
         public async Task<string> UpdatePasswordAsync(int userId, string currentPassword, string newPassword)
@@ -217,6 +254,11 @@ namespace App.Domin.AppServices.Users
             if (result.Succeeded)
                 return "گذرواژه تغییر کرد";
             return "تغییر گذرواژه با خطا مواجه شد.";
+        }
+
+        public async Task UpdateSellerAsync(SellerRepoDto model, CancellationToken cancellationToken)
+        {
+        await _sellerService.UpdateAsync(model, cancellationToken);
         }
 
         public async Task<string> UpdateUserAsync(UserDto userDto)

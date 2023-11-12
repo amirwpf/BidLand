@@ -1,4 +1,5 @@
-﻿using App.Domin.Core._02_Users.Dtos;
+﻿using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
+using App.Domin.Core._02_Users.Dtos;
 using App.Domin.Core._02_Users.Entities;
 using App.Domin.Core._02_Users.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -27,5 +28,11 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
         Task<User> FindUserByEmailAsync(string email);
         Task<SignInResult> SignInUserAsync(User user, string password, bool isPersistent, bool lockoutOnFailure);
         Task SignOutUserAsync();
+        Task<List<SellerRepoDto>> GetSellerUsersAsync(CancellationToken cancellationToken);
+        Task<List<BuyerRepoDto>> GetBuyerUsersAsync(CancellationToken cancellationToken);
+        Task<BuyerRepoDto> GetBuyerByIdAsync(int id, CancellationToken token);
+        Task UpdateBuyerAsync(BuyerRepoDto model, CancellationToken token);
+        Task<SellerRepoDto> GetSellerByIdAsync(int id, CancellationToken token);
+        Task UpdateSellerAsync(SellerRepoDto model, CancellationToken token);
     }
 }

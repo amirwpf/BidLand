@@ -1,23 +1,61 @@
 ﻿using App.Domin.Core._02_Users.Contracts.AppServices;
+using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Tokens;
+using NuGet.Common;
 
 namespace BidLand.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    
+
     public class UsersController : Controller
     {
-        private readonly IAdminPanelAppServices _adminPanelAppService;
-        public UsersController(IAdminPanelAppServices adminPanelAppService)
+        private readonly IAccountAppServices _accountAppServices;
+        public UsersController(IAccountAppServices accountAppServices)
         {
-            _adminPanelAppService = adminPanelAppService;
+            _accountAppServices = accountAppServices;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            ViewBag.SellerUsers = await _accountAppServices.GetSellerUsersAsync(new CancellationToken());
+            ViewBag.BuyerUsers = await _accountAppServices.GetBuyerUsersAsync(new CancellationToken());
             return View();
+        }
+        public async Task<IActionResult> EditBuyer(int id, CancellationToken token)
+        {
+
+            return View(await _accountAppServices.GetBuyerByIdAsync(id, token));
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditBuyer(BuyerRepoDto model, CancellationToken token)
+        {
+            if (!ModelState.IsValid)
+            {
+                await _accountAppServices.UpdateBuyerAsync(model, token);
+                return View(model);
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> EditSeller(int id, CancellationToken token)
+        {
+            return View(await _accountAppServices.GetSellerByIdAsync(id, token));
+
+        }
+        [HttpPost]
+
+        public async Task<IActionResult> EditSeller(SellerRepoDto model, CancellationToken token)
+        {
+            if (!ModelState.IsValid)
+            {
+                await _accountAppServices.UpdateSellerAsync(model, token);
+                return View(model);
+            }
+            return View(model);
         }
     }
 }

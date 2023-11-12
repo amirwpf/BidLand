@@ -9,6 +9,7 @@ namespace BidLand.Web.Areas.Identity.Controllers
     public class LoginController : Controller
     {
         private readonly IAccountAppServices _accountAppServices;
+
         public LoginController(IAccountAppServices accountAppServices)
         {
             _accountAppServices = accountAppServices;
@@ -35,7 +36,7 @@ namespace BidLand.Web.Areas.Identity.Controllers
                 return View(model);
             }
 
-            
+
             var result = await _accountAppServices.SignInUserAsync(user, model.Password, model.IsPersistent, true);
 
             if (result.Succeeded)
@@ -45,8 +46,18 @@ namespace BidLand.Web.Areas.Identity.Controllers
             }
 
             return View(model);
-            
+
         }
 
+
+        public async Task<IActionResult> Logout()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _accountAppServices.SignOutUserAsync();
+
+            }
+            return Redirect("/");
+        }
     }
 }

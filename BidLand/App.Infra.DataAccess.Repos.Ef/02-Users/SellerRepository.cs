@@ -27,19 +27,64 @@ public class SellerRepository : ISellerRepository
 	public async Task<SellerRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
+			.Include(x=>x.User)
 			  .Include(b => b.Booth)
-			  .Select(a => ConvertToSellerRepoDto(a))
+              .Select(seller => new SellerRepoDto()
+              {
+                  Id = seller.Id,
+                  User = seller.User,
+                  CommissionPercentage = seller.CommissionPercentage,
+                  CommissionsAmount = seller.CommissionsAmount,
+                  InsertionDate = seller.InsertionDate,
+                  IsActive = seller.IsActive,
+                  IsBan = seller.IsBan,
+                  IsDelete = seller.IsDelete,
+                  SalesAmount = seller.SalesAmount,
+                  UserId = seller.UserId
+              })
 			  .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
-		if (result == null)
-			return null;
+		
 		return result;
 	}
-
+public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken cancellationToken)
+	{
+		var result = await _dbSet
+            .Where(x => x.IsDelete)
+              .Include(b => b.User)
+			  .Include(b => b.Booth)
+			  .Select(seller => new SellerRepoDto() {
+                  Id = seller.Id,
+                  User = seller.User,
+                  CommissionPercentage = seller.CommissionPercentage,
+                  CommissionsAmount = seller.CommissionsAmount,
+                  InsertionDate = seller.InsertionDate,
+                  IsActive = seller.IsActive,
+                  IsBan = seller.IsBan,
+                  IsDelete = seller.IsDelete,
+                  SalesAmount = seller.SalesAmount,
+                  UserId = seller.UserId
+              })
+			  .ToListAsync(cancellationToken);
+		return result;
+	}
 	public async Task<List<SellerRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
+            .Where(x => !x.IsDelete)
+              .Include(b => b.User)
 			  .Include(b => b.Booth)
-			  .Select(a => ConvertToSellerRepoDto(a))
+			  .Select(seller => new SellerRepoDto() {
+                  Id = seller.Id,
+                  User = seller.User,
+                  CommissionPercentage = seller.CommissionPercentage,
+                  CommissionsAmount = seller.CommissionsAmount,
+                  InsertionDate = seller.InsertionDate,
+                  IsActive = seller.IsActive,
+                  IsBan = seller.IsBan,
+                  IsDelete = seller.IsDelete,
+                  SalesAmount = seller.SalesAmount,
+                  UserId = seller.UserId
+              })
 			  .ToListAsync(cancellationToken);
 		return result;
 	}

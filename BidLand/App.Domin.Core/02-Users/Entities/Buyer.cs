@@ -12,7 +12,7 @@ namespace App.Domin.Core._02_Users.Entities;
 
 public partial class Buyer
 {
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     //public string? FullName { get; set; }
@@ -22,8 +22,8 @@ public partial class Buyer
 
     public int? TotalPurchaseAmount { get; set; }
 
-    public bool? IsBan { get; set; }
-    public bool? IsDelete { get; set; }
+    public bool IsBan { get; set; }
+    public bool IsDelete { get; set; }
 
     public DateTime? InsertionDate { get; set; }
 

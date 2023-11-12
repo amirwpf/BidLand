@@ -20,4 +20,7 @@ public interface IProductService
 	Task<ProductRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
 
 	Task<bool> UpdateAsync(ProductRepoDto input,  CancellationToken cancellationToken);
+    Task<List<ProductRepoDto>> GetAllConfirmedProductsAsync( CancellationToken cancellationToken);
+    Task<List<ProductRepoDto>> GetAllPendingProductsAsync(CancellationToken cancellationToken);
+
 }

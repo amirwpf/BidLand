@@ -19,5 +19,7 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
 		Task<bool> UpdateProduct(ProductRepoDto model, CancellationToken cancellationToken);
         Task<ProductRepoDto> GetProductById(int id, CancellationToken cancellationToken);
         Task<bool> DeleteProduct(int id, CancellationToken cancellationToken);
+        Task<List<ProductRepoDto>> GetAllConfirmedProductsAsync(CancellationToken cancellationToken);
+        Task<List<ProductRepoDto>> GetAllPendingProductsAsync(CancellationToken cancellationToken);
     }
 }

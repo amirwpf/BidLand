@@ -8,8 +8,8 @@ public class CategoryConfig : IEntityTypeConfiguration<Category>
 {
 	public void Configure(EntityTypeBuilder<Category> entity)
 	{
-		entity.HasKey(e => e.Id).HasName("PK__Category__19093A2B7D631E80");
+		//entity.HasKey(e => e.Id).HasName("PK__Category__19093A2B7D631E80");
 
-		entity.HasOne(d => d.Parent).WithMany(p => p.InverseParent).HasConstraintName("FK_Categories_Categories");
+		//entity.HasOne(d => d.Parent).WithMany(p => p.InverseParent).HasConstraintName("FK_Categories_Categories");
 	}
 }

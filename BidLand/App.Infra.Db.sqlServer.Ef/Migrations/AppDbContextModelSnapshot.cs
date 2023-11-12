@@ -116,12 +116,11 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<int?>("SellerId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PK__Booth__E2D0E1DD5CEB9CEA");
+                    b.HasKey("Id");
 
-                    b.HasIndex(new[] { "SellerId" }, "IX_Booths_SellerId")
+                    b.HasIndex("SellerId")
                         .IsUnique()
-                        .HasFilter("([SellerId] IS NOT NULL)");
+                        .HasFilter("[SellerId] IS NOT NULL");
 
                     b.ToTable("Booths");
                 });
@@ -149,8 +148,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<int?>("Value")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PK__Shopping__7A789A84E74B74AC");
+                    b.HasKey("Id");
 
                     b.HasIndex("BuyerId");
 
@@ -178,8 +176,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PK__Category__19093A2B7D631E80");
+                    b.HasKey("Id");
 
                     b.HasIndex("ParentId");
 
@@ -198,7 +195,6 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("CategoryId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -219,8 +215,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("PK__Product__B40CC6EDE2FD57A1");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
@@ -333,10 +328,10 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<DateTime?>("InsertionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("IsBan")
+                    b.Property<bool>("IsBan")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsDelete")
+                    b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
                     b.Property<int?>("TotalPurchaseAmount")
@@ -345,8 +340,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PK__Buyer__4B81C1CA60F39982");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -385,8 +379,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PK__Seller__7FE3DBA13EC0B8EB");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -506,11 +499,6 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.HasIndex("BuyerId");
 
                     b.HasIndex("SellerId");
-
-                    b.HasIndex(new[] { "Phone" }, "IX_Addresses_SellerId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_Addresses_SellerId1")
-                        .HasFilter("([SellerId] IS NOT NULL)");
 
                     b.ToTable("Addresses");
                 });
@@ -759,8 +747,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
 
                     b.HasOne("App.Domin.Core._02_Users.Entities.Buyer", "Buyer")
                         .WithMany("Bids")
-                        .HasForeignKey("BuyerId")
-                        .HasConstraintName("FK_Bids_Customer_CustomerId");
+                        .HasForeignKey("BuyerId");
 
                     b.Navigation("Auction");
 
@@ -771,8 +758,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     b.HasOne("App.Domin.Core._02_Users.Entities.Seller", "Seller")
                         .WithOne("Booth")
-                        .HasForeignKey("App.Domin.Core._01_Purchause.Entities.Booth", "SellerId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("App.Domin.Core._01_Purchause.Entities.Booth", "SellerId");
 
                     b.Navigation("Seller");
                 });
@@ -781,8 +767,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     b.HasOne("App.Domin.Core._02_Users.Entities.Buyer", "Buyer")
                         .WithMany("Carts")
-                        .HasForeignKey("BuyerId")
-                        .HasConstraintName("FK_Cart_Customer");
+                        .HasForeignKey("BuyerId");
 
                     b.Navigation("Buyer");
                 });
@@ -791,8 +776,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     b.HasOne("App.Domin.Core._01_Purchause.Entities.Category", "Parent")
                         .WithMany("InverseParent")
-                        .HasForeignKey("ParentId")
-                        .HasConstraintName("FK_Categories_Categories");
+                        .HasForeignKey("ParentId");
 
                     b.Navigation("Parent");
                 });
@@ -801,10 +785,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     b.HasOne("App.Domin.Core._01_Purchause.Entities.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Product_Categories");
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });
@@ -813,13 +794,11 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     b.HasOne("App.Domin.Core._01_Purchause.Entities.Booth", "Booth")
                         .WithMany("Stocks")
-                        .HasForeignKey("BoothId")
-                        .HasConstraintName("FK_Stocks_Booths");
+                        .HasForeignKey("BoothId");
 
                     b.HasOne("App.Domin.Core._01_Purchause.Entities.Product", "Product")
                         .WithMany("Stocks")
-                        .HasForeignKey("ProductId")
-                        .HasConstraintName("FK_Stocks_Product");
+                        .HasForeignKey("ProductId");
 
                     b.Navigation("Booth");
 
@@ -831,14 +810,14 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.HasOne("App.Domin.Core._01_Purchause.Entities.Cart", "Cart")
                         .WithMany("StocksCarts")
                         .HasForeignKey("CartId")
-                        .IsRequired()
-                        .HasConstraintName("FK_ProductsInCart_ShoppingCart");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("App.Domin.Core._01_Purchause.Entities.Stock", "Stock")
                         .WithMany("StocksCarts")
                         .HasForeignKey("StockId")
-                        .IsRequired()
-                        .HasConstraintName("FK_StocksCarts_Stocks");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Cart");
 
@@ -848,7 +827,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
             modelBuilder.Entity("App.Domin.Core._02_Users.Entities.Buyer", b =>
                 {
                     b.HasOne("App.Domin.Core._02_Users.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Buyers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -859,7 +838,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
             modelBuilder.Entity("App.Domin.Core._02_Users.Entities.Seller", b =>
                 {
                     b.HasOne("App.Domin.Core._02_Users.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Sellers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -871,8 +850,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     b.HasOne("App.Domin.Core._02_Users.Entities.Buyer", "Buyer")
                         .WithMany("Addresses")
-                        .HasForeignKey("BuyerId")
-                        .HasConstraintName("FK_Addresses_Customer_CustomerId");
+                        .HasForeignKey("BuyerId");
 
                     b.HasOne("App.Domin.Core._02_Users.Entities.Seller", "Seller")
                         .WithMany("Addresses")
@@ -887,13 +865,11 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     b.HasOne("App.Domin.Core._02_Users.Entities.Buyer", "Buyer")
                         .WithMany("Comments")
-                        .HasForeignKey("BuyerId")
-                        .HasConstraintName("FK_Comments_Customer_CustomerId");
+                        .HasForeignKey("BuyerId");
 
                     b.HasOne("App.Domin.Core._01_Purchause.Entities.Stock", "Stock")
                         .WithMany("Comments")
-                        .HasForeignKey("StockId")
-                        .HasConstraintName("FK_Comments_Stocks");
+                        .HasForeignKey("StockId");
 
                     b.Navigation("Buyer");
 
@@ -904,8 +880,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     b.HasOne("App.Domin.Core._01_Purchause.Entities.Product", "Product")
                         .WithMany("Images")
-                        .HasForeignKey("ProductId")
-                        .HasConstraintName("FK_Image_Product");
+                        .HasForeignKey("ProductId");
 
                     b.Navigation("Product");
                 });
@@ -1024,6 +999,13 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Navigation("Booth");
 
                     b.Navigation("Medals");
+                });
+
+            modelBuilder.Entity("App.Domin.Core._02_Users.Entities.User", b =>
+                {
+                    b.Navigation("Buyers");
+
+                    b.Navigation("Sellers");
                 });
 #pragma warning restore 612, 618
         }

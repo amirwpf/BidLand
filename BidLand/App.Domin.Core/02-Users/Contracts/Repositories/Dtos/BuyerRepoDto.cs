@@ -16,8 +16,8 @@ public class BuyerRepoDto
 
 	public int? TotalPurchaseAmount { get; set; }
 
-	public bool? IsBan { get; set; }
-	public bool? IsDelete { get; set; }
+	public bool IsBan { get; set; }
+	public bool IsDelete { get; set; }
 
 
 	public DateTime? InsertionDate { get; set; }

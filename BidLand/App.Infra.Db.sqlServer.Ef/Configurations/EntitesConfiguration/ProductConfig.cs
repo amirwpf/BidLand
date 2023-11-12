@@ -13,8 +13,8 @@ public class ProductConfig : IEntityTypeConfiguration<Product>
 {
 	public void Configure(EntityTypeBuilder<Product> entity)
 	{
-		entity.HasKey(e => e.Id).HasName("PK__Product__B40CC6EDE2FD57A1");
+		//entity.HasKey(e => e.Id).HasName("PK__Product__B40CC6EDE2FD57A1");
 
-		entity.HasOne(d => d.Category).WithMany(p => p.Products).HasConstraintName("FK_Product_Categories");
+		//entity.HasOne(d => d.Category).WithMany(p => p.Products).HasConstraintName("FK_Product_Categories");
 	}
 }

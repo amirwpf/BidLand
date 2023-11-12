@@ -12,11 +12,11 @@ public class AddressConfig : IEntityTypeConfiguration<Address>
 	public void Configure(EntityTypeBuilder<Address> entity)
 	{
 
-		entity.HasIndex(e => e.Phone, "IX_Addresses_SellerId")
-			.IsUnique()
-			.HasFilter("([SellerId] IS NOT NULL)");
+		//entity.HasIndex(e => e.Phone, "IX_Addresses_SellerId")
+		//	.IsUnique()
+		//	.HasFilter("([SellerId] IS NOT NULL)");
 
-		entity.HasOne(d => d.Buyer).WithMany(p => p.Addresses).HasConstraintName("FK_Addresses_Customer_CustomerId");
+		//entity.HasOne(d => d.Buyer).WithMany(p => p.Addresses).HasConstraintName("FK_Addresses_Customer_CustomerId");
 
 
 	}

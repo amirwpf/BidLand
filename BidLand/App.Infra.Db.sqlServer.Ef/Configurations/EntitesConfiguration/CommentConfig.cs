@@ -13,8 +13,8 @@ public class CommentConfig : IEntityTypeConfiguration<Comment>
 {
 	public void Configure(EntityTypeBuilder<Comment> entity)
 	{
-		entity.HasOne(d => d.Buyer).WithMany(p => p.Comments).HasConstraintName("FK_Comments_Customer_CustomerId");
+		//entity.HasOne(d => d.Buyer).WithMany(p => p.Comments).HasConstraintName("FK_Comments_Customer_CustomerId");
 
-		entity.HasOne(d => d.Stock).WithMany(p => p.Comments).HasConstraintName("FK_Comments_Stocks");
+		//entity.HasOne(d => d.Stock).WithMany(p => p.Comments).HasConstraintName("FK_Comments_Stocks");
 	}
 }

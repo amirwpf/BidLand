@@ -28,8 +28,11 @@ public class BuyerService: IBuyerService
 	{
 		await _repo.HardDeleteAsync(input, cancellationToken);
 	}
-
-	public async Task<List<BuyerRepoDto>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<List<BuyerRepoDto>> GetAllDeletedAsync(CancellationToken cancellationToken)
+    {
+        return await _repo.GetAllDeletedAsync(cancellationToken);
+    }
+    public async Task<List<BuyerRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
 		return await _repo.GetAllAsync(cancellationToken);
 	}

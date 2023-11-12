@@ -76,6 +76,7 @@ namespace App.Infra.Config.IoCConfig
 			services.AddScoped<IAdminPanelAppServices, AdminPanelAppServices>();
 			services.AddScoped<IAccountAppServices, AccountAppServices>();
 			
+			
 
 			#endregion
 

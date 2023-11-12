@@ -20,7 +20,7 @@ namespace App.Domin.Core._02_Users.Entities
         //public string GetFullName
         //{
         //    get { return Firstname + " " + Lastname; }
-            
+
         //}
 
         //public virtual ICollection<UserToken> UserTokens { get; set; }
@@ -30,6 +30,9 @@ namespace App.Domin.Core._02_Users.Entities
         //public virtual ICollection<UserLogin> Logins { get; set; }
 
         //public virtual ICollection<UserClaim> Claims { get; set; }
+
+        public ICollection<Seller>? Sellers { get; set; }
+        public ICollection<Buyer>? Buyers { get; set; }
 
         public string GetFullName()
         {

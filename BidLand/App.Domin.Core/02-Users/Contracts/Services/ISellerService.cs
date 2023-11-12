@@ -14,8 +14,8 @@ public interface ISellerService
 	Task DeleteAsync(SellerRepoDto input, CancellationToken cancellationToken);
 
 	Task<List<SellerRepoDto>> GetAllAsync(CancellationToken cancellationToken);
-
-	Task<SellerRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
+    Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken cancellationToken);
+    Task<SellerRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
 
 	Task UpdateAsync(SellerRepoDto input, CancellationToken cancellationToken);
 }

@@ -11,10 +11,10 @@ namespace App.Infra.Db.sqlServer.Ef.Configurations.EntitesConfiguration;
 
 public class BuyerConfig : IEntityTypeConfiguration<Buyer>
 {
-	public void Configure(EntityTypeBuilder<Buyer> entity)
-	{
-		entity.HasKey(e => e.Id).HasName("PK__Buyer__4B81C1CA60F39982");
+    public void Configure(EntityTypeBuilder<Buyer> entity)
+    {
+        //entity.HasKey(e => e.Id);
 
-		entity.Property(e => e.Id).ValueGeneratedNever();
-	}
+        //entity.Property(e => e.Id).va();
+    }
 }

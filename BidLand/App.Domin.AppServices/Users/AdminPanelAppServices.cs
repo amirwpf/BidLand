@@ -3,6 +3,8 @@ using App.Domin.Core._01_Purchause.Contracts.Services;
 using App.Domin.Core._02_Users.Contracts.AppServices;
 using App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
 using App.Domin.Core._03_Extras.Contracts.Services;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,11 +21,13 @@ namespace App.Domin.AppServices.Users
 		private readonly IProductService _productServices;
 		private readonly ICommentService _commentServices;
 		private readonly ICategoryService _categoryService;
-		public AdminPanelAppServices(IProductService productService, ICommentService commentService, ICategoryService categoryService)
+	
+        public AdminPanelAppServices(IProductService productService, ICommentService commentService, ICategoryService categoryService)
 		{
 			_productServices = productService;
 			_commentServices = commentService;
 			_categoryService = categoryService;
+			
 		}
 
 		#region ProductsManagement
@@ -36,14 +40,24 @@ namespace App.Domin.AppServices.Users
 		{
 			return await _productServices.ConfirmProductAsync(productId, isConfirm, cancellationToken);
 		}
-		#endregion
 
-		#region CommentsManagement
+        public Task<List<ProductRepoDto>> GetAllConfirmedProductsAsync(CancellationToken cancellationToken)
+        {
+            return _productServices.GetAllConfirmedProductsAsync(cancellationToken);
+        }
+        public Task<List<ProductRepoDto>> GetAllPendingProductsAsync(CancellationToken cancellationToken)
+        {
+            return _productServices.GetAllPendingProductsAsync(cancellationToken);
+        }
+
+        #endregion
+
+        #region CommentsManagement
 
 
 
 
-		public async Task<List<CommentRepoDto>> GetPendingCommentsAsync(CancellationToken cancellationToken)
+        public async Task<List<CommentRepoDto>> GetPendingCommentsAsync(CancellationToken cancellationToken)
 		{
 			return await _commentServices.GetAllCommentsWithSellerNameConfirmAsync(cancellationToken);
 		}
@@ -63,8 +77,8 @@ namespace App.Domin.AppServices.Users
 
 		public async Task CreateProduct(ProductRepoDto model, CancellationToken cancellationToken)
 		{
-
-			model.InsertionDate = DateTime.Now;
+           
+            model.InsertionDate = DateTime.Now;
 			await _productServices.CreateAsync(model, cancellationToken);
 		}
 
@@ -83,6 +97,7 @@ namespace App.Domin.AppServices.Users
         {
 			return await _productServices.DeleteAsync(id, cancellationToken);
         }
+
         #endregion
     }
 }

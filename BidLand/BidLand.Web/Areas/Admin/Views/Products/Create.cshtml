@@ -16,10 +16,10 @@
                 <div class="app-card app-card-settings shadow-sm p-4">
 
                     <div class="app-card-body">
-                        <form class="settings-form" method="post" asp-action="Create">
+                        <form class="settings-form" method="post" asp-action="Create" enctype="multipart/form-data">
 
                             <div class="mb-3">
-                                <input type="file" asp-for="ImageFile" />
+                                <input type="file" multiple asp-for="ImageFile" />
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Name" class="form-label">دسته بندی</label>

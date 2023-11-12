@@ -3,6 +3,7 @@ using App.Domin.Core._01_Purchause.Contracts.Services;
 using App.Domin.Core._02_Users.Contracts.AppServices;
 
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,75 +12,108 @@ using System.Threading;
 
 namespace BidLand.Web.Areas.Admin.Controllers
 {
-	[Area("Admin")]
-    
+    [Area("Admin")]
+
     public class ProductsController : Controller
-	{
-		private readonly IAdminPanelAppServices _adminPanelAppService;
-		
-		public ProductsController(IAdminPanelAppServices adminPanelAppServices)
-		{
+    {
+        private readonly IAdminPanelAppServices _adminPanelAppService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public ProductsController(IAdminPanelAppServices adminPanelAppServices, IWebHostEnvironment webHostEnvironment)
+        {
             _adminPanelAppService = adminPanelAppServices;
-		}
-		public async Task<IActionResult> Index()
-		{
+            _webHostEnvironment = webHostEnvironment;
+        }
+        public async Task<IActionResult> Index()
+        {
 
-			//string userId = User.Identity.GetUserId();
-			
-		 var products = await	_adminPanelAppService.GetAllProducts(new CancellationToken());
+            //string userId = User.Identity.GetUserId();
 
-			return View(products);
-		}
+            ViewBag.PendingProducts = await _adminPanelAppService.GetAllPendingProductsAsync(new CancellationToken());
+            ViewBag.ConfirmedProducts = await _adminPanelAppService.GetAllConfirmedProductsAsync(new CancellationToken());
 
-		[HttpPost]
-		public async Task<IActionResult> ConfirmProduct(int id, bool isConfirm , CancellationToken cToken) {
-			await _adminPanelAppService.ConfirmProduct(id, isConfirm , cToken);
-			return RedirectToAction("Index");
-		}
+            return View();
+        }
+
+        //[HttpPost]
+        public async Task<IActionResult> ConfirmProduct(int id, bool isConfirm, CancellationToken cToken)
+        {
+            await _adminPanelAppService.ConfirmProduct(id, isConfirm, cToken);
+            return RedirectToAction("Index");
+        }
 
 
-		public async Task<IActionResult> Create() {
-			var categories = await _adminPanelAppService.GetChildCategories(new CancellationToken());
-			ViewBag.Categories = new SelectList(categories.Select(x=>new {x.Id , Title = x.Name}),"Id" , "Title");
-			return View();
-		}
-		[HttpPost]
-		public async Task<IActionResult> Create(ProductRepoDto model,CancellationToken cancellationToken	)
-		{
-			//if(ModelState.IsValid)
-			 await _adminPanelAppService.CreateProduct(model, cancellationToken);
-			return RedirectToAction("Index");
-		}
+        public async Task<IActionResult> Create()
+        {
+            var categories = await _adminPanelAppService.GetChildCategories(new CancellationToken());
+            ViewBag.Categories = new SelectList(categories.Select(x => new { x.Id, Title = x.Name }), "Id", "Title");
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(ProductRepoDto model, CancellationToken cancellationToken)
+        {
+            string projectRootPath = _webHostEnvironment.ContentRootPath;
+            string products = Path.Combine(_webHostEnvironment.WebRootPath, "uploads\\products");
+            if (model.ImageFile != null)
+                foreach (IFormFile file in model.ImageFile)
+                {
+                    if (file.Length > 0)
+                    {
+                        string filePath = Path.Combine(products, file.FileName);
+                        try
+                        {
+                            //var destinationPath = Path.GetTempFileName(); //Change this line to point to your actual destination
+                            //using (var stream = new FileStream(destinationPath, FileMode.Create))
+                            //{
+                            //    await file.CopyToAsync(stream);
+                            //}
+                            using (Stream fileStream = new FileStream(products, FileMode.Create))
+                            {
+                                await file.CopyToAsync(fileStream);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
 
-		public async Task<IActionResult> Edit(int id, CancellationToken token)
-		{
-			if (id > 0)
-			{
-				var product = await _adminPanelAppService.GetProductById(id, token);
-				var categories = await _adminPanelAppService.GetChildCategories(token);
-				ViewBag.Categories = new SelectList(categories.Select(x => new { x.Id, Title = x.Name }), "Id", "Title", product.CategoryId);
-				return View(product);
-			}else
+                            throw;
+                        }
+                    }
+                }
+            //if(ModelState.IsValid)
+            await _adminPanelAppService.CreateProduct(model, cancellationToken);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Edit(int id, CancellationToken token)
+        {
+            if (id > 0)
+            {
+                var product = await _adminPanelAppService.GetProductById(id, token);
+                var categories = await _adminPanelAppService.GetChildCategories(token);
+                ViewBag.Categories = new SelectList(categories.Select(x => new { x.Id, Title = x.Name }), "Id", "Title", product.CategoryId);
+                return View(product);
+            }
+            else
                 return RedirectToAction("Index");
 
 
 
         }
         [HttpPost]
-		public async Task<IActionResult> Edit(ProductRepoDto model,CancellationToken cancellationToken	)
-		{
-			//if(ModelState.IsValid)
-			 await _adminPanelAppService.UpdateProduct(model, cancellationToken);
-			return RedirectToAction("Index");
-		}
+        public async Task<IActionResult> Edit(ProductRepoDto model, CancellationToken cancellationToken)
+        {
+            //if(ModelState.IsValid)
+            await _adminPanelAppService.UpdateProduct(model, cancellationToken);
+            return RedirectToAction("Index");
+        }
 
         public async Task<IActionResult> Delete(int id, CancellationToken token)
         {
             if (id > 0)
             {
                 var product = await _adminPanelAppService.GetProductById(id, token);
-               
-               
+
+
                 return View(product);
             }
             else

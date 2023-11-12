@@ -19,6 +19,7 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 		Task<bool> SoftRecoverAsync(int id, CancellationToken cancellationToken);
 		Task<bool> HardDeleteAsync(int id, CancellationToken cancellationToken);
         Task<bool> ConfirmProductAsync(int productId, bool confirm, CancellationToken cancellationToken);
+        Task<List<ProductRepoDto>> GetAllConfirmProductsWithNavAsync(bool IsConfirm, CancellationToken cancellationToken);
 
         #region other
         //Task UpdateAsync(ProductRepoDto productDto, List<int> categoryIds, CancellationToken cancellationToken);

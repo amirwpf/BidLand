@@ -11,13 +11,14 @@ namespace App.Domin.Core._02_Users.Contracts.Repositories.RepoSeprationContracts
 {
 	public interface IBuyerRepository
 	{
-		Task<BuyerRepoDto?> GetByIdAsync(int id,CancellationToken cancellationToken);
+		Task<BuyerRepoDto> GetByIdAsync(int id,CancellationToken cancellationToken);
 		Task<List<BuyerRepoDto>> GetAllAsync(CancellationToken cancellationToken);
 		Task AddAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
 		Task<bool> UpdateAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
 		Task<bool> SoftDeleteAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
 		Task<bool> SoftRecoverAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
 		Task<bool> HardDeleteAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
-		//Task<int> UpdateWithBidAsync(BuyerRepoDto buyer, BidRepoDto bidDto, CancellationToken cancellationToken);
-	}
+        Task<List<BuyerRepoDto>> GetAllDeletedAsync(CancellationToken cancellationToken);
+        //Task<int> UpdateWithBidAsync(BuyerRepoDto buyer, BidRepoDto bidDto, CancellationToken cancellationToken);
+    }
 }

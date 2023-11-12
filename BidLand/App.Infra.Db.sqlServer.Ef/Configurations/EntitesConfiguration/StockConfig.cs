@@ -17,8 +17,8 @@ public class StockConfig : IEntityTypeConfiguration<Stock>
 		//		.HasPrincipalKey("StockId")
 		//		.HasForeignKey("AuctionId");
 
-		entity.HasOne(d => d.Booth).WithMany(p => p.Stocks).HasConstraintName("FK_Stocks_Booths");
+		//entity.HasOne(d => d.Booth).WithMany(p => p.Stocks).HasConstraintName("FK_Stocks_Booths");
 
-		entity.HasOne(d => d.Product).WithMany(p => p.Stocks).HasConstraintName("FK_Stocks_Product");
+		//entity.HasOne(d => d.Product).WithMany(p => p.Stocks).HasConstraintName("FK_Stocks_Product");
 	}
 }
