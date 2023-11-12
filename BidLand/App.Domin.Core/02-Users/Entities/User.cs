@@ -10,11 +10,7 @@ namespace App.Domin.Core._02_Users.Entities
 {
     public class User : IdentityUser<int>
     {
-        public User()
-        {
-            
-            UserTokens = new HashSet<UserToken>();
-        }
+        
         public string Firstname { get; set; } = null!;
         public string Lastname { get; set; } = null!;
 
@@ -27,13 +23,17 @@ namespace App.Domin.Core._02_Users.Entities
             
         //}
 
-        public virtual ICollection<UserToken> UserTokens { get; set; }
+        //public virtual ICollection<UserToken> UserTokens { get; set; }
 
-        public virtual ICollection<UserRole> Roles { get; set; }
+        //public virtual ICollection<UserRole> Roles { get; set; }
 
-        public virtual ICollection<UserLogin> Logins { get; set; }
+        //public virtual ICollection<UserLogin> Logins { get; set; }
 
-        public virtual ICollection<UserClaim> Claims { get; set; }
+        //public virtual ICollection<UserClaim> Claims { get; set; }
 
+        public string GetFullName()
+        {
+            return Firstname + " " + Lastname;
+        }
     }
 }

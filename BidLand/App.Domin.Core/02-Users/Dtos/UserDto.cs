@@ -1,4 +1,5 @@
 ﻿using App.Domin.Core._02_Users.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,6 @@ namespace App.Domin.Core._02_Users.Dtos
         public string Firstname { get; set; } = string.Empty;  
         public string Lastname { get; set; } = string.Empty;  
         public string FullName { get; set; } = string.Empty;  
-        public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+        public virtual ICollection<IdentityUserRole<int>> UserRoles { get; set; } = new List<IdentityUserRole<int>>();
     }
 }

@@ -12,6 +12,7 @@ namespace App.Domin.Core._02_Users.Entities;
 
 public partial class Buyer
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     //public string? FullName { get; set; }

@@ -47,7 +47,7 @@ namespace BidLand.Web.Areas.Admin.Controllers
 		public async Task<IActionResult> Create(ProductRepoDto model,CancellationToken cancellationToken	)
 		{
 			//if(ModelState.IsValid)
-			 await _adminPanelAppService.UpdateProduct(model, cancellationToken);
+			 await _adminPanelAppService.CreateProduct(model, cancellationToken);
 			return RedirectToAction("Index");
 		}
 

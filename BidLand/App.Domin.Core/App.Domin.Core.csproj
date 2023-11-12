@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="02-Users\Entities\Role.cs" />
+    <Compile Remove="02-Users\Entities\RoleClaim.cs" />
+    <Compile Remove="02-Users\Entities\UserClaim.cs" />
+    <Compile Remove="02-Users\Entities\UserLogin.cs" />
+    <Compile Remove="02-Users\Entities\UserRole.cs" />
+    <Compile Remove="02-Users\Entities\UserToken.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="01-Purchause\Contracts\AppServices\" />
     <Folder Include="03-Extras\Contracts\AppServices\" />
   </ItemGroup>

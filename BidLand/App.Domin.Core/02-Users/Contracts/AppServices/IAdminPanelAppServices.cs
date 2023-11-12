@@ -15,6 +15,7 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
         Task<bool> ConfirmCommentByIdAsync(int commentId, bool isConfirm, CancellationToken cancellationToken);
         Task<List<CommentRepoDto>> GetPendingCommentsAsync(CancellationToken cancellationToken);
 		Task<List<CategoryRepoDto>> GetChildCategories(CancellationToken cancellationToken);
+		Task CreateProduct(ProductRepoDto model, CancellationToken cancellationToken);
 		Task<bool> UpdateProduct(ProductRepoDto model, CancellationToken cancellationToken);
         Task<ProductRepoDto> GetProductById(int id, CancellationToken cancellationToken);
         Task<bool> DeleteProduct(int id, CancellationToken cancellationToken);

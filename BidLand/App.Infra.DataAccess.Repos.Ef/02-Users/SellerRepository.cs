@@ -93,7 +93,7 @@ public class SellerRepository : ISellerRepository
 		{
 			var booth = new Booth()
 			{
-				Name = updatesellerDto.FullName,
+				Name = updatesellerDto.User.GetFullName(),
 				SellerId = updatesellerDto.Id
 			};
 
@@ -101,7 +101,7 @@ public class SellerRepository : ISellerRepository
 		}
 		else
 		{
-			seller.Booth.Name = updatesellerDto.FullName;
+			seller.Booth.Name = updatesellerDto.User.GetFullName();
 		}
 
 
@@ -192,13 +192,14 @@ public class SellerRepository : ISellerRepository
 			IsActive = seller.IsActive,
 			IsBan = seller.IsBan,
 			IsDelete = seller.IsDelete,
-			SalesAmount = seller.SalesAmount
+			SalesAmount = seller.SalesAmount,
+			UserId = seller.UserId
 		};
 	}
 
 	private void Equaler(SellerRepoDto sellerRepoDto, ref Seller seller)
 	{
-		seller.Id = sellerRepoDto.Id;
+		//seller.Id = sellerRepoDto.Id;
 		//seller.FullName = sellerRepoDto.FullName;
 		seller.CommissionPercentage = sellerRepoDto.CommissionPercentage;
 		seller.CommissionsAmount = sellerRepoDto.CommissionsAmount;
@@ -207,5 +208,6 @@ public class SellerRepository : ISellerRepository
 		seller.IsBan = sellerRepoDto.IsBan;
 		seller.IsDelete = sellerRepoDto.IsDelete;
 		seller.SalesAmount = sellerRepoDto.SalesAmount;
+		seller.UserId = sellerRepoDto.UserId;
 	}
 }

@@ -75,6 +75,7 @@ namespace App.Domin.AppServices.Users
 
         public async Task<bool> UpdateProduct(ProductRepoDto model, CancellationToken cancellationToken)
         {
+			model.InsertionDate = DateTime.Now;
 			return await _productServices.UpdateAsync(model, cancellationToken);
         }
 

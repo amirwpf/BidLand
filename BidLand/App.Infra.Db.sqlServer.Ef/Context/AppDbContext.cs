@@ -6,13 +6,14 @@ using App.Domin.Core._01_Purchause.Entities;
 using App.Domin.Core._02_Users.Entities;
 using App.Domin.Core._03_Extras.Entities;
 using App.Infra.Db.sqlServer.Ef.Configurations;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace App.Infra.Db.sqlServer.Ef.Context;
 
-public partial class AppDbContext : IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
+public partial class AppDbContext : IdentityDbContext<User, IdentityRole<int> ,int>
 {
     public AppDbContext(DbContextOptions options)
         : base(options)
@@ -75,29 +76,38 @@ public partial class AppDbContext : IdentityDbContext<User, Role, int, UserClaim
 
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<UserRole>().HasOne(userRole => userRole.Role)
-                   .WithMany(role => role.Users)
-                   .HasForeignKey(userRole => userRole.RoleId);
+        //modelBuilder.Entity<UserRole>().HasOne(userRole => userRole.Role)
+        //           .WithMany(role => role.Users)
+        //           .HasForeignKey(userRole => userRole.RoleId);
 
-        modelBuilder.Entity<UserRole>().HasOne(userRole => userRole.User)
-               .WithMany(user => user.Roles)
-               .HasForeignKey(userRole => userRole.UserId);
+        //modelBuilder.Entity<UserRole>().HasOne(userRole => userRole.User)
+        //       .WithMany(user => user.Roles)
+        //       .HasForeignKey(userRole => userRole.UserId);
 
 
-        modelBuilder.Entity<RoleClaim>().HasOne(x => x.Role)
-                .WithMany(x => x.Claims)
-                .HasForeignKey(x => x.RoleId);
+        //modelBuilder.Entity<RoleClaim>().HasOne(x => x.Role)
+        //        .WithMany(x => x.Claims)
+        //        .HasForeignKey(x => x.RoleId);
 
-        modelBuilder.Entity<UserClaim>().HasOne(x => x.User)
-                .WithMany(x => x.Claims)
-                .HasForeignKey(x => x.UserId);
+        //modelBuilder.Entity<UserClaim>().HasOne(x => x.User)
+        //        .WithMany(x => x.Claims)
+        //        .HasForeignKey(x => x.UserId);
 
-        modelBuilder.Entity<UserLogin>().HasOne(x => x.User)
-                .WithMany(x => x.Logins)
-                .HasForeignKey(x => x.UserId);
-        modelBuilder.Entity<UserToken>().HasOne(x => x.User)
-        .WithMany(x => x.UserTokens)
-        .HasForeignKey(x => x.UserId);
+        //modelBuilder.Entity<UserLogin>().HasOne(x => x.User)
+        //        .WithMany(x => x.Logins)
+        //        .HasForeignKey(x => x.UserId);
+        //modelBuilder.Entity<UserToken>().HasOne(x => x.User)
+        //.WithMany(x => x.UserTokens)
+        //.HasForeignKey(x => x.UserId);
+
+        modelBuilder.Entity<Buyer>(b => { b.HasKey(p => p.Id);
+            b.Property(e => e.Id).ValueGeneratedOnAdd();
+        });
+        modelBuilder.Entity<Seller>(b => {
+            b.HasKey(p => p.Id);
+            b.Property(e => e.Id).ValueGeneratedOnAdd();
+        });
+
     }
 
 

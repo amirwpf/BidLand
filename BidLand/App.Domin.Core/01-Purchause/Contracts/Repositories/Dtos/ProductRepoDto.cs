@@ -2,6 +2,7 @@
 
 using App.Domin.Core._01_Purchause.Entities;
 using App.Domin.Core._03_Extras.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 
@@ -34,4 +35,6 @@ public class ProductRepoDto
 	public virtual ICollection<Stock>? Stocks { get; set; } 
 
 	public virtual Category? Category { get; set; }
+
+	public virtual ICollection<IFormFile> ImageFile { get; set; }
 }

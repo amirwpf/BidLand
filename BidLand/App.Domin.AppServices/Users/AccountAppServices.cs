@@ -11,6 +11,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
+using App.Domin.Core._02_Users.ViewModels;
+using App.Domin.Core._02_Users.Contracts.Services;
+using App.Domin.Core._02_Users.Enums;
+using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 
 namespace App.Domin.AppServices.Users
 {
@@ -18,17 +22,23 @@ namespace App.Domin.AppServices.Users
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly RoleManager<Role> _roleManager;
+        private readonly RoleManager<IdentityRole<int>> _roleManager;
+        private readonly IBuyerService _buyerService;
+        private readonly ISellerService _sellerService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         public AccountAppServices(UserManager<User> userManager,
-            RoleManager<Role> roleManager,
+            RoleManager<IdentityRole<int>> roleManager,
             SignInManager<User> signInManager,
-            IHttpContextAccessor httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor,
+            ISellerService sellerService,
+            IBuyerService buyerService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
             _httpContextAccessor = httpContextAccessor;
+            _sellerService = sellerService;
+            _buyerService = buyerService;
         }
 
         public async Task AssignUserToRole(string userEmail, string roleName)
@@ -48,25 +58,47 @@ namespace App.Domin.AppServices.Users
             var role = await _roleManager.FindByNameAsync(roleName);
             if (role == null)
             {
-                role = new Role(roleName);
+                role = new IdentityRole<int>(roleName);
                 await _roleManager.CreateAsync(role);
                 return "نقش جدید ایجاد شد";
             }
             return "نقش موجود است";
         }
 
-        public async Task<IdentityResult> CreateUserAsync(RegisterDto user)
+        public async Task<IdentityResult> CreateUserAsync(RegisterViewModel user, CancellationToken token)
         {
-            return await _userManager.CreateAsync(
+
+            var registerd = await _userManager.CreateAsync(
                 new User() { 
                 Firstname = user.Firstname,
                 Lastname = user.Lastname,
-                Email = user.Email,
-                UserName = user.Email,
+                Email = user.Username,
+                UserName = user.Username,
                 PhoneNumber = user.PhoneNumber
 
                 }, user.Password);
 
+            if (registerd.Succeeded) {
+                var _user = await _userManager.FindByEmailAsync(user.Username);
+                if (user.BuyerOrSeller == BuyerSellerTypes.Buyer) {
+
+                  await  _buyerService.CreateAsync(new BuyerRepoDto() {
+                   UserId = _user.Id,
+                    InsertionDate = DateTime.Now
+
+                  },token);
+                }
+                else if(user.BuyerOrSeller == BuyerSellerTypes.Seller)
+                {
+                    await _sellerService.CreateAsync(new SellerRepoDto()
+                    {
+                        UserId = _user.Id,
+                        InsertionDate = DateTime.Now
+
+                    }, token);
+                }
+            }
+            return registerd;
         }
 
         public async Task<string> DeleteUserAsync(string email)
@@ -86,20 +118,10 @@ namespace App.Domin.AppServices.Users
             return "کاربر مورد نظر یافت نشد!";
         }
 
-        public async Task<UserDto> FindUserByEmailAsync(string email)
+        public async Task<User> FindUserByEmailAsync(string email)
         {
-            var user = await _userManager.FindByEmailAsync(email);
-            return new UserDto()
-            {
-                Id = user.Id,
-                UserName = user.UserName,
-                Firstname = user.Firstname,
-                Lastname = user.Lastname,
-                Email = user.Email,
-                FullName = user.Firstname + " " + user.Lastname,
-                UserRoles = user.Roles
-
-            };
+            return await _userManager.FindByEmailAsync(email);
+          
         }
 
         public async Task<UserDto> FindUserByIdAsync(int id)
@@ -114,7 +136,7 @@ namespace App.Domin.AppServices.Users
                 Lastname = user.Lastname,
                 Email = user.Email,
                 FullName = user.Firstname + " " + user.Lastname,
-                UserRoles = user.Roles
+                //UserRoles = user.Roles
 
             };
 
@@ -131,7 +153,7 @@ namespace App.Domin.AppServices.Users
                 Lastname = user.Lastname,
                 Email = user.Email,
                 FullName = user.Firstname + " " + user.Lastname,
-                UserRoles = user.Roles
+              //  UserRoles = user.Roles
 
             };
         }
@@ -147,11 +169,11 @@ namespace App.Domin.AppServices.Users
                 Lastname = x.Lastname,
                 FullName = x.Firstname + " " + x.Lastname,
                 Email = x.Email,
-                UserRoles = x.Roles
+                //UserRoles = x.Roles
             }).ToList();
         }
 
-        public async Task<List<Role>> GetAllRoles()
+        public async Task<List<IdentityRole<int>>> GetAllRoles()
         {
             var roles = await _roleManager.Roles.ToListAsync();
             return roles;

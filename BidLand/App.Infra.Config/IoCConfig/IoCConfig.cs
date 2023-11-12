@@ -12,6 +12,10 @@ using App.Domin.Core._03_Extras.Contracts.Services;
 using App.Domin.Core._03_Extras.Contracts.Repositories.RepoSeprationContracts.sqlServer;
 using App.Infra.DataAccess.Repos.Ef._03_Extras;
 using App.Domin.Services._03_Extras;
+using App.Domin.Core._02_Users.Contracts.Repositories.RepoSeprationContracts.sqlServer;
+using App.Domin.Core._02_Users.Contracts.Services;
+using App.Domin.Services._02_Users;
+using App.Infra.DataAccess.Repos.Ef._02_Users;
 
 namespace App.Infra.Config.IoCConfig
 {
@@ -24,7 +28,7 @@ namespace App.Infra.Config.IoCConfig
 			// --------------------->Reposritory<-------------------------------------
 			//services.AddScoped<IAuctionRepository, AuctionRepository>();
 			//services.AddScoped<IBidRepository, BidRepository>();
-			//services.AddScoped<IBoothRepository, BoothRepository>();
+			services.AddScoped<IBoothRepository, BoothRepository>();
 			//services.AddScoped<ICartRepository, CartRepository>();
 			services.AddScoped<ICategoryRepository, CategoryRepository>();
 			services.AddScoped<IProductRepository, ProductRepository>();
@@ -34,7 +38,7 @@ namespace App.Infra.Config.IoCConfig
 			//// --------------------->Service<-------------------------------------
 			//services.AddScoped<IAuctionService, AuctionService>();
 			//services.AddScoped<IBidService, BidService>();
-			//services.AddScoped<IBoothService, BoothService>();
+			services.AddScoped<IBoothService, BoothService>();
 			//services.AddScoped<ICartService, CartService>();
 			services.AddScoped<ICategoryService, CategoryService>();
 			services.AddScoped<IProductService, ProductService>();
@@ -45,12 +49,12 @@ namespace App.Infra.Config.IoCConfig
 
 			//#region Users
 			//// --------------------->Repository<---------------------------------
-			//services.AddScoped<ISellerRepository, SellerRepository>();
-			//services.AddScoped<IBuyerRepository, BuyerRepository>();
+			services.AddScoped<ISellerRepository, SellerRepository>();
+			services.AddScoped<IBuyerRepository, BuyerRepository>();
 
 			//// --------------------->Service<---------------------------------
-			//services.AddScoped<ISellerService, SellerService>();
-			//services.AddScoped<IBuyerService, BuyerService>();
+			services.AddScoped<ISellerService, SellerService>();
+			services.AddScoped<IBuyerService, BuyerService>();
 
 			//#endregion
 
@@ -70,6 +74,7 @@ namespace App.Infra.Config.IoCConfig
 
 			//// --------------------------- App Services -------------------------------
 			services.AddScoped<IAdminPanelAppServices, AdminPanelAppServices>();
+			services.AddScoped<IAccountAppServices, AccountAppServices>();
 			
 
 			#endregion

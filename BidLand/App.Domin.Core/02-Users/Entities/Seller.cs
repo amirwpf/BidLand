@@ -11,6 +11,7 @@ namespace App.Domin.Core._02_Users.Entities;
 
 public partial class Seller
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     public int UserId{ get; set; }

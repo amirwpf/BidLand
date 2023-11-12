@@ -125,13 +125,14 @@ public class BuyerRepository : IBuyerRepository
 			Addresses = buyer.Addresses,
 			Bids = buyer.Bids,
 			Carts = buyer.Carts,
-			Comments = buyer.Comments
+			Comments = buyer.Comments,
+			UserId = buyer.UserId
 		};
 	}
 
 	private void Equaler(BuyerRepoDto buyer, ref Buyer b)
 	{
-		b.Id = buyer.Id;
+		//b.Id = buyer.Id;
 		//b.FullName = buyer.FullName;
 		b.Credit = buyer.Credit;
 		b.IsBan = buyer.IsBan;
@@ -141,5 +142,6 @@ public class BuyerRepository : IBuyerRepository
 		b.Bids = buyer.Bids;
 		b.Carts = buyer.Carts;
 		b.Comments = buyer.Comments;
+		b.UserId = buyer.UserId;
 	}
 }
