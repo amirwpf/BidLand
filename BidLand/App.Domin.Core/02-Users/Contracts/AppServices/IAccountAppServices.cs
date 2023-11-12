@@ -19,7 +19,7 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
         Task<string> UpdateUserAsync(UserDto userDto);
         Task<UserDto> FindUserByIdAsync(int id);
         Task<string> DeleteUserAsync(string email);
-        Task<List<IdentityRole<int>>> GetAllRoles();
+        Task<List<Role>> GetAllRoles();
         Task<List<UserDto>> FindUsersByRole(string roleName);
         Task<IdentityResult> CreateUserAsync(RegisterViewModel model, CancellationToken token);
         Task<string> CreateRoleIfNotExists(string roleName);

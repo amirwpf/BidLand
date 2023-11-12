@@ -85,5 +85,20 @@ namespace BidLand.Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        //public async Task<IActionResult> UpdateCurrentUser() {
+        //    var user = await _accountAppServices.FindUserByEmailAsync(User.Identity.Name);
+        //    if (user != null) {
+        //        var result = await _accountAppServices.UpdateUserAsync(new App.Domin.Core._02_Users.Dtos.UserDto() { 
+        //            Id = user.Id,
+        //            UserName = user.UserName,
+        //            Firstname = user.Firstname + " 1",
+        //            Lastname = user.Lastname + " 1",
+        //            Email = user.Email,
+
+        //        });
+        //    }
+        //    return View();
+        //}
+
     }
 }

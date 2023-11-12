@@ -32,7 +32,7 @@ namespace BidLand.Web.Areas.Identity.Controllers
 
             if (result.Succeeded)
             {
-                return Redirect("Identity/Login");
+                return Redirect("/Identity/Login");
             }
              
             }

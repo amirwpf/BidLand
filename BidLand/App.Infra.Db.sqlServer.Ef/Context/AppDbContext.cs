@@ -6,6 +6,7 @@ using App.Domin.Core._01_Purchause.Entities;
 using App.Domin.Core._02_Users.Entities;
 using App.Domin.Core._03_Extras.Entities;
 using App.Infra.Db.sqlServer.Ef.Configurations;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,9 +14,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace App.Infra.Db.sqlServer.Ef.Context;
 
-public partial class AppDbContext : IdentityDbContext<User, IdentityRole<int> ,int>
+public partial class AppDbContext : IdentityDbContext<User, Role, int>
 {
-    public AppDbContext(DbContextOptions options)
+    public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
     }
@@ -76,6 +77,11 @@ public partial class AppDbContext : IdentityDbContext<User, IdentityRole<int> ,i
 
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<Role>().HasData(
+              new Role {Id = 1, Name = "Admin" ,NormalizedName = "ADMIN"},
+                    new Role {Id = 2, Name = "Seller" , NormalizedName = "SELLER" },
+                    new Role {Id = 3, Name = "Buyer" , NormalizedName = "BUYER"}
+            );
         //modelBuilder.Entity<UserRole>().HasOne(userRole => userRole.Role)
         //           .WithMany(role => role.Users)
         //           .HasForeignKey(userRole => userRole.RoleId);
@@ -100,7 +106,7 @@ public partial class AppDbContext : IdentityDbContext<User, IdentityRole<int> ,i
         //.WithMany(x => x.UserTokens)
         //.HasForeignKey(x => x.UserId);
 
-      
+
 
     }
 

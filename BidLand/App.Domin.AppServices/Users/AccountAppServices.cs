@@ -15,6 +15,8 @@ using App.Domin.Core._02_Users.ViewModels;
 using App.Domin.Core._02_Users.Contracts.Services;
 using App.Domin.Core._02_Users.Enums;
 using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
+using System.Security.Claims;
+using System.Diagnostics.CodeAnalysis;
 
 namespace App.Domin.AppServices.Users
 {
@@ -22,12 +24,12 @@ namespace App.Domin.AppServices.Users
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly RoleManager<IdentityRole<int>> _roleManager;
+        private readonly RoleManager<Role> _roleManager;
         private readonly IBuyerService _buyerService;
         private readonly ISellerService _sellerService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         public AccountAppServices(UserManager<User> userManager,
-            RoleManager<IdentityRole<int>> roleManager,
+            RoleManager<Role> roleManager,
             SignInManager<User> signInManager,
             IHttpContextAccessor httpContextAccessor,
             ISellerService sellerService,
@@ -58,7 +60,8 @@ namespace App.Domin.AppServices.Users
             var role = await _roleManager.FindByNameAsync(roleName);
             if (role == null)
             {
-                role = new IdentityRole<int>(roleName);
+                role = new Role();
+                role.Name = roleName;   
                 await _roleManager.CreateAsync(role);
                 return "نقش جدید ایجاد شد";
             }
@@ -91,6 +94,7 @@ namespace App.Domin.AppServices.Users
                         InsertionDate = DateTime.Now
 
                     }, token);
+                    await _userManager.AddToRoleAsync(_user, nameof(BuyerSellerTypes.Buyer));
                 }
                 else if (user.BuyerOrSeller == BuyerSellerTypes.Seller)
                 {
@@ -100,6 +104,8 @@ namespace App.Domin.AppServices.Users
                         InsertionDate = DateTime.Now
 
                     }, token);
+                    await _userManager.AddToRoleAsync(_user, "Seller");
+
                 }
             }
             return registerd;
@@ -201,7 +207,7 @@ namespace App.Domin.AppServices.Users
             }).ToList();
         }
 
-        public async Task<List<IdentityRole<int>>> GetAllRoles()
+        public async Task<List<Role>> GetAllRoles()
         {
             var roles = await _roleManager.Roles.ToListAsync();
             return roles;
@@ -242,13 +248,25 @@ namespace App.Domin.AppServices.Users
             return await _sellerService.GetAllAsync(cancellationToken);
         }
 
-        public async Task<SignInResult> SignInUserAsync(User user, string password, bool isPersistent, bool lockoutOnFailure)
+        public async Task<SignInResult> SignInUserAsync(User _user, string password, bool isPersistent, bool lockoutOnFailure)
         {
-            var result = await _signInManager.PasswordSignInAsync(user,
-               password, isPersistent, lockoutOnFailure);
-            return result;
-        }
+            var user = await _userManager.FindByNameAsync(_user.UserName);
+            if (user != null)
+            {
+                var result = await _userManager.CheckPasswordAsync
+                    (user, password);
 
+                if (result)
+                {
+                    var claim = new Claim(ClaimTypes.Name, _user.UserName);
+                    await _userManager.AddClaimAsync(user, claim);
+
+                }
+            }
+            return await _signInManager.PasswordSignInAsync(user, password, true, true);
+
+        }
+       
         public async Task SignOutUserAsync()
         {
             await _signInManager.SignOutAsync();
@@ -256,6 +274,19 @@ namespace App.Domin.AppServices.Users
 
         public async Task UpdateBuyerAsync(BuyerRepoDto model, CancellationToken cancellationToken)
         {
+            var user = await _userManager.FindByIdAsync(model.UserId.ToString());
+            if (user != null)
+            {
+                var str = await UpdateUserAsync(new UserDto()
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Firstname = model.User.Firstname,
+                    Lastname = model.User.Lastname,
+                    Email = user.Email,
+                });
+            }
+            model.InsertionDate = DateTime.Now;
             await _buyerService.UpdateAsync(model, cancellationToken);
         }
 
@@ -283,14 +314,18 @@ namespace App.Domin.AppServices.Users
         public async Task UpdateSellerAsync(SellerRepoDto model, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByIdAsync(model.UserId.ToString());
-            //if (user != null)
-            //{
-            //    user.Firstname = model.User.Firstname;
-            //    user.Lastname = model.User.Lastname;
-            //    await _userManager.UpdateSecurityStampAsync(user);
-            //    await _userManager.UpdateAsync(model.User);
-
-            //}
+            if (user != null)
+            {
+                var str = await UpdateUserAsync(new UserDto()
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Firstname = model.User.Firstname ,
+                    Lastname = model.User.Lastname,
+                    Email = user.Email,
+                });
+            }
+            model.InsertionDate = DateTime.Now;
             await _sellerService.UpdateAsync(model, cancellationToken);
         }
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infra.Db.sqlServer.Ef.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231112091655_InitDataBase")]
-    partial class InitDataBase
+    [Migration("20231112142802_InitDB")]
+    partial class InitDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -331,10 +331,10 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<DateTime?>("InsertionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("IsBan")
+                    b.Property<bool>("IsBan")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsDelete")
+                    b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
                     b.Property<int?>("TotalPurchaseAmount")
@@ -679,10 +679,12 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -718,10 +720,12 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -830,7 +834,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
             modelBuilder.Entity("App.Domin.Core._02_Users.Entities.Buyer", b =>
                 {
                     b.HasOne("App.Domin.Core._02_Users.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Buyers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -841,7 +845,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
             modelBuilder.Entity("App.Domin.Core._02_Users.Entities.Seller", b =>
                 {
                     b.HasOne("App.Domin.Core._02_Users.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Sellers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1002,6 +1006,13 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Navigation("Booth");
 
                     b.Navigation("Medals");
+                });
+
+            modelBuilder.Entity("App.Domin.Core._02_Users.Entities.User", b =>
+                {
+                    b.Navigation("Buyers");
+
+                    b.Navigation("Sellers");
                 });
 #pragma warning restore 612, 618
         }

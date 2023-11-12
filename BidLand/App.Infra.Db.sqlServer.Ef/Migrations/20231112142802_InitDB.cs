@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace App.Infra.Db.sqlServer.Ef.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDataBase : Migration
+    public partial class InitDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -135,8 +135,8 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -180,8 +180,8 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -204,8 +204,8 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Credit = table.Column<int>(type: "int", nullable: true),
                     TotalPurchaseAmount = table.Column<int>(type: "int", nullable: true),
-                    IsBan = table.Column<bool>(type: "bit", nullable: true),
-                    IsDelete = table.Column<bool>(type: "bit", nullable: true),
+                    IsBan = table.Column<bool>(type: "bit", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
                     InsertionDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>

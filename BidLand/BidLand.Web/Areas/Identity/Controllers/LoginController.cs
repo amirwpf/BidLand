@@ -37,13 +37,7 @@ namespace BidLand.Web.Areas.Identity.Controllers
             }
 
 
-            var result = await _accountAppServices.SignInUserAsync(user, model.Password, model.IsPersistent, true);
-
-            if (result.Succeeded)
-            {
-                var isLoggedIn = User.Identity.IsAuthenticated;
-                return Redirect(model.ReturnUrl);
-            }
+            var result = await _accountAppServices.SignInUserAsync (user, model.Password, true, true);
 
             return View(model);
 
