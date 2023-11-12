@@ -30,3 +30,15 @@ D:\Sources\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Fram
 D:\Sources\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\refint\BidLand.Framework.dll
 D:\Sources\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.pdb
 D:\Sources\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\ref\BidLand.Framework.dll
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\bin\Debug\net7.0\BidLand.Framework.deps.json
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\bin\Debug\net7.0\BidLand.Framework.dll
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\bin\Debug\net7.0\BidLand.Framework.pdb
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.csproj.AssemblyReference.cache
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.AssemblyInfoInputs.cache
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.AssemblyInfo.cs
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.csproj.CoreCompileInputs.cache
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.dll
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\refint\BidLand.Framework.dll
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.pdb
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Framework\obj\Debug\net7.0\ref\BidLand.Framework.dll

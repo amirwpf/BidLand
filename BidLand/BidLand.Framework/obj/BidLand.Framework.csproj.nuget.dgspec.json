@@ -1,30 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Sources\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj": {}
+    "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj": {}
   },
   "projects": {
-    "D:\\Sources\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj": {
+    "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Sources\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj",
+        "projectUniqueName": "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj",
         "projectName": "BidLand.Framework",
-        "projectPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj",
-        "packagesPath": "C:\\Users\\Dev-03\\.nuget\\packages\\",
-        "outputPath": "D:\\Sources\\Repos\\BidLand\\BidLand\\BidLand.Framework\\obj\\",
+        "projectPath": "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj",
+        "packagesPath": "C:\\Users\\khalafi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Framework\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Dev-03\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\khalafi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Users\\Dev-03\\.nuget\\packages\\telerik.ui.for.aspnet.core": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\khalafi\\.nuget\\packages\\Telerik.UI.for.AspNet.Core\\2021.3.1109": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
         }
       }
     }

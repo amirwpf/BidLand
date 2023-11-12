@@ -42,3 +42,15 @@ D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.
 D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\refint\App.Domin.Core.dll
 D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.pdb
 D:\Sources\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\ref\App.Domin.Core.dll
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\bin\Debug\net7.0\App.Domin.Core.deps.json
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\bin\Debug\net7.0\App.Domin.Core.dll
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\bin\Debug\net7.0\App.Domin.Core.pdb
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.csproj.AssemblyReference.cache
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.AssemblyInfoInputs.cache
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.AssemblyInfo.cs
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.csproj.CoreCompileInputs.cache
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.dll
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\refint\App.Domin.Core.dll
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.pdb
+C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\ref\App.Domin.Core.dll

@@ -44,7 +44,7 @@ builder.Services.AddIdentity<User , IdentityRole<int>>
 #region IOC
 // Using a custom DI container.
 builder.Services.AddHttpContextAccessor();
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+//builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Services.AddScopeSqlServerTables(builder.Configuration);
 
