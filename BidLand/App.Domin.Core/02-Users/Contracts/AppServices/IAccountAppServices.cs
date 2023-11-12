@@ -34,5 +34,7 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
         Task UpdateBuyerAsync(BuyerRepoDto model, CancellationToken token);
         Task<SellerRepoDto> GetSellerByIdAsync(int id, CancellationToken token);
         Task UpdateSellerAsync(SellerRepoDto model, CancellationToken token);
+        Task<bool> DeleteBuyerUserAsync(int id, CancellationToken cancellationToken);
+        Task<bool> DeleteSellerUserAsync(int id, CancellationToken cancellationToken);
     }
 }

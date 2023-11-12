@@ -22,12 +22,12 @@ public class BuyerRepoDto
 
 	public DateTime? InsertionDate { get; set; }
 
-	public virtual ICollection<Address> Addresses { get; set; } 
+	public virtual ICollection<Address>? Addresses { get; set; } 
 
-	public virtual ICollection<Bid> Bids { get; set; }
+	public virtual ICollection<Bid>? Bids { get; set; }
 
-	public virtual ICollection<Cart> Carts { get; set; } 
+	public virtual ICollection<Cart>? Carts { get; set; } 
 
-	public virtual ICollection<Comment> Comments { get; set; } 
+	public virtual ICollection<Comment>? Comments { get; set; } 
 	public User User { get; set; }
 }

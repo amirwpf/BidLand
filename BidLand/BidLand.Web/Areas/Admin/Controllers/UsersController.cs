@@ -1,4 +1,5 @@
-﻿using App.Domin.Core._02_Users.Contracts.AppServices;
+﻿using App.Domin.AppServices.Users;
+using App.Domin.Core._02_Users.Contracts.AppServices;
 using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ namespace BidLand.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> EditBuyer(BuyerRepoDto model, CancellationToken token)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 await _accountAppServices.UpdateBuyerAsync(model, token);
                 return View(model);
@@ -50,12 +51,39 @@ namespace BidLand.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> EditSeller(SellerRepoDto model, CancellationToken token)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 await _accountAppServices.UpdateSellerAsync(model, token);
                 return View(model);
             }
             return View(model);
         }
+
+        public async Task<IActionResult> DeleteBuyer(int id, CancellationToken token)
+        {
+            return View(await _accountAppServices.GetBuyerByIdAsync(id, token));
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> BuyerDeleteConfirmed(int id, CancellationToken cancellationToken)
+        {
+            //if(ModelState.IsValid)
+            var result = await _accountAppServices.DeleteBuyerUserAsync(id, cancellationToken);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DeleteSeller(int id, CancellationToken token)
+        {
+            return View(await _accountAppServices.GetSellerByIdAsync(id, token));
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> SellerDeleteConfirmed(int id, CancellationToken cancellationToken)
+        {
+            //if(ModelState.IsValid)
+         var result =    await _accountAppServices.DeleteSellerUserAsync(id, cancellationToken);
+            return RedirectToAction("Index");
+        }
+
     }
 }

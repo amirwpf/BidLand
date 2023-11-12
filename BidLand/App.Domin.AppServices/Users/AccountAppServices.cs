@@ -105,6 +105,30 @@ namespace App.Domin.AppServices.Users
             return registerd;
         }
 
+        public async Task<bool> DeleteBuyerUserAsync(int id, CancellationToken cancellationToken)
+        {
+            BuyerRepoDto buyerRepoDto = await _buyerService.GetByIdAsync(id, cancellationToken);
+            if (buyerRepoDto != null)
+            {
+                await _buyerService.DeleteAsync(buyerRepoDto, cancellationToken);
+                return true;
+            }
+            return false;
+
+        }
+
+        public async Task<bool> DeleteSellerUserAsync(int id, CancellationToken cancellationToken)
+        {
+            SellerRepoDto seller = await _sellerService.GetByIdAsync(id, cancellationToken);
+            if (seller != null)
+            {
+                await _sellerService.DeleteAsync(seller, cancellationToken);
+                return true;
+            }
+            return false;
+
+        }
+
         public async Task<string> DeleteUserAsync(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -206,7 +230,7 @@ namespace App.Domin.AppServices.Users
 
         public async Task<SellerRepoDto> GetSellerByIdAsync(int id, CancellationToken token)
         {
-            return await    _sellerService.GetByIdAsync(id, token);
+            return await _sellerService.GetByIdAsync(id, token);
         }
 
         public async Task<List<SellerRepoDto>> GetSellerDeletedUsersAsync(CancellationToken cancellationToken)
@@ -232,7 +256,7 @@ namespace App.Domin.AppServices.Users
 
         public async Task UpdateBuyerAsync(BuyerRepoDto model, CancellationToken cancellationToken)
         {
-           await _buyerService.UpdateAsync(model, cancellationToken);
+            await _buyerService.UpdateAsync(model, cancellationToken);
         }
 
         public async Task<string> UpdatePasswordAsync(int userId, string currentPassword, string newPassword)
@@ -258,7 +282,16 @@ namespace App.Domin.AppServices.Users
 
         public async Task UpdateSellerAsync(SellerRepoDto model, CancellationToken cancellationToken)
         {
-        await _sellerService.UpdateAsync(model, cancellationToken);
+            var user = await _userManager.FindByIdAsync(model.UserId.ToString());
+            //if (user != null)
+            //{
+            //    user.Firstname = model.User.Firstname;
+            //    user.Lastname = model.User.Lastname;
+            //    await _userManager.UpdateSecurityStampAsync(user);
+            //    await _userManager.UpdateAsync(model.User);
+
+            //}
+            await _sellerService.UpdateAsync(model, cancellationToken);
         }
 
         public async Task<string> UpdateUserAsync(UserDto userDto)

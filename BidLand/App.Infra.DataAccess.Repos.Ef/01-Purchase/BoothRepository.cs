@@ -24,17 +24,36 @@ public class BoothRepository : IBoothRepository
 	public async Task<BoothRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
 		var booth = await _dbSet.AsNoTracking()
-			.Include(x => x.Seller)
+			.Include(x => x.Seller).ThenInclude(x=>x.User)
 			.Include(x => x.Stocks)
-			.Select(b => ConvertToBoothRepoDto(b)).FirstOrDefaultAsync(x => x.Id == id,cancellationToken);
+			.Select(booth => new  BoothRepoDto
+            {
+                Id = booth.Id,
+                Name = booth.Name,
+                Description = booth.Description,
+                Seller = booth.Seller,
+                SellerId = booth.SellerId,
+                Stocks = booth.Stocks,
+                IsDelete = booth.IsDelete,
+                InsertionDate = booth.InsertionDate
+            }).FirstOrDefaultAsync(x => x.Id == id,cancellationToken);
 		if(booth == null)
 			return null;
 		return booth;
 	}
 	public async Task<List<BoothRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
-		var booth = await _dbSet.AsNoTracking().Include(x => x.Seller).Include(x=>x.Stocks).ToListAsync(cancellationToken);
-		var result = booth.Select(b => ConvertToBoothRepoDto(b)).ToList();
+		var booth = await _dbSet.AsNoTracking().Include(x => x.Seller).ThenInclude(x=>x.User).Include(x=>x.Stocks).ToListAsync(cancellationToken);
+		var result = booth.Select(booth => new BoothRepoDto {
+            Id = booth.Id,
+            Name = booth.Name,
+            Description = booth.Description,
+            Seller = booth.Seller,
+            SellerId = booth.SellerId,
+            Stocks = booth.Stocks,
+            IsDelete = booth.IsDelete,
+            InsertionDate = booth.InsertionDate
+        }).ToList();
 		return result;
 	}
 	public async Task<List<BoothRepoDto>> GetByCategoryIdAsync(int categoryId, CancellationToken cancellationToken)

@@ -21,5 +21,8 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
         Task<bool> DeleteProduct(int id, CancellationToken cancellationToken);
         Task<List<ProductRepoDto>> GetAllConfirmedProductsAsync(CancellationToken cancellationToken);
         Task<List<ProductRepoDto>> GetAllPendingProductsAsync(CancellationToken cancellationToken);
+        Task<List<BoothRepoDto>> GetAllBooths(CancellationToken token);
+        Task<BoothRepoDto> GetBoothsById(int id, CancellationToken token);
+        Task<BoothRepoDto> UpdateBoothAsync(BoothRepoDto model, CancellationToken token);
     }
 }

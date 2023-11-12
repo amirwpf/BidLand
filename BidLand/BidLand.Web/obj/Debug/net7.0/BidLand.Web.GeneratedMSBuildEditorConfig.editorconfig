@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\khalafi\Source\Repos\BidLand\BidLand\BidLand.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/khalafi/Source/Repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Booths/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQm9vdGhzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/khalafi/Source/Repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Booths/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQm9vdGhzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/khalafi/Source/Repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Comments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29tbWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -50,6 +58,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/khalafi/Source/Repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/khalafi/Source/Repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Users/EditBuyer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlcnNcRWRpdEJ1eWVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/khalafi/Source/Repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Users/EditSeller.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlcnNcRWRpdFNlbGxlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/khalafi/Source/Repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Users/Index.cshtml]

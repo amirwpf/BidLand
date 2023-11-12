@@ -244,8 +244,7 @@ public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken canc
 
 	private void Equaler(SellerRepoDto sellerRepoDto, ref Seller seller)
 	{
-		//seller.Id = sellerRepoDto.Id;
-		//seller.FullName = sellerRepoDto.FullName;
+		seller.Id = sellerRepoDto.Id;
 		seller.CommissionPercentage = sellerRepoDto.CommissionPercentage;
 		seller.CommissionsAmount = sellerRepoDto.CommissionsAmount;
 		seller.InsertionDate = sellerRepoDto.InsertionDate;

@@ -9,8 +9,8 @@ namespace App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 public class SellerRepoDto
 {
 	public int Id { get; set; }
-
-	public int UserId { get; set; }
+    
+    public int UserId { get; set; }
 	public bool IsActive { get; set; } = true;
 
 	public bool IsBan { get; set; }
@@ -25,11 +25,11 @@ public class SellerRepoDto
 
 	public DateTime? InsertionDate { get; set; }
 
-	public virtual ICollection<Address> Addresses { get; set; } 
+	public virtual ICollection<Address>? Addresses { get; set; } 
 
 	public virtual Booth? Booth { get; set; }
 
-	public virtual ICollection<Medal> Medals { get; set; } 
+	public virtual ICollection<Medal>? Medals { get; set; } 
 
 	public User User { get; set; }
 

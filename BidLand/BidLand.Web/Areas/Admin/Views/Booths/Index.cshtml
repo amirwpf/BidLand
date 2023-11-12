@@ -1,0 +1,76 @@
+﻿@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos
+@model List<BoothRepoDto>
+@{
+    ViewBag.PageTitle = "فروشگاهها";
+}
+<div class="app-content pt-3 p-md-3 p-lg-4">
+    <div class="container-xl">
+
+        <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+                <h1 class="app-page-title mb-0">@ViewBag.PageTitle</h1> @Html.ActionLink("افزودن" , "Create")
+            </div>
+
+        </div><!--//row-->
+
+
+        <nav id="products-table-tab" class="products-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+            <a class="flex-sm-fill text-sm-center nav-link active" id="product-pending-tab" data-bs-toggle="tab" href="#products-pending" role="tab" aria-controls="products-pending" aria-selected="true">همه</a>
+           
+
+        </nav>
+
+
+        <div class="tab-content" id="products-table-tab-content">
+            <div class="tab-pane fade show active" id="products-pending" role="tabpanel" aria-labelledby="products-all-tab">
+                <div class="app-card app-card-orders-table shadow-sm mb-5">
+                    <div class="app-card-body">
+                        <div class="table-responsive">
+                            <table class="table app-table-hover mb-0 text-left">
+                                <thead>
+                                    <tr>
+
+                                        <th class="cell">شناسه</th>
+                                        <th class="cell">نام فروشگاه</th>
+                                        <th class="cell">نام فروشنده</th>
+                                        <th class="cell">تاریخ ایجاد</th>
+                                        <th class="cell">شرح</th>
+                                        <th class="cell">عملیات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (BoothRepoDto p in Model)
+                                    {
+                                        <tr>
+                                            <td class="cell">@p.Id</td>
+                                            <td class="cell"><span class="truncate">@p.Name</span></td>
+                                            <td class="cell">@p.Seller.User.Firstname @p.Seller.User.Lastname</td>
+                                            <td class="cell"><span>@p.InsertionDate?.ToString("yyyy/MM/dd")</span><span class="note">@p.InsertionDate?.ToString("hh:mm tt")</span></td>
+                                            <td class="cell">@p.Description</td>
+                                           
+                                            <td class="cell">
+
+                                               
+                                               
+                                                <a href="/Admin/Booths/Edit/@p.Id">ویرایش</a>
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div><!--//table-responsive-->
+
+                    </div><!--//app-card-body-->
+                </div><!--//app-card-->
+
+            </div><!--//tab-pane-->
+
+          
+        </div><!--//tab-content-->
+
+
+
+    </div><!--//container-fluid-->
+</div><!--//app-content-->

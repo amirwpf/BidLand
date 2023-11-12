@@ -1,0 +1,49 @@
+﻿@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+
+@model BoothRepoDto
+
+@{
+    ViewBag.PageTitle = "ویرایش فروشگاه";
+}
+
+
+
+<div class="app-content pt-3 p-md-3 p-lg-4">
+    <div class="container-xl">
+        <h1 class="app-page-title"> @ViewBag.PageTitle</h1>
+        <hr class="mb-4">
+        <div class="row g-4 settings-section">
+
+            <div class="col-12 col-md-6">
+                <div class="app-card app-card-settings shadow-sm p-4">
+
+                    <div class="app-card-body">
+                        <form class="settings-form" method="post" asp-action="Edit">
+
+                           @Html.HiddenFor(x=>x.SellerId)
+                            <div class="mb-3">
+                                <label asp-for="Name" class="form-label">نام </label>
+                                <input type="text" class="form-control" asp-for="Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Description" class="form-label">شرح</label>
+                                <input type="text" class="form-control" asp-for="Description" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="IsDelete" class="form-label">حذف شده</label>
+                                <input type="checkbox" asp-for="IsDelete" />
+                            </div>
+                            
+                            <button type="submit" class="btn app-btn-primary">وایرایش</button>
+                        </form>
+                    </div><!--//app-card-body-->
+
+                </div><!--//app-card-->
+            </div>
+
+
+        </div><!--//row-->
+
+    </div><!--//container-fluid-->
+</div><!--//app-content-->

@@ -22,5 +22,5 @@ public class BoothRepoDto
 
 	public virtual Seller? Seller { get; set; }
 
-	public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
+	public virtual ICollection<Stock>? Stocks { get; set; } 
 }
