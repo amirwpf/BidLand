@@ -42,7 +42,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScopeSqlServerTables(builder.Configuration);
 
-
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -70,11 +70,11 @@ app.UseDefaultFiles();
 //});
 app.UseRouting();
 
+app.UseStaticFiles();
 app.UseAuthorization();
 app.UseAuthentication();
 //app.UseContentSecurityPolicy();
 
-app.UseStaticFiles();
 
 
 app.MapRazorPages();

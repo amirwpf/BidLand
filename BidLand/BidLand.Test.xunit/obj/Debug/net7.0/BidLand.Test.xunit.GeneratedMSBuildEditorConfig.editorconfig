@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BidLand.Test.xunit
-build_property.ProjectDir = F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\BidLand.Test.xunit\
+build_property.ProjectDir = C:\Users\khalafi\Source\repos\BidLand\BidLand\BidLand.Test.xunit\

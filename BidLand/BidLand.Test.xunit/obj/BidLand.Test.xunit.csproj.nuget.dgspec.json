@@ -1,32 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj": {}
+    "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj": {}
   },
   "projects": {
-    "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj": {
+    "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj",
+        "projectUniqueName": "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj",
         "projectName": "BidLand.Test.xunit",
-        "projectPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj",
-        "packagesPath": "C:\\Users\\amir\\.nuget\\packages\\",
-        "outputPath": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Test.xunit\\obj\\",
+        "projectPath": "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj",
+        "packagesPath": "C:\\Users\\khalafi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Test.xunit\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\ProgramData\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\amir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\khalafi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\khalafi\\.nuget\\packages\\Telerik.UI.for.AspNet.Core\\2021.3.1109": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -82,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
         }
       }
     }

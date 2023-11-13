@@ -1,7 +1,7 @@
 ﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 using App.Domin.Core._01_Purchause.Contracts.Services;
 using App.Domin.Core._02_Users.Contracts.AppServices;
-
+using App.Domin.Core._03_Extras.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -54,16 +54,20 @@ namespace BidLand.Web.Areas.Admin.Controllers
         {
             //string projectRootPath = _webHostEnvironment.ContentRootPath;
             //string products = Path.Combine(_webHostEnvironment.WebRootPath, "uploads\\products");
+            model.Images = new List<Image>();
             if (model.ImageFile != null)
                 foreach (var file in model.ImageFile)
                 {
                     if (file != null && file.Length > 0)
                     {
-                        var fileName = Path.GetFileName(file.FileName);
+                        var name = Path.GetFileName(file.FileName);
                         string projectRootPath = _webHostEnvironment.ContentRootPath;
-                        var path = Path.Combine(_webHostEnvironment.WebRootPath, "uploads/products", Guid.NewGuid() + "_" + fileName);
-                        using (var stream = new FileStream(path, FileMode.Create))
+                        //var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/products", Guid.NewGuid() + "_" + fileName);
+                        string fileName = Guid.NewGuid() + "_" + name;
+                        var path = Path.Combine(_webHostEnvironment.WebRootPath, "uploads/products", fileName);
+                        using (var stream = new FileStream(path, FileMode.OpenOrCreate))
                         {
+                            model.Images.Add(new Image { InsertionDate = DateTime.Now, Url = fileName });
                             await file.CopyToAsync(stream);
                         }
                     }

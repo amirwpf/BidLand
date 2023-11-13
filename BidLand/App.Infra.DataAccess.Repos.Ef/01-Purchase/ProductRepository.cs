@@ -2,6 +2,7 @@
 using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
 using App.Domin.Core._01_Purchause.Dtos;
 using App.Domin.Core._01_Purchause.Entities;
+using App.Domin.Core._03_Extras.Entities;
 using App.Infra.Db.sqlServer.Ef.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,11 +18,13 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 	{
 		private readonly AppDbContext _context;
 		private readonly DbSet<Product> _dbSet;
+		private readonly DbSet<Image> _dbSetImg;
 
 		public ProductRepository(AppDbContext context)
 		{
 			_context = context;
 			_dbSet = _context.Set<Product>();
+			_dbSetImg = _context.Set<Image>();
 		}
 
 		public async Task<List<ProductRepoDto>> GetAllConfirmProductsWithNavAsync(bool IsConfirm , CancellationToken cancellationToken)
@@ -84,7 +87,10 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 		{
 			productDto.Category = null;
 			var product = ConvertToProduct(productDto);
+
 			await _dbSet.AddAsync(product);
+
+			await _dbSetImg.AddRangeAsync(product.Images);
 			await _context.SaveChangesAsync(cancellationToken);
 		}
 
@@ -391,8 +397,9 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 
 			return result;
 		}
+        
 
-		private void UpdateValueEqualer(ProductRepoDto productDto, ref Product result)
+        private void UpdateValueEqualer(ProductRepoDto productDto, ref Product result)
 		{
 			result.Name = productDto.Name;
 			result.BasePrice = productDto.BasePrice;

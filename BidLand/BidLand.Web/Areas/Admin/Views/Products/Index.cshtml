@@ -1,5 +1,4 @@
-﻿
-@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos
+﻿@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos
 @{
     ViewBag.PageTitle = "محصولات";
 }
@@ -17,7 +16,7 @@
         <nav id="products-table-tab" class="products-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
             <a class="flex-sm-fill text-sm-center nav-link active" id="product-pending-tab" data-bs-toggle="tab" href="#products-pending" role="tab" aria-controls="products-pending" aria-selected="true">درانتظار</a>
             <a class="flex-sm-fill text-sm-center nav-link " id="product-confirmed-tab" data-bs-toggle="tab" href="#products-confirmed" role="tab" aria-controls="products-confirmed" aria-selected="true">تایید شده</a>
-          
+
         </nav>
 
 
@@ -43,32 +42,49 @@
                                     {
                                         <tr>
                                             <td class="cell">@p.Id</td>
-                                            <td class="cell"><span class="truncate">@p.Name</span></td>
+                                            <td class="cell">
+                                                <span class="truncate">
+                                                    @p.Name </span>
+                                                    <hr >
+                                                    @foreach (var item in p.Images)
+                                                    {
+                                                        <span><img height="30" width="30" src="/uploads/products/@item.Url" />      </span>
+                                                    }
+                                               
+                                            </td>
                                             <td class="cell">@p.Category.Name</td>
                                             <td class="cell"><span>@p.InsertionDate?.ToString("yyyy/MM/dd")</span><span class="note">@p.InsertionDate?.ToString("hh:mm tt")</span></td>
-                                            <td class="cell">@{
-                                                    if ((bool)p.IsConfirm) {
-                                                        <span class='badge bg-success'>بله</span> }
-                                                    else { 
-                                                        <span class='badge bg-warning'>خیر</span>}
-                                                        }
-                                                </td>
+                                            <td class="cell">
+                                                @{
+                                                    if ((bool)p.IsConfirm)
+                                                    {
+                                                        <span class='badge bg-success'>بله</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class='badge bg-warning'>خیر</span>
+                                                    }
+                                                }
+                                            </td>
                                             <td class="cell">
 
-                                               @{ if ((bool)p.IsConfirm) {
+                                                @{
+                                                    if ((bool)p.IsConfirm)
+                                                    {
                                                         <a href="/Admin/Products/ConfirmProduct/@p.Id?isConfirm=false">رد</a>
                                                     }
-                                                else {
+                                                    else
+                                                    {
                                                         <a href="/Admin/Products/ConfirmProduct/@p.Id?isConfirm=true">تایید</a>
                                                     }
                                                 }
                                                 <a href="/Admin/Products/Delete/@p.Id">حذف</a>
                                                 <a href="/Admin/Products/Edit/@p.Id">ویرایش</a>
                                             </td>
-                                            
+
                                         </tr>
                                     }
-                                    
+
                                 </tbody>
                             </table>
                         </div><!--//table-responsive-->
@@ -141,10 +157,10 @@
                 </div><!--//app-card-->
             </div><!--//tab-pane-->
 
-            
+
         </div><!--//tab-content-->
 
-       
+
 
     </div><!--//container-fluid-->
 </div><!--//app-content-->
