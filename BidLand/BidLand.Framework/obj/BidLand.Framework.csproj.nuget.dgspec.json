@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj": {}
+    "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj": {}
   },
   "projects": {
-    "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj": {
+    "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj",
+        "projectUniqueName": "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj",
         "projectName": "BidLand.Framework",
-        "projectPath": "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj",
+        "projectPath": "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Framework\\BidLand.Framework.csproj",
         "packagesPath": "C:\\Users\\khalafi\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Framework\\obj\\",
         "projectStyle": "PackageReference",

@@ -4,7 +4,7 @@ using App.Domin.Services._01_Purchase;
 using App.Infra.Config.DbConfig;
 using App.Infra.Config.IoCConfig;
 using App.Infra.Db.sqlServer.Ef.Context;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -58,13 +58,23 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
 
+app.UseHttpsRedirection();
+app.UseDefaultFiles();
+
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    FileProvider = new PhysicalFileProvider(
+//           Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
+//    RequestPath = "/StaticFiles"
+//});
 app.UseRouting();
 
 app.UseAuthorization();
 app.UseAuthentication();
+//app.UseContentSecurityPolicy();
+
+app.UseStaticFiles();
 
 
 app.MapRazorPages();

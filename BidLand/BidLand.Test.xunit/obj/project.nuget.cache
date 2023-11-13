@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "n5Uilvpd6gWHNKqxPVOu4dW3+Ur9/PLAk/QoVQiXILIOjdu4Mf0UIF0JF5RgFe4FldKDCvjjDaLqdLg4iKXGXA==",
+  "dgSpecHash": "6d+e7XhifSy91L7SgwlPvN8HU5547zKnOlrFFR7FIUZJqr+wT1KqgoHNb9qSwQ9waQSMqJJ5FeStJAmFG53LGQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj",
+  "projectFilePath": "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khalafi\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\khalafi\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",

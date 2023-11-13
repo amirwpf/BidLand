@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj": {}
+    "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj": {}
   },
   "projects": {
-    "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj": {
+    "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj",
+        "projectUniqueName": "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj",
         "projectName": "BidLand.Test.xunit",
-        "projectPath": "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj",
+        "projectPath": "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\BidLand.Test.xunit\\BidLand.Test.xunit.csproj",
         "packagesPath": "C:\\Users\\khalafi\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\BidLand.Test.xunit\\obj\\",
         "projectStyle": "PackageReference",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "56LZSThdWgqcLumTN6JtZ2E1mBV7b0FmV6GpuQAm5bbqYWRbZFyGJqhmGq47bjQY/TzTjX7qiMaCCL/64xYPFw==",
+  "dgSpecHash": "iq16ZyvH5HF28BgTQoMeuVQamG+UvHZKLpL8iwRe6/wGDRym+0mqxaaGvokqez0vXgI/wsPhztgrW5rHwnF87w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\khalafi\\Source\\Repos\\BidLand\\BidLand\\WebApplication1\\scaffold.csproj",
+  "projectFilePath": "C:\\Users\\khalafi\\Source\\repos\\BidLand\\BidLand\\WebApplication1\\scaffold.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khalafi\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\khalafi\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

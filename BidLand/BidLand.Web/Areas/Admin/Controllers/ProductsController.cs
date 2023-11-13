@@ -52,34 +52,23 @@ namespace BidLand.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProductRepoDto model, CancellationToken cancellationToken)
         {
-            string projectRootPath = _webHostEnvironment.ContentRootPath;
-            string products = Path.Combine(_webHostEnvironment.WebRootPath, "uploads\\products");
+            //string projectRootPath = _webHostEnvironment.ContentRootPath;
+            //string products = Path.Combine(_webHostEnvironment.WebRootPath, "uploads\\products");
             if (model.ImageFile != null)
-                foreach (IFormFile file in model.ImageFile)
+                foreach (var file in model.ImageFile)
                 {
-                    if (file.Length > 0)
+                    if (file != null && file.Length > 0)
                     {
-                        string filePath = Path.Combine(products, file.FileName);
-                        try
+                        var fileName = Path.GetFileName(file.FileName);
+                        string projectRootPath = _webHostEnvironment.ContentRootPath;
+                        var path = Path.Combine(_webHostEnvironment.WebRootPath, "uploads/products", Guid.NewGuid() + "_" + fileName);
+                        using (var stream = new FileStream(path, FileMode.Create))
                         {
-                            //var destinationPath = Path.GetTempFileName(); //Change this line to point to your actual destination
-                            //using (var stream = new FileStream(destinationPath, FileMode.Create))
-                            //{
-                            //    await file.CopyToAsync(stream);
-                            //}
-                            using (Stream fileStream = new FileStream(products, FileMode.Create))
-                            {
-                                await file.CopyToAsync(fileStream);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-
-                            throw;
+                            await file.CopyToAsync(stream);
                         }
                     }
                 }
-            //if(ModelState.IsValid)
+
             await _adminPanelAppService.CreateProduct(model, cancellationToken);
             return RedirectToAction("Index");
         }
