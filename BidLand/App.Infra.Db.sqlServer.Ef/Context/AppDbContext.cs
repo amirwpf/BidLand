@@ -82,6 +82,12 @@ public partial class AppDbContext : IdentityDbContext<User, Role, int>
                     new Role {Id = 2, Name = "Seller" , NormalizedName = "SELLER" },
                     new Role {Id = 3, Name = "Buyer" , NormalizedName = "BUYER"}
             );
+        modelBuilder.Entity<Category>().HasData(
+            new Category { Id = 1 ,InsertionDate= DateTime.Now , Name = "لوازم خانگی", Description = "شرح " , ParentId = null},
+            new Category { Id = 2 ,InsertionDate= DateTime.Now, Name = "یخچال و فریز", Description = "شرح ", ParentId = 1},
+            new Category { Id = 3 ,InsertionDate= DateTime.Now, Name = "صوتی و تصویری", Description = "شرح ", ParentId = 1},
+            new Category { Id = 4 ,InsertionDate= DateTime.Now, Name = "لباسشویی", Description = "شرح ", ParentId = 1}
+            );
         //modelBuilder.Entity<UserRole>().HasOne(userRole => userRole.Role)
         //           .WithMany(role => role.Users)
         //           .HasForeignKey(userRole => userRole.RoleId);

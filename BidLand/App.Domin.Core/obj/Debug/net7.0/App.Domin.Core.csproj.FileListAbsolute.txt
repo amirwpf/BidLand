@@ -54,3 +54,15 @@ C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\Ap
 C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\refint\App.Domin.Core.dll
 C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.pdb
 C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Core\obj\Debug\net7.0\ref\App.Domin.Core.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\bin\Debug\net7.0\App.Domin.Core.deps.json
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\bin\Debug\net7.0\App.Domin.Core.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\bin\Debug\net7.0\App.Domin.Core.pdb
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.csproj.AssemblyReference.cache
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.GeneratedMSBuildEditorConfig.editorconfig
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.AssemblyInfoInputs.cache
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.AssemblyInfo.cs
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.csproj.CoreCompileInputs.cache
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\obj\Debug\net7.0\refint\App.Domin.Core.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\obj\Debug\net7.0\App.Domin.Core.pdb
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Core\obj\Debug\net7.0\ref\App.Domin.Core.dll

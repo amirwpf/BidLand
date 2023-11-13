@@ -9,137 +9,137 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BidLand.Web
 build_property.RootNamespace = BidLand.Web
-build_property.ProjectDir = C:\Users\khalafi\Source\repos\BidLand\BidLand\BidLand.Web\
+build_property.ProjectDir = F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\BidLand.Web\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\khalafi\Source\repos\BidLand\BidLand\BidLand.Web
+build_property.MSBuildProjectDirectory = F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\BidLand.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Booths/Edit.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Booths/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQm9vdGhzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Booths/Index.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Booths/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQm9vdGhzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Comments/Index.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Comments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29tbWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Home/Index.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Products/Create.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Products/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Products/Delete.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Products/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Products/Edit.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Products/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Products/Index - Copy.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Products/Index - Copy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdHNcSW5kZXggLSBDb3B5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Products/Index.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Shared/_headerPartial.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Shared/_headerPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9oZWFkZXJQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Shared/_Layout.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Users/EditBuyer.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Users/EditBuyer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlcnNcRWRpdEJ1eWVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Users/EditSeller.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Users/EditSeller.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlcnNcRWRpdFNlbGxlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/Users/Index.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/_ViewImports.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Admin/Views/_ViewStart.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Admin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Identity/Views/Login/Index.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Identity/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcVmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Identity/Views/Register/Index.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Identity/Views/Register/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcVmlld3NcUmVnaXN0ZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Identity/Views/_ValidationScriptsPartial.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Identity/Views/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcVmlld3NcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Identity/Views/_ViewImports.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Identity/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Areas/Identity/Views/_ViewStart.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Identity/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Views/Home/Index.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Views/Home/Privacy.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Views/Shared/Error.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Views/Shared/_footerPartial.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/Shared/_footerPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9mb290ZXJQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Views/Shared/_headerPartial.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/Shared/_headerPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9oZWFkZXJQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Views/Shared/_LoginPartial.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Views/_ViewImports.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Views/_ViewStart.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Views/Shared/_Layout - Copy.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/Shared/_Layout - Copy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQgLSBDb3B5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = b-pkjazyu4vd
 
-[C:/Users/khalafi/Source/repos/BidLand/BidLand/BidLand.Web/Views/Shared/_Layout.cshtml]
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-5erqh2c7fw

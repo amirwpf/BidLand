@@ -46,3 +46,18 @@ C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Services\obj\Debug\net7.
 C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Services\obj\Debug\net7.0\refint\App.Domin.Services.dll
 C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Services\obj\Debug\net7.0\App.Domin.Services.pdb
 C:\Users\khalafi\Source\Repos\BidLand\BidLand\App.Domin.Services\obj\Debug\net7.0\ref\App.Domin.Services.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\bin\Debug\net7.0\App.Domin.Services.deps.json
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\bin\Debug\net7.0\App.Domin.Services.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\bin\Debug\net7.0\App.Domin.Services.pdb
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\bin\Debug\net7.0\App.Domin.Core.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\bin\Debug\net7.0\App.Domin.Core.pdb
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\obj\Debug\net7.0\App.Domin.Services.csproj.AssemblyReference.cache
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\obj\Debug\net7.0\App.Domin.Services.GeneratedMSBuildEditorConfig.editorconfig
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\obj\Debug\net7.0\App.Domin.Services.AssemblyInfoInputs.cache
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\obj\Debug\net7.0\App.Domin.Services.AssemblyInfo.cs
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\obj\Debug\net7.0\App.Domin.Services.csproj.CoreCompileInputs.cache
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\obj\Debug\net7.0\App.Domin.Services.csproj.CopyComplete
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\obj\Debug\net7.0\App.Domin.Services.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\obj\Debug\net7.0\refint\App.Domin.Services.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\obj\Debug\net7.0\App.Domin.Services.pdb
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Domin.Services\obj\Debug\net7.0\ref\App.Domin.Services.dll
