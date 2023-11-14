@@ -36,5 +36,6 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
         Task UpdateSellerAsync(SellerRepoDto model, CancellationToken token);
         Task<bool> DeleteBuyerUserAsync(int id, CancellationToken cancellationToken);
         Task<bool> DeleteSellerUserAsync(int id, CancellationToken cancellationToken);
-    }
+		Task<int?> GetSumSellerCommisionAmount(CancellationToken cancellationToken);
+	}
 }

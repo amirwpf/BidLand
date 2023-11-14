@@ -36,5 +36,5 @@ public class ProductRepoDto
 
 	public virtual Category? Category { get; set; }
 
-	public virtual ICollection<IFormFile> ImageFile { get; set; }
+	public virtual ICollection<IFormFile>? ImageFile { get; set; }
 }

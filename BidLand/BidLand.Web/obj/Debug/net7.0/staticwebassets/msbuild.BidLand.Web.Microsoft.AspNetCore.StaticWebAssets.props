@@ -44992,6 +44992,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\117f531e-f25e-4c13-84c9-0d96259a54d5_brand_logo_01.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\1793dcd7-a178-45c3-b779-bb93d951775f_blog-widget-02.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/1793dcd7-a178-45c3-b779-bb93d951775f_blog-widget-02.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\1793dcd7-a178-45c3-b779-bb93d951775f_blog-widget-02.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\2b01a996-b5b1-4c09-970e-f8c3250834ad_brand_logo_03.png))">
       <SourceType>Package</SourceType>
       <SourceId>BidLand.Web</SourceId>
@@ -45007,6 +45023,38 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\2b01a996-b5b1-4c09-970e-f8c3250834ad_brand_logo_03.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\3439e875-1acf-4fa5-8436-f2a34abbe418_DSC_0076-800x324.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/3439e875-1acf-4fa5-8436-f2a34abbe418_DSC_0076-800x324.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\3439e875-1acf-4fa5-8436-f2a34abbe418_DSC_0076-800x324.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\3c653634-2ee8-4832-a29f-8aa22d33d30f_msi ge72 6qf apache pro review - box.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/3c653634-2ee8-4832-a29f-8aa22d33d30f_msi ge72 6qf apache pro review - box.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\3c653634-2ee8-4832-a29f-8aa22d33d30f_msi ge72 6qf apache pro review - box.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\3ca63d9d-a083-4d41-a9d2-a02e52ff94f9_brand_logo_04.png))">
       <SourceType>Package</SourceType>
@@ -45056,6 +45104,38 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\4840ce5c-cd79-4125-9f32-f7180c65b145_blog-post-03.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\48c6808a-a321-483b-9447-d1113cebdd27_BenQ-SW271-Monitor-19.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/48c6808a-a321-483b-9447-d1113cebdd27_BenQ-SW271-Monitor-19.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\48c6808a-a321-483b-9447-d1113cebdd27_BenQ-SW271-Monitor-19.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\5356afb5-64b0-4deb-9531-40696e5f3d5f_blog-widget-03.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/5356afb5-64b0-4deb-9531-40696e5f3d5f_blog-widget-03.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\5356afb5-64b0-4deb-9531-40696e5f3d5f_blog-widget-03.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\5b5dfa2a-d595-408c-8d63-bd1dcf2ed106_brand_logo_02.png))">
       <SourceType>Package</SourceType>
       <SourceId>BidLand.Web</SourceId>
@@ -45104,6 +45184,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\6ba4df6c-e26f-4122-8ed3-5806b73d5e4b_brand_logo_04.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\7a5e8a45-f759-4e59-a7e2-e38605e9513d_photo_2020-08-17_00-18-41.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/7a5e8a45-f759-4e59-a7e2-e38605e9513d_photo_2020-08-17_00-18-41.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\7a5e8a45-f759-4e59-a7e2-e38605e9513d_photo_2020-08-17_00-18-41.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\7ebef434-7859-4245-a11f-ee16c2d1d91d_brand_logo_02.png))">
       <SourceType>Package</SourceType>
       <SourceId>BidLand.Web</SourceId>
@@ -45135,6 +45231,102 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\810dc467-1e53-4038-ae20-410332ee0e71_blog-post-01.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\81135052-e7f2-4334-b552-1046b0e14f20_benq_sw271_678_678x452.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/81135052-e7f2-4334-b552-1046b0e14f20_benq_sw271_678_678x452.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\81135052-e7f2-4334-b552-1046b0e14f20_benq_sw271_678_678x452.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\819e493c-0e50-4d3d-9516-b30fa794b696_chevorlet.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/819e493c-0e50-4d3d-9516-b30fa794b696_chevorlet.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\819e493c-0e50-4d3d-9516-b30fa794b696_chevorlet.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\8807c0f1-60cf-49e8-8bde-a0b274b9c401_blog-widget-01.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/8807c0f1-60cf-49e8-8bde-a0b274b9c401_blog-widget-01.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\8807c0f1-60cf-49e8-8bde-a0b274b9c401_blog-widget-01.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\8cf635e8-b5d2-4642-98f6-5ba17647c2f2_KgS4y7QvkxeqRaH7bjnF9e-1200-80.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/8cf635e8-b5d2-4642-98f6-5ba17647c2f2_KgS4y7QvkxeqRaH7bjnF9e-1200-80.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\8cf635e8-b5d2-4642-98f6-5ba17647c2f2_KgS4y7QvkxeqRaH7bjnF9e-1200-80.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\8fed670a-2b32-4ced-9533-c110bc7e8a33_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/8fed670a-2b32-4ced-9533-c110bc7e8a33_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\8fed670a-2b32-4ced-9533-c110bc7e8a33_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\aa482b8a-b29e-4723-a863-9c0ef4cd1003_bmw.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/aa482b8a-b29e-4723-a863-9c0ef4cd1003_bmw.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\aa482b8a-b29e-4723-a863-9c0ef4cd1003_bmw.png))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\ad3bc257-3291-4846-ae15-255d8560030c_brand_logo_03.png))">
       <SourceType>Package</SourceType>
@@ -45184,6 +45376,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\c01adc1a-ed6b-4c2e-9372-97f13ecd8f62_brand_logo_01.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\c8018033-d0c6-4138-aeb4-a5c4a29ed440_MSI-GE62-Apache-Gaming-Notebook-Review-0004.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/c8018033-d0c6-4138-aeb4-a5c4a29ed440_MSI-GE62-Apache-Gaming-Notebook-Review-0004.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\c8018033-d0c6-4138-aeb4-a5c4a29ed440_MSI-GE62-Apache-Gaming-Notebook-Review-0004.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\d5718973-898a-4eee-8c31-fbd259aadc60_blog-compact-post-02.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>BidLand.Web</SourceId>
@@ -45199,6 +45407,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\d5718973-898a-4eee-8c31-fbd259aadc60_blog-compact-post-02.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\dbdc490d-3a56-4410-9392-cbd1b3fcf148_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>BidLand.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/BidLand.Web</BasePath>
+      <RelativePath>uploads/products/dbdc490d-3a56-4410-9392-cbd1b3fcf148_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\dbdc490d-3a56-4410-9392-cbd1b3fcf148_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

@@ -33,6 +33,7 @@ namespace App.Domin.Core._02_Users.Entities
 
         public ICollection<Seller>? Sellers { get; set; }
         public ICollection<Buyer>? Buyers { get; set; }
+        public Admin? Admin { get; set; }
 
         public string GetFullName()
         {

@@ -2,12 +2,14 @@
 using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 using App.Domin.Core._02_Users.Contracts.AppServices;
 using Humanizer.Localisation.TimeToClockNotation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BidLand.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class BoothsController : Controller
+	[Authorize(Roles = "Admin")]
+	public class BoothsController : Controller
     {
         private readonly IAdminPanelAppServices _adminPanelAppServices;
         public BoothsController(IAdminPanelAppServices adminPanelAppServices)
@@ -29,10 +31,10 @@ namespace BidLand.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                return View(await _adminPanelAppServices.UpdateBoothAsync(model, token));
+                await _adminPanelAppServices.UpdateBoothAsync(model, token);
+                return RedirectToAction("Index");
             }
-            return View(model);
+               return View();
         }
     }
 

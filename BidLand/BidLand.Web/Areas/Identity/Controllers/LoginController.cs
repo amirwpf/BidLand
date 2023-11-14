@@ -39,7 +39,7 @@ namespace BidLand.Web.Areas.Identity.Controllers
 
             var result = await _accountAppServices.SignInUserAsync (user, model.Password, true, true);
 
-            return View(model);
+            return Redirect("/");
 
         }
 

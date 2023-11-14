@@ -68,8 +68,6 @@ public partial class AppDbContext : IdentityDbContext<User, Role, int>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
-
-
         #region Config
         ApplyConfigurations.ApplyEntityConfigurations(modelBuilder);
         #endregion
@@ -77,42 +75,20 @@ public partial class AppDbContext : IdentityDbContext<User, Role, int>
 
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<Role>().HasData(
-              new Role {Id = 1, Name = "Admin" ,NormalizedName = "ADMIN"},
-                    new Role {Id = 2, Name = "Seller" , NormalizedName = "SELLER" },
-                    new Role {Id = 3, Name = "Buyer" , NormalizedName = "BUYER"}
-            );
-        modelBuilder.Entity<Category>().HasData(
-            new Category { Id = 1 ,InsertionDate= DateTime.Now , Name = "لوازم خانگی", Description = "شرح " , ParentId = null},
-            new Category { Id = 2 ,InsertionDate= DateTime.Now, Name = "یخچال و فریز", Description = "شرح ", ParentId = 1},
-            new Category { Id = 3 ,InsertionDate= DateTime.Now, Name = "صوتی و تصویری", Description = "شرح ", ParentId = 1},
-            new Category { Id = 4 ,InsertionDate= DateTime.Now, Name = "لباسشویی", Description = "شرح ", ParentId = 1}
-            );
-        //modelBuilder.Entity<UserRole>().HasOne(userRole => userRole.Role)
-        //           .WithMany(role => role.Users)
-        //           .HasForeignKey(userRole => userRole.RoleId);
 
-        //modelBuilder.Entity<UserRole>().HasOne(userRole => userRole.User)
-        //       .WithMany(user => user.Roles)
-        //       .HasForeignKey(userRole => userRole.UserId);
-
-
-        //modelBuilder.Entity<RoleClaim>().HasOne(x => x.Role)
-        //        .WithMany(x => x.Claims)
-        //        .HasForeignKey(x => x.RoleId);
-
-        //modelBuilder.Entity<UserClaim>().HasOne(x => x.User)
-        //        .WithMany(x => x.Claims)
-        //        .HasForeignKey(x => x.UserId);
-
-        //modelBuilder.Entity<UserLogin>().HasOne(x => x.User)
-        //        .WithMany(x => x.Logins)
-        //        .HasForeignKey(x => x.UserId);
-        //modelBuilder.Entity<UserToken>().HasOne(x => x.User)
-        //.WithMany(x => x.UserTokens)
-        //.HasForeignKey(x => x.UserId);
-
-
+        #region SeedData
+        //modelBuilder.Entity<Role>().HasData(
+        //      new Role { Id = 1, Name = "Admin", NormalizedName = "ADMIN" },
+        //            new Role { Id = 2, Name = "Seller", NormalizedName = "SELLER" },
+        //            new Role { Id = 3, Name = "Buyer", NormalizedName = "BUYER" }
+        //    );
+        //modelBuilder.Entity<Category>().HasData(
+        //    new Category { Id = 1, InsertionDate = DateTime.Now, Name = "لوازم خانگی", Description = "شرح ", ParentId = null },
+        //    new Category { Id = 2, InsertionDate = DateTime.Now, Name = "یخچال و فریز", Description = "شرح ", ParentId = 1 },
+        //    new Category { Id = 3, InsertionDate = DateTime.Now, Name = "صوتی و تصویری", Description = "شرح ", ParentId = 1 },
+        //    new Category { Id = 4, InsertionDate = DateTime.Now, Name = "لباسشویی", Description = "شرح ", ParentId = 1 }
+        //    );
+        #endregion
 
     }
 

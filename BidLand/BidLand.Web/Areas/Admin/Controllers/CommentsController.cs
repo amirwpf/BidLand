@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace BidLand.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles ="Admin")]
-    public class CommentsController : Controller
+	[Authorize(Roles = "Admin")]
+	public class CommentsController : Controller
     {
         private readonly IAdminPanelAppServices _adminPanelAppServices;
         public CommentsController(IAdminPanelAppServices adminPanelAppServices)

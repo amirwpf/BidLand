@@ -16,6 +16,6 @@ public interface ISellerService
 	Task<List<SellerRepoDto>> GetAllAsync(CancellationToken cancellationToken);
     Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken cancellationToken);
     Task<SellerRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
-
+	Task<int?> GetSumSellerCommisionAmount(CancellationToken cancellationToken);
 	Task UpdateAsync(SellerRepoDto input, CancellationToken cancellationToken);
 }

@@ -309,7 +309,13 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<int?>("SiteCommissionIncome")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Admins");
                 });
@@ -378,26 +384,6 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Seller",
-                            NormalizedName = "SELLER"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Buyer",
-                            NormalizedName = "BUYER"
-                        });
                 });
 
             modelBuilder.Entity("App.Domin.Core._02_Users.Entities.Seller", b =>
@@ -851,6 +837,17 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Navigation("Stock");
                 });
 
+            modelBuilder.Entity("App.Domin.Core._02_Users.Entities.Admin", b =>
+                {
+                    b.HasOne("App.Domin.Core._02_Users.Entities.User", "User")
+                        .WithOne("Admin")
+                        .HasForeignKey("App.Domin.Core._02_Users.Entities.Admin", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("App.Domin.Core._02_Users.Entities.Buyer", b =>
                 {
                     b.HasOne("App.Domin.Core._02_Users.Entities.User", "User")
@@ -907,7 +904,8 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                 {
                     b.HasOne("App.Domin.Core._01_Purchause.Entities.Product", "Product")
                         .WithMany("Images")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Product");
                 });
@@ -1030,6 +1028,8 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
 
             modelBuilder.Entity("App.Domin.Core._02_Users.Entities.User", b =>
                 {
+                    b.Navigation("Admin");
+
                     b.Navigation("Buyers");
 
                     b.Navigation("Sellers");

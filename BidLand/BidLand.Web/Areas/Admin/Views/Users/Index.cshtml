@@ -1,135 +1,214 @@
-﻿
-@using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
+﻿@using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
+@using BidLand.Framework.Common;
 
 @{
-    ViewBag.PageTitle = "کاربران";
+	ViewBag.PageTitle = "کاربران";
 }
 <div class="app-content pt-3 p-md-3 p-lg-4">
-    <div class="container-xl">
+	<div class="container-xl">
 
-        <div class="row g-3 mb-4 align-items-center justify-content-between">
-            <div class="col-auto">
-                <h1 class="app-page-title mb-0">@ViewBag.PageTitle</h1> 
-            </div>
+		<div class="row g-3 mb-4 align-items-center justify-content-between">
+			<div class="col-auto">
+				<h1 class="app-page-title mb-0">@ViewBag.PageTitle</h1>
+			</div>
 
-        </div><!--//row-->
-
-
-        <nav id="products-table-tab" class="products-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-            <a class="flex-sm-fill text-sm-center nav-link active" id="product-pending-tab" data-bs-toggle="tab" href="#products-pending" role="tab" aria-controls="products-pending" aria-selected="true">فروشندگان</a>
-            <a class="flex-sm-fill text-sm-center nav-link " id="product-confirmed-tab" data-bs-toggle="tab" href="#products-confirmed" role="tab" aria-controls="products-confirmed" aria-selected="true">خریداران</a>
-          
-        </nav>
+		</div><!--//row-->
 
 
-        <div class="tab-content" id="products-table-tab-content">
-            <div class="tab-pane fade show active" id="products-pending" role="tabpanel" aria-labelledby="products-all-tab">
-                <div class="app-card app-card-orders-table shadow-sm mb-5">
-                    <div class="app-card-body">
-                        <div class="table-responsive">
-                            <table class="table app-table-hover mb-0 text-left">
-                                <thead>
-                                    <tr>
+		<nav id="products-table-tab" class="products-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+			<a class="flex-sm-fill text-sm-center nav-link active" id="product-pending-tab" data-bs-toggle="tab" href="#products-pending" role="tab" aria-controls="products-pending" aria-selected="true">فروشندگان</a>
+			<a class="flex-sm-fill text-sm-center nav-link " id="product-confirmed-tab" data-bs-toggle="tab" href="#products-confirmed" role="tab" aria-controls="products-confirmed" aria-selected="true">خریداران</a>
 
-                                        <th class="cell">شناسه</th>
-                                        <th class="cell">نام</th>
-                                        <th class="cell">نام خانوادگی</th>
-                                        <th class="cell">وضعیت</th>
-                                        <th class="cell">وضعیت دسترسی</th>
-                                        <th class="cell">درصد کمیسیون</th>
-                                        <th class="cell">مقدار کمیسون</th>
-                                        <th class="cell">جمع فروش</th>
-                                        <th class="cell">تاریخ ایجاد</th>
-                                        <th class="cell">نام کاربری</th>
-                                        <th class="cell">عملیات</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (SellerRepoDto p in (List<SellerRepoDto>)ViewBag.SellerUsers)
-                                    {
-                                        <tr>
-                                            <td class="cell">@p.Id</td>
-                                            <td class="cell"><span class="truncate">@p.User.Firstname</span></td>
-                                            <td class="cell"><span class="truncate">@p.User.Lastname</span></td>
-                                            <td class="cell">@p.IsActive</td>
-                                            <td class="cell">@p.IsBan</td>
-                                            <td class="cell">@p.CommissionPercentage %</td>
-                                            <td class="cell">@p.CommissionsAmount?.ToString("#,#")</td>
-                                            <td class="cell">@p.SalesAmount?.ToString("#,#")</td>
-                                            <td class="cell"><span>@p.InsertionDate?.ToString("yyyy/MM/dd")</span><span class="note">@p.InsertionDate?.ToString("hh:mm tt")</span></td>
-                                            <td class="cell"><span>@p.User.UserName</span></td>
-                                            
-                                            <td class="cell">
-
-                                               
-                                                
-                                                <a href="/Admin/Users/EditSeller/@p.Id">ویرایش</a>
-                                            </td>
-                                            
-                                        </tr>
-                                    }
-                                    
-                                </tbody>
-                            </table>
-                        </div><!--//table-responsive-->
-
-                    </div><!--//app-card-body-->
-                </div><!--//app-card-->
-
-            </div><!--//tab-pane-->
-
-            <div class="tab-pane fade" id="products-confirmed" role="tabpanel" aria-labelledby="products-confirmed-tab">
-                <div class="app-card app-card-orders-table mb-5">
-                    <div class="app-card-body">
-                        <div class="table-responsive">
-
-                            <table class="table app-table-hover mb-0 text-left">
-                                <thead>
-                                    <tr>
-
-                                        <th class="cell">شناسه</th>
-                                        <th class="cell">نام</th>
-                                        <th class="cell">نام خانوادگی</th>
-                                        <th class="cell">جمع خرید</th>
-                                        <th class="cell">وضعیت دسترسی</th>
-                                        <th class="cell">تاریخ ایجاد</th>
-                                        <th class="cell">نام کاربری</th>
-                                        <th class="cell">عملیات</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (BuyerRepoDto p in (List<BuyerRepoDto>)ViewBag.BuyerUsers)
-                                    {
-                                        <tr>
-                                            <td class="cell">@p.Id</td>
-                                            <td class="cell"><span class="truncate">@p.User.Firstname</span></td>
-                                            <td class="cell"><span class="truncate">@p.User.Lastname</span></td>
-                                            <td class="cell">@p.TotalPurchaseAmount?.ToString("#,#")</td>
-                                            <td class="cell">@p.IsBan</td>
-                                            <td class="cell"><span>@p.InsertionDate?.ToString("yyyy/MM/dd")</span><span class="note">@p.InsertionDate?.ToString("hh:mm tt")</span></td>
-                                            <td class="cell"><span>@p.User.UserName</span></td>
-
-                                            <td class="cell">
+		</nav>
 
 
-                                              
-                                                <a href="/Admin/Users/EditBuyer/@p.Id">ویرایش</a>
-                                            </td>
+		<div class="tab-content" id="products-table-tab-content">
+			<div class="tab-pane fade show active" id="products-pending" role="tabpanel" aria-labelledby="products-all-tab">
+				<div class="app-card app-card-orders-table shadow-sm mb-5">
+					<div class="app-card-body">
+						<div class="table-responsive">
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
 
-                                        </tr>
-                                    }
+										<th class="cell">شناسه</th>
+										<th class="cell">نام</th>
+										<th class="cell">نام خانوادگی</th>
+										<th class="cell">وضعیت فعالیت</th>
+										<th class="cell">وضعیت دسترسی</th>
+										<th class="cell">درصد کمیسیون</th>
+										<th class="cell">مقدار کمیسون</th>
+										<th class="cell">جمع فروش</th>
+										<th class="cell">تاریخ ایجاد</th>
+										<th class="cell">نام کاربری</th>
+										<th class="cell">وضعیت حذف</th>
+										<th class="cell">عملیات</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (SellerRepoDto p in (List<SellerRepoDto>)ViewBag.SellerUsers)
+									{
+										<tr>
+											<td class="cell">@p.Id</td>
+											<td class="cell"><span class="truncate">@p.User.Firstname</span></td>
+											<td class="cell"><span class="truncate">@p.User.Lastname</span></td>
+											<td class="cell">
+												<span>
+													@if (p.IsActive)
+													{
+														<span class='badge bg-success'>فعال</span>
+													}
+													else
+													{
+														<span class='badge bg-warning'>غیرفعال</span>
+													}
+												</span>
+											</td>
+											<td class="cell">
+												<span>
+													@if (p.IsBan)
+													{
+														<span class='badge bg-warning'>مسدود شده</span>
+													}
+													else
+													{
+														<span class='badge bg-success'>فعال</span>
+													}
+												</span>
+											</td>
+											<td class="cell">@p.CommissionPercentage %</td>
+											<td class="cell">@p.CommissionsAmount</td>
+											<td class="cell">@p.SalesAmount</td>
+											@*<td class="cell"><span>@p.InsertionDate?.ToString("yyyy/MM/dd")</span><span class="note">@p.InsertionDate?.ToString("hh:mm tt")</span></td>*@
+											<td class="cell"><span>@DateConvertor.ConvertGregorianToPersian(p.InsertionDate??DateTime.Now)</span></td>
+											<td class="cell"><span>@p.User.UserName</span></td>
+											<td class="cell">
+												<span>
+													@if (p.IsDelete)
+													{
+														<span class='badge bg-danger'>حذف شده</span>
+													}
+													else
+													{
+														<span class='badge bg-success'>فعال</span>
+													}
+												</span>
+											</td>
+											<td class="cell">
+												<a href="/Admin/Users/EditSeller/@p.Id">ویرایش</a>
+											</td>
 
-                                </tbody>
-                            </table>
-                        </div><!--//table-responsive-->
-                    </div><!--//app-card-body-->
-                </div><!--//app-card-->
-            </div><!--//tab-pane-->
+										</tr>
+									}
 
-            
-        </div><!--//tab-content-->
+								</tbody>
+							</table>
+						</div><!--//table-responsive-->
 
-       
+					</div><!--//app-card-body-->
+				</div><!--//app-card-->
 
-    </div><!--//container-fluid-->
+
+				<div class="app-card app-card-orders-table shadow-sm mb-5">
+					<div class="app-card-body">
+						<div class="table-responsive">
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
+
+										<th class="cell">جمع کل کارمزد فروشندگان</th>
+
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr>
+										<td class="cell">@ViewBag.SiteCommisionAmount</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div><!--//table-responsive-->
+
+					</div><!--//app-card-body-->
+				</div><!--//app-card-->
+			</div><!--//tab-pane-->
+
+			<div class="tab-pane fade" id="products-confirmed" role="tabpanel" aria-labelledby="products-confirmed-tab">
+				<div class="app-card app-card-orders-table mb-5">
+					<div class="app-card-body">
+						<div class="table-responsive">
+
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
+
+										<th class="cell">شناسه</th>
+										<th class="cell">نام</th>
+										<th class="cell">نام خانوادگی</th>
+										<th class="cell">جمع خرید</th>
+										<th class="cell">جمع اعتبار</th>
+										<th class="cell">وضعیت دسترسی</th>
+										<th class="cell">تاریخ ایجاد</th>
+										<th class="cell">نام کاربری</th>
+										<th class="cell">وضعیت حذف</th>
+										<th class="cell">عملیات</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (BuyerRepoDto p in (List<BuyerRepoDto>)ViewBag.BuyerUsers)
+									{
+										<tr>
+											<td class="cell">@p.Id</td>
+											<td class="cell"><span class="truncate">@p.User.Firstname</span></td>
+											<td class="cell"><span class="truncate">@p.User.Lastname</span></td>
+											<td class="cell">@p.TotalPurchaseAmount</td>
+											<td class="cell">@p.Credit</td>
+											<td class="cell">
+												<span>
+													@if (p.IsBan)
+													{
+														<span class='badge bg-warning'>مسدود شده</span>
+													}
+													else
+													{
+														<span class='badge bg-success'>فعال</span>
+													}
+												</span>
+											</td>
+											@*<td class="cell"><span>@p.InsertionDate?.ToString("yyyy/MM/dd")</span><span class="note">@p.InsertionDate?.ToString("hh:mm tt")</span></td>*@
+											<td class="cell"><span>@DateConvertor.ConvertGregorianToPersian(p.InsertionDate??DateTime.Now)</span></td>
+											<td class="cell"><span>@p.User.UserName</span></td>
+											<td class="cell">
+												<span>
+													@if (p.IsDelete)
+													{
+														<span class='badge bg-danger'>حذف شده</span>
+													}
+													else
+													{
+														<span class='badge bg-success'>فعال</span>
+													}
+												</span>
+											</td>
+											<td class="cell">
+												<a href="/Admin/Users/EditBuyer/@p.Id">ویرایش</a>
+											</td>
+
+										</tr>
+									}
+
+								</tbody>
+							</table>
+						</div><!--//table-responsive-->
+					</div><!--//app-card-body-->
+				</div><!--//app-card-->
+			</div><!--//tab-pane-->
+
+
+		</div><!--//tab-content-->
+
+
+
+	</div><!--//container-fluid-->
 </div><!--//app-content-->

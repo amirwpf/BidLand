@@ -20,6 +20,8 @@
                         <form class="settings-form" method="post" asp-action="EditSeller">
 
                             @Html.HiddenFor(x=>x.UserId)
+                            @Html.HiddenFor(x=>x.CommissionsAmount)
+                            @Html.HiddenFor(x=>x.SalesAmount)
                             <div class="mb-3">
                                 <label asp-for="User.Firstname" class="form-label">نام </label>
                                 <input type="text" class="form-control" asp-for="User.Firstname" required>

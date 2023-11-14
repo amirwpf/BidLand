@@ -70,7 +70,7 @@ public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken canc
 	public async Task<List<SellerRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
-            .Where(x => !x.IsDelete)
+            //.Where(x => !x.IsDelete)
               .Include(b => b.User)
 			  .Include(b => b.Booth)
 			  .Select(seller => new SellerRepoDto() {
@@ -88,7 +88,14 @@ public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken canc
 			  .ToListAsync(cancellationToken);
 		return result;
 	}
-
+	public async Task<int?> GetSumSellersCommisionAmount(CancellationToken cancellationToken)
+	{
+		var result = await _dbSet.Select(x => new
+		{
+			x.CommissionsAmount
+		}).ToListAsync(cancellationToken);
+		return result.Sum(x => x.CommissionsAmount);
+	}
 	public async Task AddAsync(SellerRepoDto sellerDto, CancellationToken cancellationToken)
 	{
 		var seller = new Seller();

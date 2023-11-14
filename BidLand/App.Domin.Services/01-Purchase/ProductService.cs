@@ -31,7 +31,12 @@ public class ProductService : IProductService
 
     public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken)
     {
-      return  await _productRepo.HardDeleteAsync(id, cancellationToken);
+      return  await _productRepo.SoftDeleteAsync(id, cancellationToken);
+    }
+    
+    public async Task<bool> RecoverAsync(int id, CancellationToken cancellationToken)
+    {
+      return  await _productRepo.SoftRecoverAsync(id, cancellationToken);
     }
 
     public async Task<List<ProductRepoDto>> GetAllAsync(CancellationToken cancellationToken)

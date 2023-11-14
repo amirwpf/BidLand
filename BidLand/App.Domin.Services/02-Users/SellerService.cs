@@ -36,6 +36,11 @@ public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken canc
 		return await _repo.GetAllAsync(cancellationToken);
 	}
 
+	public async Task<int?> GetSumSellerCommisionAmount(CancellationToken cancellationToken)
+	{
+		return await _repo.GetSumSellersCommisionAmount(cancellationToken);
+	}
+
 	public async Task<SellerRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
 		return await _repo.GetByIdAsync(id, cancellationToken);

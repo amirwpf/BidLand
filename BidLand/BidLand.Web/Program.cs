@@ -71,8 +71,8 @@ app.UseDefaultFiles();
 app.UseRouting();
 
 app.UseStaticFiles();
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 //app.UseContentSecurityPolicy();
 
 

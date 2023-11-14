@@ -11,8 +11,8 @@ using NuGet.Common;
 namespace BidLand.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
-    public class UsersController : Controller
+	[Authorize(Roles = "Admin")]
+	public class UsersController : Controller
     {
         private readonly IAccountAppServices _accountAppServices;
         public UsersController(IAccountAppServices accountAppServices)
@@ -20,10 +20,11 @@ namespace BidLand.Web.Areas.Admin.Controllers
             _accountAppServices = accountAppServices;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(CancellationToken token)
         {
-            ViewBag.SellerUsers = await _accountAppServices.GetSellerUsersAsync(new CancellationToken());
-            ViewBag.BuyerUsers = await _accountAppServices.GetBuyerUsersAsync(new CancellationToken());
+            ViewBag.SellerUsers = await _accountAppServices.GetSellerUsersAsync(token);
+            ViewBag.BuyerUsers = await _accountAppServices.GetBuyerUsersAsync(token);
+            ViewBag.SiteCommisionAmount = await _accountAppServices.GetSumSellerCommisionAmount(token);
             return View();
         }
         public async Task<IActionResult> EditBuyer(int id, CancellationToken token)
@@ -37,8 +38,8 @@ namespace BidLand.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 await _accountAppServices.UpdateBuyerAsync(model, token);
-                return View(model);
-            }
+				return RedirectToAction("Index");
+			}
             return View(model);
         }
 
@@ -48,13 +49,12 @@ namespace BidLand.Web.Areas.Admin.Controllers
 
         }
         [HttpPost]
-
         public async Task<IActionResult> EditSeller(SellerRepoDto model, CancellationToken token)
         {
             if (ModelState.IsValid)
             {
                 await _accountAppServices.UpdateSellerAsync(model, token);
-                return View(model);
+                return RedirectToAction("Index");
             }
             return View(model);
         }
@@ -81,7 +81,7 @@ namespace BidLand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> SellerDeleteConfirmed(int id, CancellationToken cancellationToken)
         {
             //if(ModelState.IsValid)
-         var result =    await _accountAppServices.DeleteSellerUserAsync(id, cancellationToken);
+            var result = await _accountAppServices.DeleteSellerUserAsync(id, cancellationToken);
             return RedirectToAction("Index");
         }
 

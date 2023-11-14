@@ -24,8 +24,16 @@
                         <li>
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <span>@User.Identity.Name</span>
-
+                                <span>@User.Identity.Name خوش آمدید!</span>
+                                <span>|</span>
+                                <span><a href="/Identity/Login/Logout">خروج</a></span>
+                                <span>|</span>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <span><a href="/Admin/Home/Index">پنل ادمین</a></span>
+                                }
+                                
+                                
                             }
                             else
                             {

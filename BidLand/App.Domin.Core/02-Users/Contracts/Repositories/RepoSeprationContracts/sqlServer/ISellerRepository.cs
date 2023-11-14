@@ -21,5 +21,6 @@ namespace App.Domin.Core._02_Users.Contracts.Repositories.RepoSeprationContracts
 		Task<bool> SoftRecoverAsync(SellerRepoDto sellerRepo, CancellationToken cancellationToken);
 		Task<bool> HardDeleteAsync(SellerRepoDto sellerRepo, CancellationToken cancellationToken);
         Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken cancellationToken);
-    }
+		Task<int?> GetSumSellersCommisionAmount(CancellationToken cancellationToken);
+	}
 }

@@ -24,5 +24,6 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
         Task<List<BoothRepoDto>> GetAllBooths(CancellationToken token);
         Task<BoothRepoDto> GetBoothsById(int id, CancellationToken token);
         Task<BoothRepoDto> UpdateBoothAsync(BoothRepoDto model, CancellationToken token);
-    }
+		Task<bool> RecoverProduct(int id, CancellationToken cancellationToken);
+	}
 }

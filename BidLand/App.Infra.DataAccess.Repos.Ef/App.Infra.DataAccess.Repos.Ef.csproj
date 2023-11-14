@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\App.Domin.Core\App.Domin.Core.csproj" />
     <ProjectReference Include="..\App.Infra.Db.sqlServer.Ef\App.Infra.Db.sqlServer.Ef.csproj" />
+    <ProjectReference Include="..\BidLand.Framework\BidLand.Framework.csproj" />
   </ItemGroup>
 
 </Project>

@@ -91,9 +91,12 @@ namespace App.Domin.AppServices.Users
                     await _buyerService.CreateAsync(new BuyerRepoDto()
                     {
                         UserId = _user.Id,
-                        InsertionDate = DateTime.Now
-
-                    }, token);
+                        InsertionDate = DateTime.Now,
+                        IsBan = false,
+                        IsDelete = false,
+                        Credit = 0,
+                        TotalPurchaseAmount = 0,
+                    }, token); ;
                     await _userManager.AddToRoleAsync(_user, nameof(BuyerSellerTypes.Buyer));
                 }
                 else if (user.BuyerOrSeller == BuyerSellerTypes.Seller)
@@ -101,7 +104,13 @@ namespace App.Domin.AppServices.Users
                     await _sellerService.CreateAsync(new SellerRepoDto()
                     {
                         UserId = _user.Id,
-                        InsertionDate = DateTime.Now
+                        InsertionDate = DateTime.Now,
+                        IsBan = false,
+                        IsDelete = false,
+                        IsActive= true,
+                        CommissionPercentage= 12,
+                        CommissionsAmount= 0,
+                        SalesAmount= 0,
 
                     }, token);
                     await _userManager.AddToRoleAsync(_user, "Seller");
@@ -329,7 +338,12 @@ namespace App.Domin.AppServices.Users
             await _sellerService.UpdateAsync(model, cancellationToken);
         }
 
-        public async Task<string> UpdateUserAsync(UserDto userDto)
+		public async Task<int?> GetSumSellerCommisionAmount(CancellationToken cancellationToken)
+		{
+			return await _sellerService.GetSumSellerCommisionAmount(cancellationToken);
+		}
+
+		public async Task<string> UpdateUserAsync(UserDto userDto)
         {
             var user = await _userManager.FindByIdAsync(userDto.Id.ToString());
             if (user == null)

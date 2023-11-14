@@ -13,8 +13,8 @@ using System.Threading;
 namespace BidLand.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
-    public class ProductsController : Controller
+	[Authorize(Roles = "Admin")]
+	public class ProductsController : Controller
     {
         private readonly IAdminPanelAppServices _adminPanelAppService;
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -88,16 +88,16 @@ namespace BidLand.Web.Areas.Admin.Controllers
             }
             else
                 return RedirectToAction("Index");
-
-
-
         }
         [HttpPost]
         public async Task<IActionResult> Edit(ProductRepoDto model, CancellationToken cancellationToken)
         {
-            //if(ModelState.IsValid)
-            await _adminPanelAppService.UpdateProduct(model, cancellationToken);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                await _adminPanelAppService.UpdateProduct(model, cancellationToken);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
 
         public async Task<IActionResult> Delete(int id, CancellationToken token)
@@ -120,6 +120,14 @@ namespace BidLand.Web.Areas.Admin.Controllers
         {
             //if(ModelState.IsValid)
             await _adminPanelAppService.DeleteProduct(id, cancellationToken);
+            return RedirectToAction("Index");
+        }
+        
+
+        public async Task<IActionResult> Recover(int id, CancellationToken cancellationToken)
+        {
+            //if(ModelState.IsValid)
+            await _adminPanelAppService.RecoverProduct(id, cancellationToken);
             return RedirectToAction("Index");
         }
 

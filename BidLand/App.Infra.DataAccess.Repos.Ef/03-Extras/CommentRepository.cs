@@ -56,11 +56,12 @@ public class CommentRepository : ICommentRepository
 	}
 	public async Task<List<CommentRepoDto>> GetAllCommentsWithSellerNameConfirmAsync(CancellationToken cancellationToken)
 	{
-		var comments = await _dbSet.Where(x => x.IsConfirm == null)
+		var comments = await _dbSet
 			.Include(p => p.Stock)
 			.Include(p => p.Stock.Product)
 			.Include(c=>c.Stock.Booth)
 			.Include(c => c.Buyer)
+			.ThenInclude(c=>c.User)
 			.Select(comment => new CommentRepoDto() {
                 Id = comment.Id,
                 Title = comment.Title,

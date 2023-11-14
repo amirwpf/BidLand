@@ -15,4 +15,6 @@ public partial class Admin
     public int? SiteCommissionIncome { get; set; }
 
     public DateTime? InsertionDate { get; set; }
+    public int UserId { get; set; }
+    public User User { get; set; }
 }

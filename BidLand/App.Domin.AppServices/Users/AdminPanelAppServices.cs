@@ -99,6 +99,11 @@ namespace App.Domin.AppServices.Users
         {
 			return await _productServices.DeleteAsync(id, cancellationToken);
         }
+		
+		public async Task<bool> RecoverProduct(int id, CancellationToken cancellationToken)
+        {
+			return await _productServices.RecoverAsync(id, cancellationToken);
+        }
 
         public async Task<List<BoothRepoDto>> GetAllBooths(CancellationToken token)
         {

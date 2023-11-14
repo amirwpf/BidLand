@@ -35,6 +35,7 @@ public class BuyerRepository : IBuyerRepository
                 User = buyer.User,
                 Credit = buyer.Credit,
                 IsBan = buyer.IsBan,
+                IsDelete= buyer.IsDelete,
                 TotalPurchaseAmount = buyer.TotalPurchaseAmount,
                 InsertionDate = buyer.InsertionDate,
                 Addresses = buyer.Addresses,
@@ -51,13 +52,14 @@ public class BuyerRepository : IBuyerRepository
     {
         var result = await _dbSet
              .Include(b => b.User)
-             .Where(x => !(bool)x.IsDelete)
+             //.Where(x => !(bool)x.IsDelete)
               .Select(buyer => new BuyerRepoDto()
               {
                   Id = buyer.Id,
                   User = buyer.User,
                   Credit = buyer.Credit,
                   IsBan = buyer.IsBan,
+                  IsDelete = buyer.IsDelete,
                   TotalPurchaseAmount = buyer.TotalPurchaseAmount,
                   InsertionDate = buyer.InsertionDate,
                   Addresses = buyer.Addresses,
@@ -72,13 +74,14 @@ public class BuyerRepository : IBuyerRepository
     {
         var result = await _dbSet
              .Include(b => b.User)
-             .Where(x => (bool)x.IsDelete)
+             //.Where(x => (bool)x.IsDelete)
               .Select(buyer => new BuyerRepoDto()
               {
                   Id = buyer.Id,
                   User = buyer.User,
                   Credit = buyer.Credit,
                   IsBan = buyer.IsBan,
+                  IsDelete = buyer.IsDelete,
                   TotalPurchaseAmount = buyer.TotalPurchaseAmount,
                   InsertionDate = buyer.InsertionDate,
                   Addresses = buyer.Addresses,
@@ -174,7 +177,8 @@ public class BuyerRepository : IBuyerRepository
             Bids = buyer.Bids,
             Carts = buyer.Carts,
             Comments = buyer.Comments,
-            UserId = buyer.UserId
+            UserId = buyer.UserId,
+            IsDelete= buyer.IsDelete,
         };
     }
 
@@ -191,5 +195,6 @@ public class BuyerRepository : IBuyerRepository
         b.Carts = buyer.Carts;
         b.Comments = buyer.Comments;
         b.UserId = buyer.UserId;
+        b.IsDelete= buyer.IsDelete;
     }
 }

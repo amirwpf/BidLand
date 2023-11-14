@@ -20,7 +20,13 @@
                         <form class="settings-form" method="post" asp-action="Edit" enctype="multipart/form-data">
 
                             <div class="mb-3">
-                                <input type="file" multiple="multiple" asp-for="ImageFile" />
+                                @Html.HiddenFor(x=>x.ImageFile)
+                                @*<input type="file" multiple="multiple" asp-for="ImageFile" />
+                                <hr/>*@
+                                @foreach (var item in Model.Images)
+													{
+														<span><img height="30" width="30" src="/uploads/products/@item.Url" />      </span>
+													}
                             </div>
                             <div class="mb-3">
                                 <label asp-for="Name" class="form-label">دسته بندی</label>
@@ -45,15 +51,15 @@
                 </div><!--//app-card-->
             </div>
 
-            <div class="col-12 col-md-6">
+@*            <div class="col-12 col-md-6">
                 @foreach (Image img in Model.Images)
                 {
                     <div>
-                        <img src="~/uploads/images/@img.Url" />
+                        <img src="~/uploads/products/@img.Url" />
                     </div>
 
                 }
-            </div>
+            </div>*@
         </div><!--//row-->
 
     </div><!--//container-fluid-->
