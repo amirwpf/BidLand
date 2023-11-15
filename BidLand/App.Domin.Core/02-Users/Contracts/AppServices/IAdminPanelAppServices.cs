@@ -1,4 +1,5 @@
 ﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+using App.Domin.Core._02_Users.Dtos;
 using App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
 using System;
 using System.Collections.Generic;
@@ -25,5 +26,7 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
         Task<BoothRepoDto> GetBoothsById(int id, CancellationToken token);
         Task<BoothRepoDto> UpdateBoothAsync(BoothRepoDto model, CancellationToken token);
 		Task<bool> RecoverProduct(int id, CancellationToken cancellationToken);
+		Task<List<SellerCommissionDto?>> GetSellersCommision(CancellationToken cancellationToken);
+		Task<float?> GetSellersSumCommision(CancellationToken cancellationToken);
 	}
 }

@@ -9,6 +9,7 @@ public class MedalRepoDto
 	public int Id { get; set; }
 
 	public MedalEnum? LevelType { get; set; }
+	public int? Percentage { get; set; }
 
 	public int? SellerId { get; set; }
 

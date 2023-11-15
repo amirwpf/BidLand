@@ -33,7 +33,7 @@ namespace App.Infra.Config.IoCConfig
 			services.AddScoped<ICategoryRepository, CategoryRepository>();
 			services.AddScoped<IProductRepository, ProductRepository>();
 			//services.AddScoped<IStockRepository, StockRepository>();
-			//services.AddScoped<IStocksCartRepository, StocksCartRepository>();
+			services.AddScoped<IStocksCartRepository, StocksCartRepository>();
 
 			//// --------------------->Service<-------------------------------------
 			//services.AddScoped<IAuctionService, AuctionService>();
@@ -43,7 +43,7 @@ namespace App.Infra.Config.IoCConfig
 			services.AddScoped<ICategoryService, CategoryService>();
 			services.AddScoped<IProductService, ProductService>();
 			//services.AddScoped<IStockService, StockService>();
-			//services.AddScoped<IStocksCartService, StocksCartService>();
+			services.AddScoped<IStocksCartService, StocksCartService>();
 
 			//#endregion
 

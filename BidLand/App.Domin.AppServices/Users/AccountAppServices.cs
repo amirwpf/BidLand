@@ -17,6 +17,7 @@ using App.Domin.Core._02_Users.Enums;
 using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 using System.Security.Claims;
 using System.Diagnostics.CodeAnalysis;
+using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
 
 namespace App.Domin.AppServices.Users
 {
@@ -28,7 +29,7 @@ namespace App.Domin.AppServices.Users
         private readonly IBuyerService _buyerService;
         private readonly ISellerService _sellerService;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public AccountAppServices(UserManager<User> userManager,
+		public AccountAppServices(UserManager<User> userManager,
             RoleManager<Role> roleManager,
             SignInManager<User> signInManager,
             IHttpContextAccessor httpContextAccessor,

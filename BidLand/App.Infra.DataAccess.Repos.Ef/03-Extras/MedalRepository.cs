@@ -26,7 +26,15 @@ public class MedalRepository : IMedalRepository
 	public async Task<MedalRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
 		var result = await _dbSet.Where(x => x.Id == id)
-			.Select(x => ConvertToDto(x)).FirstOrDefaultAsync(cancellationToken);
+			.Select(medal => new MedalRepoDto()
+			{
+				Id = medal.Id,
+				InsertionDate = medal.InsertionDate,
+				LevelType = medal.LevelType,
+				Percentage = medal.Percentage,
+				SellerId = medal.SellerId,
+				Seller = medal.Seller
+			}).FirstOrDefaultAsync(cancellationToken);
 		if (result == null) return null;
 		return result;
 	}
@@ -34,7 +42,15 @@ public class MedalRepository : IMedalRepository
 	public async Task<MedalRepoDto?> GetMedalByTypeAsync(MedalEnum medalType, CancellationToken cancellationToken)
 	{
 		var result = await _dbSet.Where(m => m.LevelType == medalType)
-			.Select(x => ConvertToDto(x)).FirstOrDefaultAsync(cancellationToken);
+			.Select(medal => new MedalRepoDto()
+			{
+				Id = medal.Id,
+				InsertionDate = medal.InsertionDate,
+				LevelType = medal.LevelType,
+				Percentage = medal.Percentage,
+				SellerId = medal.SellerId,
+				Seller = medal.Seller
+			}).FirstOrDefaultAsync(cancellationToken);
 		if (result == null) return null;
 		return result;
 	}
@@ -43,7 +59,15 @@ public class MedalRepository : IMedalRepository
 	public async Task<List<MedalRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
-			.Select(x => ConvertToDto(x)).ToListAsync(cancellationToken);
+			.Select(medal => new MedalRepoDto()
+			{
+				Id = medal.Id,
+				InsertionDate = medal.InsertionDate,
+				LevelType = medal.LevelType,
+				Percentage = medal.Percentage,
+				SellerId = medal.SellerId,
+				Seller = medal.Seller
+			}).ToListAsync(cancellationToken);
 		return result;
 	}
 
@@ -87,6 +111,7 @@ public class MedalRepository : IMedalRepository
 			Id = medal.Id,
 			InsertionDate = medal.InsertionDate,
 			LevelType = medal.LevelType,
+			Percentage= medal.Percentage,
 			SellerId = medal.SellerId,
 			Seller = medal.Seller
 		};
@@ -97,6 +122,7 @@ public class MedalRepository : IMedalRepository
 		medal.Id = medalDto.Id;
 		medal.InsertionDate = medalDto.InsertionDate;
 		medal.LevelType = medalDto.LevelType;
+		medal.Percentage = medalDto.Percentage;
 		medal.SellerId = medalDto.SellerId;
 		medal.Seller = medalDto.Seller;
 	}

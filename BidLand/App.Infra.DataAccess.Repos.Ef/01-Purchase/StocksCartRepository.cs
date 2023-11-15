@@ -3,7 +3,7 @@ using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts
 using App.Domin.Core._01_Purchause.Entities;
 using App.Infra.Db.sqlServer.Ef.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
+using App.Domin.Core._02_Users.Dtos;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,7 @@ public class StocksCartRepository : IStocksCartRepository
 	private readonly AppDbContext _context;
 	private readonly DbSet<StocksCart> _dbSet;
 
-	public StocksCartRepository(AppDbContext context, CancellationToken cancellationToken)
+	public StocksCartRepository(AppDbContext context)
 	{
 		_context = context;
 		_dbSet = _context.Set<StocksCart>();
@@ -48,7 +48,7 @@ public class StocksCartRepository : IStocksCartRepository
 				CartId = cart.Id,
 				StockId = stockId,
 				Quantity = 1,
-				InsertionDate= DateTime.Now
+				InsertionDate = DateTime.Now
 			};
 
 			cart.StocksCarts.Add(productsCart);
@@ -62,7 +62,7 @@ public class StocksCartRepository : IStocksCartRepository
 	public async Task<StocksCartRepoDto?> GetByCartIdAsync(int cartId, CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
-			.Where(a=>a.CartId== cartId)
+			.Where(a => a.CartId == cartId)
 			.Include(x => x.Cart)
 			.Include(x => x.Stock)
 			.Select(a => ConvertToStocksCartRepoDto(a))
@@ -72,12 +72,67 @@ public class StocksCartRepository : IStocksCartRepository
 		return result;
 	}
 
+
+	public async Task<List<SellerCommissionDto?>> GetCommision(CancellationToken cancellationToken)
+	{
+		//var query = await _dbSet
+		//.Where(sc => sc.Cart.PurchaseCompeleted == false)
+		//.Join(_context.Carts, sc => sc.CartId, c => c.Id, (sc, c) => new { sc, c })
+		//.Join(_context.Stocks, temp => temp.sc.StockId, s => s.Id, (temp, s) => new { temp.sc, temp.c, s })
+		//.Join(_context.Booths, temp => temp.s.BoothId, b => b.Id, (temp, b) => new { temp.sc, temp.c, temp.s, b })
+		//.Join(_context.Sellers, temp => temp.b.SellerId, se => se.Id, (temp, se) => new { temp.sc, temp.c, temp.s, temp.b, se })
+		//.Join(_context.Medals, temp => temp.se.Id, m => m.SellerId, (temp, m) => new { temp.sc, temp.c, temp.s, temp.b, temp.se, m })
+		//.Join(_context.Users, temp => temp.se.UserId, u => u.Id, (temp, u) => new { temp.sc, temp.c, temp.s, temp.b, temp.se, temp.m, u })
+		//.GroupBy(temp => new { temp.se.Id, temp.u.Firstname, temp.u.Lastname, temp.m.Percentage })
+		//.Select(group => new SellerCommissionDto
+		//{
+		//	Id = group.Key.Id,
+		//	Firstname = group.Key.Firstname,
+		//	Lastname = group.Key.Lastname,
+		//	Commision = group.Sum(x => x.sc.Quantity) * group.Sum(x => x.s.Price) * group.Key.Percentage * 0.01f
+		//})
+		//.ToListAsync(cancellationToken);
+
+
+		var query = await _dbSet
+		.Where(sc => sc.Cart.PurchaseCompeleted == false)
+		.Select(sc => new
+		{
+			StockCart = sc,
+			Cart = sc.Cart,
+			Stock = sc.Stock,
+			Booth = sc.Stock.Booth,
+			Seller = sc.Stock.Booth.Seller,
+			Medal = sc.Stock.Booth.Seller.Medals.FirstOrDefault(m => m.SellerId == sc.Stock.Booth.SellerId),
+			User = sc.Stock.Booth.Seller.User
+		})
+		.Where(temp => temp.Medal != null) // Ensuring Medal exists
+		.GroupBy(temp => new { temp.Seller.Id, temp.User.Firstname, temp.User.Lastname, temp.Medal.Percentage })
+		.Select(group => new SellerCommissionDto
+		{
+			Id = group.Key.Id,
+			Firstname = group.Key.Firstname,
+			Lastname = group.Key.Lastname,
+			Commision = group.Sum(x => x.StockCart.Quantity) * group.Sum(x => x.Stock.Price) * group.Key.Percentage * 0.01f
+		})
+		.ToListAsync(cancellationToken);
+
+
+		if (query != null)
+		{
+			return query;
+		}
+
+		return null;
+
+	}
+
 	public async Task<List<StocksCartRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
-			.Include(x=>x.Cart)
-			.Include(x=>x.Stock)
-			.Select(a=> ConvertToStocksCartRepoDto(a))
+			.Include(x => x.Cart)
+			.Include(x => x.Stock)
+			.Select(a => ConvertToStocksCartRepoDto(a))
 			.ToListAsync(cancellationToken);
 
 		return result;
@@ -94,7 +149,7 @@ public class StocksCartRepository : IStocksCartRepository
 	public async Task<bool> UpdateAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken)
 	{
 		var res = await _dbSet.Where(x => x.CartId == stocksCart.CartId).FirstOrDefaultAsync(cancellationToken);
-		if(res != null)
+		if (res != null)
 		{
 			UpdaterEq(stocksCart, ref res);
 			_context.Entry(res).State = EntityState.Modified;
@@ -106,8 +161,8 @@ public class StocksCartRepository : IStocksCartRepository
 
 	public async Task<bool> HardDeleteAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken)
 	{
-		var res =await _dbSet.Where(x => x.CartId == stocksCart.CartId ).FirstOrDefaultAsync(cancellationToken);
-		if(res != null)
+		var res = await _dbSet.Where(x => x.CartId == stocksCart.CartId).FirstOrDefaultAsync(cancellationToken);
+		if (res != null)
 		{
 			_dbSet.Remove(res);
 			await _context.SaveChangesAsync(cancellationToken);

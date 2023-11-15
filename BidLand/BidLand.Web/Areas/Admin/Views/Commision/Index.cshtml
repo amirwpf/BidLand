@@ -1,0 +1,84 @@
+﻿@using App.Domin.Core._02_Users.Dtos;
+@using BidLand.Framework.Common;
+@model List<SellerCommissionDto>;
+
+@{
+	ViewBag.PageTitle = "کارمزدها";
+}
+<div class="app-content pt-3 p-md-3 p-lg-4">
+	<div class="container-xl">
+
+		<div class="row g-3 mb-4 align-items-center justify-content-between">
+			<div class="col-auto">
+				<h1 class="app-page-title mb-0">@ViewBag.PageTitle</h1>
+			</div>
+
+		</div><!--//row-->
+
+
+		<div class="tab-content" id="products-table-tab-content">
+			<div class="tab-pane fade show active" id="products-pending" role="tabpanel" aria-labelledby="products-all-tab">
+				<div class="app-card app-card-orders-table shadow-sm mb-5">
+					<div class="app-card-body">
+						<div class="table-responsive">
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
+
+										<th class="cell">شناسه</th>
+										<th class="cell">نام</th>
+										<th class="cell">نام خانوادگی</th>
+										<th class="cell">عملیات</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var p in Model)
+									{
+										<tr>
+											<td class="cell">@p.Id</td>
+											<td class="cell"><span class="truncate">@p.Firstname</span></td>
+											<td class="cell"><span class="truncate">@p.Lastname</span></td>
+											<td class="cell"><span class="truncate">@p.Commision</span></td>
+
+										</tr>
+									}
+
+								</tbody>
+							</table>
+						</div><!--//table-responsive-->
+
+					</div><!--//app-card-body-->
+				</div><!--//app-card-->
+
+
+				<div class="app-card app-card-orders-table shadow-sm mb-5">
+					<div class="app-card-body">
+						<div class="table-responsive">
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
+
+										<th class="cell">جمع کل کارمزد فروشندگان</th>
+
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr>
+										<td class="cell">@ViewBag.SiteCommiosion </td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div><!--//table-responsive-->
+
+					</div><!--//app-card-body-->
+				</div><!--//app-card-->
+			</div><!--//tab-pane-->
+
+		</div><!--//tab-content-->
+
+
+
+	</div><!--//container-fluid-->
+</div><!--//app-content-->

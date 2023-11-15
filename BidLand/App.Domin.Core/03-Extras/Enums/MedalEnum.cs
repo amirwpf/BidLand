@@ -9,7 +9,7 @@ namespace App.Domin.Core._03_Extras.Enums;
 public enum MedalEnum
 {
 
-	Bronze = 3,
+	Bronze = 1,
 	Silver = 2,
-	Gold = 1,
+	Gold = 3,
 }

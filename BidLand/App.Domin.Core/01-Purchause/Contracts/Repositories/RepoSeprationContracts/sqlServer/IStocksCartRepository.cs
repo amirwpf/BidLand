@@ -1,5 +1,6 @@
 ﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 using App.Domin.Core._01_Purchause.Entities;
+using App.Domin.Core._02_Users.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,6 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 		Task AddAsync(StocksCartRepoDto dto, CancellationToken cancellationToken);
 		Task<bool> UpdateAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken);
 		Task<bool> HardDeleteAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken);
+		Task<List<SellerCommissionDto?>> GetCommision(CancellationToken cancellationToken);
 	}
 }

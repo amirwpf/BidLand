@@ -2,6 +2,7 @@
 using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
 using App.Domin.Core._01_Purchause.Contracts.Services;
 using App.Domin.Core._01_Purchause.Dtos;
+using App.Domin.Core._02_Users.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,5 +42,16 @@ public class StocksCartService: IStocksCartService
 	public async Task UpdateAsync(StocksCartRepoDto input, CancellationToken cancellationToken)
 	{
 		await _repo.UpdateAsync(input, cancellationToken);
+	}
+
+	public async Task<List<SellerCommissionDto?>> GetSellersCommision(CancellationToken cancellationToken)
+	{
+		return await _repo.GetCommision(cancellationToken);
+	}
+	
+	public async Task<float?> GetSellersSumCommision(CancellationToken cancellationToken)
+	{
+		var result =  await GetSellersCommision(cancellationToken);
+		return result.Select(x => x.Commision).Sum();
 	}
 }

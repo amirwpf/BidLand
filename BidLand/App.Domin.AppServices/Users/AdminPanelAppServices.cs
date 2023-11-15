@@ -1,6 +1,8 @@
 ﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
 using App.Domin.Core._01_Purchause.Contracts.Services;
 using App.Domin.Core._02_Users.Contracts.AppServices;
+using App.Domin.Core._02_Users.Dtos;
 using App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
 using App.Domin.Core._03_Extras.Contracts.Services;
 using Microsoft.AspNetCore.Hosting;
@@ -22,14 +24,20 @@ namespace App.Domin.AppServices.Users
 		private readonly ICommentService _commentServices;
 		private readonly ICategoryService _categoryService;
 		private readonly IBoothService _boothService;
-	
-        public AdminPanelAppServices(IProductService productService, ICommentService commentService, ICategoryService categoryService,IBoothService boothService)
+		private readonly IStocksCartService _stocksCartService;
+
+
+		public AdminPanelAppServices(IProductService productService,
+									ICommentService commentService,
+									ICategoryService categoryService,
+									IBoothService boothService,
+									IStocksCartService stocksCartService)
 		{
 			_productServices = productService;
 			_commentServices = commentService;
 			_categoryService = categoryService;
 			_boothService = boothService;
-			
+			_stocksCartService = stocksCartService;
 		}
 
 		#region ProductsManagement
@@ -122,6 +130,21 @@ namespace App.Domin.AppServices.Users
 			return model;
         }
 
-        #endregion
-    }
+		#endregion
+
+
+		#region Seller
+
+		public async Task<List<SellerCommissionDto?>> GetSellersCommision(CancellationToken cancellationToken)
+		{
+			return await _stocksCartService.GetSellersCommision(cancellationToken);
+		}
+		
+		public async Task<float?> GetSellersSumCommision(CancellationToken cancellationToken)
+		{
+			return await _stocksCartService.GetSellersSumCommision(cancellationToken);
+		}
+
+		#endregion
+	}
 }
