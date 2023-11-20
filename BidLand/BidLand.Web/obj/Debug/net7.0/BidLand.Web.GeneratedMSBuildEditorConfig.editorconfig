@@ -104,6 +104,58 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Auction/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEF1Y3Rpb25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Booth/AddAuctionStock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEJvb3RoXEFkZEF1Y3Rpb25TdG9jay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Booth/AddFixedPriceStock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEJvb3RoXEFkZEZpeGVkUHJpY2VTdG9jay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Booth/AddStock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEJvb3RoXEFkZFN0b2NrLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Booth/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEJvb3RoXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Booth/EditStock.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEJvb3RoXEVkaXRTdG9jay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Booth/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEJvb3RoXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Home/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEhvbWVcQWJvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEhvbWVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Shared/_headerPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFNoYXJlZFxfaGVhZGVyUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFNoYXJlZFxfTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXF9WaWV3SW1wb3J0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

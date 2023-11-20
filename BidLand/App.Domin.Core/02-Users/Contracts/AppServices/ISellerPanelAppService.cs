@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Domin.Core._01_Purchause.Dtos;
+namespace App.Domin.Core._02_Users.Contracts.AppServices;
 
-public class BoothResponseDto
+public interface ISellerPanelAppService
 {
+
 }

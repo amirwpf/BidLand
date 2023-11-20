@@ -20,4 +20,5 @@ public interface IStockService
 	Task<StockRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken);
 
 	Task<bool> UpdateAsync(StockRepoDto input, CancellationToken cancellationToken);
+	Task<bool> AddSalesValueToSeller(StockRepoDto stockDto, int? bidPrice, float? commisionValue, CancellationToken cancellationToken);
 }

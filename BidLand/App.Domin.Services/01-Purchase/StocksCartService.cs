@@ -49,6 +49,11 @@ public class StocksCartService: IStocksCartService
 		return await _repo.GetCommision(cancellationToken);
 	}
 	
+	public async Task<float?> GetSTockCommisionValue(StockRepoDto stockRepoDto,CancellationToken cancellationToken)
+	{
+		return await _repo.GetCommisionValue(stockRepoDto,cancellationToken);
+	}
+	
 	public async Task<float?> GetSellersSumCommision(CancellationToken cancellationToken)
 	{
 		var result =  await GetSellersCommision(cancellationToken);

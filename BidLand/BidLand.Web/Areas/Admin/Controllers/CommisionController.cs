@@ -8,15 +8,15 @@ namespace BidLand.Web.Areas.Admin.Controllers
 	[Authorize(Roles = "Admin")]
 	public class CommisionController : Controller
 	{
-		private readonly IAdminPanelAppServices _adminPanelAppServices;
-		public CommisionController(IAdminPanelAppServices adminPanelAppServices)
+		private readonly IPurchaseAppServices _purchaseAppServices;
+		public CommisionController(IPurchaseAppServices purchaseAppServices)
 		{
-			_adminPanelAppServices = adminPanelAppServices;
+			_purchaseAppServices = purchaseAppServices;
 		}
 		public async Task<IActionResult> Index(CancellationToken cancellationToken)
 		{
-			var result = await _adminPanelAppServices.GetSellersCommision(cancellationToken);
-			ViewBag.SiteCommiosion = await _adminPanelAppServices.GetSellersSumCommision(cancellationToken);
+			var result = await _purchaseAppServices.GetSellersCommision(cancellationToken);
+			ViewBag.SiteCommiosion = await _purchaseAppServices.GetSellersSumCommision(cancellationToken);
 			return View(result);
 		}
 	}

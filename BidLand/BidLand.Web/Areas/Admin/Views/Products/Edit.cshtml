@@ -2,14 +2,14 @@
 @using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos
 @using App.Domin.Core._03_Extras.Entities
 @{
-    ViewBag.PageTitle = "ایجاد محصول جدید";
+    ViewBag.PageTitle = "ویرایش محصول";
 }
 
 
 
 <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">
-        <h1 class="app-page-title">Settings</h1>
+        <h1 class="app-page-title">@ViewBag.PageTitle</h1>
         <hr class="mb-4">
         <div class="row g-4 settings-section">
 
@@ -44,7 +44,7 @@
                                 <label asp-for="Description" class="form-label">شرح</label>
                                 <input type="text" class="form-control" asp-for="Description" required>
                             </div>
-                            <button type="submit" class="btn app-btn-primary">وایرایش</button>
+                            <button type="submit" class="btn app-btn-primary">ویرایش</button>
                         </form>
                     </div><!--//app-card-body-->
 

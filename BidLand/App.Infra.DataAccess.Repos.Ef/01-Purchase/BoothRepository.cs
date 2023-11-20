@@ -43,7 +43,7 @@ public class BoothRepository : IBoothRepository
 	}
 	public async Task<List<BoothRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
-		var booth = await _dbSet.AsNoTracking().Include(x => x.Seller).ThenInclude(x=>x.User).Include(x=>x.Stocks).ToListAsync(cancellationToken);
+		var booth = await _dbSet.AsNoTracking().Include(x => x.Seller).ThenInclude(x=>x.User).Include(x=>x.Stocks).ThenInclude(x => x.Product).ToListAsync(cancellationToken);
 		var result = booth.Select(booth => new BoothRepoDto {
             Id = booth.Id,
             Name = booth.Name,
@@ -52,7 +52,7 @@ public class BoothRepository : IBoothRepository
             SellerId = booth.SellerId,
             Stocks = booth.Stocks,
             IsDelete = booth.IsDelete,
-            InsertionDate = booth.InsertionDate
+            InsertionDate = booth.InsertionDate,
         }).ToList();
 		return result;
 	}

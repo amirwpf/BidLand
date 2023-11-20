@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace App.Domin.Core._02_Users.Contracts.AppServices
 {
-    public interface IAdminPanelAppServices
+    public interface IPurchaseAppServices
     {
         Task<bool> ConfirmProduct(int productId, bool isConfirm, CancellationToken cancellationToken);
         Task<List<ProductRepoDto>> GetAllProducts(CancellationToken cancellationToken);
@@ -28,5 +28,14 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
 		Task<bool> RecoverProduct(int id, CancellationToken cancellationToken);
 		Task<List<SellerCommissionDto?>> GetSellersCommision(CancellationToken cancellationToken);
 		Task<float?> GetSellersSumCommision(CancellationToken cancellationToken);
+		Task<List<ProductRepoDto>> GetAllProductsByCategoryId(int id, CancellationToken cancellationToken);
+        Task AddStock(StockRepoDto model, CancellationToken cancellationToken);
+		Task<StockRepoDto?> GetStockById(int id, CancellationToken cancellationToken);
+        Task<bool?> EditStock(StockRepoDto model, CancellationToken cancellationToken);
+		Task AddAuction(AuctionRepoDto model, CancellationToken cancellationToken);
+		Task GetAuctionById(int id, CancellationToken cancellationToken);
+		Task<List<AuctionRepoDto>> GetAllAuction(CancellationToken cancellationToken);
+		Task EditAuction(AuctionRepoDto model, CancellationToken cancellationToken);
+		Task<string> AuctionPurchaseCompelete(AuctionRepoDto auction, CancellationToken cancellationToken);
 	}
 }

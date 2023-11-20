@@ -18,9 +18,9 @@ namespace BidLand.Framework.Common
             int hour = persianCalendar.GetHour(miladiDate);
             int minute = persianCalendar.GetMinute(miladiDate);
             int second = persianCalendar.GetSecond(miladiDate);
-            string amPmDesignator = persianCalendar.GetHour(miladiDate) < 12 ? "AM" : "PM";
+            string amPmDesignator = persianCalendar.GetHour(miladiDate) < 12 ? "ق.ظ" : "ب.ظ";
 
-            string persianDateTime = string.Format("{0}/{1}/{2} {3}:{4}:{5} {6}", year, month, day, hour, minute, second, amPmDesignator);
+            string persianDateTime = string.Format("{0} {1} {2} {3}:{4}:{5} {6}", day , (PersianMonths)month, year, hour, minute, second, amPmDesignator);
 
             return persianDateTime;
         }

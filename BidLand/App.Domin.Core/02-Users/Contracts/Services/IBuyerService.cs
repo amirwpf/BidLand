@@ -16,6 +16,6 @@ public interface IBuyerService
 	Task<List<BuyerRepoDto>> GetAllAsync(CancellationToken cancellationToken);
     Task<List<BuyerRepoDto>> GetAllDeletedAsync(CancellationToken cancellationToken);
     Task<BuyerRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken);
-
+	Task SubtractSalesValueFromBuyer(BuyerRepoDto input, float? commisionValue, CancellationToken cancellationToken);
 	Task UpdateAsync(BuyerRepoDto input, CancellationToken cancellationToken);
 }

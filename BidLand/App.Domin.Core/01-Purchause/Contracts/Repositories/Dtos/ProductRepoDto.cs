@@ -22,9 +22,9 @@ public class ProductRepoDto
 
 	public string? Description { get; set; }
 
-	public bool IsActive { get; set; }
+	public bool IsActive { get; set; } = true;
 
-	public bool IsDelete { get; set; }
+	public bool IsDelete { get; set; }=false;
 
 	public DateTime? InsertionDate { get; set; } 
 

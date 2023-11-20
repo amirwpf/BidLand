@@ -73,29 +73,10 @@ public class StocksCartRepository : IStocksCartRepository
 	}
 
 
-	public async Task<List<SellerCommissionDto?>> GetCommision(CancellationToken cancellationToken)
+	public async Task<float?> GetCommisionValue(StockRepoDto stockModel, CancellationToken cancellationToken)
 	{
-		//var query = await _dbSet
-		//.Where(sc => sc.Cart.PurchaseCompeleted == false)
-		//.Join(_context.Carts, sc => sc.CartId, c => c.Id, (sc, c) => new { sc, c })
-		//.Join(_context.Stocks, temp => temp.sc.StockId, s => s.Id, (temp, s) => new { temp.sc, temp.c, s })
-		//.Join(_context.Booths, temp => temp.s.BoothId, b => b.Id, (temp, b) => new { temp.sc, temp.c, temp.s, b })
-		//.Join(_context.Sellers, temp => temp.b.SellerId, se => se.Id, (temp, se) => new { temp.sc, temp.c, temp.s, temp.b, se })
-		//.Join(_context.Medals, temp => temp.se.Id, m => m.SellerId, (temp, m) => new { temp.sc, temp.c, temp.s, temp.b, temp.se, m })
-		//.Join(_context.Users, temp => temp.se.UserId, u => u.Id, (temp, u) => new { temp.sc, temp.c, temp.s, temp.b, temp.se, temp.m, u })
-		//.GroupBy(temp => new { temp.se.Id, temp.u.Firstname, temp.u.Lastname, temp.m.Percentage })
-		//.Select(group => new SellerCommissionDto
-		//{
-		//	Id = group.Key.Id,
-		//	Firstname = group.Key.Firstname,
-		//	Lastname = group.Key.Lastname,
-		//	Commision = group.Sum(x => x.sc.Quantity) * group.Sum(x => x.s.Price) * group.Key.Percentage * 0.01f
-		//})
-		//.ToListAsync(cancellationToken);
-
-
 		var query = await _dbSet
-		.Where(sc => sc.Cart.PurchaseCompeleted == false)
+		.Where(sc => sc.Id == stockModel.Id)
 		.Select(sc => new
 		{
 			StockCart = sc,
@@ -103,7 +84,7 @@ public class StocksCartRepository : IStocksCartRepository
 			Stock = sc.Stock,
 			Booth = sc.Stock.Booth,
 			Seller = sc.Stock.Booth.Seller,
-			Medal = sc.Stock.Booth.Seller.Medals.FirstOrDefault(m => m.SellerId == sc.Stock.Booth.SellerId),
+			Medal = sc.Stock.Booth.Seller.Medal,
 			User = sc.Stock.Booth.Seller.User
 		})
 		.Where(temp => temp.Medal != null) // Ensuring Medal exists
@@ -113,9 +94,42 @@ public class StocksCartRepository : IStocksCartRepository
 			Id = group.Key.Id,
 			Firstname = group.Key.Firstname,
 			Lastname = group.Key.Lastname,
-			Commision = group.Sum(x => x.StockCart.Quantity) * group.Sum(x => x.Stock.Price) * group.Key.Percentage * 0.01f
+			Commision = group.Sum(x => x.StockCart.Quantity) * group.Sum(x => x.Stock.Price * 0.01f) * group.Key.Percentage
+		})
+		.FirstOrDefaultAsync(cancellationToken);
+
+
+		if (query == null)
+			return null;
+
+		return query.Commision;
+	}
+
+	public async Task<List<SellerCommissionDto?>> GetCommision(CancellationToken cancellationToken)
+	{
+		var query = await _dbSet
+		.Where(sc => sc.Cart.PurchaseCompeleted == true)
+		.Select(sc => new
+		{
+			StockCart = sc,
+			Cart = sc.Cart,
+			Stock = sc.Stock,
+			Booth = sc.Stock.Booth,
+			Seller = sc.Stock.Booth.Seller,
+			Medal = sc.Stock.Booth.Seller.Medal/*s.FirstOrDefault(m => m.SellerId == sc.Stock.Booth.SellerId)*/,
+			User = sc.Stock.Booth.Seller.User
+		})
+		.Where(temp => temp.Medal != null) // Ensuring Medal exists
+		.GroupBy(temp => new { temp.Seller.Id, temp.User.Firstname, temp.User.Lastname, temp.Medal.Percentage })
+		.Select(group => new SellerCommissionDto
+		{
+			Id = group.Key.Id,
+			Firstname = group.Key.Firstname,
+			Lastname = group.Key.Lastname,
+			Commision = group.Sum(x => x.StockCart.Quantity) * group.Sum(x => x.Stock.Price * 0.01f) * group.Key.Percentage
 		})
 		.ToListAsync(cancellationToken);
+
 
 
 		if (query != null)

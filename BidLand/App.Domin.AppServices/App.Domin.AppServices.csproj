@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Extras\" />
-    <Folder Include="Purchase\" />
   </ItemGroup>
 
   <ItemGroup>

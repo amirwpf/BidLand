@@ -16,6 +16,8 @@ using App.Domin.Core._02_Users.Contracts.Repositories.RepoSeprationContracts.sql
 using App.Domin.Core._02_Users.Contracts.Services;
 using App.Domin.Services._02_Users;
 using App.Infra.DataAccess.Repos.Ef._02_Users;
+using App.Domin.AppServices.Purchase;
+using App.Domin.Core._01_Purchase.Contracts.Repositories.RepoSeprationContracts.sqlServer;
 
 namespace App.Infra.Config.IoCConfig
 {
@@ -26,33 +28,35 @@ namespace App.Infra.Config.IoCConfig
 		{
 			#region Purchase
 			// --------------------->Reposritory<-------------------------------------
-			//services.AddScoped<IAuctionRepository, AuctionRepository>();
-			//services.AddScoped<IBidRepository, BidRepository>();
+			services.AddScoped<IAuctionRepository, AuctionRepository>();
+			services.AddScoped<IBidRepository, BidRepository>();
 			services.AddScoped<IBoothRepository, BoothRepository>();
-			//services.AddScoped<ICartRepository, CartRepository>();
+			services.AddScoped<ICartRepository, CartRepository>();
 			services.AddScoped<ICategoryRepository, CategoryRepository>();
 			services.AddScoped<IProductRepository, ProductRepository>();
-			//services.AddScoped<IStockRepository, StockRepository>();
+			services.AddScoped<IStockRepository, StockRepository>();
 			services.AddScoped<IStocksCartRepository, StocksCartRepository>();
 
 			//// --------------------->Service<-------------------------------------
-			//services.AddScoped<IAuctionService, AuctionService>();
-			//services.AddScoped<IBidService, BidService>();
+			services.AddScoped<IAuctionService, AuctionService>();
+			services.AddScoped<IBidService, BidService>();
 			services.AddScoped<IBoothService, BoothService>();
-			//services.AddScoped<ICartService, CartService>();
+			services.AddScoped<ICartService, CartService>();
 			services.AddScoped<ICategoryService, CategoryService>();
 			services.AddScoped<IProductService, ProductService>();
-			//services.AddScoped<IStockService, StockService>();
+			services.AddScoped<IStockService, StockService>();
 			services.AddScoped<IStocksCartService, StocksCartService>();
 
 			//#endregion
 
 			//#region Users
 			//// --------------------->Repository<---------------------------------
+			services.AddScoped<IAdminRepository, AdminRepository>();
 			services.AddScoped<ISellerRepository, SellerRepository>();
 			services.AddScoped<IBuyerRepository, BuyerRepository>();
 
 			//// --------------------->Service<---------------------------------
+			services.AddScoped<IAdminService, AdminService>();
 			services.AddScoped<ISellerService, SellerService>();
 			services.AddScoped<IBuyerService, BuyerService>();
 
@@ -63,17 +67,17 @@ namespace App.Infra.Config.IoCConfig
 			//services.AddScoped<IAddressRepository, AddressRepository>();
 			services.AddScoped<ICommentRepository, CommentRepository>();
 			//services.AddScoped<IImageRepository, ImageRepository>();
-			//services.AddScoped<IMedalRepository, MedalRepository>();
+			services.AddScoped<IMedalRepository, MedalRepository>();
 
 			//// --------------------->Service<--------------------------------------
 			//services.AddScoped<IAddressService, AddressService>();
 			services.AddScoped<ICommentService, CommentService>();
 			//services.AddScoped<IImageService, ImageService>();
-			//services.AddScoped<IMedalService, MedalService>();
+			services.AddScoped<IMedalService, MedalService>();
 
 
 			//// --------------------------- App Services -------------------------------
-			services.AddScoped<IAdminPanelAppServices, AdminPanelAppServices>();
+			services.AddScoped<IPurchaseAppServices, PurchaseAppServices>();
 			services.AddScoped<IAccountAppServices, AccountAppServices>();
 			
 			

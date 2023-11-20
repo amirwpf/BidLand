@@ -1,4 +1,5 @@
-﻿using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
+﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 using App.Domin.Core._02_Users.Contracts.Repositories.RepoSeprationContracts.sqlServer;
 using App.Domin.Core._02_Users.Contracts.Services;
 using App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
@@ -44,6 +45,12 @@ public class BuyerService: IBuyerService
 
 	public async Task UpdateAsync(BuyerRepoDto input, CancellationToken cancellationToken)
 	{
+		await _repo.UpdateAsync(input, cancellationToken);
+	}
+
+	public async Task SubtractSalesValueFromBuyer(BuyerRepoDto input, float? commisionValue, CancellationToken cancellationToken)
+	{
+		input.Credit -= (int)commisionValue;
 		await _repo.UpdateAsync(input, cancellationToken);
 	}
 }

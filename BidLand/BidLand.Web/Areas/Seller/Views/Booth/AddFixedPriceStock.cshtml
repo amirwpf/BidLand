@@ -1,0 +1,51 @@
+﻿@model StockRepoDto
+@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos
+@{
+	ViewBag.PageTitle = "افزودن محصول با قیمت ثابت";
+}
+
+
+
+<div class="app-content pt-3 p-md-3 p-lg-4">
+	<div class="container-xl">
+		<h1 class="app-page-title">@ViewBag.PageTitle</h1>
+		<hr class="mb-4">
+		<div class="row g-4 settings-section">
+
+			<div class="col-12 col-md-6">
+				<div class="app-card app-card-settings shadow-sm p-4">
+
+					<div class="app-card-body">
+						<form class="settings-form" method="post" asp-action="AddFixedPriceStock" enctype="form-data">
+							@*
+							<div class="mb-3">
+							<label asp-for="Name" class="form-label">دسته بندی</label>
+							@Html.DropDownList("CategoryId", @ViewBag.Categories as SelectList , "انتخاب دسته بندی", new { @class = "form-control"})
+							</div>*@
+							<input id="ProductId" name="ProductId" type="hidden" value="@ViewBag.ProductId" />
+							<input id="BoothId" name="BoothId" type="hidden" value="@ViewBag.BoothId" />
+							<div class="mb-3">
+								<label class="form-label">@ViewBag.ProductName</label>
+							</div>
+							<div class="mb-3">
+								<label asp-for="Price" class="form-label">قیمت</label>
+								<input type="text" class="form-control" asp-for="Price" required>
+							</div>
+							<div class="mb-3">
+								<label asp-for="AvailableNumber" class="form-label">تعداد موجود</label>
+								<input type="text" class="form-control" asp-for="AvailableNumber" required>
+							</div>
+							<div class="mb-3">
+								<label asp-for="AdditionalDescription" class="form-label">توضیحات</label>
+								<input type="text" class="form-control" asp-for="AdditionalDescription">
+							</div>
+							<button type="submit" class="btn app-btn-primary">ایجاد</button>
+						</form>
+					</div><!--//app-card-body-->
+
+				</div><!--//app-card-->
+			</div>
+		</div><!--//row-->
+
+	</div><!--//container-fluid-->
+</div><!--//app-content-->

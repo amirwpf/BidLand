@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LokckDnns5Mja03l1me6PkhNu6kBLHrJ6ertcZde4Dw=",
+  "Hash": "l+xzrWvtVlmtby13hbA17NXxDnkEN15uTKXA1lK1uPA=",
   "Source": "BidLand.Web",
   "BasePath": "_content/BidLand.Web",
   "Mode": "Default",
@@ -48960,6 +48960,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\products\\3e7a8121-cb8e-4aee-852a-5baa9f76f0a0_brand_logo_01.png"
     },
     {
+      "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\420362bb-e3ef-4ac9-ac10-96661875ac14_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg",
+      "SourceId": "BidLand.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\",
+      "BasePath": "_content/BidLand.Web",
+      "RelativePath": "uploads/products/420362bb-e3ef-4ac9-ac10-96661875ac14_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\420362bb-e3ef-4ac9-ac10-96661875ac14_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg"
+    },
+    {
       "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\4840ce5c-cd79-4125-9f32-f7180c65b145_blog-post-03.jpg",
       "SourceId": "BidLand.Web",
       "SourceType": "Discovered",
@@ -49264,6 +49281,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\products\\c01adc1a-ed6b-4c2e-9372-97f13ecd8f62_brand_logo_01.png"
+    },
+    {
+      "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\c6a5f322-64fa-40b4-b59f-b3f6408a4a1c_DALL·E 2023-11-12 08.37.43 - A logo design for 'HoudiniForces', a company specializing in visual effects using Houdini software. The logo should combine elements of mysticism and .png",
+      "SourceId": "BidLand.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\",
+      "BasePath": "_content/BidLand.Web",
+      "RelativePath": "uploads/products/c6a5f322-64fa-40b4-b59f-b3f6408a4a1c_DALL·E 2023-11-12 08.37.43 - A logo design for 'HoudiniForces', a company specializing in visual effects using Houdini software. The logo should combine elements of mysticism and .png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\c6a5f322-64fa-40b4-b59f-b3f6408a4a1c_DALL·E 2023-11-12 08.37.43 - A logo design for 'HoudiniForces', a company specializing in visual effects using Houdini software. The logo should combine elements of mysticism and .png"
     },
     {
       "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\c8018033-d0c6-4138-aeb4-a5c4a29ed440_MSI-GE62-Apache-Gaming-Notebook-Review-0004.jpg",

@@ -19,5 +19,6 @@ public interface IStocksCartService
 	Task<StocksCartRepoDto> GetByIdAsync(int cartId, CancellationToken cancellationToken);
 	Task<List<SellerCommissionDto?>> GetSellersCommision(CancellationToken cancellationToken);
 	Task<float?> GetSellersSumCommision(CancellationToken cancellationToken);
+	Task<float?> GetSTockCommisionValue(StockRepoDto stockRepoDto, CancellationToken cancellationToken);
 	Task UpdateAsync(StocksCartRepoDto input, CancellationToken cancellationToken);
 }

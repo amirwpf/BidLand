@@ -36,6 +36,7 @@ public partial class Stock
     public virtual Booth? Booth { get; set; }
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+    public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 
     public virtual Product? Product { get; set; }
 

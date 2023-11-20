@@ -1,0 +1,67 @@
+﻿@model AddAuctionStockVM
+@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos
+@using BidLand.Web.Areas.Seller.Models;
+@{
+	ViewBag.PageTitle = "افزودن محصول در حراجی";
+}
+
+
+
+<div class="app-content pt-3 p-md-3 p-lg-4">
+	<div class="container-xl">
+		<h1 class="app-page-title">@ViewBag.PageTitle</h1>
+		<hr class="mb-4">
+		<div class="row g-4 settings-section">
+
+			<div class="col-12 col-md-6">
+				<div class="app-card app-card-settings shadow-sm p-4">
+
+					<div class="app-card-body">
+						<form class="settings-form" method="post" asp-action="AddAuctionStock" enctype="form-data">
+							@*
+							<div class="mb-3">
+							<label asp-for="Name" class="form-label">دسته بندی</label>
+							@Html.DropDownList("CategoryId", @ViewBag.Categories as SelectList , "انتخاب دسته بندی", new { @class = "form-control"})
+							</div>*@
+							<input id="StockId" name="StockId" type="hidden" value="@ViewBag.StockId" />
+@*							<input id="BoothId" name="BoothId" type="hidden" value="@ViewBag.BoothId" />*@
+							<div class="mb-3">
+								<label class="form-label">@ViewBag.ProductName</label>
+							</div>
+							<div class="mb-3">
+								<label asp-for="MinimumFinalPrice" class="form-label">حداقل قیمت فروش نهایی</label>
+								<input type="text" class="form-control" asp-for="MinimumFinalPrice" required>
+							</div>
+							<div class="mb-3">
+								<label asp-for="StartDate" class="form-label">تاریخ شروع</label>
+								@*<input type="datetime" class="form-control" asp-for="StartDate" required>*@
+								@Html.TextBoxFor(model => model.StartDate,
+								new { type = "date" })
+							</div>
+							<div class="mb-3">
+								<label asp-for="EndDate" class="form-label">تاریخ پایان</label>
+								@*<input type="datetime" class="form-control" asp-for="EndDate" required>*@
+								@Html.TextBoxFor(model => model.EndDate,
+								new { type = "date" })
+							</div>
+
+							
+
+@*							<div class="mb-3">
+								<label asp-for="AvailableNumber" class="form-label">تعداد موجود</label>
+								<input type="text" class="form-control" asp-for="AvailableNumber" required>
+							</div>
+							<div class="mb-3">
+								<label asp-for="AdditionalDescription" class="form-label">توضیحات</label>
+								<input type="text" class="form-control" asp-for="AdditionalDescription">
+							</div>*@
+							<button type="submit" class="btn app-btn-primary">ایجاد</button>
+						</form>
+					</div><!--//app-card-body-->
+
+				</div><!--//app-card-->
+			</div>
+		</div><!--//row-->
+
+	</div><!--//container-fluid-->
+</div><!--//app-content-->

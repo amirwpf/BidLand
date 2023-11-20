@@ -39,10 +39,10 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<DateTime?>("InsertionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("IsActive")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsDelete")
+                    b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
                     b.Property<int>("MinimumFinalPrice")
@@ -412,6 +412,9 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("MedalId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("SalesAmount")
                         .HasColumnType("int");
 
@@ -419,6 +422,8 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MedalId");
 
                     b.HasIndex("UserId");
 
@@ -627,12 +632,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Property<int?>("Percentage")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SellerId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("SellerId");
 
                     b.ToTable("Medals");
                 });
@@ -747,7 +747,7 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
             modelBuilder.Entity("App.Domin.Core._01_Purchause.Entities.Auction", b =>
                 {
                     b.HasOne("App.Domin.Core._01_Purchause.Entities.Stock", "Stock")
-                        .WithMany()
+                        .WithMany("Auctions")
                         .HasForeignKey("StockId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -864,11 +864,17 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
 
             modelBuilder.Entity("App.Domin.Core._02_Users.Entities.Seller", b =>
                 {
+                    b.HasOne("App.Domin.Core._03_Extras.Entities.Medal", "Medal")
+                        .WithMany("Seller")
+                        .HasForeignKey("MedalId");
+
                     b.HasOne("App.Domin.Core._02_Users.Entities.User", "User")
                         .WithMany("Sellers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Medal");
 
                     b.Navigation("User");
                 });
@@ -911,15 +917,6 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("App.Domin.Core._03_Extras.Entities.Medal", b =>
-                {
-                    b.HasOne("App.Domin.Core._02_Users.Entities.Seller", "Seller")
-                        .WithMany("Medals")
-                        .HasForeignKey("SellerId");
-
-                    b.Navigation("Seller");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -1004,6 +1001,8 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
 
             modelBuilder.Entity("App.Domin.Core._01_Purchause.Entities.Stock", b =>
                 {
+                    b.Navigation("Auctions");
+
                     b.Navigation("Comments");
 
                     b.Navigation("StocksCarts");
@@ -1025,8 +1024,6 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Navigation("Addresses");
 
                     b.Navigation("Booth");
-
-                    b.Navigation("Medals");
                 });
 
             modelBuilder.Entity("App.Domin.Core._02_Users.Entities.User", b =>
@@ -1036,6 +1033,11 @@ namespace App.Infra.Db.sqlServer.Ef.Migrations
                     b.Navigation("Buyers");
 
                     b.Navigation("Sellers");
+                });
+
+            modelBuilder.Entity("App.Domin.Core._03_Extras.Entities.Medal", b =>
+                {
+                    b.Navigation("Seller");
                 });
 #pragma warning restore 612, 618
         }

@@ -30,7 +30,11 @@
                                 <span>|</span>
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    <span><a href="/Admin/Home/Index">پنل ادمین</a></span>
+                                    <span><a href="/Admin/Home/Index/@ViewBag.UserId">پنل ادمین</a></span>
+                                }
+                                @if (User.IsInRole("Seller"))
+                                {
+                                    <span><a href="/Seller/Home/Index/@ViewBag.UserId">پنل فروشندگان</a></span>
                                 }
                                 
                                 

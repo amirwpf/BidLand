@@ -83,6 +83,32 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 			return products;
 		}
 
+		public async Task<List<ProductRepoDto>> GetAllProductsWithCategoryId(int id,CancellationToken cancellationToken)
+		{
+			var products = _dbSet
+				.Include(p => p.Stocks)
+				.Include(p => p.Images)
+				.Include(p => p.Category)
+				.Where(p => p.CategoryId == id)
+				.Select(product => new ProductRepoDto()
+				{
+					Id = product.Id,
+					Name = product.Name,
+					BasePrice = product.BasePrice,
+					Images = product.Images,
+					Stocks = product.Stocks,
+					IsConfirm = product.IsConfirm,
+					IsActive = product.IsActive,
+					IsDelete = product.IsDelete,
+					Description = product.Description,
+					Category = product.Category,
+					CategoryId = product.CategoryId,
+					InsertionDate = product.InsertionDate
+				})
+				.ToList();
+			return products;
+		}
+
 		public async Task AddAsync(ProductRepoDto productDto, CancellationToken cancellationToken)
 		{
 			productDto.Category = null;

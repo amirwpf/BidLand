@@ -39,15 +39,39 @@ public class BidRepository : IBidRepository
 	public async Task<List<BidRepoDto>> GetBidsByCustomerId(int buyerId, CancellationToken cancellationToken)
 	{
 		var customerBids = await _dbSet
+			.Include(b => b.Buyer)
+			.ThenInclude(b => b.User)
 			.Where(b => b.Buyer.Id == buyerId)
-			.Select(b => ConvertToBidRepoDto(b)).ToListAsync(cancellationToken);
+			.Select(bid => new BidRepoDto()
+			{
+				Id = bid.Id,
+				Price = bid.Price,
+				BidDate = bid.BidDate,
+				HasWon = bid.HasWon,
+				AuctionId = bid.AuctionId,
+				Auction = bid.Auction,
+				Buyer = bid.Buyer,
+				BuyerId = bid.BuyerId
+			}).ToListAsync(cancellationToken);
 		return customerBids;
 	}
 
 	public async Task<BidRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
 		var result = await _dbSet.Where(a=>a.Id==id)
-					.Select(b => ConvertToBidRepoDto(b)).FirstOrDefaultAsync(cancellationToken);
+		.Include(b => b.Buyer)
+		.ThenInclude(b => b.User)
+					.Select(bid => new BidRepoDto()
+					{
+						Id = bid.Id,
+						Price = bid.Price,
+						BidDate = bid.BidDate,
+						HasWon = bid.HasWon,
+						AuctionId = bid.AuctionId,
+						Auction = bid.Auction,
+						Buyer = bid.Buyer,
+						BuyerId = bid.BuyerId
+					}).FirstOrDefaultAsync(cancellationToken);
 		if (result == null) return null;
 		return result;
 	}
@@ -55,7 +79,19 @@ public class BidRepository : IBidRepository
 	public async Task<List<BidRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
-					.Select(b => ConvertToBidRepoDto(b)).ToListAsync(cancellationToken);
+		.Include(b=>b.Buyer)
+		.ThenInclude(b=>b.User)
+		.Select(bid => new BidRepoDto()
+		{
+			Id = bid.Id,
+			Price = bid.Price,
+			BidDate = bid.BidDate,
+			HasWon = bid.HasWon,
+			AuctionId = bid.AuctionId,
+			Auction = bid.Auction,
+			Buyer = bid.Buyer,
+			BuyerId = bid.BuyerId
+		}).ToListAsync(cancellationToken);
 		return result;
 	}
 
@@ -71,7 +107,10 @@ public class BidRepository : IBidRepository
 
 	public async Task<bool> UpdateAsync(BidRepoDto bid, CancellationToken cancellationToken)
 	{
-		var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == bid.Id,cancellationToken);
+		var result = await _dbSet
+			.Include(b => b.Buyer)
+			.ThenInclude(b => b.User)
+			.FirstOrDefaultAsync(x => x.Id == bid.Id,cancellationToken);
 		if (result !=null)
 		{
 			Equaler(bid,ref result);
@@ -110,7 +149,7 @@ public class BidRepository : IBidRepository
 	}
 	private void Equaler(BidRepoDto bidRepoDto , ref Bid bid)
 	{
-		bid.Id = bidRepoDto.Id;
+		//bid.Id = bidRepoDto.Id;
 		bid.Price = bidRepoDto.Price;
 		bid.BidDate = bidRepoDto.BidDate;
 		bid.HasWon = bidRepoDto.HasWon;

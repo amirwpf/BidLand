@@ -1,103 +1,142 @@
-using App.Domin.Core._01_Purchause.Contracts.Services;
 using App.Domin.Core._02_Users.Entities;
-using App.Domin.Services._01_Purchase;
-using App.Infra.Config.DbConfig;
 using App.Infra.Config.IoCConfig;
+using App.Infra.Db.sqlServer.Ef.Configurations.CustomIdentityError;
 using App.Infra.Db.sqlServer.Ef.Context;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
-using System.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("AppDbContextConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddDefaultIdentity<User>(options =>
-{
-    options.SignIn.RequireConfirmedAccount = false;
-    options.SignIn.RequireConfirmedEmail = false;
-    options.SignIn.RequireConfirmedPhoneNumber = false;
-    options.Password.RequiredLength = 4;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequireLowercase = false;
-    options.Password.RequireDigit = false;
-})
-    .AddRoles<Role>()
-    .AddDefaultUI()
-    .AddDefaultTokenProviders()
-    .AddEntityFrameworkStores<AppDbContext>();
-builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
 
-builder.Services.AddScopeSqlServerTables(builder.Configuration);
+#region Services
+// Add services to the container.
+var connectionString = builder.Configuration
+.GetConnectionString("AppDbContextConnection") ??
+throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddDbContext<AppDbContext>(options =>
+											options.UseSqlServer(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+#region Identity
+builder.Services.AddDefaultIdentity<User>(options =>
+{
+	options.SignIn.RequireConfirmedAccount = false;
+	options.SignIn.RequireConfirmedEmail = false;
+	options.SignIn.RequireConfirmedPhoneNumber = false;
+	options.Password.RequiredLength = 4;
+	options.Password.RequireNonAlphanumeric = false;
+	options.Password.RequireUppercase = false;
+	options.Password.RequireLowercase = false;
+	options.Password.RequireDigit = false;
+})
+.AddRoles<Role>()
+.AddErrorDescriber<CustomIdentityError>()
+.AddDefaultUI()
+.AddDefaultTokenProviders()
+.AddEntityFrameworkStores<AppDbContext>();
+#endregion
 
+#region Cookies
+//builder.Services.ConfigureApplicationCookie(option =>
+//{
+//	option.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+//	option.LoginPath = "/account/login";
+//	option.AccessDeniedPath = "/Account/AccessDenied";
+//	option.SlidingExpiration = true;
+//});
+#endregion
+
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+builder.Services.AddScopeSqlServerTables(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
+#endregion
+
 
 var app = builder.Build();
 
+#region Exception
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseMigrationsEndPoint();
+	app.UseMigrationsEndPoint();
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+	app.UseExceptionHandler("/Home/Error");
+	app.UseHsts();
 }
+#endregion
 
 
+
+#region Middlewares
+//app.UseErrorHandling();
+//app.UseHangfireServer();
+//app.UseHangfireDashboard();
 app.UseHttpsRedirection();
 app.UseDefaultFiles();
-
-//app.UseStaticFiles(new StaticFileOptions
-//{
-//    FileProvider = new PhysicalFileProvider(
-//           Path.Combine(builder.Environment.ContentRootPath, "MyStaticFiles")),
-//    RequestPath = "/StaticFiles"
-//});
-app.UseRouting();
-
+app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-//app.UseContentSecurityPolicy();
-
-
-
 app.MapRazorPages();
+#endregion
+
+
+
+#region EndPoint
 ConfigureEndpoints(app);
 void ConfigureEndpoints(IApplicationBuilder app)
 {
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapControllers();
+	app.UseEndpoints(endpoints =>
+	{
+		endpoints.MapControllers();
 
-        endpoints.MapControllerRoute(
-                                     "areaRoute",
-                                     "{area:exists}/{controller=Account}/{action=Index}/{id?}");
+		endpoints.MapControllerRoute(
+									 "areaRoute",
+									 "{area:exists}/{controller=Account}/{action=Index}/{id?}");
 
-        endpoints.MapControllerRoute(
-                                     "default",
-                                     "{controller=Home}/{action=Index}/{id?}");
+		endpoints.MapControllerRoute(
+									 "default",
+									 "{controller=Home}/{action=Index}/{id?}");
 
-        endpoints.MapRazorPages();
-    });
+		endpoints.MapRazorPages();
+	});
 }
+#endregion
+
 
 app.Run();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //var builder = WebApplication.CreateBuilder(args);
 //var connectionString = builder.Configuration.GetConnectionString("AppDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDbContextConnection' not found.");

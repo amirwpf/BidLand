@@ -32,10 +32,11 @@ public partial class Seller
 
     public DateTime? InsertionDate { get; set; }
 
-    public virtual ICollection<Address> Addresses { get; set; } = new List<Address>();
+    public virtual ICollection<Address>? Addresses { get; set; }
 
     public virtual Booth? Booth { get; set; }
 
-    public virtual ICollection<Medal> Medals { get; set; } = new List<Medal>();
+    public int? MedalId { get; set; }
+    public virtual Medal? Medal { get; set; } 
     public virtual User User{ get; set; }
 }

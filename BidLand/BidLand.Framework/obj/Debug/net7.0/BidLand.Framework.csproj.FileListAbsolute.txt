@@ -54,3 +54,6 @@ F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\BidLand.Framewo
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\BidLand.Framework\obj\Debug\net7.0\refint\BidLand.Framework.dll
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.pdb
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\BidLand.Framework\obj\Debug\net7.0\ref\BidLand.Framework.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\BidLand.Framework\bin\Debug\net7.0\App.Domin.Core.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\BidLand.Framework\bin\Debug\net7.0\App.Domin.Core.pdb
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\BidLand.Framework\obj\Debug\net7.0\BidLand.Framework.csproj.CopyComplete

@@ -18,6 +18,8 @@ using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 using System.Security.Claims;
 using System.Diagnostics.CodeAnalysis;
 using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
+using App.Domin.Core._01_Purchause.Contracts.Services;
+using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 
 namespace App.Domin.AppServices.Users
 {
@@ -28,13 +30,15 @@ namespace App.Domin.AppServices.Users
         private readonly RoleManager<Role> _roleManager;
         private readonly IBuyerService _buyerService;
         private readonly ISellerService _sellerService;
+        private readonly IBoothService _boothService;
         private readonly IHttpContextAccessor _httpContextAccessor;
 		public AccountAppServices(UserManager<User> userManager,
             RoleManager<Role> roleManager,
             SignInManager<User> signInManager,
             IHttpContextAccessor httpContextAccessor,
             ISellerService sellerService,
-            IBuyerService buyerService)
+            IBuyerService buyerService,
+            IBoothService boothService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -42,8 +46,30 @@ namespace App.Domin.AppServices.Users
             _httpContextAccessor = httpContextAccessor;
             _sellerService = sellerService;
             _buyerService = buyerService;
+            _boothService= boothService;
         }
 
+
+        public async Task<SellerRepoDto?> FindSellerByUserId(int UserId, CancellationToken cancellation)
+        {
+            var sellers = await _sellerService.GetAllAsync(cancellation);
+            if(sellers!=null)
+            {
+                var seller = sellers.FirstOrDefault(x=>x.UserId == UserId);
+                return seller;
+            }
+            return null;
+        }
+        public async Task<BoothRepoDto?> FindBoothBySellerId(int SellerId, CancellationToken cancellation)
+        {
+            var booths = await _boothService.GetAllAsync(cancellation);
+            if(booths != null)
+            {
+                var booth = booths.FirstOrDefault(x=>x.SellerId == SellerId);
+                return booth;
+            }
+            return null;
+        }
         public async Task AssignUserToRole(string userEmail, string roleName)
         {
             var user = await _userManager.FindByEmailAsync(userEmail);
@@ -112,8 +138,15 @@ namespace App.Domin.AppServices.Users
                         CommissionPercentage= 12,
                         CommissionsAmount= 0,
                         SalesAmount= 0,
+                        MedalId= 4,
 
                     }, token);
+                    await _boothService.CreateAsync(new BoothRepoDto()
+                    {
+                        SellerId= _user.Id,
+                        IsDelete=true,
+                    }, token);
+
                     await _userManager.AddToRoleAsync(_user, "Seller");
 
                 }
@@ -273,6 +306,7 @@ namespace App.Domin.AppServices.Users
 
                 }
             }
+
             return await _signInManager.PasswordSignInAsync(user, password, true, true);
 
         }

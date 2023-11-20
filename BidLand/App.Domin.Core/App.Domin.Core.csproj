@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="01-Purchause\Contracts\AppServices\" />
     <Folder Include="03-Extras\Contracts\AppServices\" />
   </ItemGroup>
 

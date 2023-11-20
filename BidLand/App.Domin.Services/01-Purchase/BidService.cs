@@ -41,4 +41,16 @@ public class BidService : IBidService
 	{
 		await _repo.UpdateAsync(input, cancellationToken);
 	}
+	
+	public async Task BidWon(BidRepoDto input, CancellationToken cancellationToken)
+	{
+		input.HasWon = true;
+		await _repo.UpdateAsync(input, cancellationToken);
+	}
+	
+	public async Task SubtractSalesValueFromBuyer(BidRepoDto input,float? commisionValue, CancellationToken cancellationToken)
+	{
+		input.Buyer.Credit -= (int)commisionValue;
+		await _repo.UpdateAsync(input, cancellationToken);
+	}
 }

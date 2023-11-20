@@ -40,7 +40,9 @@ public class SellerRepository : ISellerRepository
                   IsBan = seller.IsBan,
                   IsDelete = seller.IsDelete,
                   SalesAmount = seller.SalesAmount,
-                  UserId = seller.UserId
+                  UserId = seller.UserId,
+				  MedalId= seller.MedalId,
+				  Medal = seller.Medal,
               })
 			  .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
 		
@@ -62,7 +64,9 @@ public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken canc
                   IsBan = seller.IsBan,
                   IsDelete = seller.IsDelete,
                   SalesAmount = seller.SalesAmount,
-                  UserId = seller.UserId
+                  UserId = seller.UserId,
+                  MedalId = seller.MedalId,
+                  Medal = seller.Medal,
               })
 			  .ToListAsync(cancellationToken);
 		return result;
@@ -83,7 +87,9 @@ public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken canc
                   IsBan = seller.IsBan,
                   IsDelete = seller.IsDelete,
                   SalesAmount = seller.SalesAmount,
-                  UserId = seller.UserId
+                  UserId = seller.UserId,
+                  MedalId = seller.MedalId,
+                  Medal = seller.Medal,
               })
 			  .ToListAsync(cancellationToken);
 		return result;
@@ -245,13 +251,15 @@ public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken canc
 			IsBan = seller.IsBan,
 			IsDelete = seller.IsDelete,
 			SalesAmount = seller.SalesAmount,
-			UserId = seller.UserId
-		};
+			UserId = seller.UserId,
+            MedalId = seller.MedalId,
+            Medal = seller.Medal,
+        };
 	}
 
 	private void Equaler(SellerRepoDto sellerRepoDto, ref Seller seller)
 	{
-		seller.Id = sellerRepoDto.Id;
+		//seller.Id = sellerRepoDto.Id;
 		seller.CommissionPercentage = sellerRepoDto.CommissionPercentage;
 		seller.CommissionsAmount = sellerRepoDto.CommissionsAmount;
 		seller.InsertionDate = sellerRepoDto.InsertionDate;
@@ -260,5 +268,7 @@ public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken canc
 		seller.IsDelete = sellerRepoDto.IsDelete;
 		seller.SalesAmount = sellerRepoDto.SalesAmount;
 		seller.UserId = sellerRepoDto.UserId;
+		seller.Medal= sellerRepoDto.Medal;
+		seller.MedalId = sellerRepoDto.MedalId;
 	}
 }

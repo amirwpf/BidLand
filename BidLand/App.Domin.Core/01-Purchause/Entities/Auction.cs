@@ -19,9 +19,9 @@ public partial class Auction
 
     public DateTime? EndDate { get; set; }
 
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
 
-    public bool? IsDelete { get; set; }
+    public bool IsDelete { get; set; }
 
     public int? CurrentHighestPrice { get; set; }
 

@@ -32,8 +32,6 @@ public class MedalRepository : IMedalRepository
 				InsertionDate = medal.InsertionDate,
 				LevelType = medal.LevelType,
 				Percentage = medal.Percentage,
-				SellerId = medal.SellerId,
-				Seller = medal.Seller
 			}).FirstOrDefaultAsync(cancellationToken);
 		if (result == null) return null;
 		return result;
@@ -48,8 +46,6 @@ public class MedalRepository : IMedalRepository
 				InsertionDate = medal.InsertionDate,
 				LevelType = medal.LevelType,
 				Percentage = medal.Percentage,
-				SellerId = medal.SellerId,
-				Seller = medal.Seller
 			}).FirstOrDefaultAsync(cancellationToken);
 		if (result == null) return null;
 		return result;
@@ -65,8 +61,6 @@ public class MedalRepository : IMedalRepository
 				InsertionDate = medal.InsertionDate,
 				LevelType = medal.LevelType,
 				Percentage = medal.Percentage,
-				SellerId = medal.SellerId,
-				Seller = medal.Seller
 			}).ToListAsync(cancellationToken);
 		return result;
 	}
@@ -112,8 +106,6 @@ public class MedalRepository : IMedalRepository
 			InsertionDate = medal.InsertionDate,
 			LevelType = medal.LevelType,
 			Percentage= medal.Percentage,
-			SellerId = medal.SellerId,
-			Seller = medal.Seller
 		};
 	}
 
@@ -123,7 +115,5 @@ public class MedalRepository : IMedalRepository
 		medal.InsertionDate = medalDto.InsertionDate;
 		medal.LevelType = medalDto.LevelType;
 		medal.Percentage = medalDto.Percentage;
-		medal.SellerId = medalDto.SellerId;
-		medal.Seller = medalDto.Seller;
 	}
 }

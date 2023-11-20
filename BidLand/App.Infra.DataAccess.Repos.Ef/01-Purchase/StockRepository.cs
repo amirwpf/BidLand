@@ -6,6 +6,7 @@ using App.Infra.Db.sqlServer.Ef.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace App.Infra.DataAccess.Repos.Ef._01_Purchase;
 
-public class StockRepository:IStockRepository
+public class StockRepository : IStockRepository
 {
 	private readonly AppDbContext _context;
 	private readonly DbSet<Stock> _dbSet;
@@ -25,32 +26,104 @@ public class StockRepository:IStockRepository
 	}
 	public async Task<List<StockRepoDto>> GetAllStocks(CancellationToken cancellationToken)
 	{
-		var result = await _context.Stocks.Select(x => ConvertToStockRepoDto(x)).ToListAsync(cancellationToken);
+		var result = await _context.Stocks
+			.Include(x => x.Booth)
+			.ThenInclude(x => x.Seller)
+			.ThenInclude(x => x.Medal)
+			.Include(x => x.Product)
+			.Include(x => x.StocksCarts)
+			.Include(x => x.Comments)
+			.Select(stockRepoDto => new StockRepoDto
+			{
+				AdditionalDescription = stockRepoDto.AdditionalDescription,
+				//AuctionId = stockRepoDto.AuctionId,
+				AvailableNumber = stockRepoDto.AvailableNumber,
+				BoothId = stockRepoDto.BoothId,
+				Id = stockRepoDto.Id,
+				InsertionDate = stockRepoDto.InsertionDate,
+				IsActive = stockRepoDto.IsActive,
+				IsAuction = stockRepoDto.IsAuction,
+				IsDelete = stockRepoDto.IsDelete,
+				Price = stockRepoDto.Price,
+				ProductId = stockRepoDto.ProductId,
+				//Auction = stockRepoDto.Auction,
+				Booth = stockRepoDto.Booth,
+				Comments = stockRepoDto.Comments,
+				Product = stockRepoDto.Product,
+				Auctions = stockRepoDto.Auctions,
+				StocksCarts = stockRepoDto.StocksCarts
+			}).ToListAsync(cancellationToken);
 		return result;
 	}
 
 	public async Task<StockRepoDto?> GetStockById(int stockId, CancellationToken cancellationToken)
 	{
-		var result = await _context.Stocks.Select(x => ConvertToStockRepoDto(x))
-			.FirstOrDefaultAsync(x=>x.Id== stockId, cancellationToken);
-		if(result == null)
+		var result = await _dbSet
+			.Include(x => x.Booth)
+			.ThenInclude(x=>x.Seller)
+			.ThenInclude(x=>x.Medal)
+			.Include(x => x.Product)
+			.Include(x => x.StocksCarts)
+			.Include(x => x.Comments)
+			.Select(stockRepoDto => new StockRepoDto
+			{
+				AdditionalDescription = stockRepoDto.AdditionalDescription,
+				//AuctionId = stockRepoDto.AuctionId,
+				AvailableNumber = stockRepoDto.AvailableNumber,
+				BoothId = stockRepoDto.BoothId,
+				Id = stockRepoDto.Id,
+				InsertionDate = stockRepoDto.InsertionDate,
+				IsActive = stockRepoDto.IsActive,
+				IsAuction = stockRepoDto.IsAuction,
+				IsDelete = stockRepoDto.IsDelete,
+				Price = stockRepoDto.Price,
+				ProductId = stockRepoDto.ProductId,
+				//Auction = stockRepoDto.Auction,
+				Booth = stockRepoDto.Booth,
+				Comments = stockRepoDto.Comments,
+				Product = stockRepoDto.Product,
+				StocksCarts = stockRepoDto.StocksCarts,
+				Auctions = stockRepoDto.Auctions,
+			})
+			.FirstOrDefaultAsync(x => x.Id == stockId, cancellationToken);
+		if (result == null)
 			return null;
 		return result;
 	}
 
-	public async Task AddAsync(StockRepoDto dto, CancellationToken cancellationToken)
+	public async Task AddAsync(StockRepoDto stockRepoDto, CancellationToken cancellationToken)
 	{
-		var productsCart = ConvertToStock(dto);
+		var productsCart = new Stock()
+		{
+			AdditionalDescription = stockRepoDto.AdditionalDescription,
+			//AuctionId = stockRepoDto.AuctionId,
+			AvailableNumber = stockRepoDto.AvailableNumber,
+			BoothId = stockRepoDto.BoothId,
+			//Id = stockRepoDto.Id,
+			InsertionDate = stockRepoDto.InsertionDate,
+			IsActive = stockRepoDto.IsActive,
+			IsAuction = stockRepoDto.IsAuction,
+			IsDelete = stockRepoDto.IsDelete,
+			Price = stockRepoDto.Price,
+			ProductId = stockRepoDto.ProductId,
+			//Auction = stockRepoDto.Auction,
+			Booth = stockRepoDto.Booth,
+			Comments = stockRepoDto.Comments,
+			Product = stockRepoDto.Product,
+			StocksCarts = stockRepoDto.StocksCarts,
+			Auctions = stockRepoDto.Auctions,
+		};
 		await _dbSet.AddAsync(productsCart, cancellationToken);
 		await _context.SaveChangesAsync(cancellationToken);
 	}
 
 	public async Task<bool> UpdateAsync(StockRepoDto stock, CancellationToken cancellationToken)
 	{
-		var res = await _dbSet.FirstOrDefaultAsync(x => x.Id == stock.Id,cancellationToken);
-		if(res != null)
+		var res = await _dbSet.FirstOrDefaultAsync(x => x.Id == stock.Id, cancellationToken);
+		if (res != null)
 		{
 			UpdateValueEq(stock, ref res);
+			//_dbSet.Update(res);
 			_context.Entry(res).State = EntityState.Modified;
 			await _context.SaveChangesAsync(cancellationToken);
 			return true;
@@ -60,7 +133,7 @@ public class StockRepository:IStockRepository
 
 	public async Task<bool> SoftDeleteAsync(StockRepoDto stock, CancellationToken cancellationToken)
 	{
-		var res = await _dbSet.FirstOrDefaultAsync(x => x.Id == stock.Id,cancellationToken);
+		var res = await _dbSet.FirstOrDefaultAsync(x => x.Id == stock.Id, cancellationToken);
 		if (res != null)
 		{
 			res.IsDelete = true;
@@ -103,7 +176,7 @@ public class StockRepository:IStockRepository
 			//AuctionId = stockRepoDto.AuctionId,
 			AvailableNumber = stockRepoDto.AvailableNumber,
 			BoothId = stockRepoDto.BoothId,
-			Id = stockRepoDto.Id,
+			//Id = stockRepoDto.Id,
 			InsertionDate = stockRepoDto.InsertionDate,
 			IsActive = stockRepoDto.IsActive,
 			IsAuction = stockRepoDto.IsAuction,
@@ -114,7 +187,8 @@ public class StockRepository:IStockRepository
 			Booth = stockRepoDto.Booth,
 			Comments = stockRepoDto.Comments,
 			Product = stockRepoDto.Product,
-			StocksCarts = stockRepoDto.StocksCarts
+			StocksCarts = stockRepoDto.StocksCarts,
+			Auctions = stockRepoDto.Auctions,
 		};
 		return result;
 	}
@@ -127,7 +201,7 @@ public class StockRepository:IStockRepository
 			//AuctionId = stock.AuctionId,
 			AvailableNumber = stock.AvailableNumber,
 			BoothId = stock.BoothId,
-			Id = stock.Id,
+			//Id = stock.Id,
 			InsertionDate = stock.InsertionDate,
 			IsActive = stock.IsActive,
 			IsAuction = stock.IsAuction,
@@ -138,28 +212,30 @@ public class StockRepository:IStockRepository
 			Booth = stock.Booth,
 			Comments = stock.Comments,
 			Product = stock.Product,
-			StocksCarts = stock.StocksCarts
+			StocksCarts = stock.StocksCarts,
+			Auctions = stock.Auctions,
 		};
 		return result;
 	}
 
 	private void UpdateValueEq(StockRepoDto stockRepoDto, ref Stock stock)
 	{
-		stock.AdditionalDescription = stock.AdditionalDescription;
+		stock.AdditionalDescription = stockRepoDto.AdditionalDescription;
 		//stock.AuctionId = stock.AuctionId;
-		stock.AvailableNumber = stock.AvailableNumber;
-		stock.BoothId = stock.BoothId;
-		stock.Id = stock.Id;
-		stock.InsertionDate = stock.InsertionDate;
-		stock.IsActive = stock.IsActive;
-		stock.IsAuction = stock.IsAuction;
-		stock.IsDelete = stock.IsDelete;
-		stock.Price = stock.Price;
-		stock.ProductId = stock.ProductId;
+		stock.AvailableNumber = stockRepoDto.AvailableNumber;
+		stock.BoothId = stockRepoDto.BoothId;
+		//stock.Id = stockRepoDto.Id;
+		stock.InsertionDate = stockRepoDto.InsertionDate;
+		stock.IsActive = stockRepoDto.IsActive;
+		stock.IsAuction = stockRepoDto.IsAuction;
+		stock.IsDelete = stockRepoDto.IsDelete;
+		stock.Price = stockRepoDto.Price;
+		stock.ProductId = stockRepoDto.ProductId;
 		//stock.Auction = stock.Auction;
-		stock.Booth = stock.Booth;
-		stock.Comments = stock.Comments;
-		stock.Product = stock.Product;
-		stock.StocksCarts = stock.StocksCarts;
+		stock.Booth = stockRepoDto.Booth;
+		stock.Comments = stockRepoDto.Comments;
+		stock.Product = stockRepoDto.Product;
+		stock.StocksCarts = stockRepoDto.StocksCarts;
+		stock.Auctions = stockRepoDto.Auctions;
 	}
 }

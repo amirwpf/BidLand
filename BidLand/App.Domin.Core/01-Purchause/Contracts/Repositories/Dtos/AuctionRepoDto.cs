@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Domin.Core._01_Purchause.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,9 @@ public class AuctionRepoDto
 
 	public DateTime? EndDate { get; set; }
 
-	public bool? IsActive { get; set; }
+	public bool IsActive { get; set; }
 
-	public bool? IsDelete { get; set; }
+	public bool IsDelete { get; set; }
 
 	public int? CurrentHighestPrice { get; set; }
 
@@ -25,4 +26,7 @@ public class AuctionRepoDto
 
 	public DateTime? InsertionDate { get; set; }
 
+	public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
+
+	public virtual Stock? Stock { get; set; }
 }

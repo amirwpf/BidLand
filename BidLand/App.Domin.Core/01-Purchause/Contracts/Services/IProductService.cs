@@ -23,4 +23,5 @@ public interface IProductService
     Task<List<ProductRepoDto>> GetAllConfirmedProductsAsync( CancellationToken cancellationToken);
     Task<List<ProductRepoDto>> GetAllPendingProductsAsync(CancellationToken cancellationToken);
 	Task<bool> RecoverAsync(int id, CancellationToken cancellationToken);
+	Task<List<ProductRepoDto>> GetAllWithCategoryId(int id, CancellationToken cancellationToken);
 }

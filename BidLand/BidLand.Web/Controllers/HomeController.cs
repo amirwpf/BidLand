@@ -1,4 +1,5 @@
 ﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContracts.sqlServer;
+using App.Domin.Core._02_Users.Contracts.AppServices;
 using BidLand.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -8,17 +9,26 @@ namespace BidLand.Web.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
-		private readonly IStocksCartRepository _stocksCartRepository;
-
-		public HomeController(ILogger<HomeController> logger, IStocksCartRepository stocksCartRepository)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IAccountAppServices _accountAppServices;
+		private string username;
+        public HomeController(ILogger<HomeController> logger,
+                              IHttpContextAccessor httpContextAccessor,
+                              IAccountAppServices accountAppServices)
 		{
 			_logger = logger;
-			_stocksCartRepository = stocksCartRepository;
-		}
+			_httpContextAccessor = httpContextAccessor;
+			_accountAppServices = accountAppServices;
+            username = _httpContextAccessor.HttpContext.User.Identity.Name;
+        }
 
 		public async Task<IActionResult> Index(CancellationToken cancellationToken)
 		{
-			var value =await _stocksCartRepository.GetCommision(cancellationToken);
+			if(username!=null)
+			{
+				var user = await _accountAppServices.FindUserByEmailAsync(username);
+				ViewBag.UserId = user.Id;
+			}
 			return View();
 		}
 

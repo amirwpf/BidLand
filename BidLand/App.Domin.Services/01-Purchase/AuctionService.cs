@@ -19,6 +19,10 @@ public class AuctionService : IAuctionService
 	}
 	public async Task CreateAsync(AuctionRepoDto input, CancellationToken cancellationToken)
 	{
+		input.InsertionDate=DateTime.Now;
+		input.CurrentHighestPrice = 0;
+		input.IsActive= true;
+		input.IsDelete = false;
 		await _repo.AddAsync(input, cancellationToken);
 	}
 

@@ -11,27 +11,27 @@ namespace BidLand.Web.Areas.Admin.Controllers
 	[Authorize(Roles = "Admin")]
 	public class BoothsController : Controller
     {
-        private readonly IAdminPanelAppServices _adminPanelAppServices;
-        public BoothsController(IAdminPanelAppServices adminPanelAppServices)
+        private readonly IPurchaseAppServices _purchaseAppServices;
+        public BoothsController(IPurchaseAppServices purchaseAppServices)
         {
-            _adminPanelAppServices = adminPanelAppServices;
+            _purchaseAppServices = purchaseAppServices;
         }
         public async Task<IActionResult> Index(CancellationToken token)
         {
-            List<BoothRepoDto> boothList = await _adminPanelAppServices.GetAllBooths(token);
+            List<BoothRepoDto> boothList = await _purchaseAppServices.GetAllBooths(token);
             return View(boothList);
         }
 
         public async Task<IActionResult> Edit(int id, CancellationToken token)
         {
-            return View(await _adminPanelAppServices.GetBoothsById(id, token));
+            return View(await _purchaseAppServices.GetBoothsById(id, token));
         }
         [HttpPost]
         public async Task<IActionResult> Edit(BoothRepoDto model, CancellationToken token)
         {
             if (ModelState.IsValid)
             {
-                await _adminPanelAppServices.UpdateBoothAsync(model, token);
+                await _purchaseAppServices.UpdateBoothAsync(model, token);
                 return RedirectToAction("Index");
             }
                return View();

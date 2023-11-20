@@ -1,4 +1,5 @@
-﻿using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
+﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 using App.Domin.Core._02_Users.Dtos;
 using App.Domin.Core._02_Users.Entities;
 using App.Domin.Core._02_Users.ViewModels;
@@ -37,5 +38,7 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
         Task<bool> DeleteBuyerUserAsync(int id, CancellationToken cancellationToken);
         Task<bool> DeleteSellerUserAsync(int id, CancellationToken cancellationToken);
 		Task<int?> GetSumSellerCommisionAmount(CancellationToken cancellationToken);
+		Task<SellerRepoDto?> FindSellerByUserId(int UserId, CancellationToken cancellation);
+		Task<BoothRepoDto?> FindBoothBySellerId(int SellerId, CancellationToken cancellation);
 	}
 }

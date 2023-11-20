@@ -44,7 +44,12 @@ public class ProductService : IProductService
         return await _productRepo.GetAllProductsWithNavAsync(cancellationToken);
     }
 
-    public async Task<ProductRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
+	public async Task<List<ProductRepoDto>> GetAllWithCategoryId(int id,CancellationToken cancellationToken)
+	{
+		return await _productRepo.GetAllProductsWithCategoryId(id,cancellationToken);
+	}
+
+	public async Task<ProductRepoDto> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
         return await _productRepo.GetByIdAsync(id, cancellationToken);
     }

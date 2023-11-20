@@ -1,6 +1,7 @@
 ﻿using App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
 using App.Domin.Core._03_Extras.Contracts.Repositories.RepoSeprationContracts.sqlServer;
 using App.Domin.Core._03_Extras.Contracts.Services;
+using App.Domin.Core._03_Extras.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,5 +41,15 @@ public class MedalService: IMedalService
 	public async Task UpdateAsync(MedalRepoDto input, CancellationToken cancellationToken)
 	{
 		await _repo.UpdateAsync(input, cancellationToken);
+	}
+
+	public async Task<MedalRepoDto> GetMedalByNameAsync(MedalEnum? medal , CancellationToken cancellationToken)
+	{
+		var res = await _repo.GetAllAsync(cancellationToken);
+		var medalDto = res.FirstOrDefault(m => m.LevelType == medal);
+		if(medalDto!= null){
+			return medalDto;
+		}
+		return await _repo.GetByIdAsync(1,cancellationToken);
 	}
 }

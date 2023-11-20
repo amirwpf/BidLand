@@ -29,7 +29,8 @@ public class SellerRepoDto
 
 	public virtual Booth? Booth { get; set; }
 
-	public virtual ICollection<Medal>? Medals { get; set; } 
+    public int? MedalId { get; set; }
+    public virtual Medal? Medal { get; set; } 
 
 	public User User { get; set; }
 

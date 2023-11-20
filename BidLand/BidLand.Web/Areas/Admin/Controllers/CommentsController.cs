@@ -9,19 +9,19 @@ namespace BidLand.Web.Areas.Admin.Controllers
 	[Authorize(Roles = "Admin")]
 	public class CommentsController : Controller
     {
-        private readonly IAdminPanelAppServices _adminPanelAppServices;
-        public CommentsController(IAdminPanelAppServices adminPanelAppServices)
+        private readonly IPurchaseAppServices _purchaseAppServices;
+        public CommentsController(IPurchaseAppServices purchaseAppServices)
         {
-            _adminPanelAppServices = adminPanelAppServices;
+            _purchaseAppServices = purchaseAppServices;
         }
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            var result = await _adminPanelAppServices.GetPendingCommentsAsync(cancellationToken);
+            var result = await _purchaseAppServices.GetPendingCommentsAsync(cancellationToken);
             return View(result);
         }
         public async Task<IActionResult> ConfirmComment(int id, bool isConfirm, CancellationToken cToken)
         {
-            await _adminPanelAppServices.ConfirmCommentByIdAsync(id, isConfirm, cToken);
+            await _purchaseAppServices.ConfirmCommentByIdAsync(id, isConfirm, cToken);
             return RedirectToAction("Index");
         }
     }

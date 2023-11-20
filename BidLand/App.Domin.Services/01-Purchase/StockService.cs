@@ -20,6 +20,10 @@ public class StockService: IStockService
 	}
 	public async Task CreateAsync(StockRepoDto input, CancellationToken cancellationToken)
 	{
+		input.InsertionDate= DateTime.Now;
+		input.IsActive= true;
+		input.IsDelete = false;
+		input.IsAuction= false;
 		await _repo.AddAsync(input, cancellationToken);
 	}
 
@@ -48,6 +52,17 @@ public class StockService: IStockService
 
 	public async Task<bool> UpdateAsync(StockRepoDto input, CancellationToken cancellationToken)
 	{
+		input.InsertionDate= DateTime.Now;
 		return await _repo.UpdateAsync(input, cancellationToken);
 	}
+	
+	public async Task<bool> AddSalesValueToSeller(StockRepoDto stockDto,int? bidPrice,float? commisionValue, CancellationToken cancellationToken)
+	{
+		stockDto.Booth.Seller.SalesAmount = stockDto.Booth.Seller.SalesAmount + bidPrice;
+		stockDto.Booth.Seller.CommissionsAmount = stockDto.Booth.Seller.CommissionsAmount + (int)commisionValue;
+		stockDto.AvailableNumber = stockDto.AvailableNumber - 1;
+		return await _repo.UpdateAsync(stockDto, cancellationToken);
+	}
+
+
 }

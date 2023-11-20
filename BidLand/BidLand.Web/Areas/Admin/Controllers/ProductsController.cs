@@ -1,7 +1,9 @@
 ﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 using App.Domin.Core._01_Purchause.Contracts.Services;
+using App.Domin.Core._01_Purchause.Entities;
 using App.Domin.Core._02_Users.Contracts.AppServices;
 using App.Domin.Core._03_Extras.Entities;
+using BidLand.Framework.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -16,12 +18,12 @@ namespace BidLand.Web.Areas.Admin.Controllers
 	[Authorize(Roles = "Admin")]
 	public class ProductsController : Controller
     {
-        private readonly IAdminPanelAppServices _adminPanelAppService;
+        private readonly IPurchaseAppServices _purchaseAppServices;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductsController(IAdminPanelAppServices adminPanelAppServices, IWebHostEnvironment webHostEnvironment)
+        public ProductsController(IPurchaseAppServices purchaseAppServices, IWebHostEnvironment webHostEnvironment)
         {
-            _adminPanelAppService = adminPanelAppServices;
+            _purchaseAppServices = purchaseAppServices;
             _webHostEnvironment = webHostEnvironment;
         }
         public async Task<IActionResult> Index()
@@ -29,8 +31,8 @@ namespace BidLand.Web.Areas.Admin.Controllers
 
             //string userId = User.Identity.GetUserId();
 
-            ViewBag.PendingProducts = await _adminPanelAppService.GetAllPendingProductsAsync(new CancellationToken());
-            ViewBag.ConfirmedProducts = await _adminPanelAppService.GetAllConfirmedProductsAsync(new CancellationToken());
+            ViewBag.PendingProducts = await _purchaseAppServices.GetAllPendingProductsAsync(new CancellationToken());
+            ViewBag.ConfirmedProducts = await _purchaseAppServices.GetAllConfirmedProductsAsync(new CancellationToken());
 
             return View();
         }
@@ -38,14 +40,14 @@ namespace BidLand.Web.Areas.Admin.Controllers
         //[HttpPost]
         public async Task<IActionResult> ConfirmProduct(int id, bool isConfirm, CancellationToken cToken)
         {
-            await _adminPanelAppService.ConfirmProduct(id, isConfirm, cToken);
+            await _purchaseAppServices.ConfirmProduct(id, isConfirm, cToken);
             return RedirectToAction("Index");
         }
 
 
         public async Task<IActionResult> Create()
         {
-            var categories = await _adminPanelAppService.GetChildCategories(new CancellationToken());
+            var categories = await _purchaseAppServices.GetChildCategories(new CancellationToken());
             ViewBag.Categories = new SelectList(categories.Select(x => new { x.Id, Title = x.Name }), "Id", "Title");
             return View();
         }
@@ -73,7 +75,7 @@ namespace BidLand.Web.Areas.Admin.Controllers
                     }
                 }
 
-            await _adminPanelAppService.CreateProduct(model, cancellationToken);
+            await _purchaseAppServices.CreateProduct(model, cancellationToken);
             return RedirectToAction("Index");
         }
 
@@ -81,8 +83,8 @@ namespace BidLand.Web.Areas.Admin.Controllers
         {
             if (id > 0)
             {
-                var product = await _adminPanelAppService.GetProductById(id, token);
-                var categories = await _adminPanelAppService.GetChildCategories(token);
+                var product = await _purchaseAppServices.GetProductById(id, token);
+                var categories = await _purchaseAppServices.GetChildCategories(token);
                 ViewBag.Categories = new SelectList(categories.Select(x => new { x.Id, Title = x.Name }), "Id", "Title", product.CategoryId);
                 return View(product);
             }
@@ -94,7 +96,7 @@ namespace BidLand.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _adminPanelAppService.UpdateProduct(model, cancellationToken);
+                await _purchaseAppServices.UpdateProduct(model, cancellationToken);
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -104,7 +106,7 @@ namespace BidLand.Web.Areas.Admin.Controllers
         {
             if (id > 0)
             {
-                var product = await _adminPanelAppService.GetProductById(id, token);
+                var product = await _purchaseAppServices.GetProductById(id, token);
 
 
                 return View(product);
@@ -119,7 +121,7 @@ namespace BidLand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id, CancellationToken cancellationToken)
         {
             //if(ModelState.IsValid)
-            await _adminPanelAppService.DeleteProduct(id, cancellationToken);
+            await _purchaseAppServices.DeleteProduct(id, cancellationToken);
             return RedirectToAction("Index");
         }
         
@@ -127,7 +129,7 @@ namespace BidLand.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Recover(int id, CancellationToken cancellationToken)
         {
             //if(ModelState.IsValid)
-            await _adminPanelAppService.RecoverProduct(id, cancellationToken);
+            await _purchaseAppServices.RecoverProduct(id, cancellationToken);
             return RedirectToAction("Index");
         }
 

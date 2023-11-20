@@ -1,0 +1,176 @@
+﻿@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos
+@using BidLand.Framework.Common;
+@model BoothRepoDto
+@{
+	ViewBag.PageTitle = "فروشگاه";
+}
+<div class="app-content pt-3 p-md-3 p-lg-4">
+	<div class="container-xl">
+
+		<div class="row g-3 mb-4 align-items-center justify-content-between">
+			<div class="col-auto">
+			</div>
+
+		</div><!--//row-->
+
+
+		<nav id="products-table-tab" class="products-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+			<a class="flex-sm-fill text-sm-center nav-link active" id="product-pending-tab" data-bs-toggle="tab" href="#products-pending" role="tab" aria-controls="products-pending" aria-selected="true">فروشگاه شما</a>
+
+			@*<h1 class="app-page-title mb-0">@ViewBag.PageTitle</h1>*@
+
+		</nav>
+		@Html.ActionLink("افزودن کالا به فروشگاه" , "AddStock")
+		<hr />
+		<br />
+
+		<h3> مشخصات فروشگاه</h3>
+		<div class="tab-content" id="products-table-tab-content">
+			<div class="tab-pane fade show active" id="products-pending" role="tabpanel" aria-labelledby="products-all-tab">
+				<div class="app-card app-card-orders-table shadow-sm mb-5">
+					<div class="app-card-body">
+						<div class="table-responsive">
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
+
+										<th class="cell">شناسه</th>
+										<th class="cell">نام فروشگاه</th>
+										<th class="cell">تاریخ ایجاد</th>
+										<th class="cell">شرح</th>
+										<th class="cell">وضعیت</th>
+										<th class="cell">عملیات</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr>
+										<td class="cell">@Model.Id</td>
+										<td class="cell"><span class="truncate">@Model.Name</span></td>
+										@*<td class="cell"><span>@p.InsertionDate?.ToString("yyyy/MM/dd")</span><span class="note">@p.InsertionDate?.ToString("hh:mm tt")</span></td>*@
+										<td class="cell"><span>@DateConvertor.ConvertGregorianToPersian(Model.InsertionDate??DateTime.Now)</span></td>
+										<td class="cell"><span>@Model.Description</span></td>
+										<td class="cell">
+											@if (Model.IsDelete)
+											{
+												<span class='badge bg-warning'>حذف شده</span>
+											}
+											else
+											{
+												<span class='badge bg-success'>فعال</span>
+											}
+										</td>
+
+										<td class="cell">
+											<a href="/Seller/Booth/Edit/@Model.Id">ویرایش</a>
+										</td>
+
+									</tr>
+
+
+								</tbody>
+							</table>
+						</div><!--//table-responsive-->
+
+					</div><!--//app-card-body-->
+				</div><!--//app-card-->
+
+			</div><!--//tab-pane-->
+
+			<h3> کالاهای فروشگاه</h3>
+			<div class="tab-pane fade show active" id="products-pending" role="tabpanel" aria-labelledby="products-all-tab">
+				<div class="app-card app-card-orders-table shadow-sm mb-5">
+					<div class="app-card-body">
+						<div class="table-responsive">
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
+
+										<th class="cell">شناسه</th>
+										<th class="cell">نام کالا</th>
+										<th class="cell">تاریخ ایجاد</th>
+										<th class="cell">قیمت</th>
+										<th class="cell"> موجودی</th>
+										<th class="cell"> توضیحات</th>
+										<th class="cell">وضعیت حذف</th>
+										<th class="cell">وضعیت فعالیت</th>
+										<th class="cell">وضعیت مزایده</th>
+										<th class="cell">عملیات</th>
+									</tr>
+								</thead>
+								<tbody>
+
+
+									@foreach (var s in Model.Stocks)
+									{
+										<tr>
+											<td class="cell">@s.Id</td>
+											<td class="cell"><span class="truncate">@s.Product.Name</span></td>
+											@*<td class="cell"><span>@p.InsertionDate?.ToString("yyyy/MM/dd")</span><span class="note">@p.InsertionDate?.ToString("hh:mm tt")</span></td>*@
+											<td class="cell"><span>@DateConvertor.ConvertGregorianToPersian(s.InsertionDate??DateTime.Now)</span></td>
+											<td class="cell"><span>@s.Price</span></td>
+											<td class="cell"><span>@s.AvailableNumber</span></td>
+											<td class="cell"><span>@s.AdditionalDescription</span></td>
+											<td class="cell">
+												@if (s.IsDelete)
+												{
+													<span class='badge bg-danger'>حذف شده</span>
+												}
+												else
+												{
+													<span class='badge bg-success'>فعال</span>
+												}
+											</td>
+											<td class="cell">
+												@if (s.IsActive)
+												{
+
+													<span class='badge bg-success'>فعال</span>
+												}
+												else
+												{
+													<span class='badge bg-warning'>غیر فعال</span>
+												}
+											</td>
+											<td class="cell">
+												@if (s.IsAuction)
+												{
+
+													<span class='badge bg-primary'>مزایده فعال</span>
+												}
+												else
+												{
+													<span class='badge bg-primary'>مزایده غیرفعال</span>
+												}
+											</td>
+
+											<td class="cell">
+												<a href="/Seller/Booth/EditStock/@s.Id">ویرایش</a>
+												|
+												@if(s.IsAuction==false && s.IsActive==true && s.IsDelete==false)
+												{
+													<a class="btn app-btn-primary" href="/Seller/Booth/AddAuctionStock/@s.Id">افزودن به حراجی</a>
+												}
+												@if(s.IsAuction==true)
+												{
+													<a class="btn app-btn-secondary" href="/Seller/Auction/index/@s.Id">مشاهده حراجی</a>//add auction page
+												}
+												
+											</td>
+
+										</tr>
+									}
+
+								</tbody>
+							</table>
+						</div><!--//table-responsive-->
+
+					</div><!--//app-card-body-->
+				</div><!--//app-card-->
+
+			</div><!--//tab-pane-->
+
+		</div><!--//tab-content-->
+
+	</div><!--//container-fluid-->
+</div><!--//app-content-->
