@@ -126,6 +126,7 @@ public class StockRepository : IStockRepository
 			//_dbSet.Update(res);
 			_context.Entry(res).State = EntityState.Modified;
 			await _context.SaveChangesAsync(cancellationToken);
+			_context.ChangeTracker.Clear();
 			return true;
 		}
 		return false;

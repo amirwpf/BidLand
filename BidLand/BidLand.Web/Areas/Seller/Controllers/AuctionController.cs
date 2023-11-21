@@ -1,10 +1,15 @@
-﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+﻿using App.Domin.AppServices.Purchase;
+using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 using App.Domin.Core._01_Purchause.Entities;
 using App.Domin.Core._02_Users.Contracts.AppServices;
+using App.Domin.Services._01_Purchase;
+using BidLand.Framework.Common;
+using Hangfire;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using NuGet.Common;
 using System.Drawing;
+using System.Threading;
 
 namespace BidLand.Web.Areas.Seller.Controllers
 {
@@ -27,14 +32,14 @@ namespace BidLand.Web.Areas.Seller.Controllers
 			username = _httpContextAccessor.HttpContext.User.Identity.Name;
 		}
 		[HttpGet]
-		public async Task<IActionResult> Index(int id,CancellationToken token)
+		public async Task<IActionResult> Index(int id, CancellationToken token)
 		{
 			var auctions = await _purchaseAppServices.GetAllAuction(token);
-			var auction = auctions.FirstOrDefault(a => a.StockId == id && a.IsDelete==false && a.IsActive==true);
+			var auction = auctions.FirstOrDefault(a => a.StockId == id && a.IsDelete == false && a.IsActive == true);
 			if (auction != null)
 			{
 				//await _purchaseAppServices.AuctionPurchaseCompelete(auction, token);// AuctionCompelete
-				ViewBag.Bids=auction.Bids;
+				ViewBag.Bids = auction.Bids;
 				return View(auction);
 			}
 			return Redirect("/seller/booth/index");
@@ -64,7 +69,7 @@ namespace BidLand.Web.Areas.Seller.Controllers
 				Comments = stockRepoDto.Comments,
 				Product = stockRepoDto.Product,
 				Auctions = stockRepoDto.Auctions,
-				StocksCarts = stockRepoDto.StocksCarts
+				StocksCarts = stockRepoDto.StocksCarts,
 			};
 			model.Stock = stock;
 			#endregion
@@ -74,6 +79,11 @@ namespace BidLand.Web.Areas.Seller.Controllers
 				if (model.IsDelete == true || model.IsActive == false)
 				{
 					model.Stock.IsAuction = false;
+					if(model.JobId!=null)
+					{
+						BackgroundJob.Delete(model.JobId);
+						model.JobId = null;
+					}
 				}
 				await _purchaseAppServices.EditAuction(model, token);
 				return Redirect("/seller/booth/index");

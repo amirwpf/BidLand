@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "l+xzrWvtVlmtby13hbA17NXxDnkEN15uTKXA1lK1uPA=",
+  "Hash": "wegiFbCGxpevsUqaD6kIZ5gKHME8xzrJEzEgq+G9z18=",
   "Source": "BidLand.Web",
   "BasePath": "_content/BidLand.Web",
   "Mode": "Default",
@@ -49281,23 +49281,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\products\\c01adc1a-ed6b-4c2e-9372-97f13ecd8f62_brand_logo_01.png"
-    },
-    {
-      "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\c6a5f322-64fa-40b4-b59f-b3f6408a4a1c_DALL·E 2023-11-12 08.37.43 - A logo design for 'HoudiniForces', a company specializing in visual effects using Houdini software. The logo should combine elements of mysticism and .png",
-      "SourceId": "BidLand.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\",
-      "BasePath": "_content/BidLand.Web",
-      "RelativePath": "uploads/products/c6a5f322-64fa-40b4-b59f-b3f6408a4a1c_DALL·E 2023-11-12 08.37.43 - A logo design for 'HoudiniForces', a company specializing in visual effects using Houdini software. The logo should combine elements of mysticism and .png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\products\\c6a5f322-64fa-40b4-b59f-b3f6408a4a1c_DALL·E 2023-11-12 08.37.43 - A logo design for 'HoudiniForces', a company specializing in visual effects using Houdini software. The logo should combine elements of mysticism and .png"
     },
     {
       "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\c8018033-d0c6-4138-aeb4-a5c4a29ed440_MSI-GE62-Apache-Gaming-Notebook-Review-0004.jpg",

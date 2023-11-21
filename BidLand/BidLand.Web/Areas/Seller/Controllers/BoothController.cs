@@ -1,10 +1,12 @@
-﻿using App.Domin.AppServices.Users;
+﻿using App.Domin.AppServices.Purchase;
+using App.Domin.AppServices.Users;
 using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 using App.Domin.Core._01_Purchause.Dtos;
 using App.Domin.Core._02_Users.Contracts.AppServices;
 using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 using App.Domin.Core._02_Users.Entities;
 using BidLand.Web.Areas.Seller.Models;
+using Hangfire;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.VisualBasic;
@@ -114,7 +116,7 @@ namespace BidLand.Web.Areas.Seller.Controllers
 		[HttpPost]
 		public async Task<IActionResult> AddAuctionStock(AddAuctionStockVM model,CancellationToken cancellationToken)
         {
-            if(ModelState.IsValid)
+			if (ModelState.IsValid)
             {
                 if(/*model.StartDate>=DateTime.Now && model.EndDate>=DateTime.Now && */model.StartDate< model.EndDate)
                 {
@@ -130,6 +132,7 @@ namespace BidLand.Web.Areas.Seller.Controllers
                     if(stock.IsDelete==false && stock.IsActive==true && stock.AvailableNumber>0)
                     {
                         stock.IsAuction = true;
+						
                         await _purchaseAppServices.EditStock(stock, cancellationToken);
                         await _purchaseAppServices.AddAuction(auction, cancellationToken);
                         return RedirectToAction("Index");

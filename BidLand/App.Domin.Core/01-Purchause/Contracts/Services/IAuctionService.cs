@@ -9,7 +9,7 @@ namespace App.Domin.Core._01_Purchause.Contracts.Services;
 
 public interface IAuctionService
 {
-	Task CreateAsync(AuctionRepoDto input, CancellationToken cancellationToken);
+	Task<AuctionRepoDto?> CreateAsync(AuctionRepoDto input, CancellationToken cancellationToken);
 
 	Task DeleteAsync(AuctionRepoDto input, CancellationToken cancellationToken);
 

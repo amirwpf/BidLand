@@ -5,10 +5,34 @@ using App.Infra.Db.sqlServer.Ef.Context;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using Hangfire;
+using Newtonsoft.Json;
+using Hangfire.SqlServer;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
+
+
+#region Hangfire
+//builder.Services.AddHangfire(x =>
+//	x.UseSqlServerStorage(builder.Configuration.GetConnectionString("HangfireConnection")));
+//builder.Services.AddHangfireServer();
+
+builder.Services.AddHangfire(config => config
+				.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+				.UseSimpleAssemblyNameTypeSerializer()
+				.UseSerializerSettings(new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore })
+				.UseRecommendedSerializerSettings()
+				.UseSqlServerStorage(builder.Configuration.GetConnectionString("AppDbContextConnection"), new SqlServerStorageOptions
+				{
+					CommandBatchMaxTimeout = TimeSpan.FromSeconds(5),
+					SlidingInvisibilityTimeout = TimeSpan.FromSeconds(5),
+					QueuePollInterval = TimeSpan.Zero,
+					UseRecommendedIsolationLevel = true,
+					DisableGlobalLocks = true
+				}));
+builder.Services.AddHangfireServer();
+#endregion
 
 
 #region Services
@@ -81,6 +105,7 @@ app.UseDefaultFiles();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseHangfireDashboard();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();

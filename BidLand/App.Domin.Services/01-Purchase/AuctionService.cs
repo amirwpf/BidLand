@@ -17,13 +17,14 @@ public class AuctionService : IAuctionService
 	{
 		_repo = repo;
 	}
-	public async Task CreateAsync(AuctionRepoDto input, CancellationToken cancellationToken)
+	public async Task<AuctionRepoDto?> CreateAsync(AuctionRepoDto input, CancellationToken cancellationToken)
 	{
 		input.InsertionDate=DateTime.Now;
 		input.CurrentHighestPrice = 0;
 		input.IsActive= true;
 		input.IsDelete = false;
-		await _repo.AddAsync(input, cancellationToken);
+		var auction =await _repo.AddAsync(input, cancellationToken);
+		return auction;
 	}
 
 	public async Task DeleteAsync(AuctionRepoDto input, CancellationToken cancellationToken)

@@ -136,6 +136,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEhvbWVcQWJvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Home/EditSeller.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEhvbWVcRWRpdFNlbGxlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/software/exe/visual studio 2022/maktabSh/finalProject/BidLand/BidLand.Web/Areas/Seller/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXEhvbWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

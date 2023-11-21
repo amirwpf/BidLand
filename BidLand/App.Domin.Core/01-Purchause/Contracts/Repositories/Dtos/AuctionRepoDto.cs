@@ -23,6 +23,7 @@ public class AuctionRepoDto
 	public int MinimumFinalPrice { get; set; }
 
 	public int StockId { get; set; }
+	public string? JobId { get; set; }
 
 	public DateTime? InsertionDate { get; set; }
 

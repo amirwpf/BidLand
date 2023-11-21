@@ -10,9 +10,11 @@ using App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
 using App.Domin.Core._03_Extras.Contracts.Services;
 using App.Domin.Core._03_Extras.Entities;
 using App.Domin.Core._03_Extras.Enums;
+using Hangfire;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.VisualBasic;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -169,15 +171,28 @@ namespace App.Domin.AppServices.Purchase
 
 		public async Task AddAuction(AuctionRepoDto model, CancellationToken cancellationToken)
 		{
-			await _auctionService.CreateAsync(model, cancellationToken);
+			var auction = _auctionService.CreateAsync(model, cancellationToken).Result;
+			var datetime = (DateTime)auction.EndDate;
+			var ts = new DateTimeOffset(datetime);
+			var res = BackgroundJob.Schedule<PurchaseAppServices>(
+				x => x.GetAuctionById2(auction.Id, cancellationToken), ts);
+			auction.JobId = res;
+			await _auctionService.UpdateAsync(auction,cancellationToken);
 		}
 		public async Task EditAuction(AuctionRepoDto model, CancellationToken cancellationToken)
 		{
 			await _auctionService.UpdateAsync(model, cancellationToken);
 		}
-		public async Task GetAuctionById(int id, CancellationToken cancellationToken)
+		public async Task<AuctionRepoDto> GetAuctionById(int id, CancellationToken cancellationToken)
 		{
-			await _auctionService.GetByIdAsync(id, cancellationToken);
+			return await _auctionService.GetByIdAsync(id, cancellationToken);
+			
+		}
+		
+		public async Task GetAuctionById2(int id, CancellationToken cancellationToken)
+		{
+			var res = await _auctionService.GetByIdAsync(id, cancellationToken);
+			await AuctionPurchaseCompelete(res, cancellationToken);
 		}
 		public async Task<List<AuctionRepoDto>> GetAllAuction(CancellationToken cancellationToken)
 		{

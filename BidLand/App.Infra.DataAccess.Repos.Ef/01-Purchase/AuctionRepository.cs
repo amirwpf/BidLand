@@ -32,7 +32,7 @@ public class AuctionRepository : IAuctionRepository
 			.Where(a => a.EndDate <= DateTime.Now)
 			.Select(auction => new AuctionRepoDto()
 			{
-				//Id = auction.Id,
+				Id = auction.Id,
 				StartDate = auction.StartDate,
 				EndDate = auction.EndDate,
 				IsActive = auction.IsActive,
@@ -40,7 +40,10 @@ public class AuctionRepository : IAuctionRepository
 				CurrentHighestPrice = auction.CurrentHighestPrice,
 				MinimumFinalPrice = auction.MinimumFinalPrice,
 				StockId = auction.StockId,
-				InsertionDate = auction.InsertionDate
+				InsertionDate = auction.InsertionDate,
+				Bids = auction.Bids,
+				Stock = auction.Stock,
+				JobId = auction.JobId,
 			})
 			.ToListAsync(cancellationToken);
 		return completedAuctions;
@@ -66,7 +69,8 @@ public class AuctionRepository : IAuctionRepository
 					StockId = auction.StockId,
 					Bids = auction.Bids,
 					Stock = auction.Stock,
-					InsertionDate = auction.InsertionDate
+					JobId = auction.JobId,
+					InsertionDate = auction.InsertionDate,
 				})
 			   .FirstOrDefaultAsync(a => a.Id == id, cancellationToken);
 		if (action == null) return null;
@@ -93,6 +97,7 @@ public class AuctionRepository : IAuctionRepository
 				InsertionDate = auction.InsertionDate,
 				Bids = auction.Bids,
 				Stock = auction.Stock,
+				JobId = auction.JobId,
 			}).ToListAsync(cancellationToken);
 		return result;
 	}
@@ -116,24 +121,35 @@ public class AuctionRepository : IAuctionRepository
 				InsertionDate = auction.InsertionDate,
 				Bids = auction.Bids,
 				Stock = auction.Stock,
+				JobId= auction.JobId,
 			}).ToListAsync(cancellationToken);
 		return result;
 	}
-	public async Task AddAsync(AuctionRepoDto auction, CancellationToken cancellationToken)
+	public async Task<AuctionRepoDto?> AddAsync(AuctionRepoDto auction, CancellationToken cancellationToken)
 	{
 		var result = new Auction();
 		Equaler(auction, ref result);
 		//await _dbSet.AddAsync(result,cancellationToken);
 		_context.Entry(result).State = EntityState.Added;
 		await _context.SaveChangesAsync(cancellationToken);
+
+		var allAuctions = await GetAllTrueAsync(cancellationToken);
+		var Auction=allAuctions.FirstOrDefault(a=>a.InsertionDate==auction.InsertionDate &&
+												  a.StartDate ==auction.StartDate &&
+												  a.EndDate == auction.EndDate &&
+												  a.StockId == auction.StockId &&
+												  a.IsActive == auction.IsActive &&
+												  a.IsDelete == auction.IsDelete);
+		return Auction;
 	}
 	public async Task<bool> UpdateAsync(AuctionRepoDto auction, CancellationToken cancellationToken)
 	{
-		var result = await _dbSet.Where(x => x.Id == auction.Id).FirstOrDefaultAsync(cancellationToken);
+		var result = await _dbSet.FindAsync(auction.Id,cancellationToken);
 		if (result != null)
 		{
 			Equaler(auction, ref result);
-			_context.Entry(result).State = EntityState.Modified;
+			_dbSet.Update(result);
+			//_context.Entry(result).State = EntityState.Modified;
 			await _context.SaveChangesAsync(cancellationToken);
 			return true;
 		}
@@ -217,12 +233,13 @@ public class AuctionRepository : IAuctionRepository
 			InsertionDate = auction.InsertionDate,
 			Bids = auction.Bids,
 			Stock = auction.Stock,
+			JobId = auction.JobId,
 		};
 	}
 
 	private void Equaler(AuctionRepoDto auctionRepoDto, ref Auction auction)
 	{
-		auction.Id = auctionRepoDto.Id;
+		//auction.Id = auctionRepoDto.Id;
 		auction.StartDate = auctionRepoDto.StartDate;
 		auction.EndDate = auctionRepoDto.EndDate;
 		auction.IsActive = auctionRepoDto.IsActive;
@@ -233,5 +250,6 @@ public class AuctionRepository : IAuctionRepository
 		auction.InsertionDate = auctionRepoDto.InsertionDate;
 		auction.Bids = auctionRepoDto.Bids;
 		auction.Stock = auctionRepoDto.Stock;
+		auction.JobId = auctionRepoDto.JobId;
 	}
 }

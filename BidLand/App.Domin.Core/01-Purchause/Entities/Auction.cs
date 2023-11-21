@@ -29,6 +29,8 @@ public partial class Auction
 
     public int StockId { get; set; }
 
+    public string? JobId { get; set; }
+
     public DateTime? InsertionDate { get; set; }
 
     public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
