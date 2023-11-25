@@ -1,4 +1,5 @@
 ﻿using App.Domin.Core._02_Users.Contracts.AppServices;
+using App.Domin.Core._02_Users.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Common;
@@ -6,7 +7,7 @@ using NuGet.Common;
 namespace BidLand.Web.Areas.Seller.Controllers
 {
     [Area("Seller")]
-    //[Authorize(Roles = "Seller")]
+    [Authorize(Roles = "Seller")]
     public class HomeController : Controller
     {
         private readonly IPurchaseAppServices _purchaseAppServices;
@@ -40,10 +41,25 @@ namespace BidLand.Web.Areas.Seller.Controllers
             {
                 var user = await _accountAppServices.FindUserByEmailAsync(username);
                 var seller = await _accountAppServices.FindSellerByUserId(user.Id, cancellationToken);
-                var booth = await _accountAppServices.FindBoothBySellerId(seller.Id, cancellationToken);
-                return View(seller);
+                return View(user);
             }
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditSeller(User model ,CancellationToken cancellationToken)
+        {
+            if (ModelState.IsValid)
+            {
+                //model.NormalizedEmail = model.Email.ToUpper();
+                //model.NormalizedUserName = model.UserName.ToUpper();
+                var result = await _accountAppServices.UpdateUser(model, cancellationToken);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            return View(model);
         }
     }
 }

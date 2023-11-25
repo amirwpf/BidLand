@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wegiFbCGxpevsUqaD6kIZ5gKHME8xzrJEzEgq+G9z18=",
+  "Hash": "I8WnWxKK5ucawxd/yu2h2RjZ8Y3sE5x1EfV28OUNx3I=",
   "Source": "BidLand.Web",
   "BasePath": "_content/BidLand.Web",
   "Mode": "Default",
@@ -47158,12 +47158,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\bg_30.jpg"
     },
     {
-      "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\slider\\bg_31.jpg",
+      "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\slider\\bg_31_copy.jpg",
       "SourceId": "BidLand.Web",
       "SourceType": "Discovered",
       "ContentRoot": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\",
       "BasePath": "_content/BidLand.Web",
-      "RelativePath": "assets/images/slider/bg_31.jpg",
+      "RelativePath": "assets/images/slider/bg_31_copy.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -47172,7 +47172,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\bg_31.jpg"
+      "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\bg_31_copy.jpg"
+    },
+    {
+      "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\slider\\bg_31_new.jpg",
+      "SourceId": "BidLand.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\",
+      "BasePath": "_content/BidLand.Web",
+      "RelativePath": "assets/images/slider/bg_31_new.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\slider\\bg_31_new.jpg"
     },
     {
       "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\slider\\img_01.jpg",
@@ -49164,6 +49181,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\products\\819e493c-0e50-4d3d-9516-b30fa794b696_chevorlet.png"
     },
     {
+      "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\82123156-7c5b-48bd-a9bb-f9b9b4bac1ab_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg",
+      "SourceId": "BidLand.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\",
+      "BasePath": "_content/BidLand.Web",
+      "RelativePath": "uploads/products/82123156-7c5b-48bd-a9bb-f9b9b4bac1ab_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\82123156-7c5b-48bd-a9bb-f9b9b4bac1ab_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg"
+    },
+    {
       "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\8807c0f1-60cf-49e8-8bde-a0b274b9c401_blog-widget-01.jpg",
       "SourceId": "BidLand.Web",
       "SourceType": "Discovered",
@@ -49213,6 +49247,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\products\\8fed670a-2b32-4ced-9533-c110bc7e8a33_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg"
+    },
+    {
+      "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\9d731570-d070-4021-ac46-564ca3ed7ad7_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg",
+      "SourceId": "BidLand.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\",
+      "BasePath": "_content/BidLand.Web",
+      "RelativePath": "uploads/products/9d731570-d070-4021-ac46-564ca3ed7ad7_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\9d731570-d070-4021-ac46-564ca3ed7ad7_bnib_canon_ixus_240_hs_1486561755_233f65a2.jpg"
     },
     {
       "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\aa482b8a-b29e-4723-a863-9c0ef4cd1003_bmw.png",
@@ -49298,6 +49349,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\products\\c8018033-d0c6-4138-aeb4-a5c4a29ed440_MSI-GE62-Apache-Gaming-Notebook-Review-0004.jpg"
+    },
+    {
+      "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\c9abe4b9-7950-41c3-a6b1-7cee3d4edf4d_aaaa.png",
+      "SourceId": "BidLand.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\",
+      "BasePath": "_content/BidLand.Web",
+      "RelativePath": "uploads/products/c9abe4b9-7950-41c3-a6b1-7cee3d4edf4d_aaaa.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\c9abe4b9-7950-41c3-a6b1-7cee3d4edf4d_aaaa.png"
     },
     {
       "Identity": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\uploads\\products\\d5718973-898a-4eee-8c31-fbd259aadc60_blog-compact-post-02.jpg",

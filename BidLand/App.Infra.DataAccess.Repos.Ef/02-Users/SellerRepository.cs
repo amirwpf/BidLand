@@ -27,6 +27,7 @@ public class SellerRepository : ISellerRepository
 	public async Task<SellerRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
+			.AsNoTracking()
 			.Include(x=>x.User)
 			  .Include(b => b.Booth)
               .Select(seller => new SellerRepoDto()
@@ -51,6 +52,7 @@ public class SellerRepository : ISellerRepository
 public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
+			.AsNoTracking()
             .Where(x => x.IsDelete)
               .Include(b => b.User)
 			  .Include(b => b.Booth)
@@ -74,6 +76,7 @@ public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken canc
 	public async Task<List<SellerRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
+			.AsNoTracking()
             //.Where(x => !x.IsDelete)
               .Include(b => b.User)
 			  .Include(b => b.Booth)
@@ -92,7 +95,9 @@ public async Task<List<SellerRepoDto>> GetAllDeletedAsync(CancellationToken canc
                   Medal = seller.Medal,
               })
 			  .ToListAsync(cancellationToken);
-		return result;
+			_context.ChangeTracker.Clear();
+
+        return result;
 	}
 	public async Task<int?> GetSumSellersCommisionAmount(CancellationToken cancellationToken)
 	{

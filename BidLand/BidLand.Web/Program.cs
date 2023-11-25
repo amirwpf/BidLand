@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Hangfire;
 using Newtonsoft.Json;
 using Hangfire.SqlServer;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -37,12 +38,23 @@ builder.Services.AddHangfireServer();
 
 #region Services
 // Add services to the container.
+
+#region SqlConnection
 var connectionString = builder.Configuration
 .GetConnectionString("AppDbContextConnection") ??
 throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<AppDbContext>(options =>
-											options.UseSqlServer(connectionString));
+{
+    options.UseSqlServer(connectionString);
+    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+});
+
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+#endregion
+
+
+
 #region Identity
 builder.Services.AddDefaultIdentity<User>(options =>
 {

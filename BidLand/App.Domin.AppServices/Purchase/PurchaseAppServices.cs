@@ -10,9 +10,11 @@ using App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
 using App.Domin.Core._03_Extras.Contracts.Services;
 using App.Domin.Core._03_Extras.Entities;
 using App.Domin.Core._03_Extras.Enums;
+using BidLand.Framework.Common;
 using Hangfire;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json.Linq;
 using System;
@@ -41,6 +43,7 @@ namespace App.Domin.AppServices.Purchase
 		private readonly IBuyerService _buyerService;
 		private readonly ISellerService _sellerService;
 		private readonly IMedalService _medalService;
+		private readonly IConfiguration _configuration;
 
 
 		public PurchaseAppServices(IProductService productService,
@@ -54,7 +57,8 @@ namespace App.Domin.AppServices.Purchase
 									IAdminService adminService,
 									IBuyerService buyerService,
 									ISellerService sellerService,
-									IMedalService medalService)
+									IMedalService medalService,
+                                    IConfiguration configuration)
 		{
 			_productServices = productService;
 			_commentServices = commentService;
@@ -68,6 +72,7 @@ namespace App.Domin.AppServices.Purchase
 			_buyerService = buyerService;
 			_sellerService = sellerService;
 			_medalService = medalService;
+			_configuration = configuration;
 		}
 
 		#region ProductsManagement
@@ -107,8 +112,13 @@ namespace App.Domin.AppServices.Purchase
 		{
 			try
 			{
-				//check stock exist
-				if (stockDto == null) return "کالا نامعتبر";
+
+                //Update seller medal
+                var seller = await _sellerService.GetByIdAsync((int)stockDto.Booth.SellerId, cancellation);
+                await UpdateSellerMedal(seller, cancellation);
+
+                //check stock exist
+                if (stockDto == null) return "کالا نامعتبر";
 
 				//check bids for this Auction
 				if (AllBidDto == null) return "هیچ پیشنهادی وجود ندارد.";
@@ -154,9 +164,7 @@ namespace App.Domin.AppServices.Purchase
 				await _adminService.AddCommisionValueToAdmin(commisionValue, cancellation);
 
 
-				//Update seller medal
-				var seller = await _sellerService.GetByIdAsync((int)stockDto.Booth.SellerId, cancellation);
-				await UpdateSellerMedal(seller, cancellation);
+				
 
 				return "پرداخت با موفقیت صورت گرفت.";
 			}
@@ -397,15 +405,16 @@ namespace App.Domin.AppServices.Purchase
 			var medalGold = await _medalService.GetMedalByNameAsync(MedalEnum.Gold, cancellationToken);
 			if (seller != null)
 			{
-				if (seller.SalesAmount <= 100000)
+				if (seller.SalesAmount <= _configuration.GetSection(nameof(SellersMedalCheckPoint)).Get<SellersMedalCheckPoint>().BronzeCheckPoint)  //100000)
 				{
 					seller.MedalId = medalBronze.Id;
 				}
-				else if (seller.SalesAmount <= 200000 && seller.SalesAmount > 100000)
+				else if (seller.SalesAmount <= _configuration.GetSection(nameof(SellersMedalCheckPoint)).Get<SellersMedalCheckPoint>().SilverCheckPoint//200000
+                    && seller.SalesAmount > _configuration.GetSection(nameof(SellersMedalCheckPoint)).Get<SellersMedalCheckPoint>().BronzeCheckPoint)//100000
 				{
 					seller.MedalId = medalSilver.Id;
 				}
-				else if (seller.SalesAmount > 200000)
+				else if (seller.SalesAmount > _configuration.GetSection(nameof(SellersMedalCheckPoint)).Get<SellersMedalCheckPoint>().SilverCheckPoint)//200000)
 				{
 					seller.MedalId = medalGold.Id;
 				}

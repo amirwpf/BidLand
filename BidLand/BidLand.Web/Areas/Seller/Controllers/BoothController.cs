@@ -7,6 +7,7 @@ using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 using App.Domin.Core._02_Users.Entities;
 using BidLand.Web.Areas.Seller.Models;
 using Hangfire;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.VisualBasic;
@@ -16,7 +17,7 @@ using System.Runtime.InteropServices;
 namespace BidLand.Web.Areas.Seller.Controllers
 {
     [Area("Seller")]
-    //[Authorize(Roles = "Seller")]
+    [Authorize(Roles = "Seller")]
     public class BoothController : Controller
     {
         private readonly IPurchaseAppServices _purchaseAppServices;
@@ -132,7 +133,6 @@ namespace BidLand.Web.Areas.Seller.Controllers
                     if(stock.IsDelete==false && stock.IsActive==true && stock.AvailableNumber>0)
                     {
                         stock.IsAuction = true;
-						
                         await _purchaseAppServices.EditStock(stock, cancellationToken);
                         await _purchaseAppServices.AddAuction(auction, cancellationToken);
                         return RedirectToAction("Index");

@@ -5,6 +5,7 @@ using App.Domin.Core._02_Users.Contracts.AppServices;
 using App.Domin.Services._01_Purchase;
 using BidLand.Framework.Common;
 using Hangfire;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using NuGet.Common;
@@ -14,7 +15,7 @@ using System.Threading;
 namespace BidLand.Web.Areas.Seller.Controllers
 {
 	[Area("Seller")]
-	//[Authorize(Roles = "Seller")]
+	[Authorize(Roles = "Seller")]
 	public class AuctionController : Controller
 	{
 		private readonly IPurchaseAppServices _purchaseAppServices;

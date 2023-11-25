@@ -82,6 +82,14 @@ namespace App.Domin.AppServices.Users
             await _userManager.AddToRoleAsync(user, roleName);
         }
 
+        public async Task<IdentityResult> UpdateUser(User model,CancellationToken cancellationToken)
+        {
+            //await _userManager.UpdateNormalizedEmailAsync(model);
+            //await _userManager.UpdateNormalizedUserNameAsync(model);
+            var result = await _userManager.UpdateAsync(model);
+            return result;
+        }
+
         public async Task<string> CreateRoleIfNotExists(string roleName)
         {
             var role = await _roleManager.FindByNameAsync(roleName);
@@ -123,8 +131,9 @@ namespace App.Domin.AppServices.Users
                         IsDelete = false,
                         Credit = 0,
                         TotalPurchaseAmount = 0,
-                    }, token); ;
-                    await _userManager.AddToRoleAsync(_user, nameof(BuyerSellerTypes.Buyer));
+                    }, token);
+
+                    //await _userManager.AddToRoleAsync(_user, nameof(BuyerSellerTypes.Buyer));
                 }
                 else if (user.BuyerOrSeller == BuyerSellerTypes.Seller)
                 {
@@ -141,9 +150,11 @@ namespace App.Domin.AppServices.Users
                         MedalId= 4,
 
                     }, token);
+                    var sellers =await _sellerService.GetAllAsync(token);
+                    var seller = sellers.FirstOrDefault(s => s.UserId == _user.Id);
                     await _boothService.CreateAsync(new BoothRepoDto()
                     {
-                        SellerId= _user.Id,
+                        SellerId= seller.Id,
                         IsDelete=true,
                     }, token);
 

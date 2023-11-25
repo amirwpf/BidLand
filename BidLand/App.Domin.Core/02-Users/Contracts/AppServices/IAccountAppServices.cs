@@ -40,5 +40,6 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
 		Task<int?> GetSumSellerCommisionAmount(CancellationToken cancellationToken);
 		Task<SellerRepoDto?> FindSellerByUserId(int UserId, CancellationToken cancellation);
 		Task<BoothRepoDto?> FindBoothBySellerId(int SellerId, CancellationToken cancellation);
-	}
+        Task<IdentityResult> UpdateUser(User model, CancellationToken cancellationToken);
+    }
 }
