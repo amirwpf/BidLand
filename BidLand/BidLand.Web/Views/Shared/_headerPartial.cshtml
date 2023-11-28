@@ -1,65 +1,202 @@
-﻿<!-- header-section - start
-        ================================================== -->
+﻿@using BidLand.Framework.Common;
+
+<!-- header-section - start
+		================================================== -->
 <header id="header-section" class="header-section sticky-header clearfix">
-    <div class="container-fluid prl-60">
-        <div class="row align-items-center">
+	<div class="container-fluid prl-60">
+		<div class="row align-items-center">
 
-            <div class="col-lg-4 col-6">
-                <div class="brand-logo text-center">
-                    <a href="index.html">
-                        <img src="assets/images/logo/logo_1.png" alt="logo_not_found">
-                    </a>
-                </div>
-            </div>
+			<div class="col-lg-4 col-6">
+				<div class="brand-logo text-center">
+					<a href="/">
+						<img src="/assets/images/logo/logo_new.png?v=@DateTime.Now.Ticks" alt="logo_not_found">
+					</a>
+				</div>
+			</div>
 
-            <div class="col-lg-4 col-6 order-first">
-                <button type="button" class="menu-btn menu-btn-round float-left">
-                    <i class="fal fa-bars"></i>
-                </button>
-            </div>
+			<div class="col-lg-4 col-6 order-first">
+				<button type="button" class="menu-btn menu-btn-round float-left">
+					<i class="fal fa-bars"></i>
+				</button>
+			</div>
 
-            <div class="col-lg-4">
-                <nav class="main-menu ul-li-right clearfix">
-                    <ul class="clearfix">
-                        <li>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <span>@User.Identity.Name خوش آمدید!</span>
-                                <span>|</span>
-                                <span><a href="/Identity/Login/Logout">خروج</a></span>
-                                <span>|</span>
-                                @if (User.IsInRole("Admin"))
-                                {
-                                    <span><a href="/Admin/Home/Index/@ViewBag.UserId">پنل ادمین</a></span>
-                                }
-                                @if (User.IsInRole("Seller"))
-                                {
-                                    <span><a href="/Seller/Home/Index/@ViewBag.UserId">پنل فروشندگان</a></span>
-                                }
-                                
-                                
-                            }
-                            else
-                            {
-                                <a href="/Identity/Login">ورود</a>
-                            }
+			<div class="col-lg-4">
+				<nav class="main-menu ul-li-right clearfix">
+					<ul class="clearfix">
+						<li>
+							@if (User.Identity.IsAuthenticated)
+							{
+								<span>@User.Identity.Name.Email2UserName() خوش آمدید!</span>
+								<span>|</span>
+								<span><a href="/Identity/Login/Logout">خروج</a></span>
+								<span>|</span>
+								@if (User.IsInRole("Admin"))
+								{
+									<span><a href="/Admin/Home/Index/@ViewBag.UserId">پنل ادمین</a></span>
+								}
+								@if (User.IsInRole("Seller"))
+								{
+									<span><a href="/Seller/Home/Index/@ViewBag.UserId">پنل فروشندگان</a></span>
+								}
+								@if (User.IsInRole("Buyer"))
+								{
+									<span><a href="/Buyer/Home/Index/@ViewBag.UserId">پنل کاربری</a></span>
+								}
 
-                        </li>
-                        <li>
-                            <button type="button" class="cart-btn">
-                                <i class="icon-bag"></i>
-                                <small class="count-text">0</small>
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+							}
+							else
+							{
+								<a href="/Identity/Login">ورود</a>
+							}
 
-        </div>
-    </div>
+						</li>
+                        @if(User.IsInRole("Buyer"))
+                        {
+                            <li>
+                                <a href="/buyer/buyer/cartinfo/" class="cart-btn">
+                                    <i class="icon-bag"></i>
+                                    <small class="count-text">0</small>
+                                </a>
+                            </li>
+                        }
+					</ul>
+				</nav>
+			</div>
+
+		</div>
+	</div>
 </header>
 
 <div class="sidebar-menu-wrapper">
+	<div id="sidebar-menu" class="sidebar-menu">
+		<span class="close-btn"><i class="fal fa-times"></i></span>
+
+		<div id="menu-list" class="menu-list ul-li-block clearfix">
+			<ul class="clearfix">
+				<li class="menu-item-has-child">
+					<a href="#all-submenu" data-toggle="collapse" aria-expanded="false">دسته بندی کل</a>
+					<ul class="submenu collapse" id="all-submenu" data-parent="#menu-list">
+						<li>
+							<a href="#ekala-submenu" data-toggle="collapse" aria-expanded="true">لوازم الکترونیک</a>
+							<ul class="submenu collapse" id="ekala-submenu" data-parent="#all-submenu">
+								<li>
+									<a href="#computer-submenu" data-toggle="collapse" aria-expanded="false">کامپیوتر</a>
+									<ul class="submenu collapse" id="computer-submenu" data-parent="#ekala-submenu">
+                                        <li><a href="/product/index?category=4">لپ تاپ</a></li>
+                                        <li><a href="/product/index?category=5">کامپیوتر خانگی</a></li>
+                                        <li><a href="/product/index?category=6">لوازم کامپیوتر</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#mobile-submenu" data-toggle="collapse" aria-expanded="false">موبایل</a>
+									<ul class="submenu collapse" id="mobile-submenu" data-parent="#ekala-submenu">
+                                        <li><a href="/product/index?category=8">موبایل صفحه لمسی</a></li>
+                                        <li><a href="/product/index?category=9">موبایل صفحه کلید دار</a></li>
+                                        <li><a href="/product/index?category=10">لوازم جانبی موبایل</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#modpushak-submenu" data-toggle="collapse" aria-expanded="false">مد و پوشاک</a>
+							<ul class="submenu collapse" id="modpushak-submenu" data-parent="#all-submenu">
+								<li>
+									<a href="#pushakmen-submenu" data-toggle="collapse" aria-expanded="false">پوشاک مردانه</a>
+									<ul class="submenu collapse" id="pushakmen-submenu" data-parent="#modpushak-submenu">
+                                        <li><a href="/product/index?category=13">کفش مردانه</a></li>
+                                        <li><a href="/product/index?category=14">پیراهن مردانه</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#pushakwomen-submenu" data-toggle="collapse" aria-expanded="false">پوشاک زنانه</a>
+									<ul class="submenu collapse" id="pushakwomen-submenu" data-parent="#modpushak-submenu">
+                                        <li><a href="/product/index?category=16">کفش زنانه</a></li>
+                                        <li><a href="/product/index?category=17">شلوار زنانه</a></li>
+									</ul>
+								</li>
+
+								<li><a href="/product/index?category=18">عینک دودی</a></li>
+								<li><a href="/product/index?category=19">عطر مردانه</a></li>
+								<li><a href="/product/index?category=20">عطر زنانه</a></li>
+							</ul>
+						</li>
+
+
+						<li>
+							<a href="#book-submenu" data-toggle="collapse" aria-expanded="false">کتاب</a>
+							<ul class="submenu collapse" id="book-submenu" data-parent="#all-submenu">
+								<li><a href="/product/index?category=22">کتاب داستان ایرانی و خارجی</a></li>
+								<li><a href="/product/index?category=23">کتاب روانشناسی</a></li>
+								<li><a href="/product/index?category=24">کتاب موفقیت و خودیاری</a></li>
+								<li><a href="/product/index?category=25">کتاب علوم کامپیوتر</a></li>
+							</ul>
+						</li>
+
+					</ul>
+		</div>
+	</div>
+
+@*	<div id="cart-sidebar" class="cart-sidebar">
+		<div class="dismiss text-right mb-60 clearfix">
+			<span class="close-btn"><i class="fal fa-times"></i></span>
+		</div>
+
+		<div class="cart-items-list ul-li-block clearfix">
+			<ul class="clearfix">
+				<li>
+					<div class="item-image">
+						<img src="assets/images/cart/img_4.png" alt="image_not_found">
+					</div>
+					<div class="item-content">
+						<h4 class="item-title">Yellow Blouse</h4>
+						<span class="item-price">$36</span>
+					</div>
+					<button type="button" class="remove-btn"><i class="fal fa-trash-alt"></i></button>
+				</li>
+
+				<li>
+					<div class="item-image">
+						<img src="assets/images/cart/img_5.png" alt="image_not_found">
+					</div>
+					<div class="item-content">
+						<h4 class="item-title">Dress Summer Girl</h4>
+						<span class="item-price">$74</span>
+					</div>
+					<button type="button" class="remove-btn"><i class="fal fa-trash-alt"></i></button>
+				</li>
+
+				<li>
+					<div class="item-image">
+						<img src="assets/images/cart/img_6.png" alt="image_not_found">
+					</div>
+					<div class="item-content">
+						<h4 class="item-title">Yellow Blouse</h4>
+						<span class="item-price">#61.00</span>
+					</div>
+					<button type="button" class="remove-btn"><i class="fal fa-trash-alt"></i></button>
+				</li>
+
+				<li class="total-price">
+					<span>Sub Total</span>
+					<small>$180</small>
+				</li>
+				<li class="btns-group ul-li clearfix">
+					<ul class="clearfix">
+						<li><a href="shop-cart.html" class="btn btn-border border-white">View Cart</a></li>
+						<li><a href="shop-checkout.html" class="btn bg-white">Checkout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>*@
+
+	<div class="overlay"></div>
+</div>
+
+
+
+@*<div class="sidebar-menu-wrapper">
     <div id="sidebar-menu" class="sidebar-menu">
         <span class="close-btn"><i class="fal fa-times"></i></span>
 
@@ -248,6 +385,6 @@
     </div>
 
     <div class="overlay"></div>
-</div>
+</div>*@
 <!-- header-section - end
 ================================================== -->

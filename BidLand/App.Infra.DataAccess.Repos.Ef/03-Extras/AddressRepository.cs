@@ -26,7 +26,9 @@ public class AddressRepository : IAddressRepository
 
 	public async Task<AddressRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
-		var result = await _dbSet.Where(predicate => predicate.Id == id)
+		var result = await _dbSet
+			.AsNoTracking()
+			.Where(predicate => predicate.Id == id)
 			.Include(x => x.Buyer)
 			.Include(x => x.Seller)
 			.Select(a => ConvertToAddressRepoDto(a)).FirstOrDefaultAsync(cancellationToken);
@@ -37,6 +39,7 @@ public class AddressRepository : IAddressRepository
 	public async Task<List<AddressRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
+			.AsNoTracking()
 			.Include(x => x.Buyer)
 			.Include(x => x.Seller)
 			.Select(a => ConvertToAddressRepoDto(a)).ToListAsync(cancellationToken);
@@ -96,7 +99,7 @@ public class AddressRepository : IAddressRepository
 
 	private void Equaler(AddressRepoDto addressRepoDto, ref Address address)
 	{
-		address.Id = addressRepoDto.Id;
+		//address.Id = addressRepoDto.Id;
 		address.BuyerId = addressRepoDto.BuyerId;
 		address.City = addressRepoDto.City;
 		address.No = addressRepoDto.No;

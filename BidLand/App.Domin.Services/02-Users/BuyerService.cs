@@ -20,9 +20,9 @@ public class BuyerService: IBuyerService
 	{
 		_repo = repo;
 	}
-	public async Task CreateAsync(BuyerRepoDto input, CancellationToken cancellationToken)
+	public async Task<BuyerRepoDto> CreateAsync(BuyerRepoDto input, CancellationToken cancellationToken)
 	{
-		await _repo.AddAsync(input, cancellationToken);
+		return await _repo.AddAsync(input, cancellationToken);
 	}
 
 	public async Task DeleteAsync(BuyerRepoDto input, CancellationToken cancellationToken)

@@ -38,6 +38,11 @@ public class StocksCartService: IStocksCartService
 	{
 		return await _repo.GetByCartIdAsync(cartId, cancellationToken);
 	}
+	
+	public async Task<StocksCartRepoDto> GetById(int cartId, CancellationToken cancellationToken)
+	{
+		return await _repo.GetByIdAsync(cartId, cancellationToken);
+	}
 
 	public async Task UpdateAsync(StocksCartRepoDto input, CancellationToken cancellationToken)
 	{

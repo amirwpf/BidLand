@@ -25,7 +25,9 @@ public class MedalRepository : IMedalRepository
 
 	public async Task<MedalRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
-		var result = await _dbSet.Where(x => x.Id == id)
+		var result = await _dbSet
+			.AsNoTracking()
+			.Where(x => x.Id == id)
 			.Select(medal => new MedalRepoDto()
 			{
 				Id = medal.Id,
@@ -39,7 +41,9 @@ public class MedalRepository : IMedalRepository
 
 	public async Task<MedalRepoDto?> GetMedalByTypeAsync(MedalEnum medalType, CancellationToken cancellationToken)
 	{
-		var result = await _dbSet.Where(m => m.LevelType == medalType)
+		var result = await _dbSet
+			.AsNoTracking()
+			.Where(m => m.LevelType == medalType)
 			.Select(medal => new MedalRepoDto()
 			{
 				Id = medal.Id,
@@ -55,6 +59,7 @@ public class MedalRepository : IMedalRepository
 	public async Task<List<MedalRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
+			.AsNoTracking()
 			.Select(medal => new MedalRepoDto()
 			{
 				Id = medal.Id,
@@ -111,7 +116,7 @@ public class MedalRepository : IMedalRepository
 
 	private void Equaler(MedalRepoDto medalDto, ref Medal medal)
 	{
-		medal.Id = medalDto.Id;
+		//medal.Id = medalDto.Id;
 		medal.InsertionDate = medalDto.InsertionDate;
 		medal.LevelType = medalDto.LevelType;
 		medal.Percentage = medalDto.Percentage;

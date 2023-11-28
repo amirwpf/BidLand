@@ -1,0 +1,18 @@
+﻿
+
+<div class="card  col-lg-12 col-md-12 col-sm-12 mb-4">
+
+	<div class="card-body">
+		@if (ViewBag.Error != null)
+		{
+			<h3 class="text-danger">@ViewBag.Error</h3>
+			<hr/>
+		}
+
+		<h2> آیا از پرداخت مطمئن هستید؟ </h2>
+		<hr/>
+		<a href="/buyer/buyer/PayCartConfirm/@ViewBag.CartId" class="btn btn-primary"> پرداخت کن </a>
+		<a href="/buyer/buyer/cartinfo/" class="btn btn-danger"> بازگشت </a>
+	</div>
+
+</div>

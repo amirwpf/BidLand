@@ -13,7 +13,7 @@ namespace App.Domin.Core._02_Users.Contracts.Repositories.RepoSeprationContracts
 	{
 		Task<BuyerRepoDto> GetByIdAsync(int id,CancellationToken cancellationToken);
 		Task<List<BuyerRepoDto>> GetAllAsync(CancellationToken cancellationToken);
-		Task AddAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
+		Task<BuyerRepoDto> AddAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
 		Task<bool> UpdateAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
 		Task<bool> SoftDeleteAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);
 		Task<bool> SoftRecoverAsync(BuyerRepoDto buyer, CancellationToken cancellationToken);

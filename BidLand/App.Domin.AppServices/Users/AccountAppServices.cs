@@ -31,14 +31,16 @@ namespace App.Domin.AppServices.Users
         private readonly IBuyerService _buyerService;
         private readonly ISellerService _sellerService;
         private readonly IBoothService _boothService;
+        private readonly ICartService _cartService;
         private readonly IHttpContextAccessor _httpContextAccessor;
 		public AccountAppServices(UserManager<User> userManager,
-            RoleManager<Role> roleManager,
-            SignInManager<User> signInManager,
-            IHttpContextAccessor httpContextAccessor,
-            ISellerService sellerService,
-            IBuyerService buyerService,
-            IBoothService boothService)
+                                  RoleManager<Role> roleManager,
+                                  SignInManager<User> signInManager,
+                                  IHttpContextAccessor httpContextAccessor,
+                                  ISellerService sellerService,
+                                  IBuyerService buyerService,
+                                  IBoothService boothService,
+			                      ICartService cartService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -47,6 +49,7 @@ namespace App.Domin.AppServices.Users
             _sellerService = sellerService;
             _buyerService = buyerService;
             _boothService= boothService;
+            _cartService = cartService;
         }
 
 
@@ -60,7 +63,27 @@ namespace App.Domin.AppServices.Users
             }
             return null;
         }
-        public async Task<BoothRepoDto?> FindBoothBySellerId(int SellerId, CancellationToken cancellation)
+
+        public async Task<BuyerRepoDto?> FindBuyerByUserId(int UserId, CancellationToken cancellation)
+        {
+            var buyers = await _buyerService.GetAllAsync(cancellation);
+            if (buyers != null)
+            {
+                var buyer = buyers.FirstOrDefault(x => x.UserId == UserId);
+                return buyer;
+            }
+            return null;
+        }
+
+
+		public async Task<BuyerRepoDto?> FindBuyerById(int id, CancellationToken cancellation)
+		{
+			var buyers = await _buyerService.GetByIdAsync(id,cancellation);
+			return buyers;
+		}
+
+
+		public async Task<BoothRepoDto?> FindBoothBySellerId(int SellerId, CancellationToken cancellation)
         {
             var booths = await _boothService.GetAllAsync(cancellation);
             if(booths != null)
@@ -123,7 +146,7 @@ namespace App.Domin.AppServices.Users
                 if (user.BuyerOrSeller == BuyerSellerTypes.Buyer)
                 {
 
-                    await _buyerService.CreateAsync(new BuyerRepoDto()
+                    var buyer =await _buyerService.CreateAsync(new BuyerRepoDto()
                     {
                         UserId = _user.Id,
                         InsertionDate = DateTime.Now,
@@ -133,7 +156,16 @@ namespace App.Domin.AppServices.Users
                         TotalPurchaseAmount = 0,
                     }, token);
 
-                    //await _userManager.AddToRoleAsync(_user, nameof(BuyerSellerTypes.Buyer));
+                    await _cartService.CreateAsync(new CartRepoDto()
+                    {
+                        BuyerId = buyer.Id,
+                        InsertionDate= DateTime.Now,
+                        PurchaseCompeleted= false,
+                        PurchaseDate=null,
+                        Value= 0,
+                    },token);
+
+                    await _userManager.AddToRoleAsync(_user, nameof(BuyerSellerTypes.Buyer));
                 }
                 else if (user.BuyerOrSeller == BuyerSellerTypes.Seller)
                 {

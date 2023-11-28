@@ -24,8 +24,14 @@ public class AuctionRepository : IAuctionRepository
 	public async Task<List<AuctionRepoDto>> GetCompletedsAsync(CancellationToken cancellationToken)
 	{
 		var completedAuctions = await _dbSet
+			.AsNoTracking()
 			.Include(a => a.Stock)
 			.ThenInclude(a => a.Product)
+			.ThenInclude(a => a.Images)
+			.Include(a => a.Stock)
+			.ThenInclude(a => a.Booth)
+			.ThenInclude(a => a.Seller)
+			.ThenInclude(a => a.User)
 			.Include(a => a.Bids)
 			.ThenInclude(a => a.Buyer)
 			.ThenInclude(a => a.User)
@@ -51,9 +57,14 @@ public class AuctionRepository : IAuctionRepository
 
 	public async Task<AuctionRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
-		var action = await _dbSet
+		var action = await _dbSet.AsNoTracking()
 				.Include(a => a.Stock)
 				.ThenInclude(a => a.Product)
+				.ThenInclude(a => a.Images)
+				.Include(a => a.Stock)
+				.ThenInclude(a => a.Booth)
+				.ThenInclude(a => a.Seller)
+				.ThenInclude(a => a.User)
 				.Include(a => a.Bids)
 				.ThenInclude(a => a.Buyer)
 				.ThenInclude(a => a.User)
@@ -81,6 +92,11 @@ public class AuctionRepository : IAuctionRepository
 		var result = await _dbSet.AsNoTracking()
 			.Include(a => a.Stock)
 			.ThenInclude(a => a.Product)
+			.ThenInclude(a => a.Images)
+			.Include(a => a.Stock)
+			.ThenInclude(a => a.Booth)
+			.ThenInclude(a => a.Seller)
+			.ThenInclude(a => a.User)
 			.Include(a => a.Bids)
 			.ThenInclude(a => a.Buyer)
 			.ThenInclude(a => a.User)
@@ -103,11 +119,18 @@ public class AuctionRepository : IAuctionRepository
 	}
 	public async Task<List<AuctionRepoDto>> GetAllTrueAsync(CancellationToken cancellationToken)
 	{
-		var result = await _dbSet.AsNoTracking()
+		var result = await _dbSet
+			.AsNoTracking()
 			.Include(a => a.Stock)
 			.ThenInclude(a => a.Product)
+			.ThenInclude(a => a.Images)
+			.Include(a => a.Stock)
+			.ThenInclude(a => a.Booth)
+			.ThenInclude(a => a.Seller)
+			.ThenInclude(a => a.User)
 			.Include(a => a.Bids)
-			.Where(x => x.Stock.IsAuction)
+			.ThenInclude(a => a.Buyer)
+			.ThenInclude(a => a.User)
 			.Select(auction => new AuctionRepoDto()
 			{
 				Id = auction.Id,

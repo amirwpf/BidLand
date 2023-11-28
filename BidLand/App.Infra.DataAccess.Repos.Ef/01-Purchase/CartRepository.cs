@@ -102,42 +102,73 @@ public class CartRepository : ICartRepository
 	}
 	public async Task<CartRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
-		var result = await _dbSet
-			.Select(x=> ConvertToCardRepoDto(x)).FirstOrDefaultAsync(x=>x.Id== id, cancellationToken);
+		var result = await _dbSet.AsNoTracking()
+			.Include(x => x.StocksCarts)
+			.ThenInclude(x => x.Stock)
+			.ThenInclude(x => x.Product)
+			.Include(x => x.StocksCarts)
+			.ThenInclude(x => x.Stock)
+			.ThenInclude(x => x.Booth)
+			.Select(x => new CartRepoDto()
+			{
+				Id = x.Id,
+				StocksCarts = x.StocksCarts,
+				Buyer = x.Buyer,
+				BuyerId = x.BuyerId,
+				InsertionDate = x.InsertionDate,
+				PurchaseCompeleted = x.PurchaseCompeleted,
+				PurchaseDate = x.PurchaseDate,
+				Value = x.Value
+			}).FirstOrDefaultAsync(x=>x.Id== id, cancellationToken);
 		if(result!=null) return result;
 		return null;	
 	}
 
 	public async Task<List<CartRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
-		var result = await _dbSet
-			.Select(x => ConvertToCardRepoDto(x)).ToListAsync(cancellationToken);
+		var result = await _dbSet.AsNoTracking()
+			.Include(x=>x.StocksCarts)
+			.ThenInclude(x=>x.Stock)
+			.ThenInclude(x=>x.Product)
+			.Include(x=>x.StocksCarts)
+			.ThenInclude(x=>x.Stock)
+			.ThenInclude(x=>x.Booth)
+			.Select(x => new CartRepoDto()
+			{
+				Id = x.Id,
+				StocksCarts = x.StocksCarts,
+				Buyer = x.Buyer,
+				BuyerId = x.BuyerId,
+				InsertionDate = x.InsertionDate,
+				PurchaseCompeleted = x.PurchaseCompeleted,
+				PurchaseDate = x.PurchaseDate,
+				Value = x.Value
+			}).ToListAsync(cancellationToken);
 		return result;
 	}
 
-	public async Task<BidAddDto> AddAsync(BidAddDto dto, CancellationToken cancellationToken)
+	public async Task AddAsync(CartRepoDto dto, CancellationToken cancellationToken)
 	{
-		var cart = new Cart
-		{
-			BuyerId = dto.BuyerId,
-		};
+		var cart = new Cart();
+		Equaler(dto, ref cart);
 		await _dbSet.AddAsync(cart);
 		var result = await _context.SaveChangesAsync(cancellationToken);
-		if (result != 0)
-			return new BidAddDto
-			{
-				Id = cart.Id,
-				BuyerId = dto.BuyerId,
-			};
-		return null;
 	}
 
 	public async Task UpdateAsync(CartRepoDto cart, CancellationToken cancellationToken)
 	{
-		var resualt = await _dbSet.Where(x => x.Id == cart.Id).FirstOrDefaultAsync(cancellationToken);
-		Equaler(cart, ref resualt);
-		_context.Entry(resualt).State = EntityState.Modified;
-		await _context.SaveChangesAsync(cancellationToken);
+		//var resualt = await _dbSet.Where(x => x.Id == cart.Id).FirstOrDefaultAsync(cancellationToken);
+		//Equaler(cart, ref resualt);
+		//_context.Entry(resualt).State = EntityState.Modified;
+		//await _context.SaveChangesAsync(cancellationToken);
+		var existingEntity = _dbSet.Find(cart.Id);
+
+		if (existingEntity != null)
+		{
+			Equaler(cart, ref existingEntity);
+			_context.Entry(existingEntity).State = EntityState.Modified;
+			await _context.SaveChangesAsync(cancellationToken);
+		}
 	}
 
 	public async Task<bool> DeleteAsync(CartRepoDto cart,CancellationToken cancellationToken)
@@ -213,7 +244,7 @@ public class CartRepository : ICartRepository
 
 	private void Equaler(CartRepoDto cartRepoDto, ref Cart cart)
 	{
-		cart.Id = cartRepoDto.Id;
+		//cart.Id = cartRepoDto.Id;
 		cart.StocksCarts = cartRepoDto.StocksCarts;
 		cart.Buyer = cartRepoDto.Buyer;
 		cart.BuyerId = cartRepoDto.BuyerId;

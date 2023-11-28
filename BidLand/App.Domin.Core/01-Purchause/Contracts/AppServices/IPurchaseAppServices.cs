@@ -1,4 +1,5 @@
 ﻿using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+using App.Domin.Core._02_Users.Contracts.Repositories.Dtos;
 using App.Domin.Core._02_Users.Dtos;
 using App.Domin.Core._03_Extras.Contracts.Repositories.Dtos;
 using System;
@@ -37,5 +38,19 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
 		Task<List<AuctionRepoDto>> GetAllAuction(CancellationToken cancellationToken);
 		Task EditAuction(AuctionRepoDto model, CancellationToken cancellationToken);
 		Task<string> AuctionPurchaseCompelete(AuctionRepoDto auction, CancellationToken cancellationToken);
+        Task<List<CartRepoDto?>> GetCompeleteCartsByBuyer(BuyerRepoDto buyer, CancellationToken cancellationToken);
+		Task<List<StocksCartRepoDto?>> GetStocksCartsByCart(CartRepoDto cart, CancellationToken cancellationToken);
+        Task<List<StockRepoDto>> GetAllStocks(CancellationToken cancellationToken);
+		Task<List<CommentRepoDto>> GetAllComments(CancellationToken cancellationToken);
+		Task AddBid(BidRepoDto bid, CancellationToken cancellationToken);
+		Task<CartRepoDto?> GetBuyerActiveCart(BuyerRepoDto buyer, CancellationToken cancellationToken);
+		Task<string> StockFixedPricePurchase(CartRepoDto cartDto, CancellationToken cancellationToken);
+		Task UpdateCart(CartRepoDto cart, CancellationToken cancellationToken);
+		Task AddStocksCart(StocksCartRepoDto input, CancellationToken cancellationToken);
+		Task UpdateStocksCart(StocksCartRepoDto input, CancellationToken cancellationToken);
+		Task<StocksCartRepoDto?> GetStocksCartsById(int cartId, CancellationToken cancellationToken);
+		Task DeleteStocksCart(StocksCartRepoDto input, CancellationToken cancellationToken);
+		Task<List<CartRepoDto?>> GetAllCartsByBuser(BuyerRepoDto buyer, CancellationToken cancellationToken);
+		Task AddComment(CommentRepoDto commentRepoDto, CancellationToken cancellationToken);
 	}
 }

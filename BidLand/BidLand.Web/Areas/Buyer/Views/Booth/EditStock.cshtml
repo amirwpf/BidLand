@@ -1,0 +1,66 @@
+﻿@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+@model StockRepoDto
+
+@{
+    ViewBag.PageTitle = "ویرایش فروشگاه";
+}
+
+
+
+<div class="app-content pt-3 p-md-3 p-lg-4">
+    <div class="container-xl">
+        <h1 class="app-page-title"> @ViewBag.PageTitle</h1>
+        <hr class="mb-4">
+        <div class="row g-4 settings-section">
+
+            <div class="col-12 col-md-6">
+                <div class="app-card app-card-settings shadow-sm p-4">
+
+                    <div class="app-card-body">
+                        <form class="settings-form" method="post" asp-action="EditStock">
+
+                            @Html.HiddenFor(x=>x.ProductId)
+                            @Html.HiddenFor(x=>x.BoothId)
+                            @*@Html.HiddenFor(x=>x.Product)
+                            @Html.HiddenFor(x=>x.Booth)*@
+                            @Html.HiddenFor(x=>x.IsAuction)
+                            @* <input id="Product" name="Product" type="hidden" value="@Model.Product" />
+                            <input id="Booth" name="Booth" type="hidden" value="@Model.Booth" />*@
+                            <div class="mb-3">
+                                <label class="form-label">@Model.Product.Name</label>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Price" class="form-label">قیمت</label>
+                                <input type="text" class="form-control" asp-for="Price" required>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="AvailableNumber" class="form-label">تعداد موجود</label>
+                                <input type="text" class="form-control" asp-for="AvailableNumber" required>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="AdditionalDescription" class="form-label">توضیحات</label>
+                                <input type="text" class="form-control" asp-for="AdditionalDescription">
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="IsDelete" class="form-label">حذف شده</label>
+                                <input type="checkbox" asp-for="IsDelete" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="IsActive" class="form-label">فعال</label>
+                                <input type="checkbox" asp-for="IsActive" checked />
+                            </div>
+
+                            <button type="submit" class="btn app-btn-primary">ویرایش</button>
+                        </form>
+                    </div><!--//app-card-body-->
+
+                </div><!--//app-card-->
+            </div>
+
+
+        </div><!--//row-->
+
+    </div><!--//container-fluid-->
+</div><!--//app-content-->

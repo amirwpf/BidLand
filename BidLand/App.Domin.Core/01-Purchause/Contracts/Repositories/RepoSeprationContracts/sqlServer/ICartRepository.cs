@@ -18,7 +18,7 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 		Task<bool> FinalizeCartAsync(int cartId, CancellationToken cancellationToken);
 		Task<CartRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken);
 		Task<List<CartRepoDto>> GetAllAsync(CancellationToken cancellationToken);
-		Task<BidAddDto> AddAsync(BidAddDto dto, CancellationToken cancellationToken);
+		Task AddAsync(CartRepoDto dto, CancellationToken cancellationToken);
 		Task UpdateAsync(CartRepoDto cart, CancellationToken cancellationToken);
 		Task<bool> DeleteAsync(CartRepoDto cart, CancellationToken cancellationToken);
 	}

@@ -1,0 +1,38 @@
+﻿@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+@using BidLand.Framework.Common;
+@model List<StockRepoDto>
+
+<h3> کالاهای در حراجی</h3>
+<div class="tab-pane fade show active" id="products-pending" role="tabpanel" aria-labelledby="products-all-tab">
+	<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+		@foreach (var s in Model)
+		{
+			<div class="col">
+				<div class="card">
+					<img src="/uploads/products/@s.Product.Images.First().Url" class="card-img-top" alt="Product Image" style="height:300px ; width:300px;">
+					<div class="card-body">
+						<h5 class="card-title">@s.Product.Name</h5>
+						<p class="card-text">@DateConvertor.ConvertGregorianToPersian(s.InsertionDate ?? DateTime.Now)</p>
+						<p class="card-text"><strong>قیمت: </strong>@s.Price</p>
+						<p class="card-text"><strong>توضیحات: </strong>@s.AdditionalDescription</p>
+						<p class="card-text">
+							@if (s.IsAuction)
+							{
+								<span class='badge bg-primary'>مزایده فعال</span>
+							}
+							else
+							{
+								<span class='badge bg-secondary'>مزایده غیرفعال</span>
+							}
+						</p>
+						<a href="/product/stockinfo/@s.Id" class="btn btn-primary">مشاهده کالا</a>
+						@if (s.IsAuction == true)
+						{
+							<a href="/product/auctiondetail?stockId=@s.Id&boothId=@s.Booth.Id" class="btn btn-secondary">مشاهده حراجی</a>
+						}
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</div>

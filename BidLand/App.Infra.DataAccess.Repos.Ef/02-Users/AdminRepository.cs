@@ -30,7 +30,7 @@ public class AdminRepository : IAdminRepository
 
 	public async Task<AdminRepoDto> GetAllAsync(CancellationToken cancellationToken)
 	{
-		var result = await _dbSet
+		var result = await _dbSet.AsNoTracking()
 			 .Include(b => b.User)
 			  //.Where(x => !(bool)x.IsDelete)
 			  .Select(admin => new AdminRepoDto()

@@ -9873,6 +9873,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\logo\\logo_2.png"
     },
     {
+      "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\logo\\logo_new.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logo\\logo_new.png"
+    },
+    {
       "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\map_1.png",
       "PackagePath": "staticwebassets\\assets\\images\\map_1.png"
     },
@@ -10621,6 +10625,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\shop\\30_shop_minimal\\img_1.jpg"
     },
     {
+      "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\shop\\30_shop_minimal\\img_10.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shop\\30_shop_minimal\\img_10.png"
+    },
+    {
       "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\shop\\30_shop_minimal\\img_2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\shop\\30_shop_minimal\\img_2.jpg"
     },
@@ -10639,6 +10647,18 @@
     {
       "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\shop\\30_shop_minimal\\img_6.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\shop\\30_shop_minimal\\img_6.jpg"
+    },
+    {
+      "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\shop\\30_shop_minimal\\img_7.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shop\\30_shop_minimal\\img_7.png"
+    },
+    {
+      "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\shop\\30_shop_minimal\\img_8.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shop\\30_shop_minimal\\img_8.png"
+    },
+    {
+      "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\shop\\30_shop_minimal\\img_9.png",
+      "PackagePath": "staticwebassets\\assets\\images\\shop\\30_shop_minimal\\img_9.png"
     },
     {
       "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\shop\\img_1.jpg",
@@ -10847,6 +10867,10 @@
     {
       "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\slider\\bg_30.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\slider\\bg_30.jpg"
+    },
+    {
+      "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\slider\\bg_30_new.png",
+      "PackagePath": "staticwebassets\\assets\\images\\slider\\bg_30_new.png"
     },
     {
       "Id": "F:\\software\\exe\\visual studio 2022\\maktabSh\\finalProject\\BidLand\\BidLand.Web\\wwwroot\\assets\\images\\slider\\bg_31_copy.jpg",

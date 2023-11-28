@@ -6,6 +6,7 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
 
 public class StocksCartRepoDto
 {
+	public int Id { get; set; }
 	public int CartId { get; set; }
 
 	public int StockId { get; set; }

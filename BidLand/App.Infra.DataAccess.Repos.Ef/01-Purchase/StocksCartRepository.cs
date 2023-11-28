@@ -62,11 +62,46 @@ public class StocksCartRepository : IStocksCartRepository
 	public async Task<StocksCartRepoDto?> GetByCartIdAsync(int cartId, CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
-			.Where(a => a.CartId == cartId)
+			.AsNoTracking()
 			.Include(x => x.Cart)
+			.ThenInclude(x => x.Buyer)
 			.Include(x => x.Stock)
-			.Select(a => ConvertToStocksCartRepoDto(a))
+			.ThenInclude(x => x.Product)
+			.Select(stocksCart => new StocksCartRepoDto()
+			{
+				Id= stocksCart.Id,
+				CartId = stocksCart.CartId,
+				StockId = stocksCart.StockId,
+				Cart = stocksCart.Cart,
+				InsertionDate = stocksCart.InsertionDate,
+				Quantity = stocksCart.Quantity,
+				Stock = stocksCart.Stock
+			})
 			.FirstOrDefaultAsync(cancellationToken);
+		if (result == null) return null;
+
+		return result;
+	}
+	
+	public async Task<StocksCartRepoDto?> GetByIdAsync(int cartId, CancellationToken cancellationToken)
+	{
+		var result = await _dbSet
+			.AsNoTracking()
+			.Include(x => x.Cart)
+			.ThenInclude(x => x.Buyer)
+			.Include(x => x.Stock)
+			.ThenInclude(x => x.Product)
+			.Select(stocksCart => new StocksCartRepoDto()
+			{
+				Id= stocksCart.Id,
+				CartId = stocksCart.CartId,
+				StockId = stocksCart.StockId,
+				Cart = stocksCart.Cart,
+				InsertionDate = stocksCart.InsertionDate,
+				Quantity = stocksCart.Quantity,
+				Stock = stocksCart.Stock
+			})
+			.FirstOrDefaultAsync(x => x.Id == cartId, cancellationToken);
 		if (result == null) return null;
 
 		return result;
@@ -76,7 +111,7 @@ public class StocksCartRepository : IStocksCartRepository
 	public async Task<float?> GetCommisionValue(StockRepoDto stockModel, CancellationToken cancellationToken)
 	{
 		var query = await _dbSet
-		.Where(sc => sc.Id == stockModel.Id)
+		.Where(sc => sc.StockId == stockModel.Id)
 		.Select(sc => new
 		{
 			StockCart = sc,
@@ -96,13 +131,14 @@ public class StocksCartRepository : IStocksCartRepository
 			Lastname = group.Key.Lastname,
 			Commision = group.Sum(x => x.StockCart.Quantity) * group.Sum(x => x.Stock.Price * 0.01f) * group.Key.Percentage
 		})
-		.FirstOrDefaultAsync(cancellationToken);
+		.ToListAsync(cancellationToken);
 
 
 		if (query == null)
 			return null;
 
-		return query.Commision;
+		var commisionSum = query.Sum(q=>q.Commision);
+		return commisionSum;
 	}
 
 	public async Task<List<SellerCommissionDto?>> GetCommision(CancellationToken cancellationToken)
@@ -144,9 +180,21 @@ public class StocksCartRepository : IStocksCartRepository
 	public async Task<List<StocksCartRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
+			.AsNoTracking()
 			.Include(x => x.Cart)
+			.ThenInclude(x=>x.Buyer)
 			.Include(x => x.Stock)
-			.Select(a => ConvertToStocksCartRepoDto(a))
+			.ThenInclude(x=>x.Product)
+			.Select(stocksCart => new StocksCartRepoDto()
+			{
+				Id = stocksCart.Id,
+				CartId = stocksCart.CartId,
+				StockId = stocksCart.StockId,
+				Cart = stocksCart.Cart,
+				InsertionDate = stocksCart.InsertionDate,
+				Quantity = stocksCart.Quantity,
+				Stock = stocksCart.Stock
+			})
 			.ToListAsync(cancellationToken);
 
 		return result;
@@ -162,7 +210,8 @@ public class StocksCartRepository : IStocksCartRepository
 
 	public async Task<bool> UpdateAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken)
 	{
-		var res = await _dbSet.Where(x => x.CartId == stocksCart.CartId).FirstOrDefaultAsync(cancellationToken);
+		//var res = _dbSet.FirstOrDefault(s=>s.Id==stocksCart.Id);
+		var res = _dbSet.Find(stocksCart.Id);
 		if (res != null)
 		{
 			UpdaterEq(stocksCart, ref res);
@@ -175,7 +224,7 @@ public class StocksCartRepository : IStocksCartRepository
 
 	public async Task<bool> HardDeleteAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken)
 	{
-		var res = await _dbSet.Where(x => x.CartId == stocksCart.CartId).FirstOrDefaultAsync(cancellationToken);
+		var res = _dbSet.Find(stocksCart.Id);
 		if (res != null)
 		{
 			_dbSet.Remove(res);
@@ -202,6 +251,7 @@ public class StocksCartRepository : IStocksCartRepository
 	{
 		return new StocksCartRepoDto()
 		{
+			Id = stocksCart.Id,
 			CartId = stocksCart.CartId,
 			StockId = stocksCart.StockId,
 			Cart = stocksCart.Cart,

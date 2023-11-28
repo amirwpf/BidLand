@@ -29,7 +29,22 @@ public class CommentRepository : ICommentRepository
 			.Where(c => c.Id == id /*&& c.IsConfirm==true*/)
 			.Include(p => p.Stock)
 			.Include(c => c.Buyer)
-			.Select(c => ConvertToDto(c))
+			.ThenInclude(b => b.User)
+			.Select(comment => new CommentRepoDto()
+			{
+				Id = comment.Id,
+				Title = comment.Title,
+				Description = comment.Description,
+				Advantages = comment.Advantages,
+				Buyer = comment.Buyer,
+				BuyerId = comment.BuyerId,
+				ConfirmDate = comment.ConfirmDate,
+				DisAdvantages = comment.DisAdvantages,
+				IsConfirm = comment.IsConfirm,
+				IsPositive = comment.IsPositive,
+				StockId = comment.StockId,
+				Stock = comment.Stock
+			})
 			.ToListAsync(cancellationToken);
 		return comments;
 	}
@@ -40,7 +55,22 @@ public class CommentRepository : ICommentRepository
 			.Where(c => c.StockId == stockId /*&& c.IsConfirm==true*/)
 			.Include(p => p.Stock)
 			.Include(c => c.Buyer)
-			.Select(c => ConvertToDto(c))
+			.ThenInclude(b=>b.User)
+			.Select(comment => new CommentRepoDto()
+			{
+				Id = comment.Id,
+				Title = comment.Title,
+				Description = comment.Description,
+				Advantages = comment.Advantages,
+				Buyer = comment.Buyer,
+				BuyerId = comment.BuyerId,
+				ConfirmDate = comment.ConfirmDate,
+				DisAdvantages = comment.DisAdvantages,
+				IsConfirm = comment.IsConfirm,
+				IsPositive = comment.IsPositive,
+				StockId = comment.StockId,
+				Stock = comment.Stock
+			})
 			.ToListAsync(cancellationToken);
 		return comments;
 	}
@@ -50,13 +80,28 @@ public class CommentRepository : ICommentRepository
 		var comments = await _dbSet.AsNoTracking()
 			.Include(p => p.Stock)
 			.Include(c => c.Buyer)
-			.Select(c => ConvertToDto(c))
+			.ThenInclude(b => b.User)
+			.Select(comment => new CommentRepoDto()
+			{
+				Id = comment.Id,
+				Title = comment.Title,
+				Description = comment.Description,
+				Advantages = comment.Advantages,
+				Buyer = comment.Buyer,
+				BuyerId = comment.BuyerId,
+				ConfirmDate = comment.ConfirmDate,
+				DisAdvantages = comment.DisAdvantages,
+				IsConfirm = comment.IsConfirm,
+				IsPositive = comment.IsPositive,
+				StockId = comment.StockId,
+				Stock = comment.Stock
+			})
 			.ToListAsync(cancellationToken);
 		return comments;
 	}
 	public async Task<List<CommentRepoDto>> GetAllCommentsWithSellerNameConfirmAsync(CancellationToken cancellationToken)
 	{
-		var comments = await _dbSet
+		var comments = await _dbSet.AsNoTracking()
 			.Include(p => p.Stock)
 			.Include(p => p.Stock.Product)
 			.Include(c=>c.Stock.Booth)
@@ -90,7 +135,7 @@ public class CommentRepository : ICommentRepository
 
 	public async Task UpdateAsync(CommentRepoDto comment, CancellationToken cancellationToken)
 	{
-		var result = await _dbSet.Where(x => x.Id == comment.Id).FirstOrDefaultAsync(cancellationToken);
+		var result = _dbSet.Find(comment.Id);
 		_context.Entry(result).State = EntityState.Modified;
 		await _context.SaveChangesAsync(cancellationToken);
 	}
@@ -128,18 +173,18 @@ public class CommentRepository : ICommentRepository
 
 	private void Equaler(CommentRepoDto commentDto, ref Comment comment)
 	{
-		comment.Id = comment.Id;
-		comment.Title = comment.Title;
-		comment.Description = comment.Description;
-		comment.Advantages = comment.Advantages;
-		comment.Buyer = comment.Buyer;
-		comment.BuyerId = comment.BuyerId;
-		comment.ConfirmDate = comment.ConfirmDate;
-		comment.DisAdvantages = comment.DisAdvantages;
-		comment.IsConfirm = comment.IsConfirm;
-		comment.IsPositive = comment.IsPositive;
-		comment.StockId = comment.StockId;
-		comment.Stock = comment.Stock;
+		//comment.Id = comment.Id;
+		comment.Title = commentDto.Title;
+		comment.Description = commentDto.Description;
+		comment.Advantages = commentDto.Advantages;
+		comment.Buyer = commentDto.Buyer;
+		comment.BuyerId = commentDto.BuyerId;
+		comment.ConfirmDate = commentDto.ConfirmDate;
+		comment.DisAdvantages = commentDto.DisAdvantages;
+		comment.IsConfirm = commentDto.IsConfirm;
+		comment.IsPositive = commentDto.IsPositive;
+		comment.StockId = commentDto.StockId;
+		comment.Stock = commentDto.Stock;
 	}
 
     public async Task<bool> ConfirmCommentByIdAsync(int commentId, bool isConfirm, CancellationToken cancellationToken)

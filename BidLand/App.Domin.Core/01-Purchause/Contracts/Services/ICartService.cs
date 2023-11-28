@@ -10,7 +10,7 @@ namespace App.Domin.Core._01_Purchause.Contracts.Services;
 
 public interface ICartService
 {
-	Task CreateAsync(BidAddDto input, CancellationToken cancellationToken);
+	Task CreateAsync(CartRepoDto input, CancellationToken cancellationToken);
 
 	Task DeleteAsync(CartRepoDto input, CancellationToken cancellationToken);
 

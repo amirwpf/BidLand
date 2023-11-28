@@ -18,7 +18,7 @@ public class CartService : ICartService
 	{
 		_repo = repo;
 	}
-	public async Task CreateAsync(BidAddDto input, CancellationToken cancellationToken)
+	public async Task CreateAsync(CartRepoDto input, CancellationToken cancellationToken)
 	{
 		await _repo.AddAsync(input, cancellationToken);
 	}

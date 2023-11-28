@@ -24,8 +24,13 @@ public class BoothRepository : IBoothRepository
 	public async Task<BoothRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
 		var booth = await _dbSet.AsNoTracking()
-			.Include(x => x.Seller).ThenInclude(x=>x.User)
+			.Include(x => x.Seller)
+			.ThenInclude(x=>x.User)
+			.Include(x => x.Seller)
+			.ThenInclude(x => x.Medal)
 			.Include(x => x.Stocks)
+			.ThenInclude(x => x.Product)
+			.ThenInclude(x => x.Images)
 			.Select(booth => new  BoothRepoDto
             {
                 Id = booth.Id,
@@ -43,7 +48,15 @@ public class BoothRepository : IBoothRepository
 	}
 	public async Task<List<BoothRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
-		var booth = await _dbSet.AsNoTracking().Include(x => x.Seller).ThenInclude(x=>x.User).Include(x=>x.Stocks).ThenInclude(x => x.Product).ToListAsync(cancellationToken);
+		var booth = await _dbSet.AsNoTracking()
+			.Include(x => x.Seller)
+			.ThenInclude(x=>x.User)
+			.Include(x => x.Seller)
+			.ThenInclude(x => x.Medal)
+			.Include(x=>x.Stocks)
+			.ThenInclude(x => x.Product)
+			.ThenInclude(x => x.Images)
+			.ToListAsync(cancellationToken);
 		var result = booth.Select(booth => new BoothRepoDto {
             Id = booth.Id,
             Name = booth.Name,
@@ -140,7 +153,7 @@ public class BoothRepository : IBoothRepository
 	}
 	private void Equaler(BoothRepoDto boothRepoDto ,  ref Booth booth)
 	{
-		booth.Id = boothRepoDto.Id;
+		//booth.Id = boothRepoDto.Id;
 		booth.Name = boothRepoDto.Name;
 		booth.Description = boothRepoDto.Description;
 		booth.Seller = boothRepoDto.Seller;

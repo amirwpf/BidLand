@@ -29,7 +29,7 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 
 		public async Task<List<ProductRepoDto>> GetAllConfirmProductsWithNavAsync(bool IsConfirm , CancellationToken cancellationToken)
 		{
-			var products = await _dbSet
+			var products = await _dbSet.AsNoTracking()
 				.Include(p=>p.Stocks)
 				.Include(p=>p.Images)
 				.Include(p=>p.Category)
@@ -54,7 +54,7 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 		}
 		public async Task<List<ProductRepoDto>> GetAllProductsWithNavAsync(CancellationToken cancellationToken)
 		{
-			var products =  _dbSet
+			var products =  _dbSet.AsNoTracking()
 				.Include(p => p.Stocks)
 				.Include(p => p.Images)
 				.Include(p => p.Category)
@@ -85,7 +85,7 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 
 		public async Task<List<ProductRepoDto>> GetAllProductsWithCategoryId(int id,CancellationToken cancellationToken)
 		{
-			var products = _dbSet
+			var products = _dbSet.AsNoTracking()
 				.Include(p => p.Stocks)
 				.Include(p => p.Images)
 				.Include(p => p.Category)
@@ -172,8 +172,10 @@ namespace App.Infra.DataAccess.Repos.Ef._01_Purchase
 
 		public async Task<ProductRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 		{
-			var result = await _dbSet
+			var result = await _dbSet.AsNoTracking()
 				.Include(c => c.Category)
+				.Include(c=>c.Images)
+				.Include(c=>c.Stocks)
 				.Select(product => new ProductRepoDto() {
                     Id = product.Id,
                     Name = product.Name,

@@ -28,7 +28,10 @@ public class BuyerRepository : IBuyerRepository
 
     public async Task<BuyerRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
-        var result = await _dbSet.Where(a => a.Id == id)
+        var result = await _dbSet
+            .AsNoTracking()
+            .Include(b=>b.User)
+            .Where(a => a.Id == id)
             .Select(buyer => new BuyerRepoDto()
             {
                 Id = buyer.Id,
@@ -51,6 +54,7 @@ public class BuyerRepository : IBuyerRepository
     public async Task<List<BuyerRepoDto>> GetAllAsync(CancellationToken cancellationToken)
     {
         var result = await _dbSet
+             .AsNoTracking()
              .Include(b => b.User)
              //.Where(x => !(bool)x.IsDelete)
               .Select(buyer => new BuyerRepoDto()
@@ -73,6 +77,7 @@ public class BuyerRepository : IBuyerRepository
     public async Task<List<BuyerRepoDto>> GetAllDeletedAsync(CancellationToken cancellationToken)
     {
         var result = await _dbSet
+             .AsNoTracking()
              .Include(b => b.User)
              //.Where(x => (bool)x.IsDelete)
               .Select(buyer => new BuyerRepoDto()
@@ -92,13 +97,20 @@ public class BuyerRepository : IBuyerRepository
               }).ToListAsync(cancellationToken);
         return result;
     }
-    public async Task AddAsync(BuyerRepoDto buyer, CancellationToken cancellationToken)
+    public async Task<BuyerRepoDto> AddAsync(BuyerRepoDto buyer, CancellationToken cancellationToken)
     {
         var result = new Buyer();
         Equaler(buyer, ref result);
         await _dbSet.AddAsync(result);
         await _context.SaveChangesAsync(cancellationToken);
-    }
+        var addedBuyers = await GetAllAsync(cancellationToken);
+        var addedBuyer = addedBuyers.FirstOrDefault(b=>b.UserId== buyer.UserId);
+		foreach (var entry in _context.ChangeTracker.Entries())
+		{
+			entry.State = EntityState.Detached;
+		}
+		return addedBuyer;
+	}
 
     public async Task<bool> UpdateAsync(BuyerRepoDto buyer, CancellationToken cancellationToken)
     {

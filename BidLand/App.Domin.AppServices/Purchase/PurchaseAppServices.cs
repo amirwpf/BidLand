@@ -36,6 +36,7 @@ namespace App.Domin.AppServices.Purchase
 		private readonly ICategoryService _categoryService;
 		private readonly IBoothService _boothService;
 		private readonly IStocksCartService _stocksCartService;
+		private readonly ICartService _cartService;
 		private readonly IStockService _stockService;
 		private readonly IAuctionService _auctionService;
 		private readonly IBidService _bidService;
@@ -50,7 +51,8 @@ namespace App.Domin.AppServices.Purchase
 									ICommentService commentService,
 									ICategoryService categoryService,
 									IBoothService boothService,
-									IStocksCartService stocksCartService,
+                                    ICartService cartService,
+                                    IStocksCartService stocksCartService,
 									IStockService stockService,
 									IAuctionService auctionService,
 									IBidService bidService,
@@ -64,6 +66,7 @@ namespace App.Domin.AppServices.Purchase
 			_commentServices = commentService;
 			_categoryService = categoryService;
 			_boothService = boothService;
+			_cartService = cartService;
 			_stocksCartService = stocksCartService;
 			_stockService = stockService;
 			_auctionService = auctionService;
@@ -113,10 +116,6 @@ namespace App.Domin.AppServices.Purchase
 			try
 			{
 
-                //Update seller medal
-                var seller = await _sellerService.GetByIdAsync((int)stockDto.Booth.SellerId, cancellation);
-                await UpdateSellerMedal(seller, cancellation);
-
                 //check stock exist
                 if (stockDto == null) return "کالا نامعتبر";
 
@@ -163,8 +162,10 @@ namespace App.Domin.AppServices.Purchase
 				// Add sales commision value to site wallet
 				await _adminService.AddCommisionValueToAdmin(commisionValue, cancellation);
 
+				//Update seller medal
+				var seller = await _sellerService.GetByIdAsync((int)stockDto.Booth.SellerId, cancellation);
+				await UpdateSellerMedal(seller, cancellation);
 
-				
 
 				return "پرداخت با موفقیت صورت گرفت.";
 			}
@@ -243,6 +244,11 @@ namespace App.Domin.AppServices.Purchase
 		{
 			await _stockService.CreateAsync(model, cancellationToken);
 		}
+		
+		public async Task<List<StockRepoDto>> GetAllStocks(CancellationToken cancellationToken)
+		{
+			return await _stockService.GetAllAsync(cancellationToken);
+		}
 
 		public async Task<StockRepoDto?> GetStockById(int id, CancellationToken cancellationToken)
 		{
@@ -276,20 +282,23 @@ namespace App.Domin.AppServices.Purchase
 				foreach (var stockDto in stocks)
 				{
 					//check for each stock validation
-					if (stockDto.IsDelete == true || stockDto.IsActive == false || stockDto.IsAuction == false) return "کالا نامعتبر";
+					if (stockDto.IsDelete == true || stockDto.IsActive == false) return "کالا نامعتبر";
 
 					//check for each stock available number
-					if (stockDto.AvailableNumber < 1) return "موجودی کالا نا کافی می باشد.";
+					if ((stockDto.AvailableNumber < 1) || (stockDto.IsAuction == true && stockDto.AvailableNumber < 2)) return "موجودی کالا نا کافی می باشد.";
 
 					//check for each stock booth validation
 					if (stockDto.Booth.IsDelete == true || stockDto.Booth.Seller.IsDelete == true || stockDto.Booth.Seller.IsBan == true
 						|| stockDto.Booth.Seller.IsActive == false) return "فروشگاه نامعتبر";
 
+				}
+
+				foreach (var stockDto in stocks)
+				{
+
 					//check for each stock  seller commision
 					var commisionValue = await _stocksCartService.GetSTockCommisionValue(stockDto, cancellationToken);
 					if (commisionValue == null) return "خطایی در پرداخت ایجاد شد";
-
-
 					// Add sales value to seller account
 					await _stockService.AddSalesValueToSeller(stockDto, stockDto.Price, commisionValue, cancellationToken);
 
@@ -304,6 +313,22 @@ namespace App.Domin.AppServices.Purchase
 					await UpdateSellerMedal(seller, cancellationToken);
 				}
 
+
+				//finalize current cart
+				cartDto.PurchaseDate= DateTime.Now;
+				cartDto.PurchaseCompeleted = true;
+				await _cartService.UpdateAsync(cartDto, cancellationToken);
+
+				//create new cart for buyer
+				CartRepoDto newCart = new CartRepoDto()
+				{
+					BuyerId = cartDto.BuyerId,
+					InsertionDate = DateTime.Now,
+					Value = 0,
+					PurchaseCompeleted= false,
+					PurchaseDate=null,
+				};
+				await _cartService.CreateAsync(newCart, cancellationToken);
 
 				return "پرداخت با موفقیت صورت گرفت.";
 			}
@@ -327,6 +352,17 @@ namespace App.Domin.AppServices.Purchase
 		public async Task<bool> ConfirmCommentByIdAsync(int commentId, bool isConfirm, CancellationToken cancellationToken)
 		{
 			return await _commentServices.ConfirmCommentByIdAsync(commentId, isConfirm, cancellationToken);
+
+		}
+		
+		public async Task<List<CommentRepoDto>> GetAllComments(CancellationToken cancellationToken)
+		{
+			return await _commentServices.GetAllAsync(cancellationToken);
+
+		}
+		public async Task AddComment(CommentRepoDto commentRepoDto, CancellationToken cancellationToken)
+		{
+			 await _commentServices.CreateAsync(commentRepoDto,cancellationToken);
 
 		}
 		#endregion
@@ -422,6 +458,107 @@ namespace App.Domin.AppServices.Purchase
 				return true;
 			}
 			return false;
+		}
+
+        #endregion
+
+
+        #region Cart
+
+        public async Task<List<CartRepoDto?>> GetCompeleteCartsByBuyer(BuyerRepoDto buyer, CancellationToken cancellationToken)
+        {
+            var carts = await _cartService.GetAllAsync(cancellationToken);
+			if(carts!=null)
+			{
+				return carts.Where(c => c.BuyerId == buyer.Id && c.PurchaseCompeleted == true).ToList();
+			}
+			return null;
+        }
+		public async Task UpdateCart(CartRepoDto cart, CancellationToken cancellationToken)
+        {
+            await _cartService.UpdateAsync(cart,cancellationToken);
+        }
+
+		public async Task<CartRepoDto?> GetBuyerActiveCart(BuyerRepoDto buyer, CancellationToken cancellationToken)
+		{
+			var carts = await _cartService.GetAllAsync(cancellationToken);
+			if (carts != null)
+			{
+				var cart = carts.FirstOrDefault(c => c.BuyerId == buyer.Id && c.PurchaseCompeleted == false);
+				int val = 0;
+				foreach (var item in cart.StocksCarts)
+				{
+					val += (int)item.Quantity * item.Stock.Price;
+				}
+				cart.Value = val;
+
+				return cart;
+			}
+			return null;
+		}
+		
+		public async Task<List<CartRepoDto?>> GetAllCartsByBuser(BuyerRepoDto buyer, CancellationToken cancellationToken)
+		{
+			var carts = await _cartService.GetAllAsync(cancellationToken);
+			if (carts != null)
+			{
+				var cart = carts.Where(c => c.BuyerId == buyer.Id).ToList();
+				foreach (var c in cart)
+				{
+					int val = 0;
+					foreach (var item in c.StocksCarts)
+					{
+						val += (int)item.Quantity * item.Stock.Price;
+					}
+					c.Value = val;
+				}
+				
+
+				return cart;
+			}
+			return null;
+		}
+
+		public async Task<List<StocksCartRepoDto?>> GetStocksCartsByCart(CartRepoDto cart, CancellationToken cancellationToken)
+		{
+			var stocksCart = await _stocksCartService.GetAllAsync(cancellationToken);
+			if (stocksCart != null)
+			{
+				return stocksCart.Where(c => c.CartId == cart.Id).ToList();
+			}
+			return null;
+		}
+		
+		public async Task<StocksCartRepoDto?> GetStocksCartsById(int cartId, CancellationToken cancellationToken)
+		{
+			var stocksCart = await _stocksCartService.GetById(cartId,cancellationToken);
+			return stocksCart;
+		}
+		
+		public async Task AddStocksCart(StocksCartRepoDto input, CancellationToken cancellationToken)
+		{
+			await _stocksCartService.CreateAsync(input,cancellationToken);
+		}
+		
+		public async Task DeleteStocksCart(StocksCartRepoDto input, CancellationToken cancellationToken)
+		{
+			await _stocksCartService.DeleteAsync(input,cancellationToken);
+		}
+		
+		public async Task UpdateStocksCart(StocksCartRepoDto input, CancellationToken cancellationToken)
+		{
+			await _stocksCartService.UpdateAsync(input,cancellationToken);
+		}
+
+		#endregion
+
+		#region Bid
+
+		public async Task AddBid(BidRepoDto bid , CancellationToken cancellationToken)
+		{
+			bid.BidDate= DateTime.Now;
+			bid.HasWon=false;
+			await _bidService.CreateAsync(bid, cancellationToken);
 		}
 
 		#endregion

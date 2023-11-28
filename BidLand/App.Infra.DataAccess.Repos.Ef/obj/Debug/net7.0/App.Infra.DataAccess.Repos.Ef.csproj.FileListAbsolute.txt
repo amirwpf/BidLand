@@ -37,8 +37,10 @@ F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataA
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.pdb
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Domin.Core.dll
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\BidLand.Framework.dll
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Domin.Core.pdb
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.pdb
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\BidLand.Framework.pdb
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.csproj.AssemblyReference.cache
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.GeneratedMSBuildEditorConfig.editorconfig
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.AssemblyInfoInputs.cache
@@ -49,5 +51,3 @@ F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataA
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\refint\App.Infra.DataAccess.Repos.Ef.dll
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.pdb
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\obj\Debug\net7.0\ref\App.Infra.DataAccess.Repos.Ef.dll
-F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\BidLand.Framework.dll
-F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.DataAccess.Repos.Ef\bin\Debug\net7.0\BidLand.Framework.pdb

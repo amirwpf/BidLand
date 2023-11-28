@@ -1,0 +1,126 @@
+﻿@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+@model ProductIndexVM
+
+<form asp-action="Index">
+	<div class="card p-3" style="background-color: lightgrey;">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for="categoryIdDropdown">انتخاب دسته بندی</label>
+					@Html.DropDownList("CategoryId", ViewBag.Categories as SelectList, "همه ی دسته بندی ها", new { @class = "form-control", id = "categoryIdDropdown" })
+				</div>
+			</div>
+
+			<div class="col-md-2">
+				<div class="form-group">
+					<label asp-for="PageSize">اندازه صفحه</label>
+					<select asp-for="PageSize" class="form-control">
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="6">6</option>
+						<!-- Add more options as needed -->
+					</select>
+				</div>
+			</div>
+
+			<div class="col-md-2">
+				<div class="form-group">
+					<label asp-for="SortBy">مرتب سازی بر اساس</label>
+					<select asp-for="SortBy" class="form-control">
+						<option value="name">نام</option>
+						<option value="price">قیمت</option>
+						<!-- Add more options as needed -->
+					</select>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div class="row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<button id="filterBtn" type="submit" value="submit" class="btn btn-primary btn-block">فیلتر کن</button>
+				</div>
+			</div>
+
+			<div class="col-md-2">
+				<div class="form-group">
+					<a class="btn btn-secondary btn-block" href="/product/index">حذف فیلتر</a>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+</form>
+
+
+<div class="row">
+	@foreach (var item in Model.Products)
+	{
+		<div class="col-lg-4 col-md-4 col-sm-8 mb-4">
+			<div class="product-grid">
+				<a class="item-image" href="#!">
+					@*<img src="assets/images/shop/30_shop_minimal/img_3.jpg" alt="image_not_found">*@
+					<img src=/uploads/products/@item.Images.First().Url alt="image_not_found">
+				</a>
+
+				<div class="item-content text-center">
+					<h3 class="item-title">
+						<a href="#!">@item.Name</a>
+					</h3>
+					<span class="item-price">$@item.BasePrice</span>
+				</div>
+
+				<div class="action-content clearfix">
+					<div class="btns-group ul-li-right clearfix">
+						<a asp-action="ProductInfo" asp-route-id="@item.Id" class="addtocart-btn"><i class="fas fa-plus mr-2"></i> مشاهده کالا</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+</div>
+
+<hr />
+
+<div class="d-flex justify-content-center">
+	@if (ViewBag.CurrentPage > 1)
+	{
+		<a href="/product/index?currentPage=@(ViewBag.CurrentPage - 1)&pageSize=@ViewBag.PageSize">صفحه ی قبل</a>
+	}
+	<span class="mx-2">صفحه @ViewBag.CurrentPage</span>
+	@if (ViewBag.CurrentPage < ViewBag.PageCount)
+	{
+		<a href="/product/index?currentPage=@(ViewBag.CurrentPage + 1)&pageSize=@ViewBag.PageSize">صفحه ی بعد</a>
+	}
+</div>
+
+@*<script src="/assets/js/jquery-1.12.4.min.js"></script>
+<!-- JavaScript code -->
+<script>
+	// Assuming you have jQuery included, you can use it to simplify the script
+	// Make sure to include jQuery before this script if you are using it
+	$(document).ready(function () {
+		$('#filterBtn').on('click', function () {
+			// Add logic to handle filter button click
+			console.log('Filter button clicked');
+		});
+	});
+
+	$(document).ready(function () {
+		// Attach a click event handler to the link
+		$('#filterBtn').click(function () {
+			// Get the value from the input field
+			var category = $('#categoryIdDropdown').val();
+			var pageSize = $('#pageSize').val();
+			var sortBy = $('#sortBy').val();
+
+			// Construct the URL with the input value as a query parameter
+			var url = '/product/index?currentPage=' + @ViewBag.CurrentPage +'&pageSize=' + pageSize + '&sortBy=' + sortBy + '&category='category;
+
+			// Update the href attribute of the link
+			$(this).attr('href', url);
+		});
+	});
+</script>*@

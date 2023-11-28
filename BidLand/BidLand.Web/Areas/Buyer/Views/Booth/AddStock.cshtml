@@ -1,0 +1,139 @@
+﻿@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos
+@using BidLand.Framework.Common;
+@model List<ProductRepoDto>
+@{
+	ViewBag.PageTitle = "افزودن کالا به غرفه";
+}
+
+
+
+<div class="app-content pt-3 p-md-3 p-lg-4">
+	<div class="container-xl">
+		<h1 class="app-page-title">افزودن کالا به غرفه</h1>
+		<hr class="mb-4">
+		<div class="row g-4 settings-section">
+
+			<div class="col-12 col-md-12">
+				<div class="app-card app-card-settings shadow-sm p-4">
+
+					<div class="app-card-body">
+						@*						<form class="settings-form" method="get" asp-action="AddStock" enctype="form-data">*@
+						<span>
+							<div class="mb-3">
+								<label class="form-label">دسته بندی</label>
+								@*@Html.DropDownList("CategoryId", @ViewBag.Categories as SelectList , "انتخاب دسته بندی", new { @class = "form-control"})*@
+								@Html.DropDownList("CategoryId", ViewBag.Categories as SelectList, "انتخاب دسته بندی", new { @class = "form-control", id = "categoryIdDropdown" })
+
+							</div>
+						</span>
+						<span>
+							@*<button type="submit" class="btn app-btn-primary">ایجاد</button>*@
+							<a class="btn app-btn-primary" id="categoryLink" href="#">فیلتر بر اساس دسته بندی</a>
+							<a class="btn app-btn-secondary" id="categoryLink2" href="/seller/booth/addstock/0">حذف فیلتر</a>
+						</span>
+
+						@*</form>*@
+					</div><!--//app-card-body-->
+
+				</div><!--//app-card-->
+			</div>
+
+
+			<h3> کالاهای موجود</h3>
+			<div class="tab-pane fade show active" id="products-pending" role="tabpanel" aria-labelledby="products-all-tab">
+				<div class="app-card app-card-orders-table shadow-sm mb-5">
+					<div class="app-card-body">
+						<div class="table-responsive">
+							<table class="table app-table-hover mb-0 text-left">
+								<thead>
+									<tr>
+
+										<th class="cell">شناسه</th>
+										<th class="cell">نام کالا</th>
+										<th class="cell">تاریخ ایجاد</th>
+										<th class="cell">قیمت</th>
+										<th class="cell">دسته بندی</th>
+										<th class="cell">وضعیت حذف</th>
+										@*<th class="cell">وضعیت فعالیت</th>
+										<th class="cell">وضعیت مزایده</th>*@
+										<th class="cell">عملیات</th>
+									</tr>
+								</thead>
+								<tbody>
+
+
+									@foreach (var s in Model)
+									{
+										<tr>
+											<td class="cell">@s.Id</td>
+											<td class="cell"><span class="truncate">@s.Name</span></td>
+											@*<td class="cell"><span>@p.InsertionDate?.ToString("yyyy/MM/dd")</span><span class="note">@p.InsertionDate?.ToString("hh:mm tt")</span></td>*@
+											<td class="cell"><span>@DateConvertor.ConvertGregorianToPersian(s.InsertionDate??DateTime.Now)</span></td>
+											<td class="cell"><span>@s.BasePrice</span></td>
+											<td class="cell"><span>@s.Category.Name</span></td>
+											<td class="cell">
+												@if (s.IsDelete)
+												{
+													<span class='badge bg-warning'>حذف شده</span>
+												}
+												else
+												{
+													<span class='badge bg-success'>فعال</span>
+												}
+											</td>
+											@*<td class="cell">
+										@if (s.IsActive)
+										{
+
+										<span class='badge bg-success'>فعال</span>
+										}
+										else
+										{
+										<span class='badge bg-warning'>غیر فعال</span>
+										}
+										</td>
+										<td class="cell">
+										@if (s.IsAuction)
+										{
+
+										<span class='badge bg-primary'>مزایده فعال</span>
+										}
+										else
+										{
+										<span class='badge bg-primary'>مزایده غیرفعال</span>
+										}
+										</td>*@
+
+											<td class="cell">
+												<a class="btn app-btn-primary" href="/Seller/Booth/AddFixedPriceStock/@s.Id">افزودن محصول با قیمت ثابت</a>
+												
+											</td>
+
+										</tr>
+									}
+
+								</tbody>
+							</table>
+						</div><!--//table-responsive-->
+
+					</div><!--//app-card-body-->
+				</div><!--//app-card-->
+
+			</div><!--//tab-pane-->
+		</div><!--//row-->
+
+	</div><!--//container-fluid-->
+</div><!--//app-content-->
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var dropdown = document.getElementById('categoryIdDropdown');
+		var link = document.getElementById('categoryLink');
+
+		dropdown.addEventListener('change', function () {
+			// Update the href attribute of the link based on the selected value
+			link.href = '/Seller/Booth/AddStock/' + this.value;
+			// Update this URL structure to match your application's routes
+		});
+	});
+</script>

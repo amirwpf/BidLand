@@ -24,7 +24,9 @@ public class ImageRepository : IImageRepository
 
 	public async Task<ImageRepoDto?> GetByIdAsync(int imageId, CancellationToken cancellationToken)
 	{
-		var result = await _imageSet.Where(i => i.Id == imageId)
+		var result = await _imageSet
+			.AsNoTracking()
+			.Where(i => i.Id == imageId)
 			.Select(i => ConvertToDto(i)).FirstOrDefaultAsync(cancellationToken);
 		if (result == null) return null;
 		return result;
@@ -33,6 +35,7 @@ public class ImageRepository : IImageRepository
 	{
 
 		var images = await _imageSet
+			.AsNoTracking()
 			.Where(i => i.Product.Id == productId)
 			.Select(i => ConvertToDto(i)).ToListAsync(cancellationToken);
 
@@ -41,7 +44,9 @@ public class ImageRepository : IImageRepository
 
 	public async Task<ImageRepoDto?> GetByUrlAsync(string url, CancellationToken cancellationToken)
 	{
-		var result = await _imageSet.Where(i => i.Url == url)
+		var result = await _imageSet
+			.AsNoTracking()
+			.Where(i => i.Url == url)
 			.Select(i => ConvertToDto(i)).FirstOrDefaultAsync(cancellationToken);
 		if(result == null) return null;
 		return result;
@@ -106,7 +111,7 @@ public class ImageRepository : IImageRepository
 
 	private void Equaler(ImageRepoDto imageDto, ref Image image)
 	{
-		image.Id = imageDto.Id;
+		//image.Id = imageDto.Id;
 		image.Url = imageDto.Url;
 		image.ProductId = imageDto.ProductId;
 		image.Product = imageDto.Product;

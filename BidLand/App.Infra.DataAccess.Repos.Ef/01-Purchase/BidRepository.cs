@@ -58,7 +58,9 @@ public class BidRepository : IBidRepository
 
 	public async Task<BidRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
-		var result = await _dbSet.Where(a=>a.Id==id)
+		var result = await _dbSet
+		.AsNoTracking()
+		.Where(a=>a.Id==id)
 		.Include(b => b.Buyer)
 		.ThenInclude(b => b.User)
 					.Select(bid => new BidRepoDto()
@@ -79,6 +81,7 @@ public class BidRepository : IBidRepository
 	public async Task<List<BidRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
 		var result = await _dbSet
+		.AsNoTracking()
 		.Include(b=>b.Buyer)
 		.ThenInclude(b=>b.User)
 		.Select(bid => new BidRepoDto()

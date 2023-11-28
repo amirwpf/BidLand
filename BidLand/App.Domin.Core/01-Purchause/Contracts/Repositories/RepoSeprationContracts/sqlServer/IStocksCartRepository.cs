@@ -19,5 +19,6 @@ namespace App.Domin.Core._01_Purchause.Contracts.Repositories.RepoSeprationContr
 		Task<bool> HardDeleteAsync(StocksCartRepoDto stocksCart, CancellationToken cancellationToken);
 		Task<List<SellerCommissionDto?>> GetCommision(CancellationToken cancellationToken);
 		Task<float?> GetCommisionValue(StockRepoDto stockModel, CancellationToken cancellationToken);
+		Task<StocksCartRepoDto?> GetByIdAsync(int cartId, CancellationToken cancellationToken);
 	}
 }

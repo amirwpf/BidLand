@@ -26,11 +26,12 @@ public class StockRepository : IStockRepository
 	}
 	public async Task<List<StockRepoDto>> GetAllStocks(CancellationToken cancellationToken)
 	{
-		var result = await _context.Stocks
+		var result = await _context.Stocks.AsNoTracking()
 			.Include(x => x.Booth)
 			.ThenInclude(x => x.Seller)
 			.ThenInclude(x => x.Medal)
 			.Include(x => x.Product)
+			.ThenInclude(x => x.Images)
 			.Include(x => x.StocksCarts)
 			.Include(x => x.Comments)
 			.Select(stockRepoDto => new StockRepoDto
@@ -58,11 +59,12 @@ public class StockRepository : IStockRepository
 
 	public async Task<StockRepoDto?> GetStockById(int stockId, CancellationToken cancellationToken)
 	{
-		var result = await _dbSet
+		var result = await _dbSet.AsNoTracking()
 			.Include(x => x.Booth)
 			.ThenInclude(x=>x.Seller)
 			.ThenInclude(x=>x.Medal)
 			.Include(x => x.Product)
+			.ThenInclude(x=>x.Images)
 			.Include(x => x.StocksCarts)
 			.Include(x => x.Comments)
 			.Select(stockRepoDto => new StockRepoDto

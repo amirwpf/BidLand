@@ -24,9 +24,21 @@ public class CategoryRepository : ICategoryRepository
 
 	public async Task<CategoryRepoDto?> GetByIdAsync(int id, CancellationToken cancellationToken)
 	{
-		var category = await _dbSet.AsNoTracking()
+		var category = await _dbSet
+			.AsNoTracking()
 			.Include(x => x.Products)
-			.Select(p => ConvertToCategoryRepoDto(p))
+			.Select(category => new CategoryRepoDto()
+			{
+				Id = category.Id,
+				Name = category.Name,
+				Description = category.Description,
+				Products = category.Products,
+				ParentId = category.ParentId,
+				Parent = category.Parent,
+				InsertionDate = category.InsertionDate,
+				InverseParent = category.InverseParent
+
+			})
 			.FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
 		if (category != null) return category;
 		return null;
@@ -35,9 +47,21 @@ public class CategoryRepository : ICategoryRepository
 
 	public async Task<List<CategoryRepoDto>> GetAllAsync(CancellationToken cancellationToken)
 	{
-		var category = await _dbSet.AsNoTracking()
+		var category = await _dbSet
+			.AsNoTracking()
 			.Include(x => x.Products)
-			.Select(p => ConvertToCategoryRepoDto(p))
+			.Select(category => new CategoryRepoDto()
+			{
+				Id = category.Id,
+				Name = category.Name,
+				Description = category.Description,
+				Products = category.Products,
+				ParentId = category.ParentId,
+				Parent = category.Parent,
+				InsertionDate = category.InsertionDate,
+				InverseParent = category.InverseParent
+
+			})
 			.ToListAsync(cancellationToken);
 		return category;
 	}
@@ -110,7 +134,7 @@ public class CategoryRepository : ICategoryRepository
 
 	private void Equaler(CategoryRepoDto categoryRepoDto, ref Category category)
 	{
-		category.Id = categoryRepoDto.Id;
+		//category.Id = categoryRepoDto.Id;
 		category.Name = categoryRepoDto.Name;
 		category.Description = categoryRepoDto.Description;
 		category.Products = categoryRepoDto.Products;

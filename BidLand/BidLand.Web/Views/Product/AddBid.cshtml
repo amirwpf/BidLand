@@ -1,0 +1,38 @@
+﻿@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos;
+@model BidRepoDto
+
+<hr />
+<h3>پیشنهاد جدید</h3>
+<div class="app-card app-card-orders-table shadow-sm mb-5">
+	<div class="app-card-body">
+		@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+		{
+			<div class="alert alert-danger" role="alert">
+				@ViewBag.ErrorMessage
+			</div>
+		}
+		@if (Model == null)
+		{
+			<p class="text-danger"> لطفا برای ثبت پیشنهاد وارد حساب کاربری خود شوید </p>
+		}
+
+		@if (User.IsInRole("Buyer") && Model != null)
+		{
+			<form class="settings-form" method="post" asp-action="AddBid">
+				@Html.HiddenFor(x=>x.BuyerId)
+				@Html.HiddenFor(x=>x.AuctionId)
+				<div class="mb-3">
+					<label asp-for="Price" class="form-label">قیمت پیشنهادی</label>
+					<input type="number" class="form-control" asp-for="Price" required>
+				</div>
+				<button type="submit" class="btn btn-primary">ثبت پیشنهاد</button>
+			</form>
+		}
+		else if (!User.IsInRole("Buyer") && Model != null)
+		{
+			<p class="text-danger"> لطفا برای ثبت پیشنهاد وارد حساب کاربری خود شوید </p>
+		}
+
+
+	</div>
+</div>

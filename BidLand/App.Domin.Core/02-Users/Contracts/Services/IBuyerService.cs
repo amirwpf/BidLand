@@ -9,7 +9,7 @@ namespace App.Domin.Core._02_Users.Contracts.Services;
 
 public interface IBuyerService
 {
-	Task CreateAsync(BuyerRepoDto input, CancellationToken cancellationToken);
+	Task<BuyerRepoDto> CreateAsync(BuyerRepoDto input, CancellationToken cancellationToken);
 
 	Task DeleteAsync(BuyerRepoDto input, CancellationToken cancellationToken);
 

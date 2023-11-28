@@ -52,11 +52,13 @@ F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Confi
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\App.Domin.Services.dll
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.dll
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.dll
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\BidLand.Framework.dll
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\App.Domin.AppServices.pdb
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\App.Domin.Core.pdb
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\App.Domin.Services.pdb
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\App.Infra.DataAccess.Repos.Ef.pdb
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\App.Infra.Db.sqlServer.Ef.pdb
+F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\BidLand.Framework.pdb
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\obj\Debug\net7.0\App.Infra.Config.csproj.AssemblyReference.cache
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\obj\Debug\net7.0\App.Infra.Config.GeneratedMSBuildEditorConfig.editorconfig
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\obj\Debug\net7.0\App.Infra.Config.AssemblyInfoInputs.cache
@@ -67,5 +69,3 @@ F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Confi
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\obj\Debug\net7.0\refint\App.Infra.Config.dll
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\obj\Debug\net7.0\App.Infra.Config.pdb
 F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\obj\Debug\net7.0\ref\App.Infra.Config.dll
-F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\BidLand.Framework.dll
-F:\software\exe\visual studio 2022\maktabSh\finalProject\BidLand\App.Infra.Config\bin\Debug\net7.0\BidLand.Framework.pdb

@@ -1,0 +1,98 @@
+﻿@using App.Domin.Core._01_Purchause.Contracts.Repositories.Dtos
+@using BidLand.Framework.Common;
+@model AuctionRepoDto
+
+@{
+	ViewBag.PageTitle = "حراجی";
+}
+
+
+
+<div class="app-content pt-3 p-md-3 p-lg-4">
+	<div class="container-xl">
+		<h1 class="app-page-title">@ViewBag.PageTitle @Model.Stock.Product.Name</h1>
+		<img src="/uploads/products/@Model.Stock.Product.Images.First().Url" class="card-img-top" alt="Product Image" style="height:300px ; width:300px;">
+		<hr class="mb-4">
+		<div class="row g-4 settings-section">
+
+			<div class="col-12 col-md-12">
+				<div class="app-card app-card-settings shadow-sm p-4">
+
+					<div class="app-card-body">
+							<div class="mb-3">
+								<label > حداقل قیمت فروش نهایی </label>
+								:<br />
+								<label > @Model.MinimumFinalPrice </label>
+							</div>
+							<div class="mb-3">
+								<label asp-for="StartDate" class="form-label">تاریخ شروع</label>
+								:<br />
+								<label asp-for="StartDate" class="form-label">@DateConvertor.ConvertGregorianToPersian(Model.StartDate??DateTime.Now)</label>
+							</div>
+							<div class="mb-3">
+								<label asp-for="EndDate" class="form-label">تاریخ پایان</label>
+								:<br />
+								<label asp-for="EndDate" class="form-label">@DateConvertor.ConvertGregorianToPersian(Model.EndDate??DateTime.Now)</label>
+							</div>
+					</div><!--//app-card-body-->
+
+				</div><!--//app-card-->
+			</div>
+		</div><!--//row-->
+
+
+		<hr />
+		<h3> پیشنهادات حراجی</h3>
+		<br />
+		<div class="tab-pane fade show active" id="products-pending" role="tabpanel" aria-labelledby="products-all-tab">
+			<div class="app-card app-card-orders-table shadow-sm mb-5">
+				<div class="app-card-body">
+					<div class="table-responsive">
+						<table class="table app-table-hover mb-0 text-left">
+							<thead>
+								<tr>
+
+									<th class="cell">شناسه</th>
+									<th class="cell">نام خریدار</th>
+									<th class="cell">نام خانوادگی خریدار</th>
+									<th class="cell">قیمت</th>
+									<th class="cell"> تاریخ</th>
+									<th class="cell"> برنده شده</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var s in Model.Bids)
+								{
+									<tr>
+										<td class="cell">@s.Id</td>
+										<td class="cell"><span class="truncate">@s.Buyer.User.Firstname</span></td>
+										<td class="cell"><span class="truncate">@s.Buyer.User.Lastname</span></td>
+										<td class="cell"><span>@s.Price</span></td>
+										<td class="cell"><span>@DateConvertor.ConvertGregorianToPersian(s.BidDate??DateTime.Now)</span></td>
+										<td class="cell">
+											@if (s.HasWon == false)
+											{
+												<span class='badge bg-secondary'>برنده نشده</span>
+											}
+											else
+											{
+												<span class='badge bg-success'>برنده شده</span>
+											}
+										</td>
+
+									</tr>
+								}
+
+							</tbody>
+						</table>
+					</div><!--//table-responsive-->
+
+				</div><!--//app-card-body-->
+			</div><!--//app-card-->
+
+		</div><!--//tab-pane-->
+		<hr/>
+		<a class="btn btn-primary" href="/product/addbid/@Model.Id"> افزودن پیشنهاد </a>
+
+	</div><!--//container-fluid-->
+</div><!--//app-content-->

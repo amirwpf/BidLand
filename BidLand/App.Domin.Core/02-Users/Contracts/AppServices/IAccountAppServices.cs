@@ -41,5 +41,7 @@ namespace App.Domin.Core._02_Users.Contracts.AppServices
 		Task<SellerRepoDto?> FindSellerByUserId(int UserId, CancellationToken cancellation);
 		Task<BoothRepoDto?> FindBoothBySellerId(int SellerId, CancellationToken cancellation);
         Task<IdentityResult> UpdateUser(User model, CancellationToken cancellationToken);
-    }
+        Task<BuyerRepoDto?> FindBuyerByUserId(int UserId, CancellationToken cancellation);
+		Task<BuyerRepoDto?> FindBuyerById(int id, CancellationToken cancellation);
+	}
 }
